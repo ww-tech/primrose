@@ -1,0 +1,54 @@
+primrose.models package
+=======================
+
+Submodules
+----------
+
+primrose.models.minimal\_search\_engine module
+----------------------------------------------
+
+.. automodule:: primrose.models.minimal_search_engine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.models.sklearn\_classifier\_model module
+-------------------------------------------------
+
+.. automodule:: primrose.models.sklearn_classifier_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.models.sklearn\_cluster\_model module
+----------------------------------------------
+
+.. automodule:: primrose.models.sklearn_cluster_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.models.sklearn\_model module
+-------------------------------------
+
+.. automodule:: primrose.models.sklearn_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.models.sklearn\_regression\_model module
+-------------------------------------------------
+
+.. automodule:: primrose.models.sklearn_regression_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.models
+   :members:
+   :undoc-members:
+   :show-inheritance:

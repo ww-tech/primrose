@@ -1,0 +1,25 @@
+{
+    /*
+     * simple ETL: read from a CSV and then write data to a CSV
+     */
+
+    "implementation_config": {
+        "reader_config": {
+            "read_data": {
+                "class": "CsvReader",
+                "filename": "data/tennis.csv",
+                "destinations": [
+                    "write_output"
+                ]
+            }
+        },
+        "writer_config": {
+            "write_output": {
+                "class": "CsvWriter",
+                "key": "data",
+                "dir": "cache",
+                "filename": "tennis_output.csv"
+            }
+        }
+    }
+}

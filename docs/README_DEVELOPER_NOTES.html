@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Notes &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DataObject" href="README_DATAOBJECT.html" />
+    <link rel="prev" title="Primrose Command Line Interface" href="README_CLI.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#necessary-config-node-config">necessary_config(node_config)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-data-object">run(data_object)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-example-sleep">Complete example: sleep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registering-your-classes">Registering Your Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-generate-a-run-script">Step 1: Generate a run script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-register-your-classes">Step 2: Register your classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-reference-the-registration-code">Step 3: Reference the Registration code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-pathing">Conditional Pathing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#other-methods">Other methods</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Notes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README_DEVELOPER_NOTES.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-notes">
+<h1>Developer Notes<a class="headerlink" href="#developer-notes" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> has been developed with a relatively small, simple, and consistent interface with which to develop your own DAG nodes.</p>
+<p>The core concept is that of a <code class="docutils literal notranslate"><span class="pre">Node</span></code>, a single node of a DAG. This is defined with the abstract class <code class="docutils literal notranslate"><span class="pre">primrose.base.AbstractNode</span></code>.</p>
+<p>Some example custom nodes can be seen in the default project directory that’s created when running <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">create-project</span></code>: <code class="docutils literal notranslate"><span class="pre">AwesomeReader</span></code> and <code class="docutils literal notranslate"><span class="pre">AwesomeModel</span></code>.</p>
+<p>There are two defined methods:</p>
+<div class="section" id="necessary-config-node-config">
+<h2>necessary_config(node_config)<a class="headerlink" href="#necessary-config-node-config" title="Permalink to this headline">¶</a></h2>
+<p>Almost all nodes will need some parameterization. A reader needs to from where to read, a model needs to know whether it running in training or eval mode, a writer needs to know where to write and so on.</p>
+<p>One of the goals of the <code class="docutils literal notranslate"><span class="pre">primrose</span></code> framework is to catch configuration errors as early as possible, before the job actually starts. For this reason, we have implemented many configuration checks within the <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> class (detailed <a class="reference internal" href="README_DAG_CONFIG.html"><span class="doc">here</span></a>). One of those checks is to check that the nodes have all the information that they need to run. For this reason, we include a <code class="docutils literal notranslate"><span class="pre">necessary_config(node_config)</span></code> method in the Node interface.</p>
+<p>If a <code class="docutils literal notranslate"><span class="pre">CsvReader</span></code> needs to know a filename so that it can perform its task, we explictly tell the <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> object to look for a filename key in the section of configuration that defines that node.</p>
+<p>To be explicit, if <code class="docutils literal notranslate"><span class="pre">CsvReader</span></code> returns <code class="docutils literal notranslate"><span class="pre">set(['filename'])</span></code> from <code class="docutils literal notranslate"><span class="pre">CsvReader.necessary_config()</span></code> then if the configuration file has</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="s2">&quot;read_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;data/tennis.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;encode_and_split&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Configuration</span></code> knows that this is a “good” configuration and it passes its check.</p>
+<p>All the parameters, i.e.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;data/tennis.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;encode_and_split&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>is avaliable to the <code class="docutils literal notranslate"><span class="pre">Node</span></code> class via <code class="docutils literal notranslate"><span class="pre">self.node_config</span></code>.</p>
+</div>
+<div class="section" id="run-data-object">
+<h2>run(data_object)<a class="headerlink" href="#run-data-object" title="Permalink to this headline">¶</a></h2>
+<p>The other method in <code class="docutils literal notranslate"><span class="pre">AbstractNode</span></code> is <code class="docutils literal notranslate"><span class="pre">run(data_object)</span></code>. This is the method that implements a node’s functionality. It receives the <code class="docutils literal notranslate"><span class="pre">data_object</span></code> which is an instance of <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>, and so has access to all the data from upstream nodes of the DAG. It performs it function, and can (but doesn’t have to) add or otherwise modify the data within DataObject and returns it.</p>
+<p>The full interface for <code class="docutils literal notranslate"><span class="pre">run(data_object)</span></code> is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      run the node. For a reader, that means read, for a writer that means write etc.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">      data_object (DataObject): DataObject instance</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      (tuple): tuple containing:</span>
+
+<span class="sd">          data_object (DataObject): instance of DataObject</span>
+
+<span class="sd">          terminate (bool): terminate the DAG?</span>
+
+<span class="sd">  &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>and so it returns not only the data_object but also a flag to tell the <code class="docutils literal notranslate"><span class="pre">DagRunner</span></code> whether it should terminate the whole DAG. For instance, suppose that at the start of DAG, a reader is suppposed to read some data but the dataset it receives is empty. There may be no point doing any of the downstream nodes and so it can flag to stop the whole job by returning terminate=True</p>
+</div>
+<div class="section" id="complete-example-sleep">
+<h2>Complete example: sleep<a class="headerlink" href="#complete-example-sleep" title="Permalink to this headline">¶</a></h2>
+<p>Let’s suppose that you wanted to develop a new node whose job was to sleep for 5 seconds. We’ll parameterize and externalize the duration as a key in the config.</p>
+<p>Your class (ignoring pydocs here for clarity) would look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">primrose.base.node</span> <span class="k">import</span> <span class="n">AbstractNode</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">SleepNode</span><span class="p">(</span><span class="n">AbstractNode</span><span class="p">):</span>
+
+  <span class="nd">@staticmethod</span>
+  <span class="k">def</span> <span class="nf">necessary_config</span><span class="p">(</span><span class="n">node_config</span><span class="p">):</span>
+     <span class="k">return</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;duration&#39;</span><span class="p">])</span>
+
+  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_object</span><span class="p">):</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_config</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">])</span>
+      <span class="n">terminate</span> <span class="o">=</span> <span class="kc">False</span>
+      <span class="k">return</span> <span class="n">data_object</span><span class="p">,</span> <span class="n">terminate</span>
+</pre></div>
+</div>
+<p>and that’s it. The <code class="docutils literal notranslate"><span class="pre">primrose</span></code> framework takes care of the rest. For better code, you might want to add some checks that duration is numeric, that the duration value is non-negative and so on but you get the idea.</p>
+<p>After registering your class (see next section), you can then use it in a configuration files such as as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+  <span class="s2">&quot;sleeptime&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;SleepNode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span>
+    <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;some_other_node&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="registering-your-classes">
+<h2>Registering Your Classes<a class="headerlink" href="#registering-your-classes" title="Permalink to this headline">¶</a></h2>
+<p>Now that you’ve implemented your own classes that implement the <code class="docutils literal notranslate"><span class="pre">Node</span></code> interface, how do your register them given that these nodes are in your project and you are importing <code class="docutils literal notranslate"><span class="pre">primrose</span></code>?</p>
+<p>There are three steps to registering your own classes and running them in your project:</p>
+<ol class="simple">
+<li><p>Generate a script to run <code class="docutils literal notranslate"><span class="pre">primrose</span></code> from your own project.</p></li>
+<li><p>Register your own classes.</p></li>
+<li><p>Reference the file with your registered classes in your <code class="docutils literal notranslate"><span class="pre">run_primrose</span></code> script.</p></li>
+</ol>
+<p><strong>NOTE:</strong>
+An example project with <code class="docutils literal notranslate"><span class="pre">AwesomeReader</span></code> and <code class="docutils literal notranslate"><span class="pre">AwesomeModel</span></code> as registered classes will automatically be created when
+using <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">create_project</span> <span class="pre">--name</span> <span class="pre">&lt;projectname&gt;</span></code>. This template can be used to add more nodes or modifying for
+your own needs. It’s important to remember that there are two ways to register new classes, you can modify the <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
+file in your source directory, which is imported in <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run_primrose.py</span></code>, or you can use the cli.
+When using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run_primrose.py</span></code> as an entrypoint rather than the cli, you don’t need any extra options. If you
+prefer to use the cli, then custom directories can be registered with the <code class="docutils literal notranslate"><span class="pre">--node_module</span></code> option:
+<code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">--node_module</span> <span class="pre">src</span> <span class="pre">run</span> <span class="pre">--config</span> <span class="pre">my_config_file</span></code>. When using the cli, classes must still be imported in your
+source <code class="docutils literal notranslate"><span class="pre">__init__</span></code> file.</p>
+<p>Follow the below steps to set up your custom project manually:</p>
+<div class="section" id="step-1-generate-a-run-script">
+<h3>Step 1: Generate a run script<a class="headerlink" href="#step-1-generate-a-run-script" title="Permalink to this headline">¶</a></h3>
+<p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">primrose</span> <span class="n">generate_script</span> <span class="o">--</span><span class="n">destination</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">myproject</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>which will create <code class="docutils literal notranslate"><span class="pre">path/to/myproject/run_primrose.py</span></code>.</p>
+</div>
+<div class="section" id="step-2-register-your-classes">
+<h3>Step 2: Register your classes<a class="headerlink" href="#step-2-register-your-classes" title="Permalink to this headline">¶</a></h3>
+<p>Create a file where you import the <code class="docutils literal notranslate"><span class="pre">NodeFactory</span></code>, import your classes and then register them.</p>
+<p>For instance, if your project has <code class="docutils literal notranslate"><span class="pre">src</span></code>, we suggest putting this code in <code class="docutils literal notranslate"><span class="pre">src/__init__.py</span></code>.</p>
+<p>In that file, add following code (obviously with your own imports):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">primrose.node_factory</span> <span class="k">import</span> <span class="n">NodeFactory</span>
+
+<span class="c1"># Add your imports here</span>
+<span class="kn">from</span> <span class="nn">src.yourpackage.awesome_reader</span> <span class="k">import</span> <span class="n">AwesomeReader</span>
+<span class="kn">from</span> <span class="nn">src.yourpackage.awesome_model</span> <span class="k">import</span> <span class="n">AwesomeModel</span>
+
+<span class="n">NodeFactory</span><span class="p">()</span><span class="o">.</span><span class="n">register_module_classes</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-reference-the-registration-code">
+<h3>Step 3: Reference the Registration code<a class="headerlink" href="#step-3-reference-the-registration-code" title="Permalink to this headline">¶</a></h3>
+<p>Importantly, this factory registration has to occur <em>before</em> Configuration is instantiated  in the <code class="docutils literal notranslate"><span class="pre">run_primrose</span></code> script.</p>
+<p>To that end, we suggest putting this registration code below into something
+like <code class="docutils literal notranslate"><span class="pre">src/__init__.py</span></code> in your project. Wherever you put it, you will need to reference it in the <code class="docutils literal notranslate"><span class="pre">run_primrose</span></code> script.</p>
+<p>That is, if you put this code into <code class="docutils literal notranslate"><span class="pre">src/__init__.py</span></code>, you will need to add</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">src.__init__</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>at the head of the run_primrose script.</p>
+</div>
+</div>
+<div class="section" id="conditional-pathing">
+<h2>Conditional Pathing<a class="headerlink" href="#conditional-pathing" title="Permalink to this headline">¶</a></h2>
+<p>During machine learning jobs, one often has to make decisions dynamically depending on characteristics of the data at runtime: if there is drift, then retrain the model; if the data is too large to fit in RAM, handle in the cloud; if the detected language is French, use the French model etc.</p>
+<p>One option is to bake this conditional logic within a node. However, another option supported in <code class="docutils literal notranslate"><span class="pre">primrose</span></code> is to have conditional paths in the DAG. That is, if some condition is met at a given node, the <code class="docutils literal notranslate"><span class="pre">DAGRunner</span></code> should follow one or more of the destinations (and their subgraphs) and should ignore one or more other destinations (and their subgraphs). This is more easily explained with a diagram.</p>
+<p><img alt="_images/conditional_path.png" src="_images/conditional_path.png" /></p>
+<p>In this simple DAG, the reader flows into a node called <code class="docutils literal notranslate"><span class="pre">conditional_node</span></code>. This flows into two destinations: <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>. This <code class="docutils literal notranslate"><span class="pre">conditional_node</span></code> could flow into both <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>, as normal and as would be expected. However, in this case, it could signal to the <code class="docutils literal notranslate"><span class="pre">DAGRunner</span></code> that only the <code class="docutils literal notranslate"><span class="pre">left</span></code> path should run and the <code class="docutils literal notranslate"><span class="pre">right</span></code> path (<code class="docutils literal notranslate"><span class="pre">right</span></code> and <code class="docutils literal notranslate"><span class="pre">right2</span></code>) should be dropped from the DAG. It could also signal that only the <code class="docutils literal notranslate"><span class="pre">right</span></code> path should run and the <code class="docutils literal notranslate"><span class="pre">left</span></code> path should be dropped.</p>
+<p>How does one develop such nodes? One of the <code class="docutils literal notranslate"><span class="pre">primrose.base</span></code> node types is <code class="docutils literal notranslate"><span class="pre">AbstractConditionalPath</span></code>. These nodes extend <code class="docutils literal notranslate"><span class="pre">AbstractNode</span></code> and so they must implement <code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">data_object)</span></code>. However, they must also implement a method <code class="docutils literal notranslate"><span class="pre">destinations_to_prune(self)</span></code>. If the node does not want to prune a path, it returns <code class="docutils literal notranslate"><span class="pre">None</span></code>. However, if it does want to prune a path it returns a list of one or more of its destinations nodes. In the example above, it could return <code class="docutils literal notranslate"><span class="pre">['left']</span></code>, <code class="docutils literal notranslate"><span class="pre">['right']</span></code> or <code class="docutils literal notranslate"><span class="pre">['left','right']</span></code>.</p>
+<p>For any <code class="docutils literal notranslate"><span class="pre">AbstractConditionalPath</span></code>-type node, the <code class="docutils literal notranslate"><span class="pre">DAGRunner</span></code> will call the node’s <code class="docutils literal notranslate"><span class="pre">destinations_to_prune()</span></code> <em>after</em> <code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">data_object)</span></code>. Thus, it has access to the <code class="docutils literal notranslate"><span class="pre">data_object</span></code> and any processing during the <code class="docutils literal notranslate"><span class="pre">run</span></code> method with which to make the pruning decision.</p>
+<p><strong>Note</strong>: as these decisions are made dynamically at run time, the <code class="docutils literal notranslate"><span class="pre">DRY_RUN</span></code> feature of <code class="docutils literal notranslate"><span class="pre">primrose</span></code> is not able to demonstrate the precise final DAG that will be run. <code class="docutils literal notranslate"><span class="pre">DRY_RUN</span></code> has to assume that <em>no</em> DAG pruning will occur.</p>
+</div>
+<div class="section" id="next">
+<h2>Next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
+<p>Learn more about DataObject: <a class="reference internal" href="README_DATAOBJECT.html"><span class="doc">DataObject</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="README_DATAOBJECT.html" class="btn btn-neutral float-right" title="DataObject" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="README_CLI.html" class="btn btn-neutral float-left" title="Primrose Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

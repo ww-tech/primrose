@@ -1,0 +1,83 @@
+{
+    "metadata": {
+
+        /*
+         * this is a minimal Sklearn clustering example in training mode:
+         * read in some data from CSV
+         * sklearn.preprocessing.StandardScaler transform the data but no train test split!
+         * cluster with sklearn.cluster.KMeans
+         * predict on same training data, appending predictions column to data
+         * save enriched data to CSV
+         * save both transformer_sequence and model to disk
+         * plot clusters and save image to disk
+         */
+
+    },
+    "implementation_config": {
+        "reader_config": {
+            "read_data": {
+                "class": "CsvReader",
+                "filename": "data/unclustered.csv",
+                "destinations": [
+                    "normalize_data"
+                ]
+            }
+        },
+        "pipeline_config": {
+            "normalize_data": {
+                "class": "SklearnPreprocessingPipeline",
+                "operations": [
+                    {"class":"preprocessing.StandardScaler", "columns": ["x1", "x2"], "args": {"with_mean": true, "with_std": true}}
+                ],
+                "is_training": true,
+                "training_fraction": 0.65,
+                "seed": 42,
+                "destinations": [
+                    "cluster_model",
+                    "write_transformer_sequence"
+                ]
+            }
+        },
+        "model_config": {
+            "cluster_model":{
+                "class": "SklearnClusterModel",
+                "mode": "train",
+                "features": ["x1","x2"],
+                "model": {"class": "cluster.KMeans", "args": {"n_clusters": 6, "random_state": 42}},
+                "destinations": [
+                    "write_data",
+                    "write_model",
+                    "cluster_plotter"
+                ]
+            }
+        },
+        "writer_config": {
+            "write_data": {
+                "class": "CsvWriter",
+                "key": "data",
+                "dir": "cache",
+                "filename": "clustered_output.csv"
+            },
+            "write_transformer_sequence": {
+                "class": "DillWriter",
+                "key": "transformer_sequence",
+                "dir": "cache",
+                "filename": "hello_world_cluster_transformer.dill"
+            },
+            "write_model": {
+                "class": "DillWriter",
+                "key": "model",
+                "dir": "cache",
+                "filename": "hello_world_cluster_model.dill"
+            }
+        },
+        "dataviz_config": {
+            "cluster_plotter": {
+                "class": "ClusterPlotter",
+                "id_col": "predictions",
+                "filename": "clusters.png",
+                "title": "Results of KMeans(k=6)"
+            }
+        }
+    }
+}

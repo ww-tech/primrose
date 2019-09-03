@@ -1,0 +1,110 @@
+base package
+============
+
+Submodules
+----------
+
+base.conditional\_path\_node module
+-----------------------------------
+
+.. automodule:: base.conditional_path_node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.model module
+-----------------
+
+.. automodule:: base.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.node module
+----------------
+
+.. automodule:: base.node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.pipeline module
+--------------------
+
+.. automodule:: base.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.postprocess module
+-----------------------
+
+.. automodule:: base.postprocess
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.reader module
+------------------
+
+.. automodule:: base.reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.search\_engine module
+--------------------------
+
+.. automodule:: base.search_engine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.sql\_reader module
+-----------------------
+
+.. automodule:: base.sql_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.success module
+-------------------
+
+.. automodule:: base.success
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.transformer module
+-----------------------
+
+.. automodule:: base.transformer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.transformer\_sequence module
+---------------------------------
+
+.. automodule:: base.transformer_sequence
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+base.writer module
+------------------
+
+.. automodule:: base.writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: base
+   :members:
+   :undoc-members:
+   :show-inheritance:

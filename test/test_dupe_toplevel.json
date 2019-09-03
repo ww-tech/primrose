@@ -1,0 +1,29 @@
+{
+    "implementation_config":{
+        "reader_config": {
+            "csv_reader": {
+                "class": "CsvReader",
+                "filename": "test/minimal.csv",
+                "destinations": []
+            }
+        },
+
+        "model_config": {
+            "recipe_name_model": {
+                "class": "RecipeNameSearchEngine",
+                "id_key": "id",
+                "doc_key": "name",
+                "destinations": []
+            }
+        },
+
+        "model_config": {
+            "recipe_name_model2": {
+                "class": "RecipeNameSearchEngine",
+                "id_key": "id",
+                "doc_key": "name",
+                "destinations": []
+            }
+        }
+    }
+}

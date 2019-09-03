@@ -1,0 +1,46 @@
+pipelines package
+=================
+
+Submodules
+----------
+
+pipelines.dataframe\_joiner module
+----------------------------------
+
+.. automodule:: pipelines.dataframe_joiner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pipelines.encode\_train\_test\_split module
+-------------------------------------------
+
+.. automodule:: pipelines.encode_train_test_split
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pipelines.sklearn\_preprocessing\_pipeline module
+-------------------------------------------------
+
+.. automodule:: pipelines.sklearn_preprocessing_pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pipelines.train\_test\_split module
+-----------------------------------
+
+.. automodule:: pipelines.train_test_split
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pipelines
+   :members:
+   :undoc-members:
+   :show-inheritance:

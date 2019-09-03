@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>transformers package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>transformers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/transformers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transformers-package">
+<h1>transformers package<a class="headerlink" href="#transformers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-transformers.categoricals">
+<span id="transformers-categoricals-module"></span><h2>transformers.categoricals module<a class="headerlink" href="#module-transformers.categoricals" title="Permalink to this headline">¶</a></h2>
+<p>Module to run a basic decision tree model</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ExplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param">categoricals</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<dl class="attribute">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform.DEFAULT_NUMERIC">
+<code class="sig-name descname">DEFAULT_NUMERIC</code><em class="property"> = -9999</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.DEFAULT_NUMERIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>User implements fit operation on a single data element from a data_object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>object</em>) – some data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform categorical variables into one or more numeric ones, no need to separate testing &amp; training data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – dictionary containing dataframe with all categorical columns present</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data with all categorical columns recoded and/or deleted</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ImplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param">target_variable</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<p>Class which implicitly transforms all string columns of a dataframe with sklearn LabelEncoder</p>
+<dl class="method">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>encode the data as categorical labels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dataframe</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe (dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform data into categorical variables using pre-trained label encoder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dataframe</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe (dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers.combine">
+<span id="transformers-combine-module"></span><h2>transformers.combine module<a class="headerlink" href="#module-transformers.combine" title="Permalink to this headline">¶</a></h2>
+<p>Custom combiner object which works via pandas left merges</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.combine.LeftJoinDataCombiner">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">LeftJoinDataCombiner</code><span class="sig-paren">(</span><em class="sig-param">join_key</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<p>combine two dataframes doing a left join</p>
+<dl class="method">
+<dt id="transformers.combine.LeftJoinDataCombiner.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit the data, here doing nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – list of pandas data frames</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.combine.LeftJoinDataCombiner.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies left joins to combine dataframes from different readers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – list of dataframes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="transformers.combine.left_merge_dataframe_on_validated_join_keys">
+<code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">left_merge_dataframe_on_validated_join_keys</code><span class="sig-paren">(</span><em class="sig-param">left_df</em>, <em class="sig-param">right_df</em>, <em class="sig-param">join_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.left_merge_dataframe_on_validated_join_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge two dataframes together or return just the left_df if the right df is None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_df</strong> – valid dataframe with join keys of matching data type (will be validated)</p></li>
+<li><p><strong>right_df</strong> – None or valid dataframe with join keys of matching data type (will be validated)</p></li>
+<li><p><strong>join_keys</strong> – list of keys to be validated on datatype and existance in left/right</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>joined dataframe object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers.filter">
+<span id="transformers-filter-module"></span><h2>transformers.filter module<a class="headerlink" href="#module-transformers.filter" title="Permalink to this headline">¶</a></h2>
+<p>Transform data by filtering in data using filtering operations</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.filter.FilterByPandasExpression">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.filter.</code><code class="sig-name descname">FilterByPandasExpression</code><span class="sig-paren">(</span><em class="sig-param">feature_filters</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<p>Applies filters to data as defined in feature_filters</p>
+<dl class="method">
+<dt id="transformers.filter.FilterByPandasExpression.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit data, here just passing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>object</em>) – some data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.filter.FilterByPandasExpression.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies filters to data as defined in feature_filters. This is neccessary so we can filter rows in one reader
+based on information from another, and therefore has to be applied after the combiner step.</p>
+<p>The filters can operate on a single column with a fixed set of operations and a static value:</p>
+<p>fixed operations: <cite>==</cite>, <cite>!=</cite>, <cite>&lt;&gt;</cite>, <cite>&lt;</cite>, <cite>&lt;=</cite>, <cite>&gt;</cite>, <cite>&gt;=</cite></p>
+<p>The feature_filters object should be structured as a list of lists:</p>
+<p>feature_filters: <cite>[[column, operation, static value], [column, operation, static value]]</cite></p>
+<p>example: <cite>[[“number_of_members”, “&lt;”, 1000]]</cite> for filtering all rows with number_of_members less than 1000</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – dictionary with dataframes from all readers</p></li>
+<li><p><strong>data_key</strong> (<em>str</em>) – key to pull the dataframe from within the data object</p></li>
+<li><p><strong>feature_filters</strong> (<em>list</em>) – list of lists with columns and operators to filter on</p></li>
+<li><p><strong>instance_name</strong> (<em>str</em>) – name of this pipeline instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe with filtered data</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception if not a pandas dataframe</strong><strong>, </strong><strong>operation not supported</strong><strong>, or </strong><strong>column name not recognized</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers.impute">
+<span id="transformers-impute-module"></span><h2>transformers.impute module<a class="headerlink" href="#module-transformers.impute" title="Permalink to this headline">¶</a></h2>
+<p>Custom imputer to replace values within pandas dataframe columns with config-specified imputation schemes</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Reka Daniel-Weiner (<a class="reference external" href="mailto:reka&#46;danielweiner&#37;&#52;&#48;weightwatchers&#46;com">reka<span>&#46;</span>danielweiner<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.impute.ColumnSpecificImpute">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.impute.</code><code class="sig-name descname">ColumnSpecificImpute</code><span class="sig-paren">(</span><em class="sig-param">columns_to_zero</em>, <em class="sig-param">columns_to_mean</em>, <em class="sig-param">columns_to_median</em>, <em class="sig-param">columns_to_mode</em>, <em class="sig-param">columns_to_infinity</em>, <em class="sig-param">columns_to_neg_infinity</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<p>Transform config specified columns NULL values into zero, mean, median, mode, inf or negative inf</p>
+<dl class="method">
+<dt id="transformers.impute.ColumnSpecificImpute.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit encoder imputation values to dataframe metrics
+Create a dictionary of column name to imputed values. These values might be straight constants or might
+be a function of the complete column’s value, such as mode or median</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pandas data frame</em>) – a data frame</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Nothing. Updates internal dictionary of column name to imputed value</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception if a column appears in multiple lists</strong><strong>, or </strong><strong>if column not recognized</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.impute.ColumnSpecificImpute.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Impute columns in data according to the imputations fit by self.fit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dataframe</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data (dataframe)</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception if train is not called before transfoorm</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers.sklearn_preprocessing_transformer">
+<span id="transformers-sklearn-preprocessing-transformer-module"></span><h2>transformers.sklearn_preprocessing_transformer module<a class="headerlink" href="#module-transformers.sklearn_preprocessing_transformer" title="Permalink to this headline">¶</a></h2>
+<p>primrose wrapper around sklearn preprocessor</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.sklearn_preprocessing_transformer.</code><code class="sig-name descname">SklearnPreprocessingTransformer</code><span class="sig-paren">(</span><em class="sig-param">preprocessor</em>, <em class="sig-param">columns</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<dl class="method">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>User implements fit operation on a single data element from a data_object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>object</em>) – some data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit_transform">
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit then transform data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>data</em>) – input data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data, transformed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>User implements internal transform function which operates on a single data element from a data_object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>object</em>) – input data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data, transformed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers.strings">
+<span id="transformers-strings-module"></span><h2>transformers.strings module<a class="headerlink" href="#module-transformers.strings" title="Permalink to this headline">¶</a></h2>
+<p>Transformer that wraps around pandas.Series.str methods</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Brian Graham (<a class="reference external" href="mailto:brian&#46;graham&#37;&#52;&#48;weightwatchers&#46;com">brian<span>&#46;</span>graham<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="transformers.strings.StringTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">transformers.strings.</code><code class="sig-name descname">StringTransformer</code><span class="sig-paren">(</span><em class="sig-param">method</em>, <em class="sig-param">columns</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
+<p>Transforms Series of strings in a Series or DataFrame.</p>
+<dl class="method">
+<dt id="transformers.strings.StringTransformer.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit data, here just passing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>object</em>) – some data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="transformers.strings.StringTransformer.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">df</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies string operation on dataframe columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pd.DataFrame</em>) – pandas dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pandas dataframe</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>df (pd.DataFrame)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-transformers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-transformers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

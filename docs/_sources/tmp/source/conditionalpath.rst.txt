@@ -1,0 +1,22 @@
+conditionalpath package
+=======================
+
+Submodules
+----------
+
+conditionalpath.simple\_switch module
+-------------------------------------
+
+.. automodule:: conditionalpath.simple_switch
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: conditionalpath
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,181 @@
+
+# Developer Notes
+
+`primrose` has been developed with a relatively small, simple, and consistent interface with which to develop your own DAG nodes.
+
+The core concept is that of a `Node`, a single node of a DAG. This is defined with the abstract class `primrose.base.AbstractNode`.
+
+Some example custom nodes can be seen in the default project directory that's created when running `primrose create-project`: `AwesomeReader` and `AwesomeModel`.
+
+There are two defined methods:
+
+## necessary_config(node_config)
+
+Almost all nodes will need some parameterization. A reader needs to from where to read, a model needs to know whether it running in training or eval mode, a writer needs to know where to write and so on.
+
+One of the goals of the `primrose` framework is to catch configuration errors as early as possible, before the job actually starts. For this reason, we have implemented many configuration checks within the `Configuration` class (detailed [here](README_DAG_CONFIG.md)). One of those checks is to check that the nodes have all the information that they need to run. For this reason, we include a `necessary_config(node_config)` method in the Node interface. 
+
+If a `CsvReader` needs to know a filename so that it can perform its task, we explictly tell the `Configuration` object to look for a filename key in the section of configuration that defines that node.
+
+To be explicit, if `CsvReader` returns `set(['filename'])` from `CsvReader.necessary_config()` then if the configuration file has 
+
+```
+  "read_data": {
+    "class": "CsvReader",
+    "filename": "data/tennis.csv",
+    "destinations": [
+      "encode_and_split"
+    ]
+  }
+```
+`Configuration` knows that this is a "good" configuration and it passes its check.
+
+All the parameters, i.e.
+
+```
+  {
+    "class": "CsvReader",
+    "filename": "data/tennis.csv",
+    "destinations": [
+      "encode_and_split"
+    ]
+  }
+```
+is avaliable to the `Node` class via `self.node_config`.
+## run(data_object)
+
+The other method in `AbstractNode` is `run(data_object)`. This is the method that implements a node's functionality. It receives the `data_object` which is an instance of `DataObject`, and so has access to all the data from upstream nodes of the DAG. It performs it function, and can (but doesn't have to) add or otherwise modify the data within DataObject and returns it. 
+
+The full interface for `run(data_object)` is
+
+```
+  """
+      run the node. For a reader, that means read, for a writer that means write etc.
+
+  Args:
+      data_object (DataObject): DataObject instance
+
+  Returns:
+      (tuple): tuple containing:
+
+          data_object (DataObject): instance of DataObject
+
+          terminate (bool): terminate the DAG?
+
+  """
+```
+and so it returns not only the data_object but also a flag to tell the `DagRunner` whether it should terminate the whole DAG. For instance, suppose that at the start of DAG, a reader is suppposed to read some data but the dataset it receives is empty. There may be no point doing any of the downstream nodes and so it can flag to stop the whole job by returning terminate=True
+
+## Complete example: sleep
+Let's suppose that you wanted to develop a new node whose job was to sleep for 5 seconds. We'll parameterize and externalize the duration as a key in the config.
+
+Your class (ignoring pydocs here for clarity) would look like:
+
+```
+from primrose.base.node import AbstractNode
+import time
+
+class SleepNode(AbstractNode):
+
+  @staticmethod
+  def necessary_config(node_config):
+     return set(['duration'])
+
+  def run(self, data_object):
+      time.sleep(self.node_config['duration'])
+      terminate = False
+      return data_object, terminate
+```
+and that's it. The `primrose` framework takes care of the rest. For better code, you might want to add some checks that duration is numeric, that the duration value is non-negative and so on but you get the idea.
+
+After registering your class (see next section), you can then use it in a configuration files such as as
+```
+
+  "sleeptime": {
+    "class": "SleepNode",
+    "duration": 4.5,
+    "destinations": [
+      "some_other_node"
+    ]
+  }
+```
+
+
+## Registering Your Classes
+Now that you've implemented your own classes that implement the `Node` interface, how do your register them given that these nodes are in your project and you are importing `primrose`?
+
+There are three steps to registering your own classes and running them in your project:
+
+1) Generate a script to run `primrose` from your own project.
+
+2) Register your own classes. 
+
+3) Reference the file with your registered classes in your `run_primrose` script.
+
+**NOTE:**
+An example project with `AwesomeReader` and `AwesomeModel` as registered classes will automatically be created when 
+using `primrose create_project --name <projectname>`. This template can be used to add more nodes or modifying for 
+your own needs. It's important to remember that there are two ways to register new classes, you can modify the `__init__`
+ file in your source directory, which is imported in `python run_primrose.py`, or you can use the cli. 
+When using `python run_primrose.py` as an entrypoint rather than the cli, you don't need any extra options. If you 
+prefer to use the cli, then custom directories can be registered with the `--node_module` option: 
+`primrose --node_module src run --config my_config_file`. When using the cli, classes must still be imported in your 
+source `__init__` file. 
+
+Follow the below steps to set up your custom project manually:
+
+### Step 1: Generate a run script
+Run
+```
+    primrose generate_script --destination path/to/myproject/
+```
+which will create `path/to/myproject/run_primrose.py`.
+
+### Step 2: Register your classes
+Create a file where you import the `NodeFactory`, import your classes and then register them. 
+
+For instance, if your project has `src`, we suggest putting this code in `src/__init__.py`.
+
+In that file, add following code (obviously with your own imports):
+
+```
+from primrose.node_factory import NodeFactory
+
+# Add your imports here
+from src.yourpackage.awesome_reader import AwesomeReader
+from src.yourpackage.awesome_model import AwesomeModel
+
+NodeFactory().register_module_classes(__name__)
+```
+
+### Step 3: Reference the Registration code
+
+Importantly, this factory registration has to occur *before* Configuration is instantiated  in the `run_primrose` script. 
+
+To that end, we suggest putting this registration code below into something 
+like `src/__init__.py` in your project. Wherever you put it, you will need to reference it in the `run_primrose` script.
+
+That is, if you put this code into `src/__init__.py`, you will need to add
+
+```
+  from src.__init__ import *
+```
+at the head of the run_primrose script. 
+
+## Conditional Pathing
+During machine learning jobs, one often has to make decisions dynamically depending on characteristics of the data at runtime: if there is drift, then retrain the model; if the data is too large to fit in RAM, handle in the cloud; if the detected language is French, use the French model etc. 
+
+One option is to bake this conditional logic within a node. However, another option supported in `primrose` is to have conditional paths in the DAG. That is, if some condition is met at a given node, the `DAGRunner` should follow one or more of the destinations (and their subgraphs) and should ignore one or more other destinations (and their subgraphs). This is more easily explained with a diagram.
+
+![](img/conditional_path.png)
+
+In this simple DAG, the reader flows into a node called `conditional_node`. This flows into two destinations: `left` and `right`. This `conditional_node` could flow into both `left` and `right`, as normal and as would be expected. However, in this case, it could signal to the `DAGRunner` that only the `left` path should run and the `right` path (`right` and `right2`) should be dropped from the DAG. It could also signal that only the `right` path should run and the `left` path should be dropped.
+
+How does one develop such nodes? One of the `primrose.base` node types is `AbstractConditionalPath`. These nodes extend `AbstractNode` and so they must implement `run(self, data_object)`. However, they must also implement a method `destinations_to_prune(self)`. If the node does not want to prune a path, it returns `None`. However, if it does want to prune a path it returns a list of one or more of its destinations nodes. In the example above, it could return `['left']`, `['right']` or `['left','right']`.
+
+For any `AbstractConditionalPath`-type node, the `DAGRunner` will call the node's `destinations_to_prune()` *after* `run(self, data_object)`. Thus, it has access to the `data_object` and any processing during the `run` method with which to make the pruning decision.
+
+**Note**: as these decisions are made dynamically at run time, the `DRY_RUN` feature of `primrose` is not able to demonstrate the precise final DAG that will be run. `DRY_RUN` has to assume that *no* DAG pruning will occur.
+
+## Next
+Learn more about DataObject: [DataObject](README_DATAOBJECT.md).

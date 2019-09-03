@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.pipelines package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.pipelines package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.pipelines.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-pipelines-package">
+<h1>primrose.pipelines package<a class="headerlink" href="#primrose-pipelines-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.pipelines.dataframe_joiner">
+<span id="primrose-pipelines-dataframe-joiner-module"></span><h2>primrose.pipelines.dataframe_joiner module<a class="headerlink" href="#module-primrose.pipelines.dataframe_joiner" title="Permalink to this headline">¶</a></h2>
+<p>Module toJoin upstream dataframes</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.pipelines.dataframe_joiner.DataFrameJoiner">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.pipelines.dataframe_joiner.</code><code class="sig-name descname">DataFrameJoiner</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.dataframe_joiner.DataFrameJoiner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.pipeline.AbstractPipeline" title="primrose.base.pipeline.AbstractPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.pipeline.AbstractPipeline</span></code></a></p>
+<p>Join upstream dataframes</p>
+<dl class="method">
+<dt id="primrose.pipelines.dataframe_joiner.DataFrameJoiner.init_pipeline">
+<code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.dataframe_joiner.DataFrameJoiner.init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the pipeline’s TransformerSequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a TransformerSequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.dataframe_joiner.DataFrameJoiner.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.dataframe_joiner.DataFrameJoiner.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the necessary configuration keys for the DataFrameJoiner object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>start_table: first table index in alpha order which defines who is eligible for this analysis (all other tables will be left joined to this)
+join_key: list of column names to join dataframes from different readers on</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.dataframe_joiner.DataFrameJoiner.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.dataframe_joiner.DataFrameJoiner.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get DataFrames from the data object then put them into a alphabetical list for constant join order</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.pipelines.encode_train_test_split">
+<span id="primrose-pipelines-encode-train-test-split-module"></span><h2>primrose.pipelines.encode_train_test_split module<a class="headerlink" href="#module-primrose.pipelines.encode_train_test_split" title="Permalink to this headline">¶</a></h2>
+<p>“Encode all string df columns to numeric labels, inherit test/train split from parent</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.pipelines.encode_train_test_split.</code><code class="sig-name descname">EncodeTrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.pipelines.train_test_split.TrainTestSplit" title="primrose.pipelines.train_test_split.TrainTestSplit"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.pipelines.train_test_split.TrainTestSplit</span></code></a></p>
+<p>Encode all string df columns to numeric labels, inherit test/train split from parent</p>
+<dl class="method">
+<dt id="primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.final_data_object_additions">
+<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overload function which adds the label encoder after running fit_transform or transform</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of DataObject</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.first_transformer_in_sequence">
+<em class="property">property </em><code class="sig-name descname">first_transformer_in_sequence</code><a class="headerlink" href="#primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.first_transformer_in_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns 1st transformer in a sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a transformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.init_pipeline">
+<code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.encode_train_test_split.EncodeTrainTestSplit.init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the pipeline’s TransformerSequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a TransformerSequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.pipelines.sklearn_preprocessing_pipeline">
+<span id="primrose-pipelines-sklearn-preprocessing-pipeline-module"></span><h2>primrose.pipelines.sklearn_preprocessing_pipeline module<a class="headerlink" href="#module-primrose.pipelines.sklearn_preprocessing_pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Module to run preprocessing using SKlearn preprocessors</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.pipelines.sklearn_preprocessing_pipeline.</code><code class="sig-name descname">SklearnPreprocessingPipeline</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.pipelines.train_test_split.TrainTestSplit" title="primrose.pipelines.train_test_split.TrainTestSplit"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.pipelines.train_test_split.TrainTestSplit</span></code></a></p>
+<dl class="method">
+<dt id="primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.init_pipeline">
+<code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the pipeline’s TransformerSequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a TransformerSequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the necessary configuration keys for the SklearnPreprocessingPipeline object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.pipelines.train_test_split">
+<span id="primrose-pipelines-train-test-split-module"></span><h2>primrose.pipelines.train_test_split module<a class="headerlink" href="#module-primrose.pipelines.train_test_split" title="Permalink to this headline">¶</a></h2>
+<p>Module to run train test splits</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)
+Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.pipelines.train_test_split.</code><code class="sig-name descname">TrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.pipeline.AbstractPipeline" title="primrose.base.pipeline.AbstractPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.pipeline.AbstractPipeline</span></code></a></p>
+<p>Parent pipeline to split into training / testing data, and run a transform</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class will split data into testing and training portions, then write the objects to the data_object
+if this is the only the pipeline operation needed, then you can use this class directly as a pipeline.
+Otherwise, make a child class and write an init_pipeline method to perform operations on your data.</p>
+<p>This class also handles writing your transformer_sequence into the data_object, so there’s no need
+to write in child classes.</p>
+</div>
+<dl class="method">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit.features">
+<code class="sig-name descname">features</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit.features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use user-specified features if available, otherwise use all non-target columns</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>DataFrame</em>) – pandas dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>lsit of feature names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit.final_data_object_additions">
+<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
+<dd><p>DataObject: Template method to be overloaded in child classes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Allows for child class TransformerSequence objects to be added into the data_object</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit.fit_transform">
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split data into testing and training sets, then applies the categorical transform to each</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the necessary configuration keys for the DataFrameJoiner object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>target_variable (string): column name which holds the target variable             training_fraction (float): 0-&gt;1 float for the fraction of data rows to be used for training             seed (int): random number to control the stochastic row selection</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.pipelines.train_test_split.TrainTestSplit.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.pipelines.train_test_split.TrainTestSplit.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform the data into label encoded data using the pre-trained transformer sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.pipelines">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.pipelines" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

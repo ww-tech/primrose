@@ -1,0 +1,27 @@
+{
+
+    /*
+    *
+    *  this is a comment
+    */
+
+    "implementation_config": {
+        "reader_config": {
+            "read_data": {
+                "class": "CsvReader",
+                "filename": "test/tennis.csv",
+                "destinations": [
+                    "write_output"   /* more comments */
+                ]
+            }   
+        },
+        "writer_config": {
+            "write_output": {
+                "class": "CsvWriter", // inline comment
+                "key": "data",
+                "dir": "cache",
+                "filename": "tennis_output.csv"
+            }
+        }
+    }
+}

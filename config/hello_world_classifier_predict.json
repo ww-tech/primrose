@@ -1,0 +1,59 @@
+{
+  "metadata": {},
+  "implementation_config": {
+    "reader_config": {
+      "read_data": {
+        "class": "CsvReader",
+        "filename": "data/tennis.csv",
+        "destinations": [
+          "encode_and_split"
+        ]
+      },
+      "read_model": {
+        "class": "DillReader",
+        "filename": "cache/hello_world_model.dill",
+        "destinations": [
+          "decision_tree_model"
+        ]
+      },
+      "read_encoder": {
+        "class": "DillReader",
+        "filename": "cache/hello_world_encoder.dill",
+        "destinations": [
+          "encode_and_split"
+        ]
+      }
+    },
+    "pipeline_config": {
+      "encode_and_split": {
+        "class": "EncodeTrainTestSplit",
+        "is_training": false,
+        "target_variable": "play",
+        "training_fraction": 0.0,
+        "seed": 42,
+        "destinations": [
+          "decision_tree_model"]
+      }
+    },
+    "model_config": {
+      "decision_tree_model": {
+        "class": "SklearnClassifierModel",
+        "sklearn_classifier_name": "tree.DecisionTreeClassifier",
+        "mode": "predict",
+        "grid_search_scoring": null,
+        "cv_folds": null,
+        "destinations": [
+          "write_output"],
+        "model_parameters": {}
+      }
+    },
+    "writer_config": {
+      "write_output": {
+        "class": "CsvWriter",
+        "key": "predictions",
+        "dir": "cache",
+        "filename": "hello_world_predictions.csv"
+      }
+    }
+  }
+}

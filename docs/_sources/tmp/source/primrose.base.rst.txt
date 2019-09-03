@@ -1,0 +1,110 @@
+primrose.base package
+=====================
+
+Submodules
+----------
+
+primrose.base.conditional\_path\_node module
+--------------------------------------------
+
+.. automodule:: primrose.base.conditional_path_node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.model module
+--------------------------
+
+.. automodule:: primrose.base.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.node module
+-------------------------
+
+.. automodule:: primrose.base.node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.pipeline module
+-----------------------------
+
+.. automodule:: primrose.base.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.postprocess module
+--------------------------------
+
+.. automodule:: primrose.base.postprocess
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.reader module
+---------------------------
+
+.. automodule:: primrose.base.reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.search\_engine module
+-----------------------------------
+
+.. automodule:: primrose.base.search_engine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.sql\_reader module
+--------------------------------
+
+.. automodule:: primrose.base.sql_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.success module
+----------------------------
+
+.. automodule:: primrose.base.success
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.transformer module
+--------------------------------
+
+.. automodule:: primrose.base.transformer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.transformer\_sequence module
+------------------------------------------
+
+.. automodule:: primrose.base.transformer_sequence
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.base.writer module
+---------------------------
+
+.. automodule:: primrose.base.writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.base
+   :members:
+   :undoc-members:
+   :show-inheritance:

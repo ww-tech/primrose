@@ -1,0 +1,22 @@
+primrose.cleanup package
+========================
+
+Submodules
+----------
+
+primrose.cleanup.logging\_success module
+----------------------------------------
+
+.. automodule:: primrose.cleanup.logging_success
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.cleanup
+   :members:
+   :undoc-members:
+   :show-inheritance:

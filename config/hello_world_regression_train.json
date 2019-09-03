@@ -1,0 +1,63 @@
+{
+    "metadata": {
+
+        /* 
+         * this is a simple Sklearn regression example in train mode:
+         * read in a sklearn dataset
+         * do train test split
+         * fit the regression on X_train, y_train with a sklearn linear estimator
+         * log some evaluation metrics against X_test, y_test
+         * save the model and transformer_sequence to disk
+        */
+
+    },
+    "implementation_config": {
+        "reader_config": {
+            "read_data": {
+                "class": "SklearnDatasetReader",
+                "dataset": "iris",
+                "destinations": [
+                    "train_test_split"
+                ]
+            }
+        },
+        "pipeline_config": {
+            "train_test_split": {
+                "class": "TrainTestSplit",
+                "features": ["sepal length (cm)", "petal length (cm)", "petal width (cm)"],
+                "target_variable": "sepal width (cm)",
+                "training_fraction": 0.65,
+                "is_training": true,
+                "seed": 42,
+                "destinations": [
+                    "regression_model",
+                    "write_transformer_sequence"
+                ]
+            }
+        },
+        "model_config": {
+            "regression_model":{
+                "class": "SklearnRegressionModel",
+                "mode": "train",
+                "model": {"class": "linear_model.LinearRegression"},
+                "destinations": [
+                    "write_model"
+                ]
+            }
+        },
+        "writer_config": {
+            "write_transformer_sequence": {
+                "class": "DillWriter",
+                "key": "transformer_sequence",
+                "dir": "cache",
+                "filename": "hello_world_regression_transformer_sequence.dill"
+            },
+            "write_model": {
+                "class": "DillWriter",
+                "key": "model",
+                "dir": "cache",
+                "filename": "hello_world_regression_model.dill"
+            }
+        }
+    }
+}

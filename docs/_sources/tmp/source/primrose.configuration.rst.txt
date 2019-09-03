@@ -1,0 +1,38 @@
+primrose.configuration package
+==============================
+
+Submodules
+----------
+
+primrose.configuration.configuration module
+-------------------------------------------
+
+.. automodule:: primrose.configuration.configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.configuration.configuration\_dag module
+------------------------------------------------
+
+.. automodule:: primrose.configuration.configuration_dag
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.configuration.util module
+----------------------------------
+
+.. automodule:: primrose.configuration.util
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:
