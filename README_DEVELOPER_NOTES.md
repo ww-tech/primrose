@@ -114,7 +114,7 @@ There are three steps to registering your own classes and running them in your p
 
 **NOTE:**
 An example project with `AwesomeReader` and `AwesomeModel` as registered classes will automatically be created when 
-using `primrose create_project --name <projectname>`. This template can be used to add more nodes or modifying for 
+using `primrose create-project --name <projectname>`. This template can be used to add more nodes or modifying for 
 your own needs. It's important to remember that there are two ways to register new classes, you can modify the `__init__`
  file in your source directory, which is imported in `python run_primrose.py`, or you can use the cli. 
 When using `python run_primrose.py` as an entrypoint rather than the cli, you don't need any extra options. If you 
@@ -127,7 +127,7 @@ Follow the below steps to set up your custom project manually:
 ### Step 1: Generate a run script
 Run
 ```
-    primrose generate_script --destination path/to/myproject/
+    primrose generate-script --destination path/to/myproject/
 ```
 which will create `path/to/myproject/run_primrose.py`.
 

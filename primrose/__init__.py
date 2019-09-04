@@ -192,24 +192,12 @@ def create_project(name):
     print("New primrose project, {} built!".format(name))
 
 
-@click.command()
-def run_tests():
-    """Run the pytest test suite"""
-    cmd = ["python", "-m", "pytest", "test/"]
-    import subprocess
-    process = subprocess.Popen(cmd, shell=False)
-    output, error = process.communicate()
-    print(output)
-    print(error)
-
-
 cli.add_command(validate)
 cli.add_command(run)
 cli.add_command(plot)
-cli.add_command(generate_run_script)
-cli.add_command(generate_class_registration_template)
-cli.add_command(run_tests)
-cli.add_command(create_project)
+cli.add_command(generate_run_script, name='generate-run-script')
+cli.add_command(generate_class_registration_template, name='generate-class-registration-template')
+cli.add_command(create_project, name='create-project')
 
 
 if __name__ == "__main__":

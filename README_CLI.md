@@ -12,21 +12,21 @@ and you will see
 ```
 Usage: primrose [OPTIONS] COMMAND [ARGS]...
 
-  This is the command line interface for `primrose`. The command most people
-  need is `primrose run` to run a `primros`e job. Type `primrose` commandname
+  This is the command line interface for primrose. The command most people
+  need is `primrose run` to run a primrose job. Type primrose commandname
   --help for more detailed help on a command
 
 Options:
-  --help  Show this message and exit.
+  --node_module TEXT  module with imports of custom node classes
+  --help              Show this message and exit.
 
 Commands:
-  generate_class_registration_template
-                                  Create template to register your own
-                                  classes.
-  generate_run_script             Create primrose run script in your...
+  create-project                  Create template project filled with...
+  generate-class-registration-template
+                                  Create template to register your own...
+  generate-run-script             Create primrose run script in your...
   plot                            Create an image of the DAG
   run                             Run a primrose job
-  run_tests                       Run the pytest test suite
   validate                        Validate a primrose config
 ```
 To get more details on a command type `primrose`, name of command followed by `--help`. For instance, to get more help on the `run` command, type `primrose run --help` and you will see:
@@ -57,7 +57,7 @@ You can also run the job in `dry_run` mode which sets out the sequence of which 
 ## primrose create_project
 To start with a blank primrose project, you use the command:
 ```
-    primrose create_project --name my_project_name
+    primrose create-project --name my_project_name
 ```
 Which will build a directory, `my_project_name` with the necessary files to start working with `primrose`.
 
@@ -76,15 +76,8 @@ You've also seen
 ```
 There are many other arguments to control node size, text angles and the like. See `primrose plot --help` for full details.
 
-## primrose run_tests
-`primrose` has a test suite with a healthy code coverage. To run the `pytest` test suite simply 
-
-```
-  primrose run_tests
-```
-
 ## Other commands
-The last two commands `primrose generate_class_registration_template` and `primrose generate_run_script` relate to 
+The last two commands `primrose generate-class-registration-template` and `primrose generate-run-script` relate to 
 extending `primrose` and using within your own project. This is covered in more detail in the [Developer Notes](README_DEVELOPER_NOTES.md).
 
 ## Next

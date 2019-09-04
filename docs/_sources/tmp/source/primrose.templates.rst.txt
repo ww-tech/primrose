@@ -1,0 +1,54 @@
+primrose.templates package
+==========================
+
+Submodules
+----------
+
+primrose.templates.awesome\_model module
+----------------------------------------
+
+.. automodule:: primrose.templates.awesome_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.templates.awesome\_reader module
+-----------------------------------------
+
+.. automodule:: primrose.templates.awesome_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.templates.run\_plot\_dag module
+----------------------------------------
+
+.. automodule:: primrose.templates.run_plot_dag
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.templates.run\_primrose module
+---------------------------------------
+
+.. automodule:: primrose.templates.run_primrose
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.templates.user\_registration\_template module
+------------------------------------------------------
+
+.. automodule:: primrose.templates.user_registration_template
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.templates
+   :members:
+   :undoc-members:
+   :show-inheritance:
