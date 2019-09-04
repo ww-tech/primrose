@@ -99,7 +99,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#primrose-create-project">primrose create_project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#primrose-validate">primrose validate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#primrose-plot">primrose plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#primrose-run-tests">primrose run_tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-commands">Other commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
 </ul>
@@ -185,21 +184,21 @@
 <p>and you will see</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Usage: primrose [OPTIONS] COMMAND [ARGS]...
 
-  This is the command line interface for `primrose`. The command most people
-  need is `primrose run` to run a `primros`e job. Type `primrose` commandname
+  This is the command line interface for primrose. The command most people
+  need is `primrose run` to run a primrose job. Type primrose commandname
   --help for more detailed help on a command
 
 Options:
-  --help  Show this message and exit.
+  --node_module TEXT  module with imports of custom node classes
+  --help              Show this message and exit.
 
 Commands:
-  generate_class_registration_template
-                                  Create template to register your own
-                                  classes.
-  generate_run_script             Create primrose run script in your...
+  create-project                  Create template project filled with...
+  generate-class-registration-template
+                                  Create template to register your own...
+  generate-run-script             Create primrose run script in your...
   plot                            Create an image of the DAG
   run                             Run a primrose job
-  run_tests                       Run the pytest test suite
   validate                        Validate a primrose config
 </pre></div>
 </div>
@@ -230,7 +229,7 @@ Commands:
 <div class="section" id="primrose-create-project">
 <h2>primrose create_project<a class="headerlink" href="#primrose-create-project" title="Permalink to this headline">¶</a></h2>
 <p>To start with a blank primrose project, you use the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">primrose</span> <span class="n">create_project</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_project_name</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">primrose</span> <span class="n">create</span><span class="o">-</span><span class="n">project</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_project_name</span>
 </pre></div>
 </div>
 <p>Which will build a directory, <code class="docutils literal notranslate"><span class="pre">my_project_name</span></code> with the necessary files to start working with <code class="docutils literal notranslate"><span class="pre">primrose</span></code>.</p>
@@ -250,16 +249,9 @@ Commands:
 </div>
 <p>There are many other arguments to control node size, text angles and the like. See <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">plot</span> <span class="pre">--help</span></code> for full details.</p>
 </div>
-<div class="section" id="primrose-run-tests">
-<h2>primrose run_tests<a class="headerlink" href="#primrose-run-tests" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> has a test suite with a healthy code coverage. To run the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> test suite simply</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">primrose</span> <span class="n">run_tests</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="other-commands">
 <h2>Other commands<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h2>
-<p>The last two commands <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate_class_registration_template</span></code> and <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate_run_script</span></code> relate to
+<p>The last two commands <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate-class-registration-template</span></code> and <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate-run-script</span></code> relate to
 extending <code class="docutils literal notranslate"><span class="pre">primrose</span></code> and using within your own project. This is covered in more detail in the <a class="reference internal" href="README_DEVELOPER_NOTES.html"><span class="doc">Developer Notes</span></a>.</p>
 </div>
 <div class="section" id="next">

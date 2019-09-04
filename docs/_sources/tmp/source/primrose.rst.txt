@@ -15,6 +15,7 @@ Subpackages
    primrose.models
    primrose.pipelines
    primrose.readers
+   primrose.templates
    primrose.transformers
    primrose.writers
 

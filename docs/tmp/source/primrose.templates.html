@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.templates package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.templates package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.templates.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-templates-package">
+<h1>primrose.templates package<a class="headerlink" href="#primrose-templates-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.templates.awesome_model">
+<span id="primrose-templates-awesome-model-module"></span><h2>primrose.templates.awesome_model module<a class="headerlink" href="#module-primrose.templates.awesome_model" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, Example model for primrose user modification</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;ww&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.templates.awesome_model.AwesomeModel">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.templates.awesome_model.</code><code class="sig-name descname">AwesomeModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_model.AwesomeModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.model.AbstractModel" title="primrose.base.model.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.model.AbstractModel</span></code></a></p>
+<p>(EXAMPLE MODEL) Print what is going on for each abstract method implementation</p>
+<p class="rubric">Notes</p>
+<p>see AbstractModel class to understand how this model is run in each mode!</p>
+<dl class="method">
+<dt id="primrose.templates.awesome_model.AwesomeModel.eval_model">
+<code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_model.AwesomeModel.eval_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Code to evaluate your models performance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.templates.awesome_model.AwesomeModel.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_model.AwesomeModel.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the AwesomeModel object</p>
+<p>Put your required configuration keys here, here we pass just the base requirement from the abstract class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename: name of the file</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the AwesomeModel object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.templates.awesome_model.AwesomeModel.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_model.AwesomeModel.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make predictions using your model</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.templates.awesome_model.AwesomeModel.train_model">
+<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_model.AwesomeModel.train_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Code to train your model and return a data_object after adding any training or model info</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.templates.awesome_reader">
+<span id="primrose-templates-awesome-reader-module"></span><h2>primrose.templates.awesome_reader module<a class="headerlink" href="#module-primrose.templates.awesome_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, Example for primrose user modification</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;ww&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.templates.awesome_reader.AwesomeReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.templates.awesome_reader.</code><code class="sig-name descname">AwesomeReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_reader.AwesomeReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>(EXAMPLE READER) Read input directly from the configuration file</p>
+<dl class="method">
+<dt id="primrose.templates.awesome_reader.AwesomeReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_reader.AwesomeReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the AwesomeReader object</p>
+<p>Put your required configuration keys here</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename: name of the file</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the AwesomeReader object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.templates.awesome_reader.AwesomeReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.awesome_reader.AwesomeReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from node_config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataObject instance
+terminate (bool): should we terminate the DAG? true or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.templates.run_plot_dag">
+<span id="primrose-templates-run-plot-dag-module"></span><h2>primrose.templates.run_plot_dag module<a class="headerlink" href="#module-primrose.templates.run_plot_dag" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="primrose.templates.run_plot_dag.main">
+<code class="sig-prename descclassname">primrose.templates.run_plot_dag.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.run_plot_dag.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train, evaluate or predict with a machine learning model from a user defined data source
+The function can optionally upload the results to an external source</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="primrose.templates.run_plot_dag.parse_arguments">
+<code class="sig-prename descclassname">primrose.templates.run_plot_dag.</code><code class="sig-name descname">parse_arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.run_plot_dag.parse_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse command line arguments
+Use environment variables as default if passed.
+Returns: argument objects with flags as attributes</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.templates.run_primrose">
+<span id="primrose-templates-run-primrose-module"></span><h2>primrose.templates.run_primrose module<a class="headerlink" href="#module-primrose.templates.run_primrose" title="Permalink to this headline">¶</a></h2>
+<p>Run a job: i.e. run a configuration file through the DAGRunner</p>
+<dl class="function">
+<dt id="primrose.templates.run_primrose.main">
+<code class="sig-prename descclassname">primrose.templates.run_primrose.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.run_primrose.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a job: i.e. run a configuration file through the DAGRunner</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="primrose.templates.run_primrose.parse_arguments">
+<code class="sig-prename descclassname">primrose.templates.run_primrose.</code><code class="sig-name descname">parse_arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.templates.run_primrose.parse_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse command line arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>argument objects with flags as attributes</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="primrose-templates-user-registration-template-module">
+<h2>primrose.templates.user_registration_template module<a class="headerlink" href="#primrose-templates-user-registration-template-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.templates">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.templates" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@ Once you have `primrose` installed, you can now run a job. First you'll need to 
 using the `primrose` command line as follows:
 
 ```
-primrose create_project --name <myprojectname>
+primrose create-project --name <myprojectname>
 
 ```
 

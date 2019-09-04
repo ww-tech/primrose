@@ -275,7 +275,7 @@
 </ol>
 <p><strong>NOTE:</strong>
 An example project with <code class="docutils literal notranslate"><span class="pre">AwesomeReader</span></code> and <code class="docutils literal notranslate"><span class="pre">AwesomeModel</span></code> as registered classes will automatically be created when
-using <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">create_project</span> <span class="pre">--name</span> <span class="pre">&lt;projectname&gt;</span></code>. This template can be used to add more nodes or modifying for
+using <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">create-project</span> <span class="pre">--name</span> <span class="pre">&lt;projectname&gt;</span></code>. This template can be used to add more nodes or modifying for
 your own needs. It’s important to remember that there are two ways to register new classes, you can modify the <code class="docutils literal notranslate"><span class="pre">__init__</span></code>
 file in your source directory, which is imported in <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run_primrose.py</span></code>, or you can use the cli.
 When using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run_primrose.py</span></code> as an entrypoint rather than the cli, you don’t need any extra options. If you
@@ -286,7 +286,7 @@ source <code class="docutils literal notranslate"><span class="pre">__init__</sp
 <div class="section" id="step-1-generate-a-run-script">
 <h3>Step 1: Generate a run script<a class="headerlink" href="#step-1-generate-a-run-script" title="Permalink to this headline">¶</a></h3>
 <p>Run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">primrose</span> <span class="n">generate_script</span> <span class="o">--</span><span class="n">destination</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">myproject</span><span class="o">/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">primrose</span> <span class="n">generate</span><span class="o">-</span><span class="n">script</span> <span class="o">--</span><span class="n">destination</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">myproject</span><span class="o">/</span>
 </pre></div>
 </div>
 <p>which will create <code class="docutils literal notranslate"><span class="pre">path/to/myproject/run_primrose.py</span></code>.</p>
