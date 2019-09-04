@@ -121,7 +121,7 @@ def generate_run_script(destination):
     This will also allow you to register and use your own primrose node classes. 
     To register your own classes you will also need to run the primrose generate_class_registration_template command"""
     from shutil import copyfile
-    run_primrose_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../', 'run_primrose.py')
+    run_primrose_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates', 'run_primrose.py')
     copyfile(run_primrose_path, destination)
     print("Primrose's run_primrose.py script copied to " + destination)
     print("Don't forget to set where your new classes are to be imported. See script.")
@@ -133,7 +133,7 @@ def generate_class_registration_template(destination):
     """Create template to register your own classes. This will copy a template to your destination, such as src/__init__.py"""
     from shutil import copyfile
     user_registration_template_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                                   '../',
+                                                   'templates',
                                                    'user_registration_template.py')
     copyfile(user_registration_template_path, destination)
     print("Primrose's user_registration_template.py script copied to " + destination)
@@ -146,31 +146,39 @@ def create_project(name):
     from shutil import copyfile, copytree
 
     # get local directories to copy from the package dir
-    package_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../')
+    package_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
+    env_dir = sys.prefix
 
-    config_dir_path = os.path.join(package_dir, 'config')
+    config_dir_path = os.path.join(env_dir, 'config')
 
-    template_dir_path = os.path.join(package_dir, 'templates')
-
-    data_dir_path = os.path.join(package_dir, 'data')
+    data_dir_path = os.path.join(env_dir, 'data')
 
     user_registration_template_path = os.path.join(package_dir, 'user_registration_template.py')
 
     run_primrose_path = os.path.join(package_dir, 'run_primrose.py')
+
+    # make empty cache and src dir
+    os.makedirs(os.path.join(name, 'cache'))
+    os.makedirs(os.path.join(name, 'src', 'yourpackage'))
 
     # copy relevant files to user path
     copytree(config_dir_path, os.path.join(name, 'config'))
 
     copytree(data_dir_path, os.path.join(name, 'data'))
 
-    copytree(template_dir_path, os.path.join(name, 'src', 'yourpackage'))
+    copyfile(os.path.join(package_dir, 'awesome_model.py'), os.path.join(name,
+                                                                         'src',
+                                                                         'yourpackage',
+                                                                         'awesome_model.py'))
+
+    copyfile(os.path.join(package_dir, 'awesome_reader.py'), os.path.join(name,
+                                                                          'src',
+                                                                          'yourpackage',
+                                                                          'awesome_reader.py'))
 
     copyfile(user_registration_template_path, os.path.join(name, 'src', '__init__.py'))
 
     copyfile(run_primrose_path, os.path.join(name, 'run_primrose.py'))
-
-    # make empty cache dir
-    os.mkdir(os.path.join(name, 'cache'))
 
     # modify run_primrose to take into account the templated extention functions
     replacement_line = 'from src.__init__ import *\n'

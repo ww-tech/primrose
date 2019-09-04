@@ -1,0 +1,8 @@
+include requirements.txt
+include run_plot_dag.py
+include run_primrose.py
+include user_registration_template.py
+include README.md
+include config/*
+include data/*
+include templates/*
