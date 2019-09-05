@@ -1,4 +1,7 @@
 # Overview
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/primrose.svg)](https://pypi.python.org/pypi/primrose/)
+[![PyPI version](https://badge.fury.io/py/primrose.svg)](https://badge.fury.io/py/primrose)
+[![PyPI license](https://img.shields.io/pypi/l/primrose.svg)](https://pypi.python.org/pypi/primrose/)
 
 <p align="center">
    <img src="img/primrose_logo.png" width="100">
