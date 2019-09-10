@@ -10,7 +10,7 @@ from abc import abstractmethod
 import pandas as pd
 import logging
 import hashlib
-
+from jinja2 import Environment, FileSystemLoader
 
 class AbstractSqlReader(AbstractReader):
     """A reader that explicitly reads from relational DB using SQL and is able to run pd.read_sql."""
@@ -33,7 +33,9 @@ class AbstractSqlReader(AbstractReader):
 
     @staticmethod
     def _substitute_query(query_json):
-        """substitue our paramters in a query string
+        """Substitue our paramters in a query string. Renders the file as a jinja template to allow for advanced
+        query nesting and logic. Uses a jinja environment which searches for templates (sql queries) using relative 
+        path and absolute path.
         
         Note:
             given JSON:
@@ -46,7 +48,12 @@ class AbstractSqlReader(AbstractReader):
                 }
             }
 
-            read in the SQL file and, if parameters is present, substitue out the parameters, and return the final query string
+            and `somequery.sql`:
+            ```
+            SELECT * from table_01 where x = {x} and y = {y}
+            ```
+
+            This function will read in the SQL file via jinja, and if parameters is present, substitue out the parameters, returning the final query string
 
         Returns:
             query_json (JSON): JSON
@@ -59,8 +66,12 @@ class AbstractSqlReader(AbstractReader):
         if 'parameters' in query_json:
             sql_input = query_json['parameters']
 
-        with open(query_json['query'], 'r') as f:
-            return f.read().format(**sql_input)
+        jinja_env = Environment(loader=FileSystemLoader(['.', '/']), 
+                                variable_start_string='{',
+                                variable_end_string='}')
+        
+        query = jinja_env.get_template(query_json['query'])
+        return query.render(**sql_input)
 
     def _generate_queries(self):
         """generate final queries, using parameter substitution, if requested

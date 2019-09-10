@@ -20,3 +20,4 @@ atlas>=0.27.0
 google-cloud-storage>=1.16.0
 pygraphviz>=1.5
 jstyleson==0.0.2
+Jinja2>=2.10
