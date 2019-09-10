@@ -1,4 +1,10 @@
 # Overview
+[![Build Status](https://travis-ci.org/ww-tech/primrose.svg?branch=master)](https://travis-ci.org/ww-tech/primrose)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/primrose.svg)](https://pypi.python.org/pypi/primrose/)
+[![PyPI version](https://badge.fury.io/py/primrose.svg)](https://badge.fury.io/py/primrose)
+[![PyPI license](https://img.shields.io/pypi/l/primrose.svg)](https://pypi.python.org/pypi/primrose/)
+[![Docs status](https://img.shields.io/website/https/ww-tech.github.io/primrose?down_color=red&down_message=docs&label=docs&up_color=success&up_message=up)](https://ww-tech.github.io/primrose/)
+
 
 <p align="center">
    <img src="img/primrose_logo.png" width="100">
