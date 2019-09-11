@@ -34,6 +34,53 @@ def test__substitute_query():
     if os.path.exists(filename):
         os.remove(filename)
 
+def test__substitute_query2():
+    query_00 = """SELECT * FROM TABLE where field={x} and otherfield='{y}'"""
+    query_01 = """SELECT * FROM TABLE where field={a} and otherfield='{b}'"""
+    query_02 = """
+    {% include 'test/test_substitute_00.sql' %}
+    UNION ALL
+    {% include 'test/test_substitute_01.sql' %}
+    """
+    queries = [query_00, query_01, query_02]
+    
+    filenames = []
+    for i in range(3):
+        filename = "test/test_substitute_{:02d}.sql".format(i)
+        filenames.append(filename)
+        if os.path.exists(filename):
+            os.remove(filename)
+
+        with open(filename, 'w') as f:
+            f.write(queries[i])
+
+    individual_query_json = {
+        "query": "test/test_substitute_02.sql",
+        "parameters": {
+            "a": 2,
+            "b": "somestring2",
+            "x": 3,
+            "y": "somestring"
+        }
+    }
+    class TestSqlReader(AbstractSqlReader):
+        pass   
+    
+    transformed_query = TestSqlReader._substitute_query(individual_query_json)
+
+    expected_query = """
+    SELECT * FROM TABLE where field=3 and otherfield='somestring'
+    UNION ALL
+    SELECT * FROM TABLE where field=2 and otherfield='somestring2'
+    """
+    print(transformed_query)
+
+    assert transformed_query == expected_query
+
+    for filename in filenames:
+        if os.path.exists(filename):
+            os.remove(filename)
+
 def test__generate_queries():
 
     config = {
