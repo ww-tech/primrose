@@ -82,7 +82,7 @@ The last two commands `primrose generate-class-registration-template` and `primr
 extending `primrose` and using within your own project. This is covered in more detail in the [Developer Notes](README_DEVELOPER_NOTES.md).
 
 ## Specifying your primrose node registry
-(See [Developer Notes - Register your classes](README_DEVELOPER_NOTES.md###-step-2:-register-your-classes) for information about registering custom `primrose` nodes)
+(See [Developer Notes - Register your classes](README_DEVELOPER_NOTES.md#step-2-register-your-classes) for information about registering custom `primrose` nodes)
 
 The `primrose` cli enables you to include custom nodes through the `--node_module` option. Using this option will import the specified package/module which registers your nodes. Note that `--node_module` needs to be declared prior to all subsequent primrose commands.
 ```
