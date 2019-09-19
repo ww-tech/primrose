@@ -9,6 +9,7 @@ Author(s):
 import re
 import datetime
 import jstyleson
+import yaml
 import hashlib
 import os
 import logging
@@ -49,9 +50,16 @@ class Configuration:
                 config_str = Configuration.perform_any_config_fragment_substitution(config_str)
             else:
                 raise Exception('config file at: {} not found'.format(config_location))
+        
+        ext = os.path.splitext(config_str)[1].lower()
 
-        self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
-
+        if ext == '.json':
+            self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
+        elif ext in ['.yaml', '.yml']:
+            self.config = yaml.load(config_str)
+        else:
+            raise ValueError('config file at: {} has improper extension type - please use a .json or .yml file')
+        
         assert isinstance(self.config, dict)
 
         # check top-level keys
