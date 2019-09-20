@@ -57,6 +57,11 @@ def test_init_error7():
         Configuration(config_location=None, is_dict_config=True, dict_config=config)
     assert 'Unsupported top-level key: junk. Supported keys are [\'metadata\', \'implementation_config\']' in str(e)
 
+def test_init_error8():
+    with pytest.raises(ValueError) as e:
+        Configuration('test/tennis.csv')
+    assert 'config file at: test/tennis.csv has improper extension type - please use a .json or .yml file' in str(e)
+
 def test_metadata():
     config = {
         "metadata":{"k":"v"},
@@ -88,7 +93,7 @@ def test_init_ok2():
     }
     c = Configuration(config_location=None, is_dict_config=True, dict_config=config)
     assert c.config_string
-    assert c.config_hash == '85207f92c6f6401b3de785d900dc14d6412ca127626a422d186638a6b9c74431'
+    assert c.config_hash == 'b434870806fe0c61ddf2b417ae62c1be519b069fb6e12572f4ff8143f98086ff'
 
 def test_unrecognized():
     config = {
@@ -417,5 +422,40 @@ def test_perform_any_config_fragment_substitution():
         
         }
     }
+    """
+    assert final_str == expected
+
+def test_yaml_config1():
+    config_yaml = Configuration(config_location='test/hello_world_tennis.yml')
+    config_json = Configuration(config_location='test/hello_world_tennis.json')
+    assert config_yaml.config_hash == config_json.config_hash
+
+def test_yaml_config2():
+    c = Configuration('test/config_substitution.yml')
+    assert c.config_string
+    assert c.config_hash
+
+def test_yaml_perform_any_config_fragment_substitution():
+    config_str = """
+$$FILE=test/metadata_fragment.yml$$
+implementation_config:
+$$FILE= test/read_write_fragment.yml$$
+    """
+    final_str = Configuration.perform_any_config_fragment_substitution(config_str)
+    expected = """
+metadata: {}
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - write_output
+      filename: data/tennis.csv
+  writer_config:
+    write_output:
+      class: CsvWriter
+      dir: cache
+      filename: tennis_output.csv
+      key: data
     """
     assert final_str == expected
