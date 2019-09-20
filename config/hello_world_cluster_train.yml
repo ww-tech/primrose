@@ -1,0 +1,74 @@
+metadata: {
+
+          # this is a minimal Sklearn clustering example in training mode:
+          # read in some data from CSV
+          # sklearn.preprocessing.StandardScaler transform the data but no train test split!
+          # cluster with sklearn.cluster.KMeans
+          # predict on same training data, appending predictions column to data
+          # save enriched data to CSV
+          # save both transformer_sequence and model to disk
+          # plot clusters and save image to disk
+
+}
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - normalize_data
+      filename: data/unclustered.csv
+  pipeline_config:
+    normalize_data:
+      class: SklearnPreprocessingPipeline
+      destinations:
+      - cluster_model
+      - write_transformer_sequence
+      is_training: true
+      operations:
+      - args:
+          with_mean: true
+          with_std: true
+        class: preprocessing.StandardScaler
+        columns:
+        - x1
+        - x2
+      seed: 42
+      training_fraction: 0.65
+  model_config:
+    cluster_model:
+      class: SklearnClusterModel
+      destinations:
+      - write_data
+      - write_model
+      - cluster_plotter
+      features:
+      - x1
+      - x2
+      mode: train
+      model:
+        args:
+          n_clusters: 6
+          random_state: 42
+        class: cluster.KMeans
+  dataviz_config:
+    cluster_plotter:
+      class: ClusterPlotter
+      filename: clusters.png
+      id_col: predictions
+      title: Results of KMeans(k=6)
+  writer_config:
+    write_data:
+      class: CsvWriter
+      dir: cache
+      filename: clustered_output.csv
+      key: data
+    write_model:
+      class: DillWriter
+      dir: cache
+      filename: hello_world_cluster_model.dill
+      key: model
+    write_transformer_sequence:
+      class: DillWriter
+      dir: cache
+      filename: hello_world_cluster_transformer.dill
+      key: transformer_sequence

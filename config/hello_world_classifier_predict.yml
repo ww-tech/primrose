@@ -1,0 +1,43 @@
+metadata: {}
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - encode_and_split
+      filename: data/tennis.csv
+    read_encoder:
+      class: DillReader
+      destinations:
+      - encode_and_split
+      filename: cache/hello_world_encoder.dill
+    read_model:
+      class: DillReader
+      destinations:
+      - decision_tree_model
+      filename: cache/hello_world_model.dill
+  pipeline_config:
+    encode_and_split:
+      class: EncodeTrainTestSplit
+      destinations:
+      - decision_tree_model
+      is_training: false
+      seed: 42
+      target_variable: play
+      training_fraction: 0.0
+  model_config:
+    decision_tree_model:
+      class: SklearnClassifierModel
+      cv_folds: null
+      destinations:
+      - write_output
+      grid_search_scoring: null
+      mode: predict
+      model_parameters: {}
+      sklearn_classifier_name: tree.DecisionTreeClassifier
+  writer_config:
+    write_output:
+      class: CsvWriter
+      dir: cache
+      filename: hello_world_predictions.csv
+      key: predictions
