@@ -228,6 +228,7 @@ Other nodes may require many more additional fields than the single `filename` k
 Nodes may require other keys that are not required but are optional. For those keys, you will need to examine other configuration files or examine the source code.
 
 # Comments
+### YAML
 The `yaml` specification already provides support for commenting. Just use the `#` character to comment:
 
 ```
@@ -250,6 +251,7 @@ implementation_config:
       key: data
 ```
 
+### JSON
 `primrose` also supports javascript style comments in `json` configuration files. By making use of the `jstyleson` library, it supports `/*...*/` and `//` style comments:
  - single-line comment
  - multi-line comment
