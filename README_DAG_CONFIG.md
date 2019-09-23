@@ -15,6 +15,9 @@ Graphs consists of two components:
  ![](img/simple_graph.png)
 
  # Configuration Files
+
+ `primrose` configuration files can be defined using `json` or `yaml` format. This guide will detail `json` style configuration, but feel free to view example `yaml` configurations in the [config](./config) directory.
+
  At the highest level, configuration files consists of two sections:
 
   - **metadata** section. This section is *optional* and contains the data that defines any global (job-level) parameters. This section is documented [here](README_METADATA.md).
@@ -225,7 +228,29 @@ Other nodes may require many more additional fields than the single `filename` k
 Nodes may require other keys that are not required but are optional. For those keys, you will need to examine other configuration files or examine the source code.
 
 # Comments
-`primrose` supports javascript style comments in the configuration files. By making use of the `jstyleson` library, it supports `/*...*/` and `//` style comments:
+The `yaml` specification already provides support for commenting. Just use the `#` character to comment:
+
+```
+# this is a comment
+# this is too
+
+implementation_config:
+  # another comment
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - write_output
+      filename: data/tennis.csv # inline comment
+  writer_config:
+    write_output:
+      class: CsvWriter
+      dir: cache
+      filename: tennis_output.csv # more comments
+      key: data
+```
+
+`primrose` also supports javascript style comments in `json` configuration files. By making use of the `jstyleson` library, it supports `/*...*/` and `//` style comments:
  - single-line comment
  - multi-line comment
  - inline comment
@@ -406,4 +431,4 @@ primrose.configuration.util.ConfigurationError: Did not find xxx destination in 
 ```
 
 ## Next
-Read more about the metadata featues of Configurations: [Configuration Metadata](README_METADATA.md)
+Read more about the metadata features of Configurations: [Configuration Metadata](README_METADATA.md)
