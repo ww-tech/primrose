@@ -27,7 +27,7 @@ def replace_line(file_name, line_num, text):
 
 
 @click.group()
-@click.option('--node_module', required=None, help="module with imports of custom node classes")
+@click.option('--node_module', required=None, help="specify the module which registers custom nodes")
 def cli(node_module):
     """This is the command line interface for primrose.
     The command most people need is `primrose run` to run a primrose job.
