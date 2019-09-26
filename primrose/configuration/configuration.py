@@ -9,6 +9,8 @@ Author(s):
 import re
 import datetime
 import jstyleson
+import yaml
+import json
 import hashlib
 import os
 import logging
@@ -16,6 +18,9 @@ from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
 from primrose.dag.traverser_factory import TraverserFactory
+
+SUPPORTED_EXTS = frozenset(['.json', '.yaml', '.yml'])
+
 class Configuration:
     """Stores user defined configuration for primrose job"""
 
@@ -29,6 +34,8 @@ class Configuration:
 
         """
         if is_dict_config:
+            ext = None
+
             if dict_config is None:
                 raise Exception('expected dict_config was None')
 
@@ -38,19 +45,28 @@ class Configuration:
             dict_str = jstyleson.dumps(dict_config)
 
             config_str = Configuration.perform_any_config_fragment_substitution(dict_str)
+
         else:
             logging.info('Loading config file at {}'.format(config_location))
             self.config_location = config_location
-
+            
             if os.path.exists(config_location):
+                ext = os.path.splitext(config_location)[1].lower()
+                if ext not in SUPPORTED_EXTS:
+                    raise ValueError('config file at: {} has improper extension type - please use a .json or .yml file'.format(config_location))
+
                 with open(config_location, 'r') as f:
                     config_str = f.read()
 
                 config_str = Configuration.perform_any_config_fragment_substitution(config_str)
+
             else:
                 raise Exception('config file at: {} not found'.format(config_location))
 
-        self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
+        if ext is None or ext == '.json':
+            self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
+        elif ext in ['.yaml', '.yml']:
+            self.config = yaml.load(config_str, Loader=yaml.FullLoader)
 
         assert isinstance(self.config, dict)
 
@@ -111,7 +127,7 @@ class Configuration:
             config_str (str): the post-substituted configuration string
 
         """
-        matches = re.findall('.*?\$\$FILE=.*?\$\$.*?', config_str)
+        matches = re.findall(r'.*?\$\$FILE=.*?\$\$.*?', config_str)
 
         for match in matches:
             filename = match.split("$$FILE=")[1].split("$$")[0].strip()
@@ -159,7 +175,7 @@ class Configuration:
                 configuration_file_hashname (str): terminate the DAG?
 
         """
-        configuration_string = str(self.complete_config)
+        configuration_string = json.dumps(self.complete_config, sort_keys=True)
         configuration_file_hashname = hashlib.sha256(configuration_string.encode('utf-8')).hexdigest()
         return configuration_string, configuration_file_hashname
 

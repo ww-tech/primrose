@@ -1,0 +1,3 @@
+$$FILE=test/metadata_fragment.yml$$
+implementation_config:
+  $$FILE= test/read_write_fragment.yml$$

@@ -1,0 +1,61 @@
+metadata: {
+        
+          # This is a minimal Sklearn clustering example in eval mode:
+          # read in some data from CSV
+          # use cached transformer_sequence no train test split!
+          # cluster with cached model
+          # predict on same training data, appending predictions column to data
+          # log some evaluation metrics
+          # save enriched data to CSV
+          # plot clusters and save image to disk
+
+}
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - normalize_data
+      filename: data/unclustered.csv
+    read_encoder:
+      class: DillReader
+      destinations:
+      - normalize_data
+      filename: cache/hello_world_cluster_transformer.dill
+    read_model:
+      class: DillReader
+      destinations:
+      - cluster_model
+      filename: cache/hello_world_cluster_model.dill
+  pipeline_config:
+    normalize_data:
+      class: SklearnPreprocessingPipeline
+      destinations:
+      - cluster_model
+      is_training: false
+      operations: []
+      seed: 42
+      training_fraction: 0.0
+  model_config:
+    cluster_model:
+      class: SklearnClusterModel
+      destinations:
+      - write_data
+      - cluster_plotter
+      features:
+      - x1
+      - x2
+      mode: eval
+  dataviz_config:
+    cluster_plotter:
+      class: ClusterPlotter
+      filename: clusters.png
+      id_col: predictions
+      title: Results of KMeans(k=6)
+  writer_config:
+    write_data:
+      class: CsvWriter
+      dir: cache
+      filename: clustered_output.csv
+      key: data
+

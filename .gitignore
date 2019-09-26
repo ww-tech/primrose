@@ -125,3 +125,7 @@ dmypy.json
 
 # ignore cache created during tests
 cache/
+
+# IDE specific files
+.vscode/
+.idea/

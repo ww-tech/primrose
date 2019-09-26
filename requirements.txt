@@ -21,3 +21,4 @@ google-cloud-storage>=1.16.0
 pygraphviz>=1.5
 jstyleson==0.0.2
 Jinja2>=2.10
+PyYAML>=5.1

@@ -185,8 +185,8 @@ Putting this together, you might have configuration:
 ```
 which says cache after last step and write to `/tmp/data_object_20190618.dill`.
 
-## secton by section deveopment workflow
-Putting this togther, you might have a two stage development process.
+## section by section development workflow
+Putting this together, you might have a two stage development process.
 
 First, run `section1` only and cache the `DataObject` to `/tmp/data_object_20190618.dill`:
 
@@ -262,4 +262,4 @@ When you are satisfied with this `phase1` implementation, you can switch the con
 ```
 
 ## Next
-Learn about the [command line interace](README_CLI.md).
+Learn about the [command line interface](README_CLI.md).
