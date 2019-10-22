@@ -92,6 +92,7 @@ class ExplicitCategoricalTransform(AbstractTransformer):
 
         """
         if 'to_numeric' in input_data.keys():
+
             logging.info("Applying key {} to variable {}".format('to_numeric', name))
 
             if input_data['to_numeric']:
@@ -106,8 +107,12 @@ class ExplicitCategoricalTransform(AbstractTransformer):
                 try:
                     data[name] = pd.to_numeric(data[name])
                     return data
+
                 except:
                     raise TypeError('Failed to convert feature {} to numeric'.format(name))
+
+        else:
+            return data
 
     def transform(self, data):
         """Transform categorical variables into one or more numeric ones, no need to separate testing & training data
