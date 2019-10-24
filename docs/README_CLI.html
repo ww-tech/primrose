@@ -100,6 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#primrose-validate">primrose validate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#primrose-plot">primrose plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-commands">Other commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-your-primrose-node-registry">Specifying your primrose node registry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
 </ul>
 </li>
@@ -253,6 +254,22 @@ Commands:
 <h2>Other commands<a class="headerlink" href="#other-commands" title="Permalink to this headline">¶</a></h2>
 <p>The last two commands <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate-class-registration-template</span></code> and <code class="docutils literal notranslate"><span class="pre">primrose</span> <span class="pre">generate-run-script</span></code> relate to
 extending <code class="docutils literal notranslate"><span class="pre">primrose</span></code> and using within your own project. This is covered in more detail in the <a class="reference internal" href="README_DEVELOPER_NOTES.html"><span class="doc">Developer Notes</span></a>.</p>
+</div>
+<div class="section" id="specifying-your-primrose-node-registry">
+<h2>Specifying your primrose node registry<a class="headerlink" href="#specifying-your-primrose-node-registry" title="Permalink to this headline">¶</a></h2>
+<p>(See <a class="reference external" href="README_DEVELOPER_NOTES.md#step-2-register-your-classes">Developer Notes - Register your classes</a> for information about registering custom <code class="docutils literal notranslate"><span class="pre">primrose</span></code> nodes)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">primrose</span></code> cli enables you to include custom nodes through the <code class="docutils literal notranslate"><span class="pre">--node_module</span></code> option. Using this option will import the specified package/module which registers your nodes. Note that <code class="docutils literal notranslate"><span class="pre">--node_module</span></code> needs to be declared prior to all subsequent primrose commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">primrose</span> <span class="o">--</span><span class="n">node_module</span> <span class="o">&lt;</span><span class="n">primrose</span> <span class="n">command</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For example, let’s say your project is <code class="docutils literal notranslate"><span class="pre">src</span></code> and you registered your nodes in the recommended location <code class="docutils literal notranslate"><span class="pre">src/__init__.py</span></code>. Now you would like to plot your configuration. You can run the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">primrose</span> <span class="o">--</span><span class="n">node_module</span> <span class="o">./</span><span class="n">src</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="n">plot</span> <span class="o">--</span><span class="n">config</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>And since importing a package will run the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file on import, you can alternatively specify the project location</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">primrose</span> <span class="o">--</span><span class="n">node_module</span> <span class="o">./</span><span class="n">src</span> <span class="n">plot</span> <span class="o">--</span><span class="n">config</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="next">
 <h2>Next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>

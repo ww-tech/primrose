@@ -96,7 +96,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#comments">Comments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yaml">YAML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#json">JSON</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#configuration-file-validation">Configuration File Validation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#when-validation-passes">When Validation Passes</a></li>
@@ -194,6 +198,7 @@
 </div>
 <div class="section" id="configuration-files">
 <h1>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> configuration files can be defined using <code class="docutils literal notranslate"><span class="pre">json</span></code> or <code class="docutils literal notranslate"><span class="pre">yaml</span></code> format. This guide will detail <code class="docutils literal notranslate"><span class="pre">json</span></code> style configuration, but feel free to view example <code class="docutils literal notranslate"><span class="pre">yaml</span></code> configurations in the <a class="reference external" href="./config">config</a> directory.</p>
 <p>At the highest level, configuration files consists of two sections:</p>
 <ul class="simple">
 <li><p><strong>metadata</strong> section. This section is <em>optional</em> and contains the data that defines any global (job-level) parameters. This section is documented <a class="reference internal" href="README_METADATA.html"><span class="doc">here</span></a>.</p></li>
@@ -391,7 +396,32 @@
 </div>
 <div class="section" id="comments">
 <h1>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> supports javascript style comments in the configuration files. By making use of the <code class="docutils literal notranslate"><span class="pre">jstyleson</span></code> library, it supports <code class="docutils literal notranslate"><span class="pre">/*...*/</span></code> and <code class="docutils literal notranslate"><span class="pre">//</span></code> style comments:</p>
+<div class="section" id="yaml">
+<h2>YAML<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">yaml</span></code> specification already provides support for commenting. Just use the <code class="docutils literal notranslate"><span class="pre">#</span></code> character to comment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is a comment</span>
+<span class="c1"># this is too</span>
+
+<span class="n">implementation_config</span><span class="p">:</span>
+  <span class="c1"># another comment</span>
+  <span class="n">reader_config</span><span class="p">:</span>
+    <span class="n">read_data</span><span class="p">:</span>
+      <span class="n">class</span><span class="p">:</span> <span class="n">CsvReader</span>
+      <span class="n">destinations</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">write_output</span>
+      <span class="n">filename</span><span class="p">:</span> <span class="n">data</span><span class="o">/</span><span class="n">tennis</span><span class="o">.</span><span class="n">csv</span> <span class="c1"># inline comment</span>
+  <span class="n">writer_config</span><span class="p">:</span>
+    <span class="n">write_output</span><span class="p">:</span>
+      <span class="n">class</span><span class="p">:</span> <span class="n">CsvWriter</span>
+      <span class="nb">dir</span><span class="p">:</span> <span class="n">cache</span>
+      <span class="n">filename</span><span class="p">:</span> <span class="n">tennis_output</span><span class="o">.</span><span class="n">csv</span> <span class="c1"># more comments</span>
+      <span class="n">key</span><span class="p">:</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> also supports javascript style comments in <code class="docutils literal notranslate"><span class="pre">json</span></code> configuration files. By making use of the <code class="docutils literal notranslate"><span class="pre">jstyleson</span></code> library, it supports <code class="docutils literal notranslate"><span class="pre">/*...*/</span></code> and <code class="docutils literal notranslate"><span class="pre">//</span></code> style comments:</p>
 <ul class="simple">
 <li><p>single-line comment</p></li>
 <li><p>multi-line comment</p></li>
@@ -427,6 +457,7 @@
 </pre></div>
 </div>
 <p>will be parsed correctly as a JSON configuration.</p>
+</div>
 </div>
 <div class="section" id="configuration-file-fragment-substitution">
 <h1>Configuration File Fragment Substitution<a class="headerlink" href="#configuration-file-fragment-substitution" title="Permalink to this headline">¶</a></h1>
@@ -565,7 +596,7 @@
 </div>
 <div class="section" id="next">
 <h2>Next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
-<p>Read more about the metadata featues of Configurations: <a class="reference internal" href="README_METADATA.html"><span class="doc">Configuration Metadata</span></a></p>
+<p>Read more about the metadata features of Configurations: <a class="reference internal" href="README_METADATA.html"><span class="doc">Configuration Metadata</span></a></p>
 </div>
 </div>
 
