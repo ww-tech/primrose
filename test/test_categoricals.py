@@ -44,6 +44,13 @@ def test__process_numeric():
 
     assert list(data.currency) == 3*[ExplicitCategoricalTransform.DEFAULT_NUMERIC]
 
+def test__process_numeric_no_config_key():
+    input_data = {}
+    data = pd.DataFrame(data={"currency": ['EUR', 'USD', 'USD']})
+    data = ExplicitCategoricalTransform._process_numeric(data, input_data, "currency")
+
+    assert data is not None
+
 def test__process_rename():
     input_data = {
         "transformations": [
