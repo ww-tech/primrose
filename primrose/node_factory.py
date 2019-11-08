@@ -47,6 +47,7 @@ class NodeFactory:
     instance = None
 
     CLASS_KEY = "class"
+    CLASS_PREFIX = "class_prefix"
 
     def __init__(self):
         """instantiate the factory but as a singleton. The guard raails are here
@@ -107,6 +108,10 @@ class NodeFactory:
             """
             if raise_on_overwrite and key in self.name_dict:
                 raise Error("Node already exist with the key " + key)
+            
+            if key is None:
+                key = class_obj.__class__.__name__
+            
             self.name_dict[key] = class_obj
             logging.debug("Registered %s : %s" % (key, class_obj))
 

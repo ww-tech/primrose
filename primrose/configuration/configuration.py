@@ -14,6 +14,7 @@ import json
 import hashlib
 import os
 import logging
+import importlib
 from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
@@ -317,7 +318,7 @@ class Configuration:
 
                 self.nodename_to_classname[child_key] = child[NodeFactory.CLASS_KEY]
 
-                unique_class_keys.add(child[NodeFactory.CLASS_KEY])
+                unique_class_keys.add((child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX)))
 
                 for k in ['destination_pipeline', 'destination_models', 'destination_postprocesses', 'destination_writer']:
                     if k in child:
@@ -326,14 +327,16 @@ class Configuration:
         logging.info("OK: all class keys are present")
 
         # check that each referenced class is registered in NodeFactory
-        for class_key in unique_class_keys:
+        for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
-                raise ConfigurationError("Node class " + class_key + " is not registered")
+                try:
+                    self._register_class(class_key, class_prefix)
+                except:
+                    raise ConfigurationError(f"Cannot register node class {class_key} with prefix {class_prefix}")
 
         #check necessary_configs
         for instance_name in self.nodename_to_classname:
             class_key = self.nodename_to_classname[instance_name]
-            #section_key = instance_to_section[instance_name]
 
             configuration_dict = self.instance_to_config[instance_name]
 
@@ -346,6 +349,24 @@ class Configuration:
 
         # run our DAG checks. Throws error if not OK
         self.dag.check_dag()
+
+    def _register_class(self, class_key, class_prefix):
+        """Register a class from the configuration
+        """
+        if self.config_metadata:
+            if 'class_package' in self.config_metadata:
+                class_package = self.config_metadata['class_package']
+                prefix = '.'.join([class_package, class_prefix])
+        else:
+            prefix = class_prefix
+
+        importlib.import_module(class_key, prefix)
+        NodeFactory.register(None, class_key)
+
+    def _traverse_node_package(self):
+        """Traverse node package to search for class
+        """
+        raise NotImplementedError
 
     def _parse_config(self):
         """Assign top level keys to config attributes
