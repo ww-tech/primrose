@@ -15,7 +15,7 @@ from primrose.base.node import AbstractNode
 from primrose.readers.csv_reader import CsvReader
 from primrose.readers.gcs_dill_reader import GcsDillReader
 from primrose.readers.dill_reader import DillReader
-from primrose.readers.deserializer import Deserializer
+from primrose.readers.deserializer import Deserializer, GcsDeserializer
 from primrose.readers.sklearn_dataset_reader import SklearnDatasetReader
 from primrose.readers.mysql_reader import MySQLReader
 from primrose.readers.sqlite_reader import SQLiteReader
@@ -81,6 +81,7 @@ class NodeFactory:
                 'GcsDillReader': GcsDillReader,
                 'DillReader': DillReader,
                 'Deserializer': Deserializer,
+                'GcsDeserializer': GcsDeserializer,
                 'DataFrameJoiner': DataFrameJoiner,
                 'EncodeTrainTestSplit': EncodeTrainTestSplit,
                 'TrainTestSplit': TrainTestSplit,
