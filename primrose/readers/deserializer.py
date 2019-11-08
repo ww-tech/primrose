@@ -58,7 +58,7 @@ class Deserializer(AbstractReader):
             object = pickle.load(open(self.node_config['filename'], 'rb'))
         else:
             logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
-            raise Exception(f"Unsupported Serializer: {self.node_config['deserializer']}")
+            raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
 
         data_object.add(self, object, key=Deserializer.DATA_KEY)
 
@@ -140,7 +140,7 @@ class GcsDeserializer(AbstractReader):
             objects = [pickle.loads(obj) for obj in self.download_blobs_as_strings()]
         else:
             logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
-            raise Exception(f"Unsupported Serializer: {self.node_config['deserializer']}")
+            raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
 
         terminate = len(objects) == 0
 
