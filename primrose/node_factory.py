@@ -15,6 +15,7 @@ from primrose.base.node import AbstractNode
 from primrose.readers.csv_reader import CsvReader
 from primrose.readers.gcs_dill_reader import GcsDillReader
 from primrose.readers.dill_reader import DillReader
+from primrose.readers.deserializer import Deserializer
 from primrose.readers.sklearn_dataset_reader import SklearnDatasetReader
 from primrose.readers.mysql_reader import MySQLReader
 from primrose.readers.sqlite_reader import SQLiteReader
@@ -34,6 +35,7 @@ from primrose.models.sklearn_regression_model import SklearnRegressionModel
 from primrose.writers.csv_writer import CsvWriter
 from primrose.writers.file_writer import FileWriter
 from primrose.writers.dill_writer import DillWriter
+from primrose.writers.serializer import Serializer
 from primrose.writers.s3_writer import S3Writer
 
 from primrose.dataviz.cluster_plotter import ClusterPlotter
@@ -78,12 +80,14 @@ class NodeFactory:
                 'PostgresReader': PostgresReader,
                 'GcsDillReader': GcsDillReader,
                 'DillReader': DillReader,
+                'Deserializer': Deserializer,
                 'DataFrameJoiner': DataFrameJoiner,
                 'EncodeTrainTestSplit': EncodeTrainTestSplit,
                 'TrainTestSplit': TrainTestSplit,
                 'CsvWriter': CsvWriter,
                 'FileWriter': FileWriter,
                 'DillWriter': DillWriter,
+                'Serializer': Serializer,
                 'S3Writer': S3Writer,
                 'SklearnClassifierModel': SklearnClassifierModel,
                 'LoggingSuccess': LoggingSuccess,
