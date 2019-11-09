@@ -110,7 +110,8 @@ class NodeFactory:
                 raise Error("Node already exist with the key " + key)
             
             if key is None:
-                key = class_obj.__class__.__name__
+                key = class_obj.__name__
+                logging.info(f'{key}, {class_obj}')
             
             self.name_dict[key] = class_obj
             logging.debug("Registered %s : %s" % (key, class_obj))

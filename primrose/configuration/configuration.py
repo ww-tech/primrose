@@ -15,12 +15,14 @@ import hashlib
 import os
 import logging
 import importlib
+import glob
 from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
 from primrose.dag.traverser_factory import TraverserFactory
 
 SUPPORTED_EXTS = frozenset(['.json', '.yaml', '.yml'])
+CLASS_ENV_PACKAGE_KEY = 'PRIMROSE_EXT_NODE_PACKAGE'
 
 class Configuration:
     """Stores user defined configuration for primrose job"""
@@ -326,6 +328,9 @@ class Configuration:
 
         logging.info("OK: all class keys are present")
 
+        # get class_prefixes by traversing node package
+        unique_class_keys = self._traverse_node_package(unique_class_keys)
+
         # check that each referenced class is registered in NodeFactory
         for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
@@ -360,13 +365,46 @@ class Configuration:
         else:
             prefix = class_prefix
 
-        importlib.import_module(class_key, prefix)
-        NodeFactory.register(None, class_key)
+        clz = getattr(importlib.import_module(prefix), class_key)
+        NodeFactory().register(None, clz)
 
-    def _traverse_node_package(self):
-        """Traverse node package to search for class
+    def _get_file_candidates(self):
+        # for now assume packages/top level only
+        if CLASS_ENV_PACKAGE_KEY in os.environ:
+            pkg_name = os.environ[CLASS_ENV_PACKAGE_KEY]
+        elif 'class_package' in self.config_metadata:
+            pkg_name = self.config_metadata['class_package']
+        else:
+            return []
+
+        pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
+        
+        candidates = glob.glob(os.path.join(pkg_name, '**', '*.py'), recursive=True)
+
+        return candidates
+
+    def _traverse_node_package(self, unique_class_keys):
+        """Traverse node package to search for classes
+
+        Returns:
+            (class_name, class_prefix) tuples
         """
-        raise NotImplementedError
+        class_keys_prefix = []
+        candidates = self._get_file_candidates()
+        for filename in candidates:
+            with open(filename, 'r') as f:
+                src_str = f.read()
+                for class_key, class_key_prefix in unique_class_keys:
+                    if class_key_prefix is None:
+                        logging.info(f'checking {filename} for class {class_key}')
+                        pattern = "class\s" + class_key + "\(?.*\)?:\s"
+                        if re.search(pattern, src_str) is not None:
+                            class_keys_prefix.append((class_key, filename))
+                            continue
+        for class_key, class_key_prefix in unique_class_keys:
+            if class_key not in [x[0] for x in class_keys_prefix]:
+                class_keys_prefix.append((class_key, class_key_prefix))
+        return class_keys_prefix
 
     def _parse_config(self):
         """Assign top level keys to config attributes

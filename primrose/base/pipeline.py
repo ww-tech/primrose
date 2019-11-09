@@ -75,25 +75,29 @@ class AbstractPipeline(AbstractNode):
             TransformerSequence
 
         """
-        # check for a valid pipeline object inside the data object
-        source_dict = data_object.get_upstream_data(self.instance_name, pop_data=False)
+        try:
+            # check for a valid pipeline object inside the data object
+            source_dict = data_object.get_upstream_data(self.instance_name, pop_data=False)
+            
+            for source in source_dict:
 
+                # NOTE: some readers in primrose have objects nested TransformerSequences one level deeper than others
+                # we will allow for this scenario by checking both the first and second level keys for a TransformerSequence
+                if isinstance(source_dict[source], TransformerSequence):
+                    logging.info('Upstream TransformerSequence found, initializing pipeline...')
+                    return source_dict[source]
+                elif isinstance(source_dict[source], dict):
+                    for subkey in source_dict[source]:
+                        if isinstance(source_dict[source][subkey], TransformerSequence):
+                            logging.info('Upstream TransformerSequence found, initializing pipeline...')
+                            return source_dict[source][subkey]
+
+            logging.info('No upstream TransformerSequence found. Creating new TransformerSequence...')
+        
+        except Exception:
+            logging.exception('Issue checking upstream keys, creating new TransformerSequence')
         # look for upstream transformer objects
-        for source in source_dict:
-
-            # NOTE: some readers in primrose have objects nested TransformerSequences one level deeper than others
-            # we will allow for this scenario by checking both the first and second level keys for a TransformerSequence
-            if isinstance(source_dict[source], TransformerSequence):
-                logging.info('Upstream TransformerSequence found, initializing pipeline...')
-                return source_dict[source]
-            elif isinstance(source_dict[source], dict):
-                for subkey in source_dict[source]:
-                    if isinstance(source_dict[source][subkey], TransformerSequence):
-                        logging.info('Upstream TransformerSequence found, initializing pipeline...')
-                        return source_dict[source][subkey]
-
-        logging.info('No upstream TransformerSequence found. Creating new TransformerSequence...')
-
+        
         return self.init_pipeline()
 
     def run(self, data_object):
