@@ -77,7 +77,7 @@ class AbstractPipeline(AbstractNode):
         """
         # check for a valid pipeline object inside the data object
         source_dict = data_object.get_upstream_data(self.instance_name, pop_data=False)
-        
+
         # look for upstream transformer objects
         for source in source_dict:
 
