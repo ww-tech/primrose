@@ -1,6 +1,7 @@
 import pytest
 from primrose.node_factory import NodeFactory
 from primrose.base.postprocess import AbstractPostprocess
+from primrose.base.node import AbstractNode
 from primrose.configuration.configuration import Configuration
 from primrose.data_object import DataObject, DataObjectResponseType
 
@@ -18,12 +19,14 @@ def test_init():
         #    return "some data"
     NodeFactory().register("TestPostprocess", TestPostprocess)
 
-    class TestModel():
+    class TestModel(AbstractNode):
         def __init__(self, configuration, instance_name):
             pass
         @staticmethod
         def necessary_config(node_config):
             return set(['key1'])
+        def run(self, data_object):
+            return data_object, False
     NodeFactory().register("TestModel", TestModel)
 
     config = {

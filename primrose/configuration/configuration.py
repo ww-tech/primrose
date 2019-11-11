@@ -333,7 +333,6 @@ class Configuration:
 
         # check that each referenced class is registered in NodeFactory
         for class_key, class_prefix in unique_class_keys:
-            logging.info(f'checking if {class_key} from {class_prefix} is an implementation of AbstractNode')
             if not NodeFactory().is_registered(class_key):
                 try:
                     logging.info(f'attempting to register {class_key}')
@@ -358,7 +357,15 @@ class Configuration:
         self.dag.check_dag()
 
     def _register_class(self, class_key, class_prefix):
-        """Register a class from the configuration
+        """Register a class specified in the config file.
+
+        Args:
+            class_key (str): class key to register
+            class_prefix(str): the prefix of the class to register. Can be in `path.to.module` format, 
+                or a full path `path/to/module`.
+        
+        Returns:
+            None - attempts to register the class with it's default name
         """
         # convert to string before checking if file
         if class_prefix is None:
