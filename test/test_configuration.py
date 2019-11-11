@@ -1,5 +1,6 @@
 import pytest
 import sys
+import os
 from primrose.configuration.configuration import Configuration
 from primrose.writers.abstract_file_writer import AbstractFileWriter
 
@@ -362,7 +363,7 @@ def test_registration():
     }
     with pytest.raises(Exception) as e:
         Configuration(config_location=None, is_dict_config=True, dict_config=config)
-    assert 'Node class TestWriterUnreg is not registered' in str(e)
+    assert 'Cannot register node class TestWriterUnreg' in str(e)
 
 
 def test_comments_in_json():
@@ -459,3 +460,58 @@ implementation_config:
       key: data
     """
     assert final_str == expected
+
+def test_class_prefix():
+    config = {
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "test.ext_node_example",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert config.config_string
+    assert config.config_hash
+
+def test_class_package():
+    config = {
+        "metadata": {
+            "class_package": "test"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert config.config_string
+    assert config.config_hash
+
+def test_env_override_class_package():
+    config = {
+        "metadata": {
+            "class_package": "junk"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "junk2",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    os.environ['PRIMROSE_EXT_NODE_PACKAGE'] = 'test'
+    config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert config.config_string
+    assert config.config_hash
+
