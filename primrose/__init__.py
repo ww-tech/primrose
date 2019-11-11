@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 import importlib
+import pkg_resources
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(filename)s %(funcName)s: %(message)s', level=logging.INFO)
 
@@ -191,6 +192,10 @@ def create_project(name):
 
     print("New primrose project, {} built!".format(name))
 
+@cli.command()
+def version():
+    '''Print the installed primrose version'''
+    print(pkg_resources.get_distribution("primrose").version)
 
 cli.add_command(validate)
 cli.add_command(run)
@@ -198,7 +203,7 @@ cli.add_command(plot)
 cli.add_command(generate_run_script, name='generate-run-script')
 cli.add_command(generate_class_registration_template, name='generate-class-registration-template')
 cli.add_command(create_project, name='create-project')
-
+cli.add_command(version)
 
 if __name__ == "__main__":
     cli()
