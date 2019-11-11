@@ -425,14 +425,18 @@ class Configuration:
                 return []
         else:
             return []
+        # look for path to module to find potential file candidates
+        try:
+            # if we are passed something like __init__.py, grab the package
+            if os.path.isfile(pkg_name):
+                pkg_name = os.path.dirname(pkg_name)
+            # if we have an actual package from pip install
+            if not os.path.isdir(pkg_name):
+                pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
+        except ModuleNotFoundError:
+            logging.warning("Could not find module specified for external node configuration")
+            return []
 
-        # if we are passed something like __init__.py, grab the package
-        if os.path.isfile(pkg_name):
-            pkg_name = os.path.dirname(pkg_name)
-        # if we have an actual package from pip install
-        if not os.path.isdir(pkg_name):    
-            pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
-        
         candidates = glob.glob(os.path.join(pkg_name, '**', '*.py'), recursive=True)
 
         return candidates
