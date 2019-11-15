@@ -18,10 +18,10 @@ class Serializer(AbstractFileWriter):
 
     @staticmethod
     def necessary_config(node_config):
-        """Necessary inputs for file writers:
+        """Returns the necessary configuration keys for the Serializer object:
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             serializer (str): 'dill' or 'pickle'

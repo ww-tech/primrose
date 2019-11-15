@@ -21,7 +21,7 @@ class DillReader(AbstractReader):
         """Returns the necessary configuration keys for the DillReader object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             filename: local filename to be de-serialized

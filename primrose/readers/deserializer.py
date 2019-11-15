@@ -76,7 +76,7 @@ class GcsDeserializer(AbstractReader):
         """Returns the necessary configuration keys for the GcsDeserializer object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             bucket_name: name of the GCS bucket

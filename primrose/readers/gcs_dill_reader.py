@@ -22,7 +22,7 @@ class GcsDillReader(AbstractReader):
         """Returns the necessary configuration keys for the GcsDillReader object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             bucket_name: name of the GCS bucket
