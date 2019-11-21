@@ -15,6 +15,7 @@ from primrose.writers.abstract_file_writer import AbstractFileWriter
 
 class Serializer(AbstractFileWriter):
     """Serialize some object to a local file."""
+    SUPPORTED_SERIALIZERS = {'dill': dill, 'pickle': pickle}
 
     @staticmethod
     def necessary_config(node_config):
@@ -61,15 +62,15 @@ class Serializer(AbstractFileWriter):
         if data_key not in data_to_write:
             raise Exception("Key {} not found inside data_key object".format(data_key))
 
-        with open(filename, 'wb') as f:
+        if self.node_config['serializer'] not in Serializer.SUPPORTED_SERIALIZERS.keys():
+            logging.warning(f"{self.node_config['serializer']} serializer not supported.")
+            logging.warning(f"The following serializers are supported {Serializer.SUPPORTED_SERIALIZERS.keys()}.")
+            raise Exception(f"Unsupported serializer: {self.node_config['serializer']}")
 
-            if self.node_config['serializer'] == 'dill':
-                dill.dump(data_to_write[data_key], f)
-            elif self.node_config['serializer'] == 'pickle':
-                pickle.dump(data_to_write[data_key], f)
-            else:
-                logging.warning(f"{self.node_config['serializer']} serializer not supported.")
-                raise Exception(f"Unsupported Serializer: {self.node_config['serializer']}")
+        serializer = Serializer.SUPPORTED_SERIALIZERS[self.node_config['serializer']]
+
+        with open(filename, 'wb') as f:
+            serializer.dump(data_to_write[data_key], f)
 
         terminate = False
 

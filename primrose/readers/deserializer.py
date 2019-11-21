@@ -13,11 +13,10 @@ from google.cloud import storage
 from primrose.base.reader import AbstractReader
 
 
-
 class Deserializer(AbstractReader):
     """Read a local file and de-serialize it into memory."""
-
     DATA_KEY = 'reader_data'
+    SUPPORTED_DESERIALIZERS = {'dill': dill, 'pickle': pickle}
 
     @staticmethod
     def necessary_config(node_config):
@@ -52,13 +51,14 @@ class Deserializer(AbstractReader):
         """
         logging.info('Reading {} from local filesystem'.format(self.node_config['filename']))
 
-        if self.node_config['deserializer'] == 'dill':
-            object = dill.load(open(self.node_config['filename'], 'rb'))
-        elif self.node_config['deserializer'] == 'pickle':
-            object = pickle.load(open(self.node_config['filename'], 'rb'))
-        else:
+        if self.node_config['deserializer'] not in Deserializer.SUPPORTED_DESERIALIZERS.keys():
             logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
+            logging.warning(f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}.")
             raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
+
+        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[self.node_config['deserializer']]
+
+        object = deserializer.load(open(self.node_config['filename'], 'rb'))
 
         data_object.add(self, object, key=Deserializer.DATA_KEY)
 
