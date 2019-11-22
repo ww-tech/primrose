@@ -7,6 +7,7 @@ Author(s):
 
 import logging
 import dill
+import warnings
 
 from primrose.base.reader import AbstractReader
 
@@ -15,7 +16,7 @@ class DillReader(AbstractReader):
     """Read a file from Gcs and un-dills it into memory"""
 
     DATA_KEY = 'reader_data'
-
+    warnings.warn('Use Deserializer instead. DillReader will be deprecated in a future release.', DeprecationWarning)
     @staticmethod
     def necessary_config(node_config):
         """Returns the necessary configuration keys for the DillReader object

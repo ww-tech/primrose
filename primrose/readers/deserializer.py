@@ -70,6 +70,7 @@ class GcsDeserializer(AbstractReader):
     """Read a file from GCS and de-serialize it into memory."""
 
     DATA_KEY = 'reader_data'
+    SUPPORTED_DESERIALIZERS = {'dill': dill, 'pickle': pickle}
 
     @staticmethod
     def necessary_config(node_config):
@@ -134,13 +135,14 @@ class GcsDeserializer(AbstractReader):
         """
         logging.info('Reading {} from GCS'.format(self.node_config['blob_name']))
 
-        if self.node_config['deserializer'] == 'dill':
-            objects = [dill.loads(obj) for obj in self.download_blobs_as_strings()]
-        elif self.node_config['deserializer'] == 'pickle':
-            objects = [pickle.loads(obj) for obj in self.download_blobs_as_strings()]
-        else:
+        if self.node_config['deserializer'] not in Deserializer.SUPPORTED_DESERIALIZERS.keys():
             logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
+            logging.warning(f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}.")
             raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
+
+        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[self.node_config['deserializer']]
+
+        objects = [deserializer.loads(obj) for obj in self.download_blobs_as_strings()]
 
         terminate = len(objects) == 0
 
