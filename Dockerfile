@@ -5,6 +5,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY primrose ./primrose
 COPY test ./test
+COPY data ./data
 
 RUN mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
 RUN echo backend: Agg >> ~/.config/matplotlib/matplotlibrc
