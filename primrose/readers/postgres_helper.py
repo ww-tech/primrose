@@ -1,14 +1,21 @@
 """Postgres helper
 
-Author(s): 
+Author(s):
     Wassym Kalouache (wassym.kalouache@weightwatchers.com)
 
     Carl Anderson (carl.anderson@weightwatchers.com)
 
 """
 import os
-import psycopg2
 from primrose.readers.database_helper import get_env_val
+
+try:
+    import psycopg2
+    HAS_PSYCOPG2 = True
+
+except ImportError:
+    HAS_PSYCOPG2 = False
+
 
 class PostgresHelper():
     '''
@@ -43,6 +50,9 @@ class PostgresHelper():
                 db (connection): postgres db object
 
         """
+        if not HAS_PSYCOPG2:
+            raise ImportError("psycopg2 is necessary to establish connection")
+
         host, port, username, password, database = PostgresHelper.extract_postgres_credentials()
         conn = psycopg2.connect(dbname=database, user=username, password=password, host=host, port=port, sslmode='require')
         return conn
