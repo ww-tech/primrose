@@ -8,11 +8,8 @@ matrix:
     language: python
     python: 3.6
     after_success:
-    # TODO - bump version
-    # if tag - bump version to v*.*.* and force push to overwrite tag with new version number
-    # if not tagged and no dev release - bump version to v*.*.*-dev
-    - echo "bump version"
-    # TODO put pypi credentials in travis repository settings
+    - bash scripts/bump_script.sh
+    # TODO - put pypi credentials in travis repository settings
     deploy:
       provider: pypi
       user: $PYPI_USER
@@ -35,6 +32,8 @@ before_install:
 # see https://github.com/travis-ci/travis-ci/issues/7940
 - export BOTO_CONFIG=/dev/null
 - pip install --upgrade bump2version
+# TODO - add github personal access token in repository settings
+- bash scripts/setup_git.sh
 
 install:
 - cd $TRAVIS_BUILD_DIR && bash scripts/travis_install.sh
