@@ -46,6 +46,7 @@ script:
 branches:
   only:
   - master
+  - .*release.*
 
 env:
   global:
