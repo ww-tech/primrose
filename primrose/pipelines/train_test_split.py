@@ -31,7 +31,7 @@ class TrainTestSplit(AbstractPipeline):
         """Return the necessary configuration keys for the DataFrameJoiner object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             target_variable (string): column name which holds the target variable \

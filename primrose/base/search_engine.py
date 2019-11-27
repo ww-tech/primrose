@@ -35,7 +35,7 @@ class AbstractSearchEngine(AbstractModel):
         """Return a list of necessary configuration keys for AbstractSearchEngine
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             id_key: key used in the corpus object for ids
