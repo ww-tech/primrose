@@ -6,7 +6,8 @@ current_version=`cat $TRAVIS_BUILD_DIR/.bumpversion.cfg | grep "current_version 
 if [[ $TRAVIS_BRANCH == 'master' ]]; then
 
     if [[ ! -z $TRAVIS_TAG ]]; then
-        if ! [[ $current_version =~ ^(.+dev|.+prod)$ ]]; then
+            
+        if [[ ! $current_version =~ ^(.+dev|.+prod)$ || $TRAVIS_TAG != 'release' ]]; then
             # assume the travis tag is major, minor, or patch to indicate how to increment
             echo "detected current version is not a dev release, bumping $TRAVIS_TAG version"
             bump2version --allow-dirty $TRAVIS_TAG
