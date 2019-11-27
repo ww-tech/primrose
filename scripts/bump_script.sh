@@ -16,7 +16,7 @@ if [[ $TRAVIS_BRANCH == *'release'* ]]; then
     message="[skip travis] Bump version: $current_version -> {new_version}"
     bump2version --allow-dirty --tag --commit --message=$message release
 
-else
+elif [[ $TRAVIS_BRANCH == 'master' ]]; then
     if ! [[ $current_version =~ ^(.+dev|.+prod)$ ]]; then
         # assume we increment by a patch for dev
         echo "not tagging this release - bump and create dev version"
