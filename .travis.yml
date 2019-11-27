@@ -46,3 +46,7 @@ script:
 branches:
   only:
   - master
+
+env:
+  global:
+  - BUMP_PART=release
