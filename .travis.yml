@@ -9,6 +9,8 @@ matrix:
     python: 3.6
     after_success:
     - bash scripts/bump_script.sh
+    # TODO - add github personal access token in repository settings
+    - bash scripts/git_push.sh
     # TODO - put pypi credentials in travis repository settings
     deploy:
       provider: pypi
@@ -32,8 +34,8 @@ before_install:
 # see https://github.com/travis-ci/travis-ci/issues/7940
 - export BOTO_CONFIG=/dev/null
 - pip install --upgrade bump2version
-# TODO - add github personal access token in repository settings
-- bash scripts/setup_git.sh
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
 
 install:
 - cd $TRAVIS_BUILD_DIR && bash scripts/travis_install.sh
