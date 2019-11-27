@@ -11,6 +11,8 @@ import datetime
 import jstyleson
 import yaml
 import json
+from jinja2 import Environment, FileSystemLoader
+from jinja2.exceptions import TemplateNotFound
 import hashlib
 import os
 import logging
@@ -127,19 +129,13 @@ class Configuration:
             config_str (str): the post-substituted configuration string
 
         """
-        matches = re.findall(r'.*?\$\$FILE=.*?\$\$.*?', config_str)
-
-        for match in matches:
-            filename = match.split("$$FILE=")[1].split("$$")[0].strip()
-
-            if not os.path.exists(filename):
-                raise ConfigurationError("Substitution files does not exist: " + filename)
-
-            with(open(filename)) as file:
-                fragment = file.read()
-
-            config_str = config_str.replace(match, fragment)
-
+        jinja_env = Environment(loader=FileSystemLoader(['.', '/']))
+        try:
+            config_str_template = jinja_env.from_string(config_str)
+            config_str = config_str_template.render()
+        except(TemplateNotFound) as error:
+            filenames = str(error)
+            raise ConfigurationError(f"Substitution files do not exist: {filenames}")
         return config_str
 
     def dict_raise_on_duplicates(self, ordered_pairs):
