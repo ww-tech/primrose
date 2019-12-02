@@ -323,7 +323,7 @@ class ConfigurationDag():
             from networkx.drawing.nx_pydot import graphviz_layout
         except ImportError: # pragma: no cover
             raise ImportError(
-                "This example needs Graphviz and pydot.
+                "This example needs Graphviz and pydot."
                 "Please refer to the Plotting requirements in the README"
             )
 
