@@ -10,7 +10,6 @@ matrix:
     after_success:
     - bash scripts/bump_script.sh
     # TODO - add github personal access token in repository settings
-    - bash scripts/git_push.sh
     # TODO - put pypi credentials in travis repository settings
     deploy:
       provider: pypi
