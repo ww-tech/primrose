@@ -40,7 +40,7 @@ install:
 - cd $TRAVIS_BUILD_DIR && bash scripts/travis_install.sh
 
 script:
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then source activate primrose; fi
+- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then conda activate primrose; fi
 - python -m pytest
 
 branches:
