@@ -17,7 +17,7 @@ if [ $TRAVIS_OS_NAME = 'osx' ]; then
     source activate primrose
     echo "Updating matplotlib configuration"
     mkdir -p ~/.matplotlib && touch ~/.matplotlib/matplotlibrc
-    "`echo backend: TkAgg >> ~/.matplotlib/matplotlibrc`"
+    echo backend: TkAgg >> ~/.matplotlib/matplotlibrc
 elif [ $TRAVIS_OS_NAME = 'linux' ]; then
     echo "Installing linux packages"
     sudo add-apt-repository universe
@@ -25,8 +25,10 @@ elif [ $TRAVIS_OS_NAME = 'linux' ]; then
     sudo apt-get install graphviz
     echo "Updating matplotlib configuration"
     mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
-    "`echo backend: Agg >> ~/.config/matplotlib/matplotlibrc`"
+    echo backend: Agg >> ~/.config/matplotlib/matplotlibrc
 fi
 
 echo "Installing requirements"
 pip install -r requirements.txt
+
+pip install --upgrade bump2version

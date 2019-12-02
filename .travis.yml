@@ -38,7 +38,6 @@ before_install:
 
 install:
 - cd $TRAVIS_BUILD_DIR && bash scripts/travis_install.sh
-- pip install --upgrade bump2version
 
 script:
 - python -m pytest
