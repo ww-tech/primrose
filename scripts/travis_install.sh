@@ -20,6 +20,8 @@ if [ $TRAVIS_OS_NAME = 'osx' ]; then
     "`echo backend: TkAgg >> ~/.matplotlib/matplotlibrc`"
 elif [ $TRAVIS_OS_NAME = 'linux' ]; then
     echo "Installing linux packages"
+    sudo add-apt-repository universe
+    sudo apt update
     sudo apt-get install graphviz
     echo "Updating matplotlib configuration"
     mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
