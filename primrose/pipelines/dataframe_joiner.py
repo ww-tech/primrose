@@ -18,7 +18,7 @@ class DataFrameJoiner(AbstractPipeline):
         """Return the necessary configuration keys for the DataFrameJoiner object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             start_table: first table index in alpha order which defines who is eligible for this analysis (all other tables will be left joined to this)

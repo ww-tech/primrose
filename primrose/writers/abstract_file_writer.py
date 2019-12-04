@@ -32,7 +32,7 @@ class AbstractFileWriter(AbstractWriter):
         """Necessary inputs for file writers:
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             key: key that identifies object to write
