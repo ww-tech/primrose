@@ -4,12 +4,12 @@ implementation_config:
   reader_config:
     read_data:
       class: CsvReader
+      filename: data/tennis.csv
       destinations:
       - write_output
-      filename: data/tennis.csv
   writer_config:
     write_output:
       class: CsvWriter
+      key: data
       dir: cache
       filename: tennis_output.csv
-      key: data
