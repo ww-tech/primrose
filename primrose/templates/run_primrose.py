@@ -8,11 +8,14 @@ import warnings
 ######################################
 ######################################
 # Important:
-#     set where you registered your class here
 #
+# If your configuration uses custom node classes, be sure to set environment variable
+# PRIMROSE_EXT_NODE_PACKAGE to the location of your package before running primrose.
 # Example:
-#
-# from src.__init__ import *
+#   ```
+#   export PRIMROSE_EXT_NODE_PACKAGE=src/mypackage
+#   python run_primrose.py --config_loc my_config.json
+#   ```
 #
 ######################################
 ######################################
