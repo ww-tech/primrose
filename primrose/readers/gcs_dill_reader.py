@@ -8,6 +8,7 @@ Author(s):
 import logging
 import dill
 from google.cloud import storage
+import warnings
 
 from primrose.base.reader import AbstractReader
 
@@ -16,13 +17,14 @@ class GcsDillReader(AbstractReader):
     """Read a file from Gcs and un-dills it into memory"""
 
     DATA_KEY = 'reader_data'
+    warnings.warn('Use Deserializer instead. GcsDillReader will be deprecated in a future release.', DeprecationWarning)
 
     @staticmethod
     def necessary_config(node_config):
         """Returns the necessary configuration keys for the GcsDillReader object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             bucket_name: name of the GCS bucket

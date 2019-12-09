@@ -1,61 +1,59 @@
-metadata: {
+# This is a minimal Sklearn clustering example in training mode:
+# * read in some data from CSV
+# * sklearn.preprocessing.StandardScaler transform the data but no train test split!
+# * cluster with sklearn.cluster.KMeans
+# * predict on same training data, appending predictions column to data
+# * save enriched data to CSV
+# * plot clusters and save image to disk
 
-            # this is a minimal Sklearn clustering example in training mode:
-            # read in some data from CSV
-            # sklearn.preprocessing.StandardScaler transform the data but no train test split!
-            # cluster with sklearn.cluster.KMeans
-            # predict on same training data, appending predictions column to data
-            # save enriched data to CSV
-            # plot clusters and save image to disk
-
-}
+metadata: {}
 implementation_config:
   reader_config:
     read_data:
       class: CsvReader
+      filename: data/unclustered.csv
       destinations:
       - normalize_data
-      filename: data/unclustered.csv
   pipeline_config:
     normalize_data:
       class: SklearnPreprocessingPipeline
-      destinations:
-      - cluster_model
-      is_training: true
       operations:
-      - args:
-          with_mean: true
-          with_std: true
-        class: preprocessing.StandardScaler
+      - class: preprocessing.StandardScaler
         columns:
         - x1
         - x2
-      seed: 42
+        args:
+          with_mean: true
+          with_std: true
+      is_training: true
       training_fraction: 0.65
+      seed: 42
+      destinations:
+      - cluster_model
   model_config:
     cluster_model:
       class: SklearnClusterModel
-      destinations:
-      - write_data
-      - cluster_plotter
+      mode: train
       features:
       - x1
       - x2
-      mode: train
       model:
+        class: cluster.KMeans
         args:
           n_clusters: 6
           random_state: 42
-        class: cluster.KMeans
-  dataviz_config:
-    cluster_plotter:
-      class: ClusterPlotter
-      filename: clusters.png
-      id_col: predictions
-      title: Results of KMeans(k=6)
+      destinations:
+      - write_data
+      - cluster_plotter
   writer_config:
     write_data:
       class: CsvWriter
+      key: data
       dir: cache
       filename: clustered_output.csv
-      key: data
+  dataviz_config:
+    cluster_plotter:
+      class: ClusterPlotter
+      id_col: predictions
+      filename: clusters.png
+      title: Results of KMeans(k=6)

@@ -28,7 +28,7 @@ class AbstractNode(ABC):
         """Return a list of necessary configuration keys within the implementation
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         After adding this list, validation automatically occurs before instantiation in the
         configuration
