@@ -102,7 +102,7 @@ After registering your class (see next section), you can then use it in a config
 
 
 ## Registering Your Classes
-Now that you've written your own classes that implement the `Node` interface, how do your register them given that these nodes are in your project and you are importing `primrose`?
+Now that you've written your own classes that implement the `Node` interface, how do you register them given that these nodes are in your project and you are importing `primrose`?
 
 If running `primrose` with a configuration file, all you need to do is set the environment variable `PRIMROSE_EXT_NODE_PACKAGE`. 
 
