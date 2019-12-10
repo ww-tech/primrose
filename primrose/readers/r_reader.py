@@ -43,7 +43,13 @@ class RReader(AbstractReader):
         dataset = self.node_config['dataset']
         logging.info('Reading {} from R'.format(dataset))
 
-        from rpy2.robjects.packages import importr, data
+        try:
+            from rpy2.robjects.packages import importr, data
+        except ImportError: # pragma: no cover
+            raise ImportError(
+                "This example needs Rpy2."
+                "Please refer to the R requirements in the README"
+            )        
         datasets = importr('datasets')
         r_env = data(datasets).fetch(dataset)
 
