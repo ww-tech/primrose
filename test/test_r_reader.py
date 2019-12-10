@@ -10,6 +10,7 @@ from primrose.data_object import DataObject
 from primrose.base.node import AbstractNode
 from primrose.data_object import DataObject, DataObjectResponseType
 
+@pytest.mark.skipif('rpy2' in sys.modules, reason="primrose[R] is optional")
 def test_run():
     config = {
         "implementation_config": {
@@ -33,6 +34,7 @@ def test_run():
     assert df.shape == (150, 6)
     assert list(df.columns) == ["Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width", "Species", "row_names"]
 
+@pytest.mark.skipif('rpy2' in sys.modules, reason="primrose[R] is optional")
 def test_run2():
     config = {
         "implementation_config": {
