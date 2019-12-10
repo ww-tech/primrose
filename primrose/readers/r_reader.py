@@ -77,5 +77,3 @@ class RReader(AbstractReader):
         data_object.add(self, df)
         terminate = df.empty
         return data_object, terminate
-
-#conda install -c r rpy2 
