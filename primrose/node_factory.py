@@ -43,6 +43,7 @@ from primrose.writers.s3_writer import S3Writer
 from primrose.dataviz.cluster_plotter import ClusterPlotter
 
 from primrose.cleanup.logging_success import LoggingSuccess
+from primrose.readers.r_reader import RReader
 
 class NodeFactory:
     """Singleton Factory where one can register objects/classes for instantiation"""
@@ -101,7 +102,8 @@ class NodeFactory:
                 'SklearnDatasetReader': SklearnDatasetReader,
                 'SklearnRegressionModel': SklearnRegressionModel,
                 'SimpleSwitch': SimpleSwitch,
-                'ClientNotification': ClientNotification}
+                'ClientNotification': ClientNotification,
+                'RReader': RReader}
 
         def register(self, key, class_obj, raise_on_overwrite=False):
             """Registering class_obj with key

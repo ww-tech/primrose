@@ -37,6 +37,7 @@ setup(name='primrose',
       entry_points={"console_scripts": ["primrose = primrose.__init__:cli"]},
       extras_require={
         'postgres': ["psycopg2>=2.8.3", "psycopg2_binary>=2.8.2"],
-        'plotting': ["pygraphviz>=1.5"]
+        'plotting': ["pygraphviz>=1.5"],
+        'R': ["rpy2>=2.9.1"]
       }
-    ),
+    )
