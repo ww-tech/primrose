@@ -35,4 +35,7 @@ setup(name='primrose',
         'Source': 'https://github.com/ww-tech/primrose',
       },
       entry_points={"console_scripts": ["primrose = primrose.__init__:cli"]},
+      extras_require={
+        'plotting': ["rpy2>=2.9.1"]
+      }
     ),
