@@ -1,6 +1,12 @@
 """Module with AbstractReader implementation, able to read datasets from R
 
     This is a simple example to show that primrose can work with other languages.
+    Note:
+        It works with simple 2D R dataframes (e.g. iris dataset) but not higher tensors (e.g. iris3 dataset)
+        It does not work with timeseries, such as `lh` dataset
+
+        We perform an R as.data.frame conversion on all data to help stadardize the data structure.
+        For instance, the R `euro` dataset is essentially a labelled vector but converts nicely to a dataframe.
 
 Author(s):
     Carl Anderson (carl.anderson@ww.com)
@@ -40,7 +46,20 @@ class RReader(AbstractReader):
         from rpy2.robjects.packages import importr, data
         datasets = importr('datasets')
         r_env = data(datasets).fetch(dataset)
-        data = r_env[dataset]
+
+        import rpy2.robjects as robjects
+        # why we do this:
+        #> data(euro)
+        #> euro
+        #ATS         BEF         DEM         ESP         FIM         FRF         IEP         ITL         LUF         NLG         PTE 
+        #13.760300   40.339900    1.955830  166.386000    5.945730    6.559570    0.787564 1936.270000   40.339900    2.203710  200.482000 
+        #
+        #> as.data.frame(euro)
+        #        euro
+        #ATS   13.760300
+        #BEF   40.339900
+        #DEM    1.955830
+        data = robjects.r('as.data.frame(%s)' % dataset)
 
         # at time of writing, rpy2's R dataframe to pandas dataframe was not fully supported
         # However, as python list() seems to work for FloatVector, StrVector, and FactorVector, let's use it
