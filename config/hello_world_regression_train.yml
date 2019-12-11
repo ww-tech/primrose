@@ -1,13 +1,11 @@
-metadata: {
+# This is a simple Sklearn regression example in train mode:
+# * read in a sklearn dataset
+# * do train test split
+# * fit the regression on X_train, y_train with a sklearn linear estimator
+# * log some evaluation metrics against X_test, y_test
+# * save the model and transformer_sequence to disk
 
-        #  this is a simple Sklearn regression example in train mode:
-        #  read in a sklearn dataset
-        #  do train test split
-        #  fit the regression on X_train, y_train with a sklearn linear estimator
-        #  log some evaluation metrics against X_test, y_test
-        #  save the model and transformer_sequence to disk
-
-}
+metadata: {}
 implementation_config:
   reader_config:
     read_data:
@@ -18,33 +16,33 @@ implementation_config:
   pipeline_config:
     train_test_split:
       class: TrainTestSplit
-      destinations:
-      - regression_model
-      - write_transformer_sequence
       features:
       - sepal length (cm)
       - petal length (cm)
       - petal width (cm)
-      is_training: true
-      seed: 42
       target_variable: sepal width (cm)
       training_fraction: 0.65
+      is_training: true
+      seed: 42
+      destinations:
+      - regression_model
+      - write_transformer_sequence
   model_config:
     regression_model:
       class: SklearnRegressionModel
-      destinations:
-      - write_model
       mode: train
       model:
         class: linear_model.LinearRegression
+      destinations:
+      - write_model
   writer_config:
-    write_model:
-      class: DillWriter
-      dir: cache
-      filename: hello_world_regression_model.dill
-      key: model
     write_transformer_sequence:
       class: DillWriter
+      key: transformer_sequence
       dir: cache
       filename: hello_world_regression_transformer_sequence.dill
-      key: transformer_sequence
+    write_model:
+      class: DillWriter
+      key: model
+      dir: cache
+      filename: hello_world_regression_model.dill

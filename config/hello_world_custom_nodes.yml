@@ -1,11 +1,9 @@
-metadata: {
+# This is a minimal custom node example using the template nodes:
+#  * AwesomeReader and AwesomeModel
+#  * This reader and template don't do any useful behavior but it will get you started
+#  * building your own nodes!
 
-          # this is a minimal custom node example using the template nodes:
-          # AwesomeReader and AwesomeModel
-          # This reader and template don't do any useful behavior but it will get you started
-          # building your own nodes!
-
-}
+metadata: {}
 implementation_config:
   reader_config:
     my_reader:
@@ -16,5 +14,5 @@ implementation_config:
   model_config:
     my_model:
       class: AwesomeModel
-      destinations: []
       mode: train
+      destinations: []
