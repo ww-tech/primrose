@@ -51,12 +51,21 @@ install:
   fi
   echo "Installing requirements"
   pip install -r requirements.txt
-- pip install psycopg2>=2.8.3
-- pip install psycopg2_binary>=2.8.2
-- pip install pygraphviz>=1.5
+
 
 script:
-- python -m pytest
+- pip freeze > installed_libs.txt
+- |
+  if grep -q "psycopg2" installed_libs.txt && grep -q "pygraphviz" installed_libs.txt; then
+    python -m pytest
+  elif grep -q "psycopg2" installed_libs.txt; then
+    pytest -m "not plotting"
+  elif grep -q "pygraphviz" installed_libs.txt; then
+    pytest -m "not postgres"
+  else
+    pytest -m "not optional"
+  fi
+- rm installed_libs.txt
 
 branches:
   only:
