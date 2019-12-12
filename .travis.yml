@@ -54,18 +54,28 @@ install:
 
 
 script:
-- pip freeze > installed_libs.txt
-- |
-  if grep -q "psycopg2" installed_libs.txt && grep -q "pygraphviz" installed_libs.txt; then
-    python -m pytest
-  elif grep -q "psycopg2" installed_libs.txt; then
-    pytest -m "not plotting"
-  elif grep -q "pygraphviz" installed_libs.txt; then
-    pytest -m "not postgres"
-  else
-    pytest -m "not optional"
-  fi
-- rm installed_libs.txt
+  - |
+    if grep -q "psycopg2" requirements.txt && grep -q "pygraphviz" requirements.txt; then
+      python -m pytest
+    elif grep -q "psycopg2" requirements.txt; then
+      pytest -m "not plotting"
+    elif grep -q "pygraphviz" requirements.txt; then
+      pytest -m "not postgres"
+    else
+      pytest -m "not optional"
+    fi
+# - pip freeze > installed_libs.txt
+# - |
+#   if grep -q "psycopg2" installed_libs.txt && grep -q "pygraphviz" installed_libs.txt; then
+#     python -m pytest
+#   elif grep -q "psycopg2" installed_libs.txt; then
+#     pytest -m "not plotting"
+#   elif grep -q "pygraphviz" installed_libs.txt; then
+#     pytest -m "not postgres"
+#   else
+#     pytest -m "not optional"
+#   fi
+# - rm installed_libs.txt
 
 branches:
   only:
