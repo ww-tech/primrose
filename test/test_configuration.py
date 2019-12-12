@@ -1,6 +1,7 @@
 import pytest
 import sys
 import os
+import json
 from primrose.configuration.configuration import Configuration
 from primrose.writers.abstract_file_writer import AbstractFileWriter
 from primrose.node_factory import NodeFactory
@@ -379,22 +380,22 @@ def test_comments_in_json():
 def test_perform_any_config_fragment_substitution_bad():
     config_str = """
     {
-        $$FILE=does/not/exist$$
+        {% include "does/not/exist" %}
         "implementation_config": {
         }
     }
     """
     with pytest.raises(Exception) as e:
         Configuration.perform_any_config_fragment_substitution(config_str)
-    assert 'Substitution files does not exist: does/not/exist' in str(e)
+    assert 'Substitution files do not exist: does/not/exist' in str(e)
 
 
 def test_perform_any_config_fragment_substitution():
     config_str = """
     {
-        $$FILE=test/metadata_fragment.json$$
+        {% include "test/metadata_fragment.json" %}
         "implementation_config": {
-            $$FILE= test/read_write_fragment.json $$
+            {% include "test/read_write_fragment.json" %}
         }
     }
     """
@@ -425,7 +426,7 @@ def test_perform_any_config_fragment_substitution():
         }
     }
     """
-    assert final_str == expected
+    assert json.loads(final_str) == json.loads(expected)
 
 def test_yaml_config1():
     config_yaml = Configuration(config_location='test/hello_world_tennis.yml')
@@ -439,9 +440,9 @@ def test_yaml_config2():
 
 def test_yaml_perform_any_config_fragment_substitution():
     config_str = """
-$$FILE=test/metadata_fragment.yml$$
+{% include "test/metadata_fragment.yml" %}
 implementation_config:
-$$FILE= test/read_write_fragment.yml$$
+{% include "test/read_write_fragment.yml" %}
     """
     final_str = Configuration.perform_any_config_fragment_substitution(config_str)
     expected = """
