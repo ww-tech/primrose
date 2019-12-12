@@ -7,7 +7,7 @@ env:
     - PYPI_BUILD="complete"
     - PYPI_BUILD="only_plotting"
     - PYPI_BUILD="only_postgres"
-    - PYPI_BUILD=""
+    - PYPI_BUILD="basic"
 
 matrix:
   include:
