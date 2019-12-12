@@ -44,7 +44,7 @@ class TrainTestSplit(AbstractPipeline):
         """
         return set(['training_fraction', 'seed'])
 
-    def feature_subset(self, data):
+    def features(self, data):
         """Use user-specified features if available, otherwise use all non-target columns
         
         Args:
@@ -54,19 +54,14 @@ class TrainTestSplit(AbstractPipeline):
             lsit of feature names
         
         """
-        if isinstance(data, pd.DataFrame):
-            if 'features' in self.node_config:
-                cols = self.node_config['features']
-
-            else:
-                if 'target_variable' in self.node_config:
-                    cols = [f for f in data.columns if f != self.node_config['target_variable']]
-                else:
-                    cols = data.columns
-            return data[cols]
+        if 'features' in self.node_config:
+            return self.node_config['features']
 
         else:
-            return data
+            if 'target_variable' in self.node_config:
+                return [f for f in data.columns if f != self.node_config['target_variable']]
+            else:
+                return data.columns
 
     def _train_test_split(self, data):
         """Split data into test/train sets
@@ -88,7 +83,7 @@ class TrainTestSplit(AbstractPipeline):
         else:
             if 'target_variable' in self.node_config:
                 data_train, data_test, target_train, target_test = train_test_split(
-                    self.feature_subset(data),
+                    data[self.features(data)],
                     data[self.node_config['target_variable']],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
@@ -99,7 +94,7 @@ class TrainTestSplit(AbstractPipeline):
 
             else:
                 data_train, data_test = train_test_split(
-                    self.feature_subset(data),
+                    data[self.features(data)],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
 
@@ -181,7 +176,7 @@ class TrainTestSplit(AbstractPipeline):
 
         if not train_data.empty:
             train_data = self.execute_pipeline(train_data, PipelineModeType.FIT_TRANSFORM)
-            data_object.add(self, self.feature_subset(train_data), key='data_train', overwrite=False)
+            data_object.add(self, train_data[self.features(train_data)], key='data_train', overwrite=False)
 
             if 'target_variable' in self.node_config:
                 data_object.add(self, train_data[self.node_config['target_variable']], key='target_train',
@@ -192,7 +187,7 @@ class TrainTestSplit(AbstractPipeline):
             # run the pipeline in Transform mode since we've already fit the pipeline with training data
             test_data = self.execute_pipeline(test_data, PipelineModeType.TRANSFORM)
             self.data = test_data  # assign the data to the testing data if available
-            data_object.add(self, self.feature_subset(test_data), key='data_test', overwrite=False)
+            data_object.add(self, test_data[self.features(train_data)], key='data_test', overwrite=False)
 
             if 'target_variable' in self.node_config:
                 data_object.add(self, test_data[self.node_config['target_variable']], key='target_test',
@@ -225,7 +220,7 @@ class TrainTestSplit(AbstractPipeline):
 
         self.data = data  # keep the data for use in the final_data_object_additions method
 
-        data_object.add(self, self.feature_subset(data), key='data_test', overwrite=False)
+        data_object.add(self, data[self.features(data)], key='data_test', overwrite=False)
 
         if 'target_variable' in self.node_config:
             data_object.add(self, data[self.node_config['target_variable']], key='target_test', overwrite=False)
