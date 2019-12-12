@@ -33,14 +33,9 @@ class SklearnPreprocessingPipeline(TrainTestSplit):
 
         for operation in self.node_config["operations"]:
 
-            args=None
-            if 'args' in operation:
-                args = operation['args']
-
-            columns=None
-            if 'columns' in operation:
-                columns = operation["columns"]
-
+            args = operation.get('args', None)
+            columns = operation.get('columns', None)
+            
             p = SklearnPreprocessingPipeline._instantiate_preprocessor(operation['class'], args, columns)
             ts.add(p)
 
