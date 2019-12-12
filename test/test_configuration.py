@@ -1,8 +1,10 @@
 import pytest
 import sys
+import os
 import json
 from primrose.configuration.configuration import Configuration
 from primrose.writers.abstract_file_writer import AbstractFileWriter
+from primrose.node_factory import NodeFactory
 
 def test_init_error0():
     config = {}
@@ -363,7 +365,7 @@ def test_registration():
     }
     with pytest.raises(Exception) as e:
         Configuration(config_location=None, is_dict_config=True, dict_config=config)
-    assert 'Node class TestWriterUnreg is not registered' in str(e)
+    assert 'Cannot register node class TestWriterUnreg' in str(e)
 
 
 def test_comments_in_json():
@@ -460,3 +462,140 @@ implementation_config:
       key: data
     """
     assert final_str == expected
+
+def test_class_prefix():
+    config_path = {
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "test/ext_node_example.py",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    config_dot = {
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "test.ext_node_example",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    for config in [config_path, config_dot]:
+        config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+        assert config.config_string
+        assert config.config_hash
+        NodeFactory().unregister('TestExtNode')
+        
+
+def test_class_package():
+    config_path = {
+        "metadata": {
+            "class_package": "test"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    config_full_path = {
+        "metadata": {
+            "class_package": "test/ext_node_example.py"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    config_full_dot = {
+        "metadata": {
+            "class_package": "test"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "ext_node_example",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    for config in [config_full_path, config_path, config_full_dot]:
+        config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+        assert config.config_string
+        assert config.config_hash
+        NodeFactory().unregister('TestExtNode')
+
+
+def test_env_override_class_package():
+    config = {
+        "metadata": {
+            "class_package": "junk"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    os.environ['PRIMROSE_EXT_NODE_PACKAGE'] = 'test'
+    config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert config.config_string
+    assert config.config_hash
+    NodeFactory().unregister('TestExtNode')
+    os.environ.pop('PRIMROSE_EXT_NODE_PACKAGE')
+
+
+def test_incorrect_class_package():
+    config = {
+        "metadata": {
+            "class_package": "junk"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    with pytest.raises(Exception) as e:
+        config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert "Cannot register node class TestExtNode" in str(e)
+
+def test_incorrect_class_package2():
+    config = {
+        "metadata": {
+            "class_package": "test"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "TestExtNode",
+                    "class_prefix": "junk",
+                    "destinations": []
+                }
+            }
+        }
+    }
+    with pytest.raises(Exception) as e:
+        config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert "Cannot register node class TestExtNode" in str(e)

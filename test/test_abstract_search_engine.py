@@ -4,6 +4,7 @@ import pytest
 import pandas as pd
 from primrose.configuration.configuration import Configuration
 from primrose.base.search_engine import AbstractSearchEngine
+from primrose.base.node import AbstractNode
 from nltk import ngrams
 from primrose.node_factory import NodeFactory
 from primrose.data_object import DataObject, DataObjectResponseType
@@ -12,13 +13,15 @@ from primrose.data_object import DataObject, DataObjectResponseType
 
 def test_cosine_similarity_matrix():
 
-    class Testpipeline():
+    class Testpipeline(AbstractNode):
         def __init__(self, configuration, instance_name):
             self.configuration = configuration
             self.instance_name = instance_name
         @staticmethod
         def necessary_config(node_config):
             return set([])
+        def run(self, data_object):
+            return data_object, False
     NodeFactory().register("Testpipeline", Testpipeline)
 
     class TestSimpleSearchEngine(AbstractSearchEngine):

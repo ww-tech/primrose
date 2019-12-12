@@ -1,6 +1,20 @@
 #########################################################################################
 #
-# This is a template to demonstrate how you can register your own primrose node classes
+#
+#
+#
+# *** IMPORTANT ***
+#
+# We highly recommend setting the environment variable PRIMROSE_EXT_NODE_PACKAGE to define
+# the location of your custom node classes. Example: `export PRIMROSE_EXT_NODE_PACKAGE=src/mypackage`
+#
+# When this variable is set, primrose will automatically register any class
+# present in the PRIMROSE_EXT_NODE_PACKAGE path which implements `base.node.AbstractNode`.
+#
+#
+#
+#
+# Alternatively, if you would like to register classes yourself via `node_factory.NodeFactory`, you can follow the steps below.
 #
 # Overview
 # ========
