@@ -1,6 +1,41 @@
 dist: xenial
 sudo: required
 
+# matrix:
+#   os:
+#     - linux
+#     - osx
+#   dist:
+#     - xenial
+#   language:
+#     - python
+#     - generic
+#   python:
+#     - 3.6
+#     - 3.7
+#   env:
+#     - PYTHON_VERSION="3.6"
+#     - PYTHON_VERSION="3.7"
+#     - PYPI_BUILD="complete"
+#     - PYPI_BUILD="no-plotting"
+#     - PYPI_BUILD="no-plotting"
+
+#   jobs:
+#     exclude:
+#       - os: linux
+#         language: generic
+#       - os: linux
+#         env: PYTHON_VERSION="3.6"
+#       - os: linux
+#         env: PYTHON_VERSION="3.7"
+#       - os: osx
+#         language: python
+#       - os: osx
+#         python: 3.6
+#       - os: osx
+#         python: 3.7
+
+
 matrix:
   include:
   - os: linux
@@ -58,11 +93,11 @@ script:
     if grep -q "psycopg2" requirements.txt && grep -q "pygraphviz" requirements.txt; then
       python -m pytest
     elif grep -q "psycopg2" requirements.txt; then
-      pytest -m "not plotting"
+      python -m pytest -m "not plotting"
     elif grep -q "pygraphviz" requirements.txt; then
-      pytest -m "not postgres"
+      python -m pytest -m "not postgres"
     else
-      pytest -m "not optional"
+      python -m pytest -m "not optional"
     fi
 # - pip freeze > installed_libs.txt
 # - |
