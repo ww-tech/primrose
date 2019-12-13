@@ -243,7 +243,6 @@ def test_run_notification_error():
     path = 'primrose.notification_utils.get_notification_client'
     with mock.patch(path) as mock_get_notification_client:
         with pytest.raises(Exception) as error:
-            runner = DagRunner(configuration)
             runner.run()
             assert mock_get_notification_client.post_message.call_count == 1
 
