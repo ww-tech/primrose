@@ -16,6 +16,7 @@ mysql-connector-python>=8.0.16
 psycopg2>=2.8.3
 pytest-cov>=2.6.0
 scikit-learn>=0.21.2
+slackclient==2.4.0
 atlas>=0.27.0
 google-cloud-storage>=1.16.0
 pygraphviz>=1.5
