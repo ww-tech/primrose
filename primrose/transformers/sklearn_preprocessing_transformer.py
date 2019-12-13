@@ -4,8 +4,10 @@ Author(s):
     Carl Anderson (carl.anderson@weightwatchers.com)
 
 """
-from primrose.base.transformer import AbstractTransformer
+import logging
 import pandas as pd
+
+from primrose.base.transformer import AbstractTransformer
 
 class SklearnPreprocessingTransformer(AbstractTransformer):
 
@@ -60,7 +62,11 @@ class SklearnPreprocessingTransformer(AbstractTransformer):
 
             else:
                 scaled_features = self.preprocessor.transform(data.values)
-                scaled_features_df = pd.DataFrame(scaled_features, index=data.index, columns=data.columns)
+                try:
+                    scaled_features_df = pd.DataFrame(scaled_features, index=data.index, columns=data.columns)
+                except ValueError:
+                    logging.info(f'{self.preprocessor.__class__.__name__} instance changed the number of columns. Returning raw values')
+                    return pd.DataFrame(scaled_features)
             return scaled_features_df
 
         return self.preprocessor.transform(data)

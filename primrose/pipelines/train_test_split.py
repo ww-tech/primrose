@@ -74,25 +74,32 @@ class TrainTestSplit(AbstractPipeline):
         """
         logging.info("Splitting data into testing and training sets.")
 
-        if 'target_variable' in self.node_config:
-            data_train, data_test, target_train, target_test = train_test_split(
-                data[self.features(data)],
-                data[self.node_config['target_variable']],
-                test_size=(1.0 - float(self.node_config['training_fraction'])),
-                random_state=self.node_config['seed'])
+        test_size = (1.0 - float(self.node_config['training_fraction']))
 
-            # re-merge training and target data into a single dataframe for transforming
-            train_data_to_transform = pd.concat([data_train, target_train], axis=1)
-            test_data_to_transform = pd.concat([data_test, target_test], axis=1)
-
+        if test_size == 0:
+            train_data_to_transform = data
+            test_data_to_transform = pd.DataFrame()
+        
         else:
-            data_train, data_test = train_test_split(
-                data[self.features(data)],
-                test_size=(1.0 - float(self.node_config['training_fraction'])),
-                random_state=self.node_config['seed'])
+            if 'target_variable' in self.node_config:
+                data_train, data_test, target_train, target_test = train_test_split(
+                    data[self.features(data)],
+                    data[self.node_config['target_variable']],
+                    test_size=(1.0 - float(self.node_config['training_fraction'])),
+                    random_state=self.node_config['seed'])
 
-            train_data_to_transform = data_train
-            test_data_to_transform = data_test
+                # re-merge training and target data into a single dataframe for transforming
+                train_data_to_transform = pd.concat([data_train, target_train], axis=1)
+                test_data_to_transform = pd.concat([data_test, target_test], axis=1)
+
+            else:
+                data_train, data_test = train_test_split(
+                    data[self.features(data)],
+                    test_size=(1.0 - float(self.node_config['training_fraction'])),
+                    random_state=self.node_config['seed'])
+
+                train_data_to_transform = data_train
+                test_data_to_transform = data_test
 
         logging.info('Training data rows: {}, Testing data rows: {}'.format(len(train_data_to_transform),
                                                                             len(test_data_to_transform)))
