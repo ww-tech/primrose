@@ -16,12 +16,15 @@ from jinja2.exceptions import TemplateNotFound
 import hashlib
 import os
 import logging
+import importlib
+import glob
 from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
 from primrose.dag.traverser_factory import TraverserFactory
 
 SUPPORTED_EXTS = frozenset(['.json', '.yaml', '.yml'])
+CLASS_ENV_PACKAGE_KEY = 'PRIMROSE_EXT_NODE_PACKAGE'
 
 class Configuration:
     """Stores user defined configuration for primrose job"""
@@ -313,7 +316,7 @@ class Configuration:
 
                 self.nodename_to_classname[child_key] = child[NodeFactory.CLASS_KEY]
 
-                unique_class_keys.add(child[NodeFactory.CLASS_KEY])
+                unique_class_keys.add((child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX)))
 
                 for k in ['destination_pipeline', 'destination_models', 'destination_postprocesses', 'destination_writer']:
                     if k in child:
@@ -321,15 +324,21 @@ class Configuration:
 
         logging.info("OK: all class keys are present")
 
+        # get class_prefixes by traversing node package
+        unique_class_keys = self._traverse_node_package(unique_class_keys)
+
         # check that each referenced class is registered in NodeFactory
-        for class_key in unique_class_keys:
+        for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
-                raise ConfigurationError("Node class " + class_key + " is not registered")
+                try:
+                    logging.info(f'attempting to register {class_key}')
+                    self._register_class(class_key, class_prefix)
+                except:
+                    raise ConfigurationError(f"Cannot register node class {class_key}")
 
         #check necessary_configs
         for instance_name in self.nodename_to_classname:
             class_key = self.nodename_to_classname[instance_name]
-            #section_key = instance_to_section[instance_name]
 
             configuration_dict = self.instance_to_config[instance_name]
 
@@ -342,6 +351,117 @@ class Configuration:
 
         # run our DAG checks. Throws error if not OK
         self.dag.check_dag()
+
+    def _register_class(self, class_key, class_prefix):
+        """Register a class specified in the config file.
+
+        Args:
+            class_key (str): class key to register
+            class_prefix(str): the prefix of the class to register. Can be in `path.to.module` format, 
+                or a full path `path/to/module`.
+        
+        Returns:
+            None - attempts to register the class with it's default name
+        """
+        # convert to string before checking if file
+        if class_prefix is None:
+            class_prefix = ''
+
+        if os.path.isfile(class_prefix):
+            modulename = self._import_file(class_key, class_prefix)
+
+        # loading from module
+        else:
+            if self.config_metadata:
+                if 'class_package' in self.config_metadata:
+                    class_package = self.config_metadata['class_package']
+                    prefix = '.'.join(filter(None, [class_package, class_prefix]))
+            else:
+                prefix = class_prefix
+
+            modulename = importlib.import_module(prefix)
+        
+        clz = getattr(modulename, class_key)
+        NodeFactory().register(None, clz)
+
+    @staticmethod
+    def _import_file(full_name, path):
+        """Import module from given path
+
+        Args:
+            full_name (str): full module name to import
+            path (str): full path to python module
+        
+        Returns:
+            module imported from the path with given name
+        """
+        spec = importlib.util.spec_from_file_location(full_name, path)
+        mod = importlib.util.module_from_spec(spec)
+
+        spec.loader.exec_module(mod)
+        return mod
+
+    def _get_file_candidates(self):
+        """Get file candidates to search through when specifying a class package.
+        
+        Priority will first consider environment variable PRIMROSE_EXT_NODE_PACKAGE. If unset, will
+        search the configuration metadata for key `class_package`. If nothing is specified, in either
+        location, an empty list is returned.
+
+        Returns:
+            list of potential files to search for classes to register
+        """
+        # for now assume packages/top level only
+        if CLASS_ENV_PACKAGE_KEY in os.environ:
+            pkg_name = os.environ[CLASS_ENV_PACKAGE_KEY]
+        elif self.config_metadata:
+            if 'class_package' in self.config_metadata:
+                pkg_name = self.config_metadata['class_package']
+            else:
+                return []
+        else:
+            return []
+        # look for path to module to find potential file candidates
+        try:
+            # if we are passed something like __init__.py, grab the package
+            if os.path.isfile(pkg_name):
+                pkg_name = os.path.dirname(pkg_name)
+            # if we have an actual package from pip install
+            if not os.path.isdir(pkg_name):
+                pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
+        except ModuleNotFoundError:
+            logging.warning("Could not find module specified for external node configuration")
+            return []
+
+        candidates = glob.glob(os.path.join(pkg_name, '**', '*.py'), recursive=True)
+
+        return candidates
+
+    def _traverse_node_package(self, unique_class_keys, overwrite=False):
+        """Traverse node package to find classes in the DAG to register.
+
+        Args:
+            unique_class_keys (tuple(str, str)): a tuple of class names and prefixes. 
+            overwrite (boolean, Optional): If a prefix is already set from the configuration, do we overwrite?
+
+        Returns:
+            (class_name, class_prefix) tuples
+        """
+        class_keys_prefix = []
+        candidates = self._get_file_candidates()
+        for filename in candidates:
+            with open(filename, 'r') as f:
+                src_str = f.read()
+                for class_key, class_key_prefix in unique_class_keys:
+                    if (class_key_prefix is None) or (overwrite == True):
+                        pattern = "class\s" + class_key + "\(?.*\)?:\s"
+                        if re.search(pattern, src_str) is not None:
+                            class_keys_prefix.append((class_key, filename))
+                            continue
+        for class_key, class_key_prefix in unique_class_keys:
+            if class_key not in [x[0] for x in class_keys_prefix]:
+                class_keys_prefix.append((class_key, class_key_prefix))
+        return class_keys_prefix
 
     def _parse_config(self):
         """Assign top level keys to config attributes

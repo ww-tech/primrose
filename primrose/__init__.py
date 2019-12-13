@@ -28,22 +28,11 @@ def replace_line(file_name, line_num, text):
 
 
 @click.group()
-@click.option('--node_module', required=None, help="specify the module which registers custom nodes")
-def cli(node_module):
+def cli():
     """This is the command line interface for primrose.
     The command most people need is `primrose run` to run a primrose job.
     Type primrose commandname --help for more detailed help on a command"""
-    if node_module:
-        # load top level package to run __init__.py on import
-        if os.path.basename(node_module) == '__init__.py':
-            path_to_append = os.path.dirname(os.path.dirname(os.path.abspath(node_module)))
-            imp = os.path.basename(os.path.dirname(node_module))
-        # just import the file specified
-        else:
-            path_to_append = os.path.dirname(os.path.abspath(node_module))
-            imp = os.path.splitext(os.path.basename(node_module))[0]
-        sys.path.insert(0, path_to_append)
-        importlib.import_module(imp)
+    pass
 
 
 @click.command()

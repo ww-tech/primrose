@@ -49,6 +49,7 @@ class NodeFactory:
     instance = None
 
     CLASS_KEY = "class"
+    CLASS_PREFIX = "class_prefix"
 
     def __init__(self):
         """instantiate the factory but as a singleton. The guard raails are here
@@ -111,7 +112,17 @@ class NodeFactory:
 
             """
             if raise_on_overwrite and key in self.name_dict:
-                raise Error("Node already exist with the key " + key)
+                raise Exception("Node already exist with the key " + key)
+            
+            if not (inspect.isclass(class_obj) and issubclass(class_obj, AbstractNode)):
+                raise Exception("NodeFactory can only register classes that implement AbstractNode")
+            
+            if key is None:
+                try:
+                    key = class_obj.__name__
+                except AttributeError as e:
+                    raise Exception(f"Cannot register {class_obj}, no __name__ attribute found. Please explicity specify a name when registering this class.")
+            
             self.name_dict[key] = class_obj
             logging.debug("Registered %s : %s" % (key, class_obj))
 
