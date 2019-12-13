@@ -151,7 +151,8 @@ def test_type_bad2():
         dag.create_dag()
     assert "Did not find doesnotexist destination in" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.plotting
 def test_plot_dag():
 
     class TestPostprocess(AbstractNode):
@@ -348,7 +349,7 @@ def test_starting_nodes():
                     "filename": "hello_world_predictions.csv"
                 }
             }
-        }   
+        }
     }
     configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
 
@@ -394,7 +395,7 @@ def test_nodes_of_type():
                     "filename": "hello_world_predictions.csv"
                 }
             }
-        }   
+        }
     }
     configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
 
@@ -447,7 +448,7 @@ def test_paths():
                     "filename": "hello_world_predictions.csv"
                 }
             }
-        }   
+        }
     }
     configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
 
