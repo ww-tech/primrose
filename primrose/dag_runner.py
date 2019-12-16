@@ -241,8 +241,8 @@ class DagRunner():
 
             except Exception as error:
                 msg = (
-                    "Error trying to instantiate notification client."
-                    "Check class name and parameters"
+                    'Error trying to instantiate notification client.'
+                    'Check class name and parameters"'
                 )
                 logging.error(error)
                 raise(msg)
