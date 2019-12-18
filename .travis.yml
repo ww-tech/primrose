@@ -20,8 +20,9 @@ matrix:
   - os: osx
     language: generic
     env: PYTHON_VERSION="3.7"
-  
+    
   - stage: deploy
+    env: BUMP_PART=release
     os: linux
     dist: xenial
     language: python
@@ -105,7 +106,3 @@ branches:
   only:
   - master
   - .*release.*
-
-env:
-  global:
-  - BUMP_PART=release
