@@ -290,18 +290,18 @@ Thus,
 will be parsed correctly as a JSON configuration.
 
 # Configuration File Fragment Substitution
-There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. `primrose` supports the ability to bring in that configuration fragment using string substitution. 
+There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. `primrose` supports the ability to bring in that configuration fragment using [jinja](https://jinja.palletsprojects.com/en/2.10.x/) substitution for both json and yaml config files. 
 
-It looks for the presence of `$$FILE=some/path/to/configuration/fragment.json$$` in your file.
+It looks for the presence of {% include some/path/to/configuration/fragment.json %} in your file.
 
 This is more easily explained with an example. 
 
 Suppose you have the following configuration file:
 ```
     {
-        $$FILE=test/metadata_fragment.json$$
+        {% include "test/metadata_fragment.json" %}
         "implementation_config": {
-            $$FILE= test/read_write_fragment.json $$
+            {% include "test/read_write_fragment.json" %}
         }
     }
 ```
@@ -329,7 +329,7 @@ and `test/read_write_fragment.json` is
                 }
             }
 ```
-`primrose` will swap `$$FILE=test/metadata_fragment.json$$` with the contents of `test/metadata_fragment.json` and it will swap `$$FILE= config/read_write_fragment.json $$` with the contents of `config/read_write_fragment.json` to produce:
+`primrose` will swap `{% include "test/metadata_fragment.json" %}` with the contents of `test/metadata_fragment.json` and it will swap `{% include "test/read_write_fragment.json" %}` with the contents of `config/read_write_fragment.json` to produce:
 ```
     {
         "metadata":{},

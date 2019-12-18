@@ -44,6 +44,14 @@ writers.s3\_writer module
    :undoc-members:
    :show-inheritance:
 
+writers.serializer module
+-------------------------
+
+.. automodule:: writers.serializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

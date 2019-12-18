@@ -44,6 +44,14 @@ primrose.writers.s3\_writer module
    :undoc-members:
    :show-inheritance:
 
+primrose.writers.serializer module
+----------------------------------
+
+.. automodule:: primrose.writers.serializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

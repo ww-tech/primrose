@@ -20,6 +20,14 @@ primrose.readers.database\_helper module
    :undoc-members:
    :show-inheritance:
 
+primrose.readers.deserializer module
+------------------------------------
+
+.. automodule:: primrose.readers.deserializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 primrose.readers.dill\_reader module
 ------------------------------------
 

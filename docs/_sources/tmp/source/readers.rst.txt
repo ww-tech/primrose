@@ -20,6 +20,14 @@ readers.database\_helper module
    :undoc-members:
    :show-inheritance:
 
+readers.deserializer module
+---------------------------
+
+.. automodule:: readers.deserializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 readers.dill\_reader module
 ---------------------------
 
