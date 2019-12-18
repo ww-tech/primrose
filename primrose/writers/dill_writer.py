@@ -7,12 +7,15 @@ Author(s):
 import os
 import logging
 import dill
+import warnings
+
 from primrose.writers.abstract_file_writer import AbstractFileWriter
 from primrose.data_object import DataObjectResponseType
 
 
 class DillWriter(AbstractFileWriter):
     ''' write some specified data object to a dill file '''
+    warnings.warn('Use Serializer instead. DillWriter will be deprecated in a future release.', DeprecationWarning)
 
     def run(self, data_object):
         """serialize some data to a local filesystem using Dill

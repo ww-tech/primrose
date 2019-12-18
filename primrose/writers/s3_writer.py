@@ -21,10 +21,10 @@ class S3Writer(AbstractWriter):
         """Necessary keys for S3Writer object
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Note:
             dir: directory to write, then upload file

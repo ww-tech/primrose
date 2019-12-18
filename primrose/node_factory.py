@@ -15,6 +15,7 @@ from primrose.base.node import AbstractNode
 from primrose.readers.csv_reader import CsvReader
 from primrose.readers.gcs_dill_reader import GcsDillReader
 from primrose.readers.dill_reader import DillReader
+from primrose.readers.deserializer import Deserializer, GcsDeserializer
 from primrose.readers.sklearn_dataset_reader import SklearnDatasetReader
 from primrose.readers.mysql_reader import MySQLReader
 from primrose.readers.sqlite_reader import SQLiteReader
@@ -34,6 +35,7 @@ from primrose.models.sklearn_regression_model import SklearnRegressionModel
 from primrose.writers.csv_writer import CsvWriter
 from primrose.writers.file_writer import FileWriter
 from primrose.writers.dill_writer import DillWriter
+from primrose.writers.serializer import Serializer
 from primrose.writers.s3_writer import S3Writer
 
 from primrose.dataviz.cluster_plotter import ClusterPlotter
@@ -47,6 +49,7 @@ class NodeFactory:
     instance = None
 
     CLASS_KEY = "class"
+    CLASS_PREFIX = "class_prefix"
 
     def __init__(self):
         """instantiate the factory but as a singleton. The guard raails are here
@@ -78,12 +81,15 @@ class NodeFactory:
                 'PostgresReader': PostgresReader,
                 'GcsDillReader': GcsDillReader,
                 'DillReader': DillReader,
+                'Deserializer': Deserializer,
+                'GcsDeserializer': GcsDeserializer,
                 'DataFrameJoiner': DataFrameJoiner,
                 'EncodeTrainTestSplit': EncodeTrainTestSplit,
                 'TrainTestSplit': TrainTestSplit,
                 'CsvWriter': CsvWriter,
                 'FileWriter': FileWriter,
                 'DillWriter': DillWriter,
+                'Serializer': Serializer,
                 'S3Writer': S3Writer,
                 'SklearnClassifierModel': SklearnClassifierModel,
                 'LoggingSuccess': LoggingSuccess,
@@ -106,7 +112,17 @@ class NodeFactory:
 
             """
             if raise_on_overwrite and key in self.name_dict:
-                raise Error("Node already exist with the key " + key)
+                raise Exception("Node already exist with the key " + key)
+            
+            if not (inspect.isclass(class_obj) and issubclass(class_obj, AbstractNode)):
+                raise Exception("NodeFactory can only register classes that implement AbstractNode")
+            
+            if key is None:
+                try:
+                    key = class_obj.__name__
+                except AttributeError as e:
+                    raise Exception(f"Cannot register {class_obj}, no __name__ attribute found. Please explicity specify a name when registering this class.")
+            
             self.name_dict[key] = class_obj
             logging.debug("Registered %s : %s" % (key, class_obj))
 

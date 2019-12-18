@@ -13,6 +13,7 @@ from networkx.algorithms.shortest_paths.generic import has_path
 from primrose.node_factory import NodeFactory
 from primrose.base.conditional_path_node import AbstractConditionalPath
 
+
 class ConfigurationDag():
 
     def __init__(self, config):
@@ -113,7 +114,7 @@ class ConfigurationDag():
 
     def paths(self, source, target):
         """return the paths, if any, from a given source node to a given target node
-            
+
         Args:
             source (str): name of node which is starting point of path
             target (str): name of node which is end point of path
@@ -156,7 +157,7 @@ class ConfigurationDag():
             ConfigurationError if multiuple connected components
 
         """
-        connected_components = nx.connected_components(self.G) 
+        connected_components = nx.connected_components(self.G)
         n = sum([1 for c in connected_components])
         if n > 1:
             raise ConfigurationError("Found multiple connected components: %s" % str(list( nx.connected_components(self.G) )))
@@ -279,7 +280,7 @@ class ConfigurationDag():
 
         self.check_connected_components()
 
-        self.check_for_cycles() 
+        self.check_for_cycles()
 
     def plot_dag(self, filename, traverser, node_size=500, label_font_size=12, text_angle=0, image_width=16, image_height=12):
         """plot the DAG to image file
@@ -289,7 +290,7 @@ class ConfigurationDag():
             title (str): title to add to chart
             node_size (int): node size
             label_font_size (int): font size
-            text_angle (int): angle to rotate. This is angle in degrees counter clockwise from east 
+            text_angle (int): angle to rotate. This is angle in degrees counter clockwise from east
             image_width (int): width of image in inches
             image_height (int): heightof image in inches
 
@@ -321,7 +322,10 @@ class ConfigurationDag():
             import pydot
             from networkx.drawing.nx_pydot import graphviz_layout
         except ImportError: # pragma: no cover
-            raise ImportError("This example needs Graphviz and pydot")
+            raise ImportError(
+                "This example needs Graphviz and pydot."
+                "Please refer to the Plotting requirements in the README"
+            )
 
         # pos = nx.spring_layout(G)
         # pos = nx.circular_layout(G)

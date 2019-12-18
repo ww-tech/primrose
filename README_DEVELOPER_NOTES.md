@@ -102,65 +102,45 @@ After registering your class (see next section), you can then use it in a config
 
 
 ## Registering Your Classes
-Now that you've implemented your own classes that implement the `Node` interface, how do your register them given that these nodes are in your project and you are importing `primrose`?
+Now that you've written your own classes that implement the `Node` interface, how do you register them given that these nodes are in your project and you are importing `primrose`?
 
-There are three steps to registering your own classes and running them in your project:
+If running `primrose` with a configuration file, all you need to do is set the environment variable `PRIMROSE_EXT_NODE_PACKAGE`. 
 
-1) Generate a script to run `primrose` from your own project.
+When configuration is validated, there is a check to make sure that all classes implement `AbstractNode`. If a class is not already registered, there is an attempt to register by searching through the given `PRIMROSE_EXT_NODE_PACKAGE` for the class name. If there is a match, the class is automatically imported and registered. The variable `PRIMROSE_EXT_NODE_PACKAGE` can be set to a package installed in pip (e.g. `my_nodes`), a python file (e.g. `src/my_nodes/node1.py`), or a directory to a package (e.g. `src/my_nodes`). If you would rather specify the package in your configuration file, you can set the key `class_package` in the `metadata` section. If both values are set, `PRIMROSE_EXT_NODE_PACKAGE` will take precedence.
 
-2) Register your own classes. 
+If you want to specify a specific prefix for a class, you can set the value `class_prefix` in your node config. This class prefix will be appended to the set `PRIMROSE_EXT_NODE_PACKAGE`. This can either be specified in python dot notation (e.g. `src.mynodes`) or a path `src/mynodes.py`. This could be useful if you are importing nodes from multiple packages or from multiple locations.
 
-3) Reference the file with your registered classes in your `run_primrose` script.
-
-**NOTE:**
-An example project with `AwesomeReader` and `AwesomeModel` as registered classes will automatically be created when 
-using `primrose create-project --name <projectname>`. This template can be used to add more nodes or modifying for 
-your own needs. It's important to remember that there are two ways to register new classes, you can modify the `__init__`
- file in your source directory, which is imported in `python run_primrose.py`, or you can use the cli. 
-When using `python run_primrose.py` as an entrypoint rather than the cli, you don't need any extra options. If you 
-prefer to use the cli, then custom directories can be registered with the `--node_module` option: 
-`primrose --node_module src run --config my_config_file`. When using the cli, classes must still be imported in your 
-source `__init__` file. 
-
-Follow the below steps to set up your custom project manually:
-
-### Step 1: Generate a run script
-Run
+Here is an example of how your configuration may look if your nodes are in the path `src/mynodes/awesome_node.py`. In the first method, you can just specify `PRIMROSE_EXT_NODE_PACKAGE=src` and primrose will find your custom node:
 ```
-    primrose generate-script --destination path/to/myproject/
-```
-which will create `path/to/myproject/run_primrose.py`.
-
-### Step 2: Register your classes
-Create a file where you import the `NodeFactory`, import your classes and then register them. 
-
-For instance, if your project has `src`, we suggest putting this code in `src/__init__.py`.
-
-In that file, add following code (obviously with your own imports):
-
-```
-from primrose.node_factory import NodeFactory
-
-# Add your imports here
-from src.yourpackage.awesome_reader import AwesomeReader
-from src.yourpackage.awesome_model import AwesomeModel
-
-NodeFactory().register_module_classes(__name__)
+  implementation_config: {
+  ...
+    read_data: {
+      "class": "MyAwesomeNode",
+      "destinations": [
+        "encode_and_split"
+      ]
+    }
+  ...
+  }
 ```
 
-### Step 3: Reference the Registration code
-
-Importantly, this factory registration has to occur *before* Configuration is instantiated  in the `run_primrose` script. 
-
-To that end, we suggest putting this registration code below into something 
-like `src/__init__.py` in your project. Wherever you put it, you will need to reference it in the `run_primrose` script.
-
-That is, if you put this code into `src/__init__.py`, you will need to add
-
+Alternatively, you can set the `class_package` and/or `class_prefix` variables to explicitly define a class location:
 ```
-  from src.__init__ import *
+  metadata: {
+    class_package: "src"
+  },
+  implementation_config: {
+  ...
+    read_data: {
+      "class": "MyAwesomeNode",
+      "class_prefix": "mynodes/awesome_node.py",
+      "destinations": [
+        "encode_and_split"
+      ]
+    }
+  ...
+  }
 ```
-at the head of the run_primrose script. 
 
 ## Conditional Pathing
 During machine learning jobs, one often has to make decisions dynamically depending on characteristics of the data at runtime: if there is drift, then retrain the model; if the data is too large to fit in RAM, handle in the cloud; if the detected language is French, use the French model etc. 

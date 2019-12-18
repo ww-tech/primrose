@@ -24,7 +24,7 @@ class SklearnClassifierModel(SklearnModel):
         """Return a list of necessary configuration keys
 
         Args:
-            node_config (dict): set of parametera / attributes for the node
+            node_config (dict): set of parameters / attributes for the node
 
         Notes:
             model_parameters (dict): parameters that mirror the sklearn kwargs for the user's model

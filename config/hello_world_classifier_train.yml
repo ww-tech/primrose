@@ -3,53 +3,53 @@ implementation_config:
   reader_config:
     read_data:
       class: CsvReader
+      filename: data/tennis.csv
       destinations:
       - encode_and_split
-      filename: data/tennis.csv  
   pipeline_config:
     encode_and_split:
       class: EncodeTrainTestSplit
+      is_training: true
+      target_variable: play
+      training_fraction: 0.65
+      seed: 42
       destinations:
       - decision_tree_model
       - write_encoder
-      is_training: true
-      seed: 42
-      target_variable: play
-      training_fraction: 0.65
   model_config:
     decision_tree_model:
       class: SklearnClassifierModel
+      sklearn_classifier_name: tree.DecisionTreeClassifier
+      mode: train
+      grid_search_scoring: roc_auc
       cv_folds: 3
       destinations:
       - write_output
       - write_model
-      grid_search_scoring: roc_auc
-      mode: train
       model_parameters:
-        min_samples_leaf:
-        - 1
-        - 3
-        - 5
         min_samples_split:
         - 2
         - 5
         - 10
+        min_samples_leaf:
+        - 1
+        - 3
+        - 5
         random_state:
         - 42
-      sklearn_classifier_name: tree.DecisionTreeClassifier
   writer_config:
-    write_encoder:
-      class: DillWriter
-      dir: cache
-      filename: hello_world_encoder.dill
-      key: transformer_sequence
-    write_model:
-      class: DillWriter
-      dir: cache
-      filename: hello_world_model.dill
-      key: model
     write_output:
       class: CsvWriter
+      key: predictions
       dir: cache
       filename: hello_world_predictions.csv
-      key: predictions
+    write_encoder:
+      class: DillWriter
+      key: transformer_sequence
+      dir: cache
+      filename: hello_world_encoder.dill
+    write_model:
+      class: DillWriter
+      key: model
+      dir: cache
+      filename: hello_world_model.dill
