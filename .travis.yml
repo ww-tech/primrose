@@ -15,16 +15,6 @@ matrix:
     dist: xenial
     language: python
     python: 3.6
-    after_success:
-    - bash scripts/bump_script.sh
-    # TODO - add github personal access token in repository settings
-    # TODO - put pypi credentials in travis repository settings
-    deploy:
-      provider: pypi
-      user: $PYPI_USER
-      password: $PYPI_PASSWORD
-      on:
-        tags: true
   - os: linux
     dist: xenial
     language: python
@@ -35,6 +25,18 @@ matrix:
   - os: osx
     language: generic
     env: PYTHON_VERSION="3.7"
+  - stage: deploy
+    script: skip
+    after_success:
+    - bash scripts/bump_script.sh
+    # TODO - add github personal access token in repository settings
+    # TODO - put pypi credentials in travis repository settings
+    deploy:
+      provider: pypi
+      user: $PYPI_USER
+      password: $PYPI_PASSWORD
+      on:
+        tags: true
 
 before_install:
 # getting around how travis sets boto configuration
@@ -45,30 +47,6 @@ before_install:
 
 install:
 - |
-<<<<<<< HEAD
-  if [ $TRAVIS_OS_NAME = 'osx' ]; then 
-      echo "Installing brew packages..."  
-      brew install graphviz
-      echo "Setting up conda environment..."
-      wget http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh || exit 1
-      bash miniconda.sh -b -p "$HOME/miniconda3" || exit 1
-      export PATH=$HOME/miniconda3/bin:$PATH
-      conda config --set always_yes true || exit 1
-      conda create -n primrose python=$PYTHON_VERSION || exit 1
-      echo "Activating conda environment"
-      source activate primrose
-      echo "Updating matplotlib configuration"
-      mkdir -p ~/.matplotlib && touch ~/.matplotlib/matplotlibrc
-      "`echo backend: TkAgg >> ~/.matplotlib/matplotlibrc`"
-  elif [ $TRAVIS_OS_NAME = 'linux' ]; then
-      echo "Installing linux packages"
-      sudo add-apt-repository universe
-      sudo apt update
-      sudo apt-get install graphviz
-      echo "Updating matplotlib configuration"
-      mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
-      "`echo backend: Agg >> ~/.config/matplotlib/matplotlibrc`"
-=======
   if [ $TRAVIS_OS_NAME = 'osx' ]; then
     echo "Installing brew packages..."
     brew install graphviz
@@ -90,15 +68,13 @@ install:
     echo "Updating matplotlib configuration"
     mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
     "`echo backend: Agg >> ~/.config/matplotlib/matplotlibrc`"
->>>>>>> 3a7f0b3821036356fb4f89a1e9ad3746548d08b4
   fi
 
   echo "Installing requirements"
   pip install -r requirements.txt
-<<<<<<< HEAD
 
   pip install --upgrade bump2version
-=======
+
   if [ $PYPI_BUILD = 'complete' ]; then
     echo "Installing postgres and plotting requirements"
     pip install psycopg2>=2.8.3
@@ -112,7 +88,6 @@ install:
     echo "Installing plotting requirements"
     pip install pygraphviz>=1.5
   fi
->>>>>>> 3a7f0b3821036356fb4f89a1e9ad3746548d08b4
 
 script:
   - |
