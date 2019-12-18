@@ -16,11 +16,19 @@ matrix:
   include:
   - os: osx
     language: generic
-    env: PYTHON_VERSION="3.6"
+    env:
+    - PYTHON_VERSION="3.6" PYPI_BUILD="complete"
+    - PYTHON_VERSION="3.6" PYPI_BUILD="only_plotting"
+    - PYTHON_VERSION="3.6" PYPI_BUILD="only_postgres"
+    - PYTHON_VERSION="3.6" PYPI_BUILD="basic"
   - os: osx
     language: generic
-    env: PYTHON_VERSION="3.7"
-    
+    env:
+    - PYTHON_VERSION="3.7" PYPI_BUILD="complete"
+    - PYTHON_VERSION="3.7" PYPI_BUILD="only_plotting"
+    - PYTHON_VERSION="3.7" PYPI_BUILD="only_postgres"
+    - PYTHON_VERSION="3.7" PYPI_BUILD="basic"
+
   - stage: deploy
     env: BUMP_PART=release
     os: linux
