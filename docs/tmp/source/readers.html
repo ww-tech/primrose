@@ -194,7 +194,7 @@
 <dd><p>Returns the necessary configuration keys for the CsvReader object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -245,6 +245,147 @@ terminate (bool): should we terminate the DAG? true or false</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-readers.deserializer">
+<span id="readers-deserializer-module"></span><h2>readers.deserializer module<a class="headerlink" href="#module-readers.deserializer" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, able to read from local and gcs dill and pickle files</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)
+Brian Graham (<a class="reference external" href="mailto:brian&#46;graham&#37;&#52;&#48;weightwatchers&#46;com">brian<span>&#46;</span>graham<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="readers.deserializer.Deserializer">
+<em class="property">class </em><code class="sig-prename descclassname">readers.deserializer.</code><code class="sig-name descname">Deserializer</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.Deserializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a local file and de-serialize it into memory.</p>
+<dl class="attribute">
+<dt id="readers.deserializer.Deserializer.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#readers.deserializer.Deserializer.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="readers.deserializer.Deserializer.SUPPORTED_DESERIALIZERS">
+<code class="sig-name descname">SUPPORTED_DESERIALIZERS</code><em class="property"> = {'dill': &lt;module 'dill' from '/anaconda3/envs/ds-user-models/lib/python3.6/site-packages/dill/__init__.py'&gt;, 'pickle': &lt;module 'pickle' from '/anaconda3/envs/ds-user-models/lib/python3.6/pickle.py'&gt;}</em><a class="headerlink" href="#readers.deserializer.Deserializer.SUPPORTED_DESERIALIZERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="readers.deserializer.Deserializer.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.Deserializer.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the Deserializer object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename (str): local filename to be de-serialized
+deserializer (str): ‘dill’ or ‘pickle’</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the Deserializer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="readers.deserializer.Deserializer.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.Deserializer.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read dill object(s) from local filesystem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="readers.deserializer.GcsDeserializer">
+<em class="property">class </em><code class="sig-prename descclassname">readers.deserializer.</code><code class="sig-name descname">GcsDeserializer</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.GcsDeserializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a file from GCS and de-serialize it into memory.</p>
+<dl class="attribute">
+<dt id="readers.deserializer.GcsDeserializer.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#readers.deserializer.GcsDeserializer.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="readers.deserializer.GcsDeserializer.SUPPORTED_DESERIALIZERS">
+<code class="sig-name descname">SUPPORTED_DESERIALIZERS</code><em class="property"> = {'dill': &lt;module 'dill' from '/anaconda3/envs/ds-user-models/lib/python3.6/site-packages/dill/__init__.py'&gt;, 'pickle': &lt;module 'pickle' from '/anaconda3/envs/ds-user-models/lib/python3.6/pickle.py'&gt;}</em><a class="headerlink" href="#readers.deserializer.GcsDeserializer.SUPPORTED_DESERIALIZERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="readers.deserializer.GcsDeserializer.download_blobs_as_strings">
+<code class="sig-name descname">download_blobs_as_strings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.GcsDeserializer.download_blobs_as_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a blob from the bucket contining the user specified blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="readers.deserializer.GcsDeserializer.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.GcsDeserializer.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the GcsDeserializer object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>bucket_name: name of the GCS bucket
+blob_name: name of the blob
+deserializer (str): ‘dill’ or ‘pickle’</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the GcsDeserializer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="readers.deserializer.GcsDeserializer.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#readers.deserializer.GcsDeserializer.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read serialized object(s) from GCS bucket which contain the blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-readers.dill_reader">
 <span id="readers-dill-reader-module"></span><h2>readers.dill_reader module<a class="headerlink" href="#module-readers.dill_reader" title="Permalink to this headline">¶</a></h2>
 <p>Module with AbstractNode implementation, able to read from local dill files</p>
@@ -268,7 +409,7 @@ terminate (bool): should we terminate the DAG? true or false</p>
 <dd><p>Returns the necessary configuration keys for the DillReader object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -341,7 +482,7 @@ terminate (bool): should we terminate the DAG? true or false</p>
 <dd><p>Returns the necessary configuration keys for the GcsDillReader object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -646,7 +787,7 @@ terminate (bool): should we terminate the DAG? true or false</p>
 <dd><p>Return a list of necessary configuration keys within the implementation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parametera / attributes for the node</p>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
 </dd>
 </dl>
 <div class="admonition note">
