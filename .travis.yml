@@ -17,17 +17,16 @@ matrix:
   - os: osx
     language: generic
     env:
-    - PYTHON_VERSION="3.6" PYPI_BUILD="complete"
-    - PYTHON_VERSION="3.6" PYPI_BUILD="only_plotting"
-    - PYTHON_VERSION="3.6" PYPI_BUILD="only_postgres"
-    - PYTHON_VERSION="3.6" PYPI_BUILD="basic"
+      global:
+      - PYTHON_VERSION="3.6"
+      jobs:
+      - PYPI_BUILD="complete"
+      - PYPI_BUILD="only_plotting"
+      - PYPI_BUILD="only_postgres"
+      - PYPI_BUILD="basic"
   - os: osx
     language: generic
-    env:
-    - PYTHON_VERSION="3.7" PYPI_BUILD="complete"
-    - PYTHON_VERSION="3.7" PYPI_BUILD="only_plotting"
-    - PYTHON_VERSION="3.7" PYPI_BUILD="only_postgres"
-    - PYTHON_VERSION="3.7" PYPI_BUILD="basic"
+    env: PYTHON_VERSION="3.7"
 
   - stage: deploy
     env: BUMP_PART=release
