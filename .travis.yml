@@ -16,14 +16,7 @@ matrix:
   include:
   - os: osx
     language: generic
-    env:
-      global:
-      - PYTHON_VERSION="3.6"
-      jobs:
-      - PYPI_BUILD="complete"
-      - PYPI_BUILD="only_plotting"
-      - PYPI_BUILD="only_postgres"
-      - PYPI_BUILD="basic"
+    env: PYTHON_VERSION="3.6"
   - os: osx
     language: generic
     env: PYTHON_VERSION="3.7"
