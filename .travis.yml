@@ -26,6 +26,10 @@ matrix:
     language: generic
     env: PYTHON_VERSION="3.7"
   - stage: deploy
+    os: linux
+    dist: xenial
+    language: python
+    python: 3.6
     script: skip
     after_success:
     - bash scripts/bump_script.sh
