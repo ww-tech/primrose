@@ -39,11 +39,10 @@ python:
   - 3.7
 
 env:
-  global:
-    - PYPI_BUILD="complete"
-    - PYPI_BUILD="only_plotting"
-    - PYPI_BUILD="only_postgres"
-    - PYPI_BUILD="basic"
+  - PYPI_BUILD="complete"
+  - PYPI_BUILD="only_plotting"
+  - PYPI_BUILD="only_postgres"
+  - PYPI_BUILD="basic"
 
 matrix:
   exclude:
