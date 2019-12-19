@@ -26,17 +26,17 @@
 #     language: generic
 #     env: PYTHON_VERSION="3.7"
 
-# language: python
-# dist: xenial
-# sudo: required
+language: python
+dist: xenial
+sudo: required
 
-# os:
-#   - linux
+os:
+  - linux
 #   - osx
 
-# python:
-#   - 3.6
-#   - 3.7
+python:
+  - 3.6
+  - 3.7
 
 env:
   - PYPI_BUILD="complete"
@@ -46,13 +46,6 @@ env:
 
 matrix:
   include:
-    - language: python
-      dist: xenial
-      sudo: required
-      python:
-        - 3.6
-        - 3.7
-      os: linux
     - language: generic
       dist: xenial
       sudo: required
