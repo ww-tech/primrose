@@ -11,7 +11,7 @@ local_data_files = [os.path.join('data', f) for f in os.listdir('data')]
 local_config_files = [os.path.join('config', f) for f in os.listdir('config')]
 
 setup(name='primrose',
-      version='1.0.6',
+      version='1.0.8',
       description='Primrose: a framework for simple, quick modeling deployments',
       url='https://github.com/ww-tech/primrose',
       author='Carl Anderson',
@@ -35,4 +35,8 @@ setup(name='primrose',
         'Source': 'https://github.com/ww-tech/primrose',
       },
       entry_points={"console_scripts": ["primrose = primrose.__init__:cli"]},
+      extras_require={
+        'postgres': ["psycopg2>=2.8.3", "psycopg2_binary>=2.8.2"],
+        'plotting': ["pygraphviz>=1.5"]
+      }
     ),

@@ -17,7 +17,6 @@ Usage: primrose [OPTIONS] COMMAND [ARGS]...
   --help for more detailed help on a command
 
 Options:
-  --node_module TEXT  module with imports of custom node classes
   --help              Show this message and exit.
 
 Commands:
@@ -82,20 +81,7 @@ The last two commands `primrose generate-class-registration-template` and `primr
 extending `primrose` and using within your own project. This is covered in more detail in the [Developer Notes](README_DEVELOPER_NOTES.md).
 
 ## Specifying your primrose node registry
-(See [Developer Notes - Register your classes](README_DEVELOPER_NOTES.md#step-2-register-your-classes) for information about registering custom `primrose` nodes)
-
-The `primrose` cli enables you to include custom nodes through the `--node_module` option. Using this option will import the specified package/module which registers your nodes. Note that `--node_module` needs to be declared prior to all subsequent primrose commands.
-```
-  primrose --node_module <primrose command>
-```
-For example, let's say your project is `src` and you registered your nodes in the recommended location `src/__init__.py`. Now you would like to plot your configuration. You can run the following command
-```
-  primrose --node_module ./src/__init__.py plot --config path/to/config.json
-``` 
-And since importing a package will run the `__init__.py` file on import, you can alternatively specify the project location
-```
-  primrose --node_module ./src plot --config path/to/config.json
-```
+See [Developer Notes - Register your classes](README_DEVELOPER_NOTES.md#step-2-register-your-classes) for information about registering custom `primrose` nodes
 
 ## Next
 Learn how to create your own `primrose` nodes: [Developer Notes](README_DEVELOPER_NOTES.md)

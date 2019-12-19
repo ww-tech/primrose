@@ -11,6 +11,9 @@ from unittest.mock import patch
 def test_necessary_config():
     assert len(PostgresReader.necessary_config({})) == 1
 
+
+@pytest.mark.optional
+@pytest.mark.postgres
 def test_run(monkeypatch):
     config = {
         "implementation_config": {
