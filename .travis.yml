@@ -1,24 +1,56 @@
-language: python
+# language: python
+# dist: xenial
+# sudo: required
+
+# env:
+#   matrix:
+#     - PYPI_BUILD="complete"
+#     - PYPI_BUILD="only_plotting"
+#     - PYPI_BUILD="only_postgres"
+#     - PYPI_BUILD="basic"
+
+# matrix:
+#   include:
+#   - os: linux
+#     dist: xenial
+#     language: python
+#     python: 3.6
+#   - os: linux
+#     dist: xenial
+#     language: python
+#     python: 3.7
+#   - os: osx
+#     language: generic
+#     env: PYTHON_VERSION="3.6"
+#   - os: osx
+#     language: generic
+#     env: PYTHON_VERSION="3.7"
+
+# language: python
 dist: xenial
 sudo: required
 
+os:
+  - linux
+  - osx
+
+python:
+  - 3.6
+  - 3.7
+
 env:
-  matrix:
-    - PYPI_BUILD="complete"
-    - PYPI_BUILD="only_plotting"
-    - PYPI_BUILD="only_postgres"
-    - PYPI_BUILD="basic"
+  - PYPI_BUILD="complete"
+  - PYPI_BUILD="only_plotting"
+  - PYPI_BUILD="only_postgres"
+  - PYPI_BUILD="basic"
 
 matrix:
+  exclude:
+    - os: osx
+      python: 3.6
+    - os: osx
+      python: 3.7
   include:
-  - os: linux
-    dist: xenial
-    language: python
-    python: 3.6
-  - os: linux
-    dist: xenial
-    language: python
-    python: 3.7
   - os: osx
     language: generic
     env: PYTHON_VERSION="3.6"
