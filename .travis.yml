@@ -44,23 +44,22 @@ env:
   - PYPI_BUILD="only_postgres"
   - PYPI_BUILD="basic"
 
-matrix:
-  env:
-    - PYPI_BUILD="complete"
-    - PYPI_BUILD="only_plotting"
-    - PYPI_BUILD="only_postgres"
-    - PYPI_BUILD="basic"
-  include:
-    - language: generic
-      dist: xenial
-      sudo: required
-      os: osx
-      env: PYTHON_VERSION="3.6"
-    - language: generic
-      dist: xenial
-      sudo: required
-      os: osx
-      env: PYTHON_VERSION="3.7"
+include:
+  matrix:
+    env:
+      global:
+        - PYPI_BUILD="complete"
+        - PYPI_BUILD="only_plotting"
+        - PYPI_BUILD="only_postgres"
+        - PYPI_BUILD="basic"
+      local:
+        - PYTHON_VERSION="3.6"
+        - PYTHON_VERSION="3.7"
+    language: generic
+    dist: xenial
+    sudo: required
+    os: osx
+
 
 before_install:
 # getting around how travis sets boto configuration
