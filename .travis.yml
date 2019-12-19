@@ -45,6 +45,11 @@ env:
   - PYPI_BUILD="basic"
 
 matrix:
+  env:
+    - PYPI_BUILD="complete"
+    - PYPI_BUILD="only_plotting"
+    - PYPI_BUILD="only_postgres"
+    - PYPI_BUILD="basic"
   include:
     - language: generic
       dist: xenial
