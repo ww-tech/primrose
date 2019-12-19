@@ -26,17 +26,17 @@
 #     language: generic
 #     env: PYTHON_VERSION="3.7"
 
-language: python
-dist: xenial
-sudo: required
+# language: python
+# dist: xenial
+# sudo: required
 
-os:
-  - linux
-  - osx
+# os:
+#   - linux
+#   - osx
 
-python:
-  - 3.6
-  - 3.7
+# python:
+#   - 3.6
+#   - 3.7
 
 env:
   - PYPI_BUILD="complete"
@@ -45,18 +45,24 @@ env:
   - PYPI_BUILD="basic"
 
 matrix:
-  exclude:
-    - os: osx
-      python: 3.6
-    - os: osx
-      python: 3.7
   include:
-  - os: osx
-    language: generic
-    env: PYTHON_VERSION="3.6"
-  - os: osx
-    language: generic
-    env: PYTHON_VERSION="3.7"
+    - language: python
+      dist: xenial
+      sudo: required
+      python:
+        - 3.6
+        - 3.7
+      os: linux
+    - language: generic
+      dist: xenial
+      sudo: required
+      os: osx
+      env: PYTHON_VERSION="3.6"
+    - language: generic
+      dist: xenial
+      sudo: required
+      os: osx
+      env: PYTHON_VERSION="3.7"
 
 before_install:
 # getting around how travis sets boto configuration
