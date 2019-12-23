@@ -31,7 +31,7 @@ class SlackClient(AbstractNotification):
 
         """
         self.channel = channel
-        self.member_id = member_id # this is not userid. See https://medium.com/@moshfeu/how-to-find-my-member-id-in-slack-workspace-d4bba942e38c
+        self.member_id = member_id  # this is not userid. See https://medium.com/@moshfeu/how-to-find-my-member-id-in-slack-workspace-d4bba942e38c
         self.client = slack.WebClient(token=token)
 
     def post_message(self, message: str):
@@ -45,17 +45,14 @@ class SlackClient(AbstractNotification):
         """
 
         if self.member_id:
-            message += f'\n <@{self.member_id}>'
+            message += f"\n <@{self.member_id}>"
 
         # post response
         try:
-            return self.client.chat_postMessage(
-                channel=self.channel,
-                text=message
-            )
+            return self.client.chat_postMessage(channel=self.channel, text=message)
 
         except SlackApiError as error:
-            msg = 'Something went wrong when attempting to send message to slack'
+            msg = "Something went wrong when attempting to send message to slack"
             logging.error(msg=msg, exc_info=error)
 
 
@@ -71,20 +68,16 @@ def get_notification_client(params: dict):
         instantiated client object
 
     """
-    exclude = ['class', 'client', 'message']
+    exclude = ["class", "client", "message", "destinations"]
     client_params = {k: v for k, v in params.items() if k not in exclude}
 
     # instantiate client
     module = importlib.import_module(__loader__.name)
     try:
-        client = getattr(module, params['client'])
+        client = getattr(module, params["client"])
 
         return client(**client_params)
 
     except AttributeError as error:
-        msg = 'Are you sure {} is in {}?'.format(params['client'], module)
+        msg = "Are you sure {} is in {}?".format(params["client"], module)
         logging.error(msg, error)
-
-
-
-

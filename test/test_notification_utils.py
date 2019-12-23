@@ -53,5 +53,6 @@ class TestGetNotificationClient(unittest.TestCase):
         client_params = {'client': 'DoesNotExist'}
         self.assertRaises(AttributeError, get_notification_client(client_params))
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -15,7 +15,7 @@ from primrose.base.success import AbstractSuccess
 from primrose.notification_utils import get_notification_client
 
 
-class SuccessNotification(AbstractSuccess):
+class ClientNotification(AbstractSuccess):
     """Outputs success notification using specified client after job completion."""
 
     def __init__(self, configuration, instance_name):
@@ -30,20 +30,20 @@ class SuccessNotification(AbstractSuccess):
 
         """
         super().__init__(configuration, instance_name)
-        self.message = self.node_config.get('message', 'SUCCESS! DAG Completed')
+        self.message = self.node_config.get("message", "SUCCESS! DAG Completed")
 
         self.client = get_notification_client(params=self.node_config)
 
     @staticmethod
     def necessary_config(node_config):
-        """Returns the necessary configuration keys for the SuccessNotification object
+        """Returns the necessary configuration keys for the ClientNotification object
 
             Notes:
                 client (`str`): The client object to be instantiated (ex. 'SlackClient')
                 token (`str`): The token used to initialize the client
 
         """
-        config_params = set(['client', 'token'])
+        config_params = set(["client", "token"])
         return config_params.union(AbstractSuccess.necessary_config(node_config))
 
     def run(self, data_object):

@@ -32,7 +32,7 @@ from primrose.models.sklearn_classifier_model import SklearnClassifierModel
 from primrose.models.sklearn_cluster_model import SklearnClusterModel
 from primrose.models.sklearn_regression_model import SklearnRegressionModel
 
-from primrose.notifications.success_notification import SuccessNotification
+from primrose.notifications.success_notification import ClientNotification
 
 from primrose.writers.csv_writer import CsvWriter
 from primrose.writers.file_writer import FileWriter
@@ -101,7 +101,7 @@ class NodeFactory:
                 'SklearnDatasetReader': SklearnDatasetReader,
                 'SklearnRegressionModel': SklearnRegressionModel,
                 'SimpleSwitch': SimpleSwitch,
-                'SuccessNotification': SuccessNotification}
+                'ClientNotification': ClientNotification}
 
         def register(self, key, class_obj, raise_on_overwrite=False):
             """Registering class_obj with key

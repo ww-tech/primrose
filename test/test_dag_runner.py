@@ -190,7 +190,7 @@ def test_run6():
             },
             "cleanup_config": {
                 "notification": {
-                    "class": "SuccessNotification",
+                    "class": "ClientNotification",
                     "client": "SlackClient",
                     "channel": "some-channel",
                     "token": "slack-api-token",
@@ -207,7 +207,7 @@ def test_run6():
         runner.run(dry_run=True)
     l.check(('root', 'INFO', 'Taking nodes to run from section_registry'),
             ('root', 'INFO', 'DRY RUN 0: would run node csv_reader of type phase1 and class CsvReader'),
-            ('root', 'INFO', 'DRY RUN 1: would run node notification of type cleanup_config and class SuccessNotification'),
+            ('root', 'INFO', 'DRY RUN 1: would run node notification of type cleanup_config and class ClientNotification'),
             ('root', 'INFO', 'All done. Bye bye!'))
 
 
