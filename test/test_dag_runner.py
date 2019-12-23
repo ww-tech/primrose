@@ -1,9 +1,9 @@
 
 import os
-
-import pytest
 import unittest
 import unittest.mock as mock
+
+import pytest
 
 from primrose.configuration.configuration import Configuration
 from primrose.readers.csv_reader import CsvReader
