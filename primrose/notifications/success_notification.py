@@ -49,8 +49,9 @@ def get_client_params(params: dict):
             {'client': 'SlackClient',
             'channel': 'some-channel',
             'message': 'starting job...',
-            'member_id': None,
-            'token': 'some-token'}
+            'token': 'some-token',
+            'member_id': 'USomeUserID'
+            }
 
     """
     client = params['client'].upper()
