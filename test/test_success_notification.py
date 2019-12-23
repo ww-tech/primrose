@@ -9,7 +9,7 @@ import unittest
 import unittest.mock as mock
 
 from primrose.configuration.configuration import Configuration
-from primrose.notifications.success_notification import ClientNotification
+from primrose.notifications.success_notification import get_client_params, ClientNotification
 
 
 config_dict = {
@@ -54,7 +54,32 @@ config_dict = {
 
 
 class TestClientNotification(unittest.TestCase):
-    """Tests for slack_integration.py"""
+    """Tests for success_notification.py"""
+
+
+    def test_get_client_params(self):
+        os.environ["SLACKCLIENT_CHANNEL"] = "test-channel"
+        os.environ["SLACKCLIENT_MEMBER_ID"] = "test-member_id"
+        os.environ["SLACKCLIENT_TOKEN"] = "test-token"
+
+        params = {
+            "client": "SlackClient",
+            "channel": "",
+            "message": "starting job...",
+            "member_id": "",
+            "token": ""
+        }
+
+        ans = get_client_params(params)
+        expected = {
+            "client": "SlackClient",
+            "channel": "test-channel",
+            "message": "starting job...",
+            "member_id": "test-member_id",
+            "token": "test-token"
+        }
+        self.assertDictEqual(ans, expected)
+
 
     def test_necessary_config(self):
         self.assertEqual(
@@ -78,6 +103,9 @@ class TestClientNotification(unittest.TestCase):
             success_instance.run('some_data_object')
 
             success_instance.client.post_message.assert_called_once_with(message='TEST SUCCESS!')
+
+
+
 
 
 if __name__ == '__main__':

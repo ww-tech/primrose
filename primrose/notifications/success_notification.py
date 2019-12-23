@@ -15,6 +15,59 @@ from primrose.base.success import AbstractSuccess
 from primrose.notification_utils import get_notification_client
 
 
+
+def get_client_params(params: dict):
+    """
+        Creates the parameter dictionary to be read by the
+        `get_notification_client` method.
+
+        Args:
+            params (`dict`): The parameter dictionary where keys are
+                - the primrose `client` (required key),
+                - neccessary arguments to instantiate the client
+                - the `message` if used in the `implementation` section of the DAG.
+
+                Values can be explicitly given or stored as empty strings if
+                to be read from environment variables.
+                Environment variables are stored as {CLIENT_NAME}_{CLIENT_KEY}.
+
+                For example, using the built-in SlackClient, environment variables
+                will be stored as:
+                    SLACKCLIENT_TOKEN="some-token"
+                    SLACKCLIENT_CHANNEL="some-channel"
+                    SLACKCLIENT_MEMBER_ID="USomeUserID"
+
+        Returns:
+            A `dict` with the key-value pairs necessary to be read by the
+            `get_notification_client` method.
+
+        Example:
+            >>> node_config = {
+                    "client": "SlackClient",
+                    "channel": "",
+                    "message": "starting job...",
+                    "member_id": "",
+                    "token": ""
+                }
+            >>> get_client_params(node_config)
+            {'client': 'SlackClient',
+            'channel': 'some-channel',
+            'message': 'starting job...',
+            'member_id': None,
+            'token': 'some-token'}
+
+    """
+    client_params = {}
+    for k, v in params.items():
+        env_key = f"{params['client'].upper()}_{k.upper()}"
+        if not v:
+            v = os.environ.get(env_key, '')
+
+        client_params[k] = v
+
+    return client_params
+
+
 class ClientNotification(AbstractSuccess):
     """Outputs success notification using specified client after job completion."""
 
@@ -32,7 +85,8 @@ class ClientNotification(AbstractSuccess):
         super().__init__(configuration, instance_name)
         self.message = self.node_config.get("message", "SUCCESS! DAG Completed")
 
-        self.client = get_notification_client(params=self.node_config)
+        # read from config dict or environment variables
+        self.client = get_notification_client(params=get_client_params(self.node_config))
 
     @staticmethod
     def necessary_config(node_config):
