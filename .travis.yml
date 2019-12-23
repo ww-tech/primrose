@@ -1,65 +1,30 @@
-# language: python
-# dist: xenial
-# sudo: required
-
-# env:
-#   matrix:
-#     - PYPI_BUILD="complete"
-#     - PYPI_BUILD="only_plotting"
-#     - PYPI_BUILD="only_postgres"
-#     - PYPI_BUILD="basic"
-
-# matrix:
-#   include:
-#   - os: linux
-#     dist: xenial
-#     language: python
-#     python: 3.6
-#   - os: linux
-#     dist: xenial
-#     language: python
-#     python: 3.7
-#   - os: osx
-#     language: generic
-#     env: PYTHON_VERSION="3.6"
-#   - os: osx
-#     language: generic
-#     env: PYTHON_VERSION="3.7"
-
 language: python
 dist: xenial
 sudo: required
 
-os:
-  - linux
-#   - osx
-
-python:
-  - 3.6
-  - 3.7
-
 env:
-  - PYPI_BUILD="complete"
-  - PYPI_BUILD="only_plotting"
-  - PYPI_BUILD="only_postgres"
-  - PYPI_BUILD="basic"
-
-include:
   matrix:
-    env:
-      global:
-        - PYPI_BUILD="complete"
-        - PYPI_BUILD="only_plotting"
-        - PYPI_BUILD="only_postgres"
-        - PYPI_BUILD="basic"
-      local:
-        - PYTHON_VERSION="3.6"
-        - PYTHON_VERSION="3.7"
-    language: generic
-    dist: xenial
-    sudo: required
-    os: osx
+    - PYPI_BUILD="complete"
+    - PYPI_BUILD="only_plotting"
+    - PYPI_BUILD="only_postgres"
+    - PYPI_BUILD="basic"
 
+matrix:
+  include:
+  - os: linux
+    dist: xenial
+    language: python
+    python: 3.6
+  - os: linux
+    dist: xenial
+    language: python
+    python: 3.7
+  - os: osx
+    language: generic
+    env: PYTHON_VERSION="3.6"
+  - os: osx
+    language: generic
+    env: PYTHON_VERSION="3.7"
 
 before_install:
 # getting around how travis sets boto configuration
