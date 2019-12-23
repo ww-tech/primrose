@@ -13,9 +13,9 @@ implementation_config:
   reader_config:
     read_data:
       class: CsvReader
+      filename: data/tennis.csv
       destinations:
         - notification
-      filename: data/tennis.csv
   cleanup_config:
     notification:
       class: ClientNotification
@@ -79,9 +79,9 @@ implementation_config:
   reader_config:
     read_data:
       class: CsvReader
+      filename: data/tennis.csv
       destinations:
         - notification
-      filename: data/tennis.csv
   cleanup_config:
     notification:
       class: ClientNotification
