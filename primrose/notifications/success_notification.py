@@ -27,8 +27,7 @@ def get_client_params(params: dict):
                 - neccessary arguments to instantiate the client
                 - the `message` if used in the `implementation` section of the DAG.
 
-                Values can be explicitly given or stored as empty strings if
-                to be read from environment variables.
+                Values can be explicitly or stored as environment variables.
                 Environment variables are stored as {CLIENT_NAME}_{CLIENT_KEY}.
 
                 For example, using the built-in SlackClient, environment variables
@@ -44,10 +43,7 @@ def get_client_params(params: dict):
         Example:
             >>> node_config = {
                     "client": "SlackClient",
-                    "channel": "",
                     "message": "starting job...",
-                    "member_id": "",
-                    "token": ""
                 }
             >>> get_client_params(node_config)
             {'client': 'SlackClient',
@@ -57,15 +53,16 @@ def get_client_params(params: dict):
             'token': 'some-token'}
 
     """
-    client_params = {}
-    for k, v in params.items():
-        env_key = f"{params['client'].upper()}_{k.upper()}"
-        if not v:
-            v = os.environ.get(env_key, '')
+    client = params['client'].upper()
+    env_var = {
+        k.split(f'{client}_')[-1].lower(): v for k, v in os.environ.items()
+        if client.upper() in k
+    }
 
-        client_params[k] = v
+    # add environment variables to params
+    params.update(env_var)
 
-    return client_params
+    return params
 
 
 class ClientNotification(AbstractSuccess):

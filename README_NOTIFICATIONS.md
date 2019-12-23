@@ -72,9 +72,6 @@ Our configuration file would then look something like
 metadata:
   notify_on_error:
     client: SlackClient
-    channel:
-    member_id:
-    token:
 implementation_config:
   reader_config:
     read_data:
@@ -86,8 +83,5 @@ implementation_config:
     notification:
       class: ClientNotification
       client: SlackClient
-      token:
-      channel:
       message: We did it!
 ```
-The necessary keys to instantiate the client must be listed, and their values must be empty.
