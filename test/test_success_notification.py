@@ -64,10 +64,7 @@ class TestClientNotification(unittest.TestCase):
 
         params = {
             "client": "SlackClient",
-            "channel": "",
-            "message": "starting job...",
-            "member_id": "",
-            "token": ""
+            "message": "starting job..."
         }
 
         ans = get_client_params(params)
