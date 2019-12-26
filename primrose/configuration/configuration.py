@@ -1,6 +1,6 @@
 """Module to implement a Configuration parser which enhances parsing functionality of configparser
 
-Author(s): 
+Author(s):
     Michael Skarlinski (michael.skarlinski@weightwatchers.com)
 
     Carl Anderson (carl.anderson@weightwatchers.com)
@@ -22,6 +22,7 @@ from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
 from primrose.dag.traverser_factory import TraverserFactory
+
 
 SUPPORTED_EXTS = frozenset(['.json', '.yaml', '.yml'])
 CLASS_ENV_PACKAGE_KEY = 'PRIMROSE_EXT_NODE_PACKAGE'
@@ -54,7 +55,7 @@ class Configuration:
         else:
             logging.info('Loading config file at {}'.format(config_location))
             self.config_location = config_location
-            
+
             if os.path.exists(config_location):
                 ext = os.path.splitext(config_location)[1].lower()
                 if ext not in SUPPORTED_EXTS:
@@ -180,13 +181,13 @@ class Configuration:
 
     def check_metadata(self):
         """checks some dependencies among metadata keys
-        
+
         Raises:
             ConfigurationError is issues found
-        
+
         """
         if self.config_metadata:
-        
+
             if 'traverser' in self.config_metadata:
                 classname = self.config_metadata['traverser']
                 try:
@@ -260,13 +261,13 @@ class Configuration:
 
     def sections_in_order(self):
         """Return list of section names in order, either explicitly from metadata or from default Enum order
-        
+
         Note:
             If there is a non-empty section_run list in metadata return that
-            elif there is a non-empty section_registry in metadata return that 
-            otherwise return sections present from default OperationType enum. 
+            elif there is a non-empty section_registry in metadata return that
+            otherwise return sections present from default OperationType enum.
 
-            We need this method because the config sections are a dictionary not a list so we can't 
+            We need this method because the config sections are a dictionary not a list so we can't
             guarantee order of keys. This method imposes an expected order.
 
         Returns:
@@ -290,7 +291,7 @@ class Configuration:
 
         Raises:
             various exceptions if any checks fail
-        
+
         """
         self.check_metadata()
 
@@ -357,9 +358,9 @@ class Configuration:
 
         Args:
             class_key (str): class key to register
-            class_prefix(str): the prefix of the class to register. Can be in `path.to.module` format, 
+            class_prefix(str): the prefix of the class to register. Can be in `path.to.module` format,
                 or a full path `path/to/module`.
-        
+
         Returns:
             None - attempts to register the class with it's default name
         """
@@ -380,7 +381,7 @@ class Configuration:
                 prefix = class_prefix
 
             modulename = importlib.import_module(prefix)
-        
+
         clz = getattr(modulename, class_key)
         NodeFactory().register(None, clz)
 
@@ -391,7 +392,7 @@ class Configuration:
         Args:
             full_name (str): full module name to import
             path (str): full path to python module
-        
+
         Returns:
             module imported from the path with given name
         """
@@ -403,7 +404,7 @@ class Configuration:
 
     def _get_file_candidates(self):
         """Get file candidates to search through when specifying a class package.
-        
+
         Priority will first consider environment variable PRIMROSE_EXT_NODE_PACKAGE. If unset, will
         search the configuration metadata for key `class_package`. If nothing is specified, in either
         location, an empty list is returned.
@@ -441,7 +442,7 @@ class Configuration:
         """Traverse node package to find classes in the DAG to register.
 
         Args:
-            unique_class_keys (tuple(str, str)): a tuple of class names and prefixes. 
+            unique_class_keys (tuple(str, str)): a tuple of class names and prefixes.
             overwrite (boolean, Optional): If a prefix is already set from the configuration, do we overwrite?
 
         Returns:
