@@ -58,12 +58,11 @@ def get_client_params(params: dict):
     env_var = {
         k.split(f'{client}_')[-1].lower(): v for k, v in os.environ.items()
         if client.upper() in k
+        and k.split(f'{client}_')[-1].lower() not in params.keys() # config params take precedence
     }
 
-    # add environment variables to params
-    params.update(env_var)
-
-    return params
+    # combine environment variables and params
+    return {**params, **env_var}
 
 
 class ClientNotification(AbstractSuccess):
