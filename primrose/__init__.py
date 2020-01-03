@@ -4,6 +4,9 @@ import os
 import sys
 import importlib
 import pkg_resources
+import shutil
+from zipfile import ZipFile
+
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(filename)s %(funcName)s: %(message)s', level=logging.INFO)
 
@@ -47,8 +50,8 @@ def validate(config):
 @click.option('--config', required=True, help="Path to Config file")
 @click.option('--dry_run', default=False, type=bool, help="Config file")
 @click.option('--runner', default="local", type=click.Choice(["remote", "local"], case_sensitive=False), help="Run the job locally or on a remote machine")
-@click.option('--zip_file', default=None, type=str, help="Path to zip file to include when running remotely")
-def run(config, dry_run, runner, zip_file):
+@click.option('--path', default=None, type=str, help="Path to local files to include when running remotely")
+def run(config, dry_run, runner, path):
     """Run a primrose job"""
 
     if runner == 'local':
@@ -67,19 +70,35 @@ def run(config, dry_run, runner, zip_file):
         port = os.environ.get('PRIMROSE_PORT')
 
         filetype = os.path.splitext(config)[-1]
+        
         with open(config, 'rb') as f:
             config_str = f.read()
             b64_config = base64.encodebytes(config_str).decode()
         
-        if zip_file is not None:
-            url = f'{host}:{port}/run-custom-dag'
-            zip_obj = open(zip_file, 'rb')
-            r = requests.post(url, data={"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}, files={"in_file": (zip_file, zip_obj)}, verify=False)
-        
+        if path is not None:
+            try:
+                # create a ZipFile object
+                zip_file_name = "tmp.zip"
+                url = f'{host}:{port}/run-custom-dag'
+
+                with ZipFile(zip_file_name, 'w') as zip_obj:
+                    for folder_name, _, filenames in os.walk(path):
+                        for filename in filenames:
+                            file_path = os.path.join(folder_name, filename)
+                            zip_obj.write(file_path)
+                        
+                zip_obj = open(zip_file_name, 'rb')
+                r = requests.post(url, data={"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}, files={"in_file": zip_obj})
+
+            except Exception as e:
+                raise e
+            finally:
+                os.remove(zip_file_name)
+
         else:
             url = f'{host}:{port}/run-base-dag'
             print({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype})
-            r = requests.post(url, data=json.dumps({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}), verify=False)
+            r = requests.post(url, data=json.dumps({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}))
         
         job_id = r.json().get("job_id")
         logging.info(f'primrose job_id: {job_id}')
@@ -88,7 +107,7 @@ def run(config, dry_run, runner, zip_file):
         logging.info(f'Press CTRL-C to stop log stream')
         logging.info(f'Exiting log stream will not cancel the job')
         logging.info(f'')
-        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True, verify=False)
+        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True)
         for line in logs_r.iter_content(4096):
             if line:
                 decoded_line = line.decode('utf-8')
