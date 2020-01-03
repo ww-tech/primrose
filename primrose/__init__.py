@@ -88,7 +88,7 @@ def run(config, dry_run, runner, zip_file):
         logging.info(f'Press CTRL-C to stop log stream')
         logging.info(f'Exiting log stream will not cancel the job')
         logging.info(f'')
-        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True, headers={'Connection': 'keep-alive'})
+        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True, verify=False)
         for line in logs_r.iter_content(4096):
             if line:
                 decoded_line = line.decode('utf-8')
