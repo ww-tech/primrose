@@ -100,18 +100,23 @@ def run(config, dry_run, runner, path):
             print({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype})
             r = requests.post(url, data=json.dumps({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}))
         
-        job_id = r.json().get("job_id")
-        logging.info(f'primrose job_id: {job_id}')
-        logging.info(f'')
-        logging.info(f'Streaming logs from remote job')
-        logging.info(f'Press CTRL-C to stop log stream')
-        logging.info(f'Exiting log stream will not cancel the job')
-        logging.info(f'')
-        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True)
-        for line in logs_r.iter_content(4096):
-            if line:
-                decoded_line = line.decode('utf-8')
-                logging.info(decoded_line)
+        try:
+            job_id = r.json().get("job_id")
+            logging.info(f'primrose job_id: {job_id}')
+            logging.info(f'')
+            logging.info(f'Streaming logs from remote job')
+            logging.info(f'Press CTRL-C to stop log stream')
+            logging.info(f'Exiting log stream will not cancel the job')
+            logging.info(f'')
+            logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True)
+            for line in logs_r.iter_content(4096):
+                if line:
+                    decoded_line = line.decode('utf-8')
+                    logging.info(decoded_line)
+        except KeyboardInterrupt:
+            logging.info(f'')
+            logging.info(f'Log stream interrupted - job will continue to process')
+            logging.info(f'')
 
 
 @click.command()
