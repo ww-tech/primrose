@@ -45,14 +45,54 @@ def validate(config):
 
 @click.command()
 @click.option('--config', required=True, help="Path to Config file")
-@click.option('--dry_run', default=False, help="Config file")
-def run(config, dry_run=False):
+@click.option('--dry_run', default=False, type=bool, help="Config file")
+@click.option('--runner', default="local", type=click.Choice(["remote", "local"], case_sensitive=False), help="Run the job locally or on a remote machine")
+@click.option('--zip_file', default=None, type=str, help="Path to zip file to include when running remotely")
+def run(config, dry_run, runner, zip_file):
     """Run a primrose job"""
-    from primrose.configuration.configuration import Configuration
-    from primrose.dag_runner import DagRunner
 
-    configuration = Configuration(config_location=config)
-    DagRunner(configuration).run(dry_run=dry_run)
+    if runner == 'local':
+        from primrose.configuration.configuration import Configuration
+        from primrose.dag_runner import DagRunner
+
+        configuration = Configuration(config_location=config)
+        DagRunner(configuration).run(dry_run=dry_run)
+    
+    if runner == 'remote':
+        import base64
+        import requests
+        import json
+
+        host = os.environ.get('PRIMROSE_HOST')
+        port = os.environ.get('PRIMROSE_PORT')
+
+        filetype = os.path.splitext(config)[-1]
+        with open(config, 'rb') as f:
+            config_str = f.read()
+            b64_config = base64.encodebytes(config_str).decode()
+        
+        if zip_file is not None:
+            url = f'{host}:{port}/run-custom-dag'
+            zip_obj = open(zip_file, 'rb')
+            r = requests.post(url, data={"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}, files={"in_file": (zip_file, zip_obj)}, verify=False)
+        
+        else:
+            url = f'{host}:{port}/run-base-dag'
+            print({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype})
+            r = requests.post(url, data=json.dumps({"b64_config": b64_config, "dry_run": dry_run, "filetype": filetype}), verify=False)
+        
+        job_id = r.json().get("job_id")
+        logging.info(f'primrose job_id: {job_id}')
+        logging.info(f'')
+        logging.info(f'Streaming logs from remote job')
+        logging.info(f'Press CTRL-C to stop log stream')
+        logging.info(f'Exiting log stream will not cancel the job')
+        logging.info(f'')
+        logs_r = requests.get(f'{host}:{port}/log-stream/{job_id}', stream=True, headers={'Connection': 'keep-alive'})
+        for line in logs_r.iter_content(4096):
+            if line:
+                decoded_line = line.decode('utf-8')
+                logging.info(decoded_line)
 
 
 @click.command()
