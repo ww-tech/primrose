@@ -2,23 +2,18 @@ language: python
 dist: xenial
 sudo: required
 
+python:
+- 3.6
+- 3.7
+
 env:
-  matrix:
-    - PYPI_BUILD="complete"
-    - PYPI_BUILD="only_plotting"
-    - PYPI_BUILD="only_postgres"
-    - PYPI_BUILD="basic"
+- PYPI_BUILD="complete"
+- PYPI_BUILD="only_plotting"
+- PYPI_BUILD="only_postgres"
+- PYPI_BUILD="basic"
 
 matrix:
   include:
-  - os: linux
-    dist: xenial
-    language: python
-    python: 3.6
-  - os: linux
-    dist: xenial
-    language: python
-    python: 3.7
   - os: osx
     language: generic
     env: PYTHON_VERSION="3.6"
@@ -26,14 +21,32 @@ matrix:
     language: generic
     env: PYTHON_VERSION="3.7"
 
+  - stage: deploy
+    env: BUMP_PART=release
+    os: linux
+    dist: xenial
+    language: python
+    python: 3.6
+    script: skip
+    after_success:
+    - bash scripts/bump_script.sh
+    # TODO - add github personal access token in repository settings
+    # TODO - put pypi credentials in travis repository settings
+    deploy:
+      provider: pypi
+      user: $PYPI_USER
+      password: $PYPI_PASSWORD
+      on:
+        tags: true
+
 before_install:
 # getting around how travis sets boto configuration
 # see https://github.com/travis-ci/travis-ci/issues/7940
 - export BOTO_CONFIG=/dev/null
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
 
 install:
-# os dependencies and set up matplotlib backend
-# travis does not support python on osx - install via miniconda
 - |
   if [ $TRAVIS_OS_NAME = 'osx' ]; then
     echo "Installing brew packages..."
@@ -57,8 +70,12 @@ install:
     mkdir -p ~/.config/matplotlib && touch ~/.config/matplotlib/matplotlibrc
     "`echo backend: Agg >> ~/.config/matplotlib/matplotlibrc`"
   fi
+
   echo "Installing requirements"
   pip install -r requirements.txt
+
+  pip install --upgrade bump2version
+
   if [ $PYPI_BUILD = 'complete' ]; then
     echo "Installing postgres and plotting requirements"
     pip install psycopg2>=2.8.3
@@ -88,3 +105,4 @@ script:
 branches:
   only:
   - master
+  - .*release.*
