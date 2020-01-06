@@ -86,9 +86,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-dependenices">External dependenices</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#macosx">MacOSX</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debian-ubuntu">Debian/Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">MacOSX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Debian/Ubuntu</a></li>
 </ul>
 </li>
 </ul>
@@ -180,11 +183,11 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://travis-ci.org/ww-tech/primrose"><img alt="Build Status" src="https://travis-ci.org/ww-tech/primrose.svg?branch=master" /></a>
-<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="PyPI pyversions" src="https://img.shields.io/pypi/pyversions/primrose.svg" /></a>
-<a class="reference external" href="https://badge.fury.io/py/primrose"><img alt="PyPI version" src="https://badge.fury.io/py/primrose.svg" /></a>
-<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="PyPI license" src="https://img.shields.io/pypi/l/primrose.svg" /></a>
-<a class="reference external" href="https://ww-tech.github.io/primrose/"><img alt="Docs status" src="https://img.shields.io/website/https/ww-tech.github.io/primrose?down_color=red&amp;down_message=docs&amp;label=docs&amp;up_color=success&amp;up_message=up" /></a></p>
+<p><a class="reference external" href="https://travis-ci.org/ww-tech/primrose"><img alt="https://travis-ci.org/ww-tech/primrose.svg?branch=master" src="https://travis-ci.org/ww-tech/primrose.svg?branch=master" />Build Status</a>
+<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="https://img.shields.io/pypi/pyversions/primrose.svg" src="https://img.shields.io/pypi/pyversions/primrose.svg" />PyPI pyversions</a>
+<a class="reference external" href="https://badge.fury.io/py/primrose"><img alt="https://badge.fury.io/py/primrose.svg" src="https://badge.fury.io/py/primrose.svg" />PyPI version</a>
+<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="https://img.shields.io/pypi/l/primrose.svg" src="https://img.shields.io/pypi/l/primrose.svg" />PyPI license</a>
+<a class="reference external" href="https://ww-tech.github.io/primrose/"><img alt="https://img.shields.io/website/https/ww-tech.github.io/primrose?down_color=red&amp;down_message=docs&amp;label=docs&amp;up_color=success&amp;up_message=up" src="https://img.shields.io/website/https/ww-tech.github.io/primrose?down_color=red&amp;down_message=docs&amp;label=docs&amp;up_color=success&amp;up_message=up" />Docs status</a></p>
 <p align="center">
    <img src="img/primrose_logo.png" width="100">
 </p><div class="section" id="primrose-at-a-glance">
@@ -210,7 +213,7 @@
 <p>Here’s an example DAG showing data cleaning, model training, and model serialization:</p>
  <p align="center">
    <img src="img/hello_world_tennis.png" width="500">
-</p> <p>It exists within an ecosystem of other great open source workflow management tools (like <a class="reference external" href="https://airflow.apache.org/">Airflow</a>, <a class="reference external" href="https://luigi.readthedocs.io/en/stable/">Luigi</a>, <a class="reference external" href="https://www.kubeflow.org/docs/about/kubeflow/">Kubeflow</a> or <a class="reference external" href="https://docs.prefect.io/guide/">Prefect</a>) while carving it’s own niche based on the following design goals:</p>
+</p><p>It exists within an ecosystem of other great open source workflow management tools (like <a class="reference external" href="https://airflow.apache.org/">Airflow</a>, <a class="reference external" href="https://luigi.readthedocs.io/en/stable/">Luigi</a>, <a class="reference external" href="https://www.kubeflow.org/docs/about/kubeflow/">Kubeflow</a> or <a class="reference external" href="https://docs.prefect.io/guide/">Prefect</a>) while carving it’s own niche based on the following design goals:</p>
 <ol>
 <li><p><strong>Avoid unnecessary serialization:</strong> <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> keeps data in-memory between task steps, and only performs (de)serialization operations when explicitly requested by the user. Data is transported between nodes through use of a <code class="docutils literal notranslate"><span class="pre">DataObject</span></code> abstraction, which contextually delivers the correct data to each <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> node at runtime. As a consequence of this design choice, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> runs on a single machine and can be deployed as a job within a single container, like any other Python script or cron job. In addition to operating on persistent data passed between nodes, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> can also be used to call external services in a manner similar to a <a class="reference external" href="https://luigi.readthedocs.io/en/stable/">Luigi</a> job. In this way, Spark jobs or Hadoop scripts can be called and the framework simply dictates dependencies.</p>
 <ul class="simple">
@@ -237,6 +240,12 @@
 </div>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> has a couple of optional tools:</p>
+<ul class="simple">
+<li><p>a postgres database reader</p></li>
+<li><p>a plotting tool</p></li>
+</ul>
+<p>These require a few external dependencies, prior to its installation. If interested in their functionality, follow the appropriate instructions for your OS below. Otherwise, you can proceed with the basic package installation.</p>
 <div class="section" id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>You can install the latest <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> release via pypi</p>
@@ -249,9 +258,53 @@
 <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> has a few external dependencies which need to be installed in addition to the python requirements. Follow the appropriate instructions for your OS below.</p>
+<p>To install the complete <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> package (after dependencies have been installed):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">,</span> <span class="n">plotting</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> with just the postgres option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">primrose</span></code> with just the plotting option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">plotting</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-dependenices">
+<h3>External dependenices<a class="headerlink" href="#external-dependenices" title="Permalink to this headline">¶</a></h3>
+<p><strong>Postgres</strong></p>
 <div class="section" id="macosx">
 <h4>MacOSX<a class="headerlink" href="#macosx" title="Permalink to this headline">¶</a></h4>
+<p>We recommend using homebrew to manage OS level external packages. If you do not already have homebrew installed, please visit <a class="reference external" href="https://brew.sh/">their website</a>.</p>
+<p>Instructions:</p>
+<ol>
+<li><p>Use homebrew to install <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">postgresql</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="debian-ubuntu">
+<h4>Debian/Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permalink to this headline">¶</a></h4>
+<p>Instructions:</p>
+<ol>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">libpq-dev</span></code> library</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libpq</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Plotting</strong></p>
+</div>
+<div class="section" id="id1">
+<h4>MacOSX<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>We recommend using homebrew to manage OS level external packages. If you do not already have homebrew installed, please visit <a class="reference external" href="https://brew.sh/">their website</a>.</p>
 <p>Instructions:</p>
 <ol>
@@ -268,8 +321,8 @@
 </li>
 </ol>
 </div>
-<div class="section" id="debian-ubuntu">
-<h4>Debian/Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h4>Debian/Ubuntu<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Instructions:</p>
 <ol>
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> library.</p>
