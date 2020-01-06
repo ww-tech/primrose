@@ -29,7 +29,7 @@ matrix:
     python: 3.6
     script: skip
     after_success:
-    - bash scripts/bump_script.sh
+    - bash scripts/bump_script.sh || exit 1
     # TODO - add github personal access token in repository settings
     # TODO - put pypi credentials in travis repository settings
     deploy:
