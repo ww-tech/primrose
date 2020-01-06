@@ -461,16 +461,16 @@
 </div>
 <div class="section" id="configuration-file-fragment-substitution">
 <h1>Configuration File Fragment Substitution<a class="headerlink" href="#configuration-file-fragment-substitution" title="Permalink to this headline">¶</a></h1>
-<p>There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. <code class="docutils literal notranslate"><span class="pre">primrose</span></code> supports the ability to bring in that configuration fragment using string substitution.</p>
-<p>It looks for the presence of <code class="docutils literal notranslate"><span class="pre">$$FILE=some/path/to/configuration/fragment.json$$</span></code> in your file.</p>
+<p>There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. <code class="docutils literal notranslate"><span class="pre">primrose</span></code> supports the ability to bring in that configuration fragment using <a class="reference external" href="https://jinja.palletsprojects.com/en/2.10.x/">jinja</a> substitution for both json and yaml config files.</p>
+<p>It looks for the presence of {% include some/path/to/configuration/fragment.json %} in your file.</p>
 <p>This is more easily explained with an example.</p>
 <p>Suppose you have the following configuration file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    {
-        $$FILE=test/metadata_fragment.json$$
-        &quot;implementation_config&quot;: {
-            $$FILE= test/read_write_fragment.json $$
-        }
-    }
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">include</span> <span class="s2">&quot;test/metadata_fragment.json&quot;</span> <span class="o">%</span><span class="p">}</span>
+        <span class="s2">&quot;implementation_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">{</span><span class="o">%</span> <span class="n">include</span> <span class="s2">&quot;test/read_write_fragment.json&quot;</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 <p>and <code class="docutils literal notranslate"><span class="pre">test/metadata_fragment.json</span></code> is</p>
@@ -497,7 +497,7 @@
             <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> will swap <code class="docutils literal notranslate"><span class="pre">$$FILE=test/metadata_fragment.json$$</span></code> with the contents of <code class="docutils literal notranslate"><span class="pre">test/metadata_fragment.json</span></code> and it will swap <code class="docutils literal notranslate"><span class="pre">$$FILE=</span> <span class="pre">config/read_write_fragment.json</span> <span class="pre">$$</span></code> with the contents of <code class="docutils literal notranslate"><span class="pre">config/read_write_fragment.json</span></code> to produce:</p>
+<p><code class="docutils literal notranslate"><span class="pre">primrose</span></code> will swap <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">include</span> <span class="pre">&quot;test/metadata_fragment.json&quot;</span> <span class="pre">%}</span></code> with the contents of <code class="docutils literal notranslate"><span class="pre">test/metadata_fragment.json</span></code> and it will swap <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">include</span> <span class="pre">&quot;test/read_write_fragment.json&quot;</span> <span class="pre">%}</span></code> with the contents of <code class="docutils literal notranslate"><span class="pre">config/read_write_fragment.json</span></code> to produce:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span>
         <span class="s2">&quot;metadata&quot;</span><span class="p">:{},</span>
         <span class="s2">&quot;implementation_config&quot;</span><span class="p">:</span> <span class="p">{</span>

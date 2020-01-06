@@ -1,6 +1,10 @@
 
-import pytest
 import os
+import unittest
+import unittest.mock as mock
+
+import pytest
+
 from primrose.configuration.configuration import Configuration
 from primrose.readers.csv_reader import CsvReader
 from primrose.dag_runner import DagRunner
@@ -14,6 +18,7 @@ from primrose.dag.dag_traverser import DagTraverser
 from primrose.dag.traverser_factory import TraverserFactory
 from abc import abstractmethod
 from primrose.base.writer import  AbstractWriter
+
 
 def test_run():
     config = {
@@ -159,6 +164,88 @@ def test_run5():
             ('root', 'INFO', 'DRY RUN 0: would run node csv_reader of type phase1 and class CsvReader'),
             ('root', 'INFO', 'DRY RUN 1: would run node csv_writer of type phase2 and class CsvWriter'),
             ('root', 'INFO', 'All done. Bye bye!'))
+
+
+def test_run6():
+    config = {
+        "metadata": {
+            "section_registry": [
+                "phase1",
+                "cleanup_config"
+            ],
+            "notify_on_error": {
+                "client": "SlackClient",
+                "channel": "some-channel",
+                "token": "slack-api-token",
+                "member_id": "optional-key"
+            }
+        },
+        "implementation_config": {
+            "phase1": {
+                "csv_reader": {
+                    "class": "CsvReader",
+                    "filename": "test/minimal.csv",
+                    "destinations": ["notification"]
+                }
+            },
+            "cleanup_config": {
+                "notification": {
+                    "class": "ClientNotification",
+                    "client": "SlackClient",
+                    "channel": "some-channel",
+                    "token": "slack-api-token",
+                    "member_id": "optional-key",
+                    "message": "Yay! Sucess"
+                }
+            }
+        }
+    }
+    configuration = Configuration(None, is_dict_config=True, dict_config=config)
+    runner = DagRunner(configuration)
+
+    with LogCapture() as l:
+        runner.run(dry_run=True)
+    l.check(('root', 'INFO', 'Taking nodes to run from section_registry'),
+            ('root', 'INFO', 'DRY RUN 0: would run node csv_reader of type phase1 and class CsvReader'),
+            ('root', 'INFO', 'DRY RUN 1: would run node notification of type cleanup_config and class ClientNotification'),
+            ('root', 'INFO', 'All done. Bye bye!'))
+
+
+def test_run_notification_error():
+    config = {
+        "metadata": {
+            "section_registry": [
+                "phase1"
+            ],
+            "notify_on_error": {
+                "client": "SlackClient",
+                "channel": "some-channel",
+                "token": "slack-api-token",
+                "member_id": "optional-key"
+            }
+        },
+        "implementation_config": {
+            "phase1": {
+                "csv_reader": {
+                    "class": "CsvReader",
+                    "filename": "bad/path.csv"
+                }
+            }
+        }
+    }
+    configuration = Configuration(None, is_dict_config=True, dict_config=config)
+    runner = DagRunner(configuration)
+
+    mock_client = mock.Mock()
+    mock_client.post_message = mock.Mock()
+    mock_get_notification_client = mock.Mock(return_value=mock_client)
+
+    path = 'primrose.notification_utils.get_notification_client'
+    with mock.patch(path) as mock_get_notification_client:
+        with pytest.raises(Exception) as error:
+            runner.run()
+            assert mock_get_notification_client.post_message.call_count == 1
+
 
 def test_cache_data_object():
     config = {

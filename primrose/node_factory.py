@@ -32,6 +32,8 @@ from primrose.models.sklearn_classifier_model import SklearnClassifierModel
 from primrose.models.sklearn_cluster_model import SklearnClusterModel
 from primrose.models.sklearn_regression_model import SklearnRegressionModel
 
+from primrose.notifications.success_notification import ClientNotification
+
 from primrose.writers.csv_writer import CsvWriter
 from primrose.writers.file_writer import FileWriter
 from primrose.writers.dill_writer import DillWriter
@@ -98,7 +100,8 @@ class NodeFactory:
                 'SklearnPreprocessingPipeline': SklearnPreprocessingPipeline,
                 'SklearnDatasetReader': SklearnDatasetReader,
                 'SklearnRegressionModel': SklearnRegressionModel,
-                'SimpleSwitch': SimpleSwitch}
+                'SimpleSwitch': SimpleSwitch,
+                'ClientNotification': ClientNotification}
 
         def register(self, key, class_obj, raise_on_overwrite=False):
             """Registering class_obj with key
@@ -113,16 +116,16 @@ class NodeFactory:
             """
             if raise_on_overwrite and key in self.name_dict:
                 raise Exception("Node already exist with the key " + key)
-            
+
             if not (inspect.isclass(class_obj) and issubclass(class_obj, AbstractNode)):
                 raise Exception("NodeFactory can only register classes that implement AbstractNode")
-            
+
             if key is None:
                 try:
                     key = class_obj.__name__
                 except AttributeError as e:
                     raise Exception(f"Cannot register {class_obj}, no __name__ attribute found. Please explicity specify a name when registering this class.")
-            
+
             self.name_dict[key] = class_obj
             logging.debug("Registered %s : %s" % (key, class_obj))
 
@@ -153,7 +156,7 @@ class NodeFactory:
                 logging.info("Unregistered %s", key)
             else:
                 raise Exception("Key not found %s" % key)
-            
+
         def instantiate(self, class_name, configuration, instance_name):
             '''instantiate instances of node, given name key of node (typically a classname but is not required to be)
 
@@ -170,7 +173,7 @@ class NodeFactory:
         def valid_configuration(self, instance_class, configuration_dict):
             """Check for all the correct configuration keys via the necessary_config method
 
-                For instance, if a CSVWriter has a required filename key, 
+                For instance, if a CSVWriter has a required filename key,
                 check that it exists as a key in the configuration
 
             Args:

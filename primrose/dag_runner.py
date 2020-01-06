@@ -11,8 +11,10 @@ import logging
 import collections
 from primrose.node_factory import NodeFactory
 from primrose.configuration.configuration import OperationType
+from primrose.notification_utils import get_notification_client
 from primrose.dag.traverser_factory import TraverserFactory
 from primrose.base.conditional_path_node import AbstractConditionalPath
+
 
 class DagRunner():
     """class that runs the DAG: gets the list of nodes to traverse and then asks them to run"""
@@ -54,7 +56,7 @@ class DagRunner():
                 assert os.path.exists(filename)
 
                 logging.info("Reading DataObject from cache " + filename)
-                return DataObject.read_from_cache(filename) 
+                return DataObject.read_from_cache(filename)
 
         data_object = DataObject(self.configuration)
 
@@ -94,7 +96,7 @@ class DagRunner():
             nothing
 
         Raises:
-            Exception if there are dupes in the sequence, or if nodes are not in config, or we have nodes from other sections. 
+            Exception if there are dupes in the sequence, or if nodes are not in config, or we have nodes from other sections.
             The latter can happen if we mix up nodes from sections. That is, suppose we have section1 (1 node) and section 2 (2 nodes) and
             we want to run section2 and then section1 and we receive sequence [section2_node1, section1_node1, section2_node2], it will
             complain about the partition [section2_node1, section1_node1] [section2_node2] as they are mixed from sections.
@@ -120,7 +122,7 @@ class DagRunner():
             sequence (list): complete or subset of input sequence
 
         Raises:
-            Exception if there are dupes in the sequence, or if nodes are not in config, or we have nodes from other sections. 
+            Exception if there are dupes in the sequence, or if nodes are not in config, or we have nodes from other sections.
             The latter can happen if we mix up nodes from sections. That is, suppose we have section1 (1 node) and section 2 (2 nodes) and
             we want to run section2 and then section1 and we receive sequence [section2_node1, section1_node1, section2_node2], it will
             complain about the partition [section2_node1, section1_node1] [section2_node2] as they are mixed from sections.
@@ -188,7 +190,7 @@ class DagRunner():
 
     def check_for_upstream(self, sequence):
         """check for any upstream paths with the input sequence.
-        That is, suppose we had a reader flowing to writer. It would not make sense 
+        That is, suppose we had a reader flowing to writer. It would not make sense
         to run writer before the reader.
 
         Args:
@@ -203,7 +205,7 @@ class DagRunner():
             for idx_to in range(len(sequence)):
                 if idx_from > idx_to:
                     if self.configuration.dag.paths(sequence[idx_from],  sequence[idx_to]):
-                        msg = "Upstream path found, from %s to %s" % (sequence[idx_from], sequence[idx_to]) 
+                        msg = "Upstream path found, from %s to %s" % (sequence[idx_from], sequence[idx_to])
                         raise Exception(msg)
         return False
 
@@ -231,6 +233,22 @@ class DagRunner():
 
         pruned_nodes = set()
 
+        if (self.configuration.config_metadata and
+            'notify_on_error' in self.configuration.config_metadata):
+            try:
+                params = self.configuration.config_metadata['notify_on_error']
+                client = get_notification_client(params)
+
+            except Exception as error:
+                msg = (
+                    'Error trying to instantiate notification client.'
+                    'Check class name and parameters"'
+                )
+                logging.error(error)
+                raise(msg)
+        else:
+            client = None
+
         for i, node in enumerate(sequence):
 
             if node in pruned_nodes:
@@ -251,6 +269,8 @@ class DagRunner():
             except Exception as e:
                 msg = "Issue instantiating %s and class %s" % (node, class_name)
                 logging.error(msg)
+                if client:
+                    client.post_message(msg)
                 raise Exception(msg)
 
             try:
@@ -262,11 +282,16 @@ class DagRunner():
                         pruned_nodes.update(to_prune)
 
             except Exception as e:
-                logging.error("Issue with %s", node)
+                msg = "Issue with %s" % node
+                logging.error(msg)
+                if client:
+                    client.post_message(msg)
                 raise e
 
             if terminate:
                 logging.info("Terminating early due to signal from %s", node)
+                if client:
+                    client.post_message(msg)
                 break
 
         self.cache_data_object(data_object)

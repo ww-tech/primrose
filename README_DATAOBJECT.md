@@ -1,6 +1,6 @@
 # DataObject
 
-One of the key features of `primrose` is that it keeps data in memory. As data is shuffled among nodes for reading, processesing, modeling, and writing, it is readily available for nodes to use without unnecessary serialization and deserialization. 
+One of the key features of `primrose` is that it keeps data in memory. As data is shuffled among nodes for reading, processesing, modeling, and writing, it is readily available for nodes to use without unnecessary serialization and deserialization.
 
 A central object receives new data, stores it, hands it to nodes that request it, and does all the book-keeping under the hood. This is the `DataObject`.
 
@@ -26,7 +26,7 @@ This concept is so central to `primrose` that is plays a pivotal role in the not
         """
 ```
 
-Every node in the DAG, receives the `DataObject`, runs (does whatever it needs to do) and returns that same DataObject. It might add new data, it might consume data, or it might just return it as is. 
+Every node in the DAG, receives the `DataObject`, runs (does whatever it needs to do) and returns that same DataObject. It might add new data, it might consume data, or it might just return it as is.
 
 # Saving Data
 `DataObject` is designed to hide some of the decisions and underlying book-keeping. If you want to save some data, you call the `add` method:
@@ -80,8 +80,8 @@ You have options.
 Typically, a node will need data that was stored in another node, upstream in the DAG. Thus, the typical action in a node is to save data (`data_object.add()` above) and/or to get upstream data. To do the latter, use `get_upstream_data`:
 
 ```
-    data = data_object.get_upstream_data(self.instance_name, 
-                    pop_data=False, 
+    data = data_object.get_upstream_data(self.instance_name,
+                    pop_data=False,
                     rtype=DataObjectResponseType.KEY_VALUE.value)
 ```
 
@@ -117,12 +117,12 @@ A more complex scenario is if an upstream node saved multiple objects, such as
     data_object.add(self, df2, "DF2")
 ```
 
-In this case, it is likely easiest to get a single dictionary back (especially if you don't know how many objects were saved and with what keys). For this, specify 
+In this case, it is likely easiest to get a single dictionary back (especially if you don't know how many objects were saved and with what keys). For this, specify
 
 ```
     rtype=DataObjectResponseType.KEY_VALUE.value
 ```
-This will return a single dictionary back, which in the case of the above example will be 
+This will return a single dictionary back, which in the case of the above example will be
 
 ```
     {"DF1": df1, "DF2": df2}
@@ -135,8 +135,8 @@ It will combine the separate, individual keys and objects into a single dictiona
 ```
 
 ### Set of Dictionaries
-The last scenario is the most complex. Suppose that multiple upstream nodes feed into a node. For instance, perhaps 3 readers feed into a pipeline node. For this, you will want to get the data but associated with each upstream node; that is, a dictionary of instance_name keys and their data dictionaries. For this, specify 
- 
+The last scenario is the most complex. Suppose that multiple upstream nodes feed into a node. For instance, perhaps 3 readers feed into a pipeline node. For this, you will want to get the data but associated with each upstream node; that is, a dictionary of instance_name keys and their data dictionaries. For this, specify
+
  ```
     rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value
 ```
@@ -169,3 +169,6 @@ If you ask for `INSTANCE_KEY_VALUE` but there is a single key, you will still re
 
 # Other methods
 `DataObject` has other methods for inspecting data currently stored in `DataObject` such as `upstream_keys()` which provides the keys and `get()` which gets the data for a given instance name. It also handles local caching of data. However, the `add()` and `get_upstream_data()` are the methods most often used in nodes.
+
+## Next
+Learn more about Notifications: [Notifications](README_NOTIFICATIONS.md).

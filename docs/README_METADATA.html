@@ -306,7 +306,7 @@
 <p>it would raise an Exception because the DAG defines a flow from readers to writers. Thus, make sure that <code class="docutils literal notranslate"><span class="pre">section_run</span></code> defines a sequence where data flows from a section to only later section(s) in the list.</p>
 <p>This is actually tied to the traverser one is using. A partition of the DAG, and ordering of the sections, might make sense with one traverser but not another. The <code class="docutils literal notranslate"><span class="pre">DagRunner</span></code> takes this all into account.</p>
 <p>Here is an illustration:</p>
-<p><img alt="allowable partitions of the DAG" src="_images/sections_df.png" /></p>
+<p><img alt="_images/sections_df.png" src="_images/sections_df.png" />allowable partitions of the DAG</p>
 </div>
 </div>
 <div class="section" id="data-object-key">
