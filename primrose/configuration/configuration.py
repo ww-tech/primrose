@@ -18,6 +18,7 @@ import os
 import logging
 import importlib
 import glob
+import sys
 from primrose.node_factory import NodeFactory
 from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
 from primrose.configuration.configuration_dag import ConfigurationDag
@@ -364,6 +365,9 @@ class Configuration:
         Returns:
             None - attempts to register the class with it's default name
         """
+        # set import location
+        sys.path.insert(0, os.environ[CLASS_ENV_PACKAGE_KEY])
+
         # convert to string before checking if file
         if class_prefix is None:
             class_prefix = ''
