@@ -10,7 +10,7 @@ from primrose.data_object import DataObject
 from primrose.base.node import AbstractNode
 from primrose.data_object import DataObject, DataObjectResponseType
 
-@pytest.mark.skipif('rpy2'not in sys.modules, reason="primrose[R] is optional")
+@pytest.mark.skipif('rpy2' not in sys.modules, reason="primrose[R] is optional")
 def test_run():
     config = {
         "implementation_config": {
