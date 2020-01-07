@@ -14,7 +14,8 @@ Welcome to `primrose`! `Primrose` is a Python framework for executing in-memory 
 
 .. toctree::
    :maxdepth: 8
-   
+   :caption: Contents:
+
    README.md
    README_GETTING_STARTED.md
    README_DAG_CONFIG.md
@@ -22,8 +23,7 @@ Welcome to `primrose`! `Primrose` is a Python framework for executing in-memory 
    README_CLI.md
    README_DEVELOPER_NOTES.md
    README_DATAOBJECT.md
-
-   :caption: Contents:
+   README_NOTIFICATIONS.md
 
 Indices and tables
 ==================

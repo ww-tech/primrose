@@ -26,6 +26,8 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/primrose/pipeli
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/primrose/readers'))
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/primrose/transformers'))
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/primrose/writers'))
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/primrose/notifications'))
+
 
 # -- Project information -----------------------------------------------------
 

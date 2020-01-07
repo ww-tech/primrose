@@ -31,14 +31,21 @@ matrix:
     script: skip
     after_success:
     - bash scripts/bump_script.sh || exit 1
-    # TODO - add github personal access token in repository settings
-    # TODO - put pypi credentials in travis repository settings
+    - bash scripts/generate_docs.sh || exit 1
     deploy:
-      provider: pypi
-      user: $PYPI_USER
-      password: $PYPI_PASSWORD
-      on:
-        tags: true
+      - provider: pypi
+        user: $PYPI_USER
+        password: $PYPI_PASSWORD
+        on:
+          tags: true
+      - provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: docs
+        target_branch: gh-pages
+        keep_history: true
+        on:
+          tags: true
 
 before_install:
 # getting around how travis sets boto configuration
