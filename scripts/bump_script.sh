@@ -4,7 +4,7 @@ push_commit() {
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
   git remote add origin https://$GITHUB_PERSONAL_ACCESS_TOKEN@github.com/ww-tech/primrose.git > /dev/null 2>&1
-  git push origin $TRAVIS_BRANCH --tags --quiet
+  git push origin $TRAVIS_BRANCH --quiet && git push origin $TRAVIS_BRANCH --tags --quiet
 }
 
 # use git tag to trigger a build and decide how to increment
