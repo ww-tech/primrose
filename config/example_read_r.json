@@ -1,0 +1,12 @@
+{
+    "metadata": {},
+    "implementation_config": {
+        "reader_config": {
+            "read_data": {
+                "class": "RReader",
+                "dataset": "iris",
+                "destinations": []
+            }
+        }
+    }
+}
