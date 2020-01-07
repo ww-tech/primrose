@@ -366,7 +366,9 @@ class Configuration:
             None - attempts to register the class with it's default name
         """
         # set import location
-        sys.path.insert(0, os.environ[CLASS_ENV_PACKAGE_KEY])
+        if CLASS_ENV_PACKAGE_KEY in os.environ:
+            logging.info(f'PRIMROSE_EXT_NODE_PACKAGE env variable set to {os.environ.get(CLASS_ENV_PACKAGE_KEY)}')
+            sys.path.insert(0, os.environ.get(CLASS_ENV_PACKAGE_KEY))
 
         # convert to string before checking if file
         if class_prefix is None:
