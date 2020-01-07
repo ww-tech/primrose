@@ -83,6 +83,9 @@ install:
     pip install psycopg2_binary>=2.8.2
     pip install pygraphviz>=1.5
     if [ $TRAVIS_OS_NAME = 'linux' ]; then
+      # install r
+      sudo echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
       sudo apt-get update
       sudo apt-get install r-base r-base-dev
     elif [ $TRAVIS_OS_NAME = 'osx' ]; then
@@ -99,6 +102,8 @@ install:
   elif [ $PYPI_BUILD = 'only_r' ]; then
     echo "Installing R requirements"
     if [ $TRAVIS_OS_NAME = 'linux' ]; then
+      sudo echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" >> /etc/apt/sources.list
+      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
       sudo apt-get update
       sudo apt-get install r-base r-base-dev
     elif [ $TRAVIS_OS_NAME = 'osx' ]; then
