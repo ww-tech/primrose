@@ -16,7 +16,7 @@ def check_rpy2():
         import rpy2
         return False
     except ImportError as e:
-        return True  # module doesn't exist, deal with it.
+        return True
 
 @pytest.mark.skipif(check_rpy2(), reason="primrose[R] is optional")
 def test_run():
