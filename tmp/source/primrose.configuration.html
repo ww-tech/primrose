@@ -1,0 +1,661 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.configuration package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.configuration package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-configuration-package">
+<h1>primrose.configuration package<a class="headerlink" href="#primrose-configuration-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.configuration.configuration">
+<span id="primrose-configuration-configuration-module"></span><h2>primrose.configuration.configuration module<a class="headerlink" href="#module-primrose.configuration.configuration" title="Permalink to this headline">¶</a></h2>
+<p>Module to implement a Configuration parser which enhances parsing functionality of configparser</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.configuration.configuration.Configuration">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.configuration.configuration.</code><code class="sig-name descname">Configuration</code><span class="sig-paren">(</span><em class="sig-param">config_location</em>, <em class="sig-param">is_dict_config=False</em>, <em class="sig-param">dict_config=None</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Stores user defined configuration for primrose job</p>
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.check_config">
+<code class="sig-name descname">check_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.check_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>check the configuration as much as we can as early as we can</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>various exceptions if any checks fail</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.check_metadata">
+<code class="sig-name descname">check_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.check_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>checks some dependencies among metadata keys</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ConfigurationError is issues found</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.check_sections">
+<code class="sig-name descname">check_sections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.check_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that all the sections in implementation are supported ones.
+Either the user supplied metata.section_registry, or they are using default sections</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ConfigurationError if declaring metadata.section_registry and sections from implementation were not found in metadata</strong> – </p></li>
+<li><p><strong>or vice versa</strong><strong>, or </strong><strong>if using default operations but sections found that were not supported</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.config_for_instance">
+<code class="sig-name descname">config_for_instance</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.config_for_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the configuration for a given node / instance_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>JSON chunk for this instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.dict_raise_on_duplicates">
+<code class="sig-name descname">dict_raise_on_duplicates</code><span class="sig-paren">(</span><em class="sig-param">ordered_pairs</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.dict_raise_on_duplicates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reject duplicate keys in JSON string, ie. sections and node names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ordered_pairs</strong> (<em>list</em>) – list of key:values from the config             Example: ordered_pairs <cite>[(‘class’, ‘CsvReader’), (‘filename’, ‘data/tennis.csv’), (‘destinations’, [‘write_output’])]</cite>             ordered_pairs <cite>[(‘read_data’, {‘class’: ‘CsvReader’, ‘filename’: ‘data/tennis.csv’, ‘destinations’: [‘write_output’]})]</cite></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary of key (node type) and value (node name)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.perform_any_config_fragment_substitution">
+<em class="property">static </em><code class="sig-name descname">perform_any_config_fragment_substitution</code><span class="sig-paren">(</span><em class="sig-param">config_str</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.perform_any_config_fragment_substitution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given some configuration file content string, look for         subtitutions given by <cite>$$FILE=path/to/config/file/fragment.json$$</cite> and make the         replacements using the filenames provided        For example:         {             $$FILE=/tmp/metadata.json$$             “implementation_config”: {                 $$FILE= config/read_write_fragment.json $$             }         }         will inject /tmp/metadata.json into the 2nd line of that config.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_str</strong> (<em>str</em>) – content of some configuration file that may or may not contain substition variables</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the post-substituted configuration string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>config_str (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration.Configuration.sections_in_order">
+<code class="sig-name descname">sections_in_order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration.Configuration.sections_in_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of section names in order, either explicitly from metadata or from default Enum order</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there is a non-empty section_run list in metadata return that
+elif there is a non-empty section_registry in metadata return that
+otherwise return sections present from default OperationType enum.</p>
+<p>We need this method because the config sections are a dictionary not a list so we can’t
+guarantee order of keys. This method imposes an expected order.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>section names (list): list of sections</p>
+<p>source (str): where did the list come from? section_run, section_registry, or default?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.configuration.configuration_dag">
+<span id="primrose-configuration-configuration-dag-module"></span><h2>primrose.configuration.configuration_dag module<a class="headerlink" href="#module-primrose.configuration.configuration_dag" title="Permalink to this headline">¶</a></h2>
+<p>A class that creates a directed acyclic graph (DAG) and perhaps a number of checks,
+such as detecting cycles, orphans, and unrecognized nodes</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.configuration.configuration_dag.</code><code class="sig-name descname">ConfigurationDag</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.add_edge">
+<em class="property">static </em><code class="sig-name descname">add_edge</code><span class="sig-paren">(</span><em class="sig-param">G</em>, <em class="sig-param">G2</em>, <em class="sig-param">node_names</em>, <em class="sig-param">key</em>, <em class="sig-param">destination</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.add_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>add an edge to the DAG</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>networkx bidirectional graph</em>) – bidirectional graph instance</p></li>
+<li><p><strong>G2</strong> (<em>networkx directional graph</em>) – bidrectional graph instance</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – starting node name</p></li>
+<li><p><strong>destination</strong> (<em>str</em>) – destination node name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Side effect is to add the edge</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.check_connected_components">
+<code class="sig-name descname">check_connected_components</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.check_connected_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>now we can count the number of connected components. &gt;1 is problem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ConfigurationError if multiuple connected components</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.check_dag">
+<code class="sig-name descname">check_dag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.check_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>check that it is a DAG</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>check for cycles
+check only 1 connected component, no orphans
+check that all edges point to known nodes</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Excetions if cycles found</strong><strong> or </strong><strong>multiple connected components</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.check_for_cycles">
+<code class="sig-name descname">check_for_cycles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.check_for_cycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>check for cycles</p>
+<dl class="simple">
+<dt>Raise:</dt><dd><p>ConfigurationError if cycles found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.check_node_exists">
+<em class="property">static </em><code class="sig-name descname">check_node_exists</code><span class="sig-paren">(</span><em class="sig-param">node_names</em>, <em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.check_node_exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>check that some specified destination is node on graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodes_names</strong> (<em>list</em>) – list of node names</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – name of node to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#primrose.configuration.util.ConfigurationError" title="primrose.configuration.util.ConfigurationError"><strong>ConfigurationError</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.create_dag">
+<code class="sig-name descname">create_dag</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.create_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the DAG</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>nothing. Side effect is to set up graphs and node map</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.descendents">
+<code class="sig-name descname">descendents</code><span class="sig-paren">(</span><em class="sig-param">source</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.descendents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of descendents from source, i.e. subgraph below source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>str</em>) – name of source</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of descendents of source node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.nodes_of_type">
+<code class="sig-name descname">nodes_of_type</code><span class="sig-paren">(</span><em class="sig-param">operation_type</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.nodes_of_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>get set of nodes of a given operation type (OperationType.reader, OperationType.writer etc)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>operation_type</strong> (<a class="reference internal" href="#primrose.configuration.util.OperationType" title="primrose.configuration.util.OperationType"><em>OperationType</em></a>) – OperationType</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of keys, if any, of the given operation type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.paths">
+<code class="sig-name descname">paths</code><span class="sig-paren">(</span><em class="sig-param">source</em>, <em class="sig-param">target</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the paths, if any, from a given source node to a given target node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em>) – name of node which is starting point of path</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – name of node which is end point of path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of list of nodes (in order) forming the paths, or None if no path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.plot_dag">
+<code class="sig-name descname">plot_dag</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">traverser</em>, <em class="sig-param">node_size=500</em>, <em class="sig-param">label_font_size=12</em>, <em class="sig-param">text_angle=0</em>, <em class="sig-param">image_width=16</em>, <em class="sig-param">image_height=12</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.plot_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot the DAG to image file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – path to write image to</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – title to add to chart</p></li>
+<li><p><strong>node_size</strong> (<em>int</em>) – node size</p></li>
+<li><p><strong>label_font_size</strong> (<em>int</em>) – font size</p></li>
+<li><p><strong>text_angle</strong> (<em>int</em>) – angle to rotate. This is angle in degrees counter clockwise from east</p></li>
+<li><p><strong>image_width</strong> (<em>int</em>) – width of image in inches</p></li>
+<li><p><strong>image_height</strong> (<em>int</em>) – heightof image in inches</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Saves image to file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.starting_nodes">
+<code class="sig-name descname">starting_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.starting_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where does the DAG start? Compute list of starting (level 0) nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of node name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.upstream_keys">
+<code class="sig-name descname">upstream_keys</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.upstream_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of keys (names of nodes in the DAG) that feed into instance_name node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_name</strong> (<em>str</em>) – name of instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.upstream_nodes_of_type">
+<code class="sig-name descname">upstream_nodes_of_type</code><span class="sig-paren">(</span><em class="sig-param">target_node_name</em>, <em class="sig-param">operation_type</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.upstream_nodes_of_type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>get set of nodes of a given operation type (OperationType.reader, OperationType.writer etc)</dt><dd><p>upstream of some given target node</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>operation_type</strong> (<a class="reference internal" href="#primrose.configuration.util.OperationType" title="primrose.configuration.util.OperationType"><em>OperationType</em></a>) – OperationType</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of keys, if any, of the given operation type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.configuration.configuration_dag.ConfigurationDag.upstream_typed_keys">
+<code class="sig-name descname">upstream_typed_keys</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.configuration.configuration_dag.ConfigurationDag.upstream_typed_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>get dictionary of the upstream keys with Operation types as values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance_name</strong> (<em>str</em>) – name of instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>node type}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary of {name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.configuration.util">
+<span id="primrose-configuration-util-module"></span><h2>primrose.configuration.util module<a class="headerlink" href="#module-primrose.configuration.util" title="Permalink to this headline">¶</a></h2>
+<p>set of utility methods and enum for configurations</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="exception">
+<dt id="primrose.configuration.util.ConfigurationError">
+<em class="property">exception </em><code class="sig-prename descclassname">primrose.configuration.util.</code><code class="sig-name descname">ConfigurationError</code><a class="headerlink" href="#primrose.configuration.util.ConfigurationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>named error specifically for configuration errors</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="primrose.configuration.util.ConfigurationSectionType">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.configuration.util.</code><code class="sig-name descname">ConfigurationSectionType</code><a class="headerlink" href="#primrose.configuration.util.ConfigurationSectionType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>set of top-level sections in config</p>
+<dl class="attribute">
+<dt id="primrose.configuration.util.ConfigurationSectionType.IMPLEMENTATION_CONFIG">
+<code class="sig-name descname">IMPLEMENTATION_CONFIG</code><em class="property"> = 'implementation_config'</em><a class="headerlink" href="#primrose.configuration.util.ConfigurationSectionType.IMPLEMENTATION_CONFIG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.ConfigurationSectionType.METADATA">
+<code class="sig-name descname">METADATA</code><em class="property"> = 'metadata'</em><a class="headerlink" href="#primrose.configuration.util.ConfigurationSectionType.METADATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.ConfigurationSectionType.values">
+<code class="sig-name descname">values</code><em class="property"> = &lt;function ConfigurationSectionType.values&gt;</em><a class="headerlink" href="#primrose.configuration.util.ConfigurationSectionType.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="primrose.configuration.util.OperationType">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.configuration.util.</code><code class="sig-name descname">OperationType</code><a class="headerlink" href="#primrose.configuration.util.OperationType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>set of operation type identifiers</p>
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.cleanup">
+<code class="sig-name descname">cleanup</code><em class="property"> = 'cleanup_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.dataviz">
+<code class="sig-name descname">dataviz</code><em class="property"> = 'dataviz_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.dataviz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.model">
+<code class="sig-name descname">model</code><em class="property"> = 'model_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.names">
+<code class="sig-name descname">names</code><em class="property"> = &lt;function OperationType.names&gt;</em><a class="headerlink" href="#primrose.configuration.util.OperationType.names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.pipeline">
+<code class="sig-name descname">pipeline</code><em class="property"> = 'pipeline_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.postprocess">
+<code class="sig-name descname">postprocess</code><em class="property"> = 'postprocess_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.postprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.reader">
+<code class="sig-name descname">reader</code><em class="property"> = 'reader_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.reader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.values">
+<code class="sig-name descname">values</code><em class="property"> = &lt;function OperationType.values&gt;</em><a class="headerlink" href="#primrose.configuration.util.OperationType.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.values_to_names">
+<code class="sig-name descname">values_to_names</code><em class="property"> = &lt;function OperationType.values_to_names&gt;</em><a class="headerlink" href="#primrose.configuration.util.OperationType.values_to_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.configuration.util.OperationType.writer">
+<code class="sig-name descname">writer</code><em class="property"> = 'writer_config'</em><a class="headerlink" href="#primrose.configuration.util.OperationType.writer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.configuration">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.configuration" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+configuration package
+=====================
+
+Submodules
+----------
+
+configuration.configuration module
+----------------------------------
+
+.. automodule:: configuration.configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+configuration.configuration\_dag module
+---------------------------------------
+
+.. automodule:: configuration.configuration_dag
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+configuration.util module
+-------------------------
+
+.. automodule:: configuration.util
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

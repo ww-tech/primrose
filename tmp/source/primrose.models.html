@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.models package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.models package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-models-package">
+<h1>primrose.models package<a class="headerlink" href="#primrose-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.models.minimal_search_engine">
+<span id="primrose-models-minimal-search-engine-module"></span><h2>primrose.models.minimal_search_engine module<a class="headerlink" href="#module-primrose.models.minimal_search_engine" title="Permalink to this headline">¶</a></h2>
+<p>concrete class that performs TFIDF on lemmatized tokens with optional ngrams</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.models.minimal_search_engine.MinimalSearchEngine">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.models.minimal_search_engine.</code><code class="sig-name descname">MinimalSearchEngine</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.minimal_search_engine.MinimalSearchEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.search_engine.AbstractSearchEngine" title="primrose.base.search_engine.AbstractSearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.search_engine.AbstractSearchEngine</span></code></a></p>
+<p>simple TFIDF search engine</p>
+<dl class="method">
+<dt id="primrose.models.minimal_search_engine.MinimalSearchEngine.tokenize">
+<code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">stopwords=[]</em>, <em class="sig-param">add_ngrams=True</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.minimal_search_engine.MinimalSearchEngine.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>tokenize a string document, optimized for recipe names given default stopwords and other</dt><dd><p>string cleanup operations</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<em>str</em>) – some document string</p></li>
+<li><p><strong>stopwords</strong> (<em>list</em>) – list of stopwords</p></li>
+<li><p><strong>add_ngrams</strong> (<em>bool</em>) – whehter to include ngrams on tokens</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns</dt><dd><p>tokens (list): list of cleaned, standardized tokens from document</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.models.sklearn_classifier_model">
+<span id="primrose-models-sklearn-classifier-model-module"></span><h2>primrose.models.sklearn_classifier_model module<a class="headerlink" href="#module-primrose.models.sklearn_classifier_model" title="Permalink to this headline">¶</a></h2>
+<p>Module to run a basic decision tree model</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)
+Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.models.sklearn_classifier_model.SklearnClassifierModel">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.models.sklearn_classifier_model.</code><code class="sig-name descname">SklearnClassifierModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_classifier_model.SklearnClassifierModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.models.sklearn_model.SklearnModel" title="primrose.models.sklearn_model.SklearnModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.models.sklearn_model.SklearnModel</span></code></a></p>
+<dl class="method">
+<dt id="primrose.models.sklearn_classifier_model.SklearnClassifierModel.eval_model">
+<code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_classifier_model.SklearnClassifierModel.eval_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model perfomance on a labeled testing dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of DataObject</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_classifier_model.SklearnClassifierModel.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_classifier_model.SklearnClassifierModel.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>model_parameters (dict): parameters that mirror the sklearn kwargs for the user’s model
+mode: train, eval or predict (see AbstractModel)
+sklearn_classifier_name: sklearn submodule and model name (submodule.model_name) of the user’s model
+grid_search_scoring: scoring function name from sklearn CV docs
+cv_folds: number of CV folds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of required keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_classifier_model.SklearnClassifierModel.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_classifier_model.SklearnClassifierModel.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make distance-based predictions using the prebuilt matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_object</strong> – DataObject instance</p></li>
+<li><p><strong>load_model</strong> – load model object from gcs or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data_object with prediction data added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_classifier_model.SklearnClassifierModel.train_model">
+<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_classifier_model.SklearnClassifierModel.train_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>train the model using CV, according to user specified options</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.models.sklearn_cluster_model">
+<span id="primrose-models-sklearn-cluster-model-module"></span><h2>primrose.models.sklearn_cluster_model module<a class="headerlink" href="#module-primrose.models.sklearn_cluster_model" title="Permalink to this headline">¶</a></h2>
+<p>Module to run a basic clustering model</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.models.sklearn_cluster_model.SklearnClusterModel">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.models.sklearn_cluster_model.</code><code class="sig-name descname">SklearnClusterModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_cluster_model.SklearnClusterModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.models.sklearn_model.SklearnModel" title="primrose.models.sklearn_model.SklearnModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.models.sklearn_model.SklearnModel</span></code></a></p>
+<dl class="method">
+<dt id="primrose.models.sklearn_cluster_model.SklearnClusterModel.fit_training_data">
+<code class="sig-name descname">fit_training_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_cluster_model.SklearnClusterModel.fit_training_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit training data to model</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_cluster_model.SklearnClusterModel.get_scores">
+<code class="sig-name descname">get_scores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_cluster_model.SklearnClusterModel.get_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the scores for X_test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>returns a dictionary of scors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_cluster_model.SklearnClusterModel.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_cluster_model.SklearnClusterModel.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>X (list): list of columns to use</p>
+<p>While you might expect <cite>model</cite> here, we do not need it when in predict or eval mode as the model is cached, only in train</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of required keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.models.sklearn_model">
+<span id="primrose-models-sklearn-model-module"></span><h2>primrose.models.sklearn_model module<a class="headerlink" href="#module-primrose.models.sklearn_model" title="Permalink to this headline">¶</a></h2>
+<p>A primrose model based around a sklearn model</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.models.sklearn_model.SklearnModel">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.models.sklearn_model.</code><code class="sig-name descname">SklearnModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.model.AbstractModel" title="primrose.base.model.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.model.AbstractModel</span></code></a></p>
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.eval_model">
+<code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em>, <em class="sig-param">load_model=False</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.eval_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>evalute a model by getting the scores</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of DataObject</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.evaluate_no_ground_truth_classifier_metrics">
+<em class="property">static </em><code class="sig-name descname">evaluate_no_ground_truth_classifier_metrics</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">labels</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.evaluate_no_ground_truth_classifier_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a set of metric for a classifier where there is no ground truth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>datafframe</em>) – the data</p></li>
+<li><p><strong>labels</strong> – the predicted classes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary of score name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.evaluate_regression_metrics">
+<em class="property">static </em><code class="sig-name descname">evaluate_regression_metrics</code><span class="sig-paren">(</span><em class="sig-param">actual</em>, <em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.evaluate_regression_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute set of metrics for a regression</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>actual</strong> – vector of actual values</p></li>
+<li><p><strong>predictions</strong> – vector of predictions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary of score name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.load_model">
+<code class="sig-name descname">load_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.load_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>finds an upstream sklearn mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sklearn model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data_object</em>, <em class="sig-param">load_model=False</em>, <em class="sig-param">use_serial=False</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict y_test from X_test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p></li>
+<li><p><strong>load_model</strong> – load model object from gcs or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_model.SklearnModel.train_model">
+<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_model.SklearnModel.train_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>train the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of DataObject</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.models.sklearn_regression_model">
+<span id="primrose-models-sklearn-regression-model-module"></span><h2>primrose.models.sklearn_regression_model module<a class="headerlink" href="#module-primrose.models.sklearn_regression_model" title="Permalink to this headline">¶</a></h2>
+<p>Module to run a basic regression model</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.models.sklearn_regression_model.SklearnRegressionModel">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.models.sklearn_regression_model.</code><code class="sig-name descname">SklearnRegressionModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_regression_model.SklearnRegressionModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.models.sklearn_model.SklearnModel" title="primrose.models.sklearn_model.SklearnModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.models.sklearn_model.SklearnModel</span></code></a></p>
+<dl class="method">
+<dt id="primrose.models.sklearn_regression_model.SklearnRegressionModel.fit_training_data">
+<code class="sig-name descname">fit_training_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_regression_model.SklearnRegressionModel.fit_training_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit training data to model</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_regression_model.SklearnRegressionModel.get_scores">
+<code class="sig-name descname">get_scores</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_regression_model.SklearnRegressionModel.get_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the scores for y_test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary of scores</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.models.sklearn_regression_model.SklearnRegressionModel.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.models.sklearn_regression_model.SklearnRegressionModel.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While you might expect <cite>model</cite> here, we do not need it when in predict or eval mode as the model is cached, only in train</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of required keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

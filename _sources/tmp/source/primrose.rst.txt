@@ -1,0 +1,73 @@
+primrose package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   primrose.base
+   primrose.cleanup
+   primrose.conditionalpath
+   primrose.configuration
+   primrose.dag
+   primrose.dataviz
+   primrose.models
+   primrose.notifications
+   primrose.pipelines
+   primrose.readers
+   primrose.templates
+   primrose.transformers
+   primrose.writers
+
+Submodules
+----------
+
+primrose.dag\_runner module
+---------------------------
+
+.. automodule:: primrose.dag_runner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.data\_object module
+----------------------------
+
+.. automodule:: primrose.data_object
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.node\_factory module
+-----------------------------
+
+.. automodule:: primrose.node_factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.notification\_utils module
+-----------------------------------
+
+.. automodule:: primrose.notification_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.util module
+--------------------
+
+.. automodule:: primrose.util
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose
+   :members:
+   :undoc-members:
+   :show-inheritance:

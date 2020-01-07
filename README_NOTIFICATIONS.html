@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notifications &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="DataObject" href="README_DATAOBJECT.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dag-notifications">DAG Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-notifications">Error Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Notifications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README_NOTIFICATIONS.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="notifications">
+<h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
+<p>A useful feature of <code class="docutils literal notranslate"><span class="pre">primrose</span></code> is the ability to get notified when your job is complete (or at any node, for that matter) and/or if there were errors in running your DAG. These two cases are handled slightly differently. Note that the current implementation is only set up to handle <a class="reference external" href="https://slack.com/intl/en-ca/">Slack</a> notifications.</p>
+<p>To get started, you’ll want to create a <a class="reference external" href="https://api.slack.com/apps?new_app=1"><code class="docutils literal notranslate"><span class="pre">Slack</span> <span class="pre">App</span></code></a> if you don’t already have one. You’ll be given an <code class="docutils literal notranslate"><span class="pre">OAuth</span> <span class="pre">Access</span> <span class="pre">Token</span></code>, and you’ll have to choose a <code class="docutils literal notranslate"><span class="pre">slack</span> <span class="pre">channel</span></code> associated to the app. This is where your notifications will be posted.</p>
+<div class="section" id="dag-notifications">
+<h2>DAG Notifications<a class="headerlink" href="#dag-notifications" title="Permalink to this headline">¶</a></h2>
+<p>To get notified at points in your job, create a notification node at the desired stage in your configuration file. For example, below we implement a simple job to read a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file and post a success message upon completion.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      filename: data/tennis.csv
+      destinations:
+        - notification
+  cleanup_config:
+    notification:
+      class: ClientNotification
+      client: SlackClient
+      channel: my-channel
+      token: slack-token
+      message: We did it!
+</pre></div>
+</div>
+<p>This DAG will read the file <code class="docutils literal notranslate"><span class="pre">data/tennis.csv</span></code> and store it in the <code class="docutils literal notranslate"><span class="pre">data_object</span></code> as a pandas dataframe. It will then post the message “We did it” in the <code class="docutils literal notranslate"><span class="pre">my-channel</span></code> slack channel. If you would like to get pinged on the notification, add your <code class="docutils literal notranslate"><span class="pre">member/user_id</span></code> as a parameter. Note that this is NOT your user name, but a string of the format “W012A3CDE” typically beginning with “U” or “W”. The notification portion of your DAG would then look like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>notification:
+    class: ClientNotification
+    client: SlackClient
+    channel: my-channel
+    token: slack-token
+    member_id: W012A3CDE
+    message: We did it!
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-notifications">
+<h2>Error Notifications<a class="headerlink" href="#error-notifications" title="Permalink to this headline">¶</a></h2>
+<p>To get notified if your job fails at any point in the DAG, you will need to create a <code class="docutils literal notranslate"><span class="pre">notify_on_error</span></code> key in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> section of the DAG. As above, this will require specifiying the <code class="docutils literal notranslate"><span class="pre">client</span></code>, <code class="docutils literal notranslate"><span class="pre">channel</span></code>, and <code class="docutils literal notranslate"><span class="pre">token</span></code>. <code class="docutils literal notranslate"><span class="pre">member_id</span></code> is optional. An example configuration would like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">:</span>
+  <span class="n">notify_on_error</span><span class="p">:</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">SlackClient</span>
+    <span class="n">channel</span><span class="p">:</span> <span class="n">my</span><span class="o">-</span><span class="n">channel</span>
+    <span class="n">member_id</span><span class="p">:</span> <span class="n">W012A3CDE</span>
+    <span class="n">token</span><span class="p">:</span> <span class="n">slack</span><span class="o">-</span><span class="n">token</span>
+<span class="n">implementation_config</span><span class="p">:</span>
+  <span class="n">reader_config</span><span class="p">:</span>
+    <span class="n">read_data</span><span class="p">:</span>
+      <span class="n">class</span><span class="p">:</span> <span class="n">CsvReader</span>
+      <span class="n">filename</span><span class="p">:</span> <span class="n">data</span><span class="o">/</span><span class="n">tennis</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>The  <code class="docutils literal notranslate"><span class="pre">notify_on_error</span></code> key triggers the DAG runner to instantiate your client with the given parameters, and will post to <code class="docutils literal notranslate"><span class="pre">my-channel</span></code> upon hitting an error.</p>
+</div>
+<div class="section" id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<p>If you would (understandably) prefer to have your configuration file read in the values of the client’s parameters using environment variables, store your environment variables in the form “{CLIENT_NAME}_{CLIENT_KEY}”. For example, for the <code class="docutils literal notranslate"><span class="pre">primrose</span></code> <code class="docutils literal notranslate"><span class="pre">SlackClient</span></code>, our variables would be stored as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SLACKCLIENT_TOKEN</span><span class="o">=</span><span class="s2">&quot;some-token&quot;</span>
+<span class="n">SLACKCLIENT_CHANNEL</span><span class="o">=</span><span class="s2">&quot;some-channel&quot;</span>
+<span class="n">SLACKCLIENT_MEMBER_ID</span><span class="o">=</span><span class="s2">&quot;USomeUserID&quot;</span>
+</pre></div>
+</div>
+<p>Our configuration file would then look something like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>metadata:
+  notify_on_error:
+    client: SlackClient
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      filename: data/tennis.csv
+      destinations:
+        - notification
+  cleanup_config:
+    notification:
+      class: ClientNotification
+      client: SlackClient
+      message: We did it!
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="README_DATAOBJECT.html" class="btn btn-neutral float-left" title="DataObject" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

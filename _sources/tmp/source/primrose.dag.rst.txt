@@ -1,0 +1,46 @@
+primrose.dag package
+====================
+
+Submodules
+----------
+
+primrose.dag.config\_layer\_traverser module
+--------------------------------------------
+
+.. automodule:: primrose.dag.config_layer_traverser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.dag.dag\_traverser module
+----------------------------------
+
+.. automodule:: primrose.dag.dag_traverser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.dag.depth\_first\_traverser module
+-------------------------------------------
+
+.. automodule:: primrose.dag.depth_first_traverser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.dag.traverser\_factory module
+--------------------------------------
+
+.. automodule:: primrose.dag.traverser_factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.dag
+   :members:
+   :undoc-members:
+   :show-inheritance:

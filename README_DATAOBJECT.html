@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DataObject &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notifications" href="README_NOTIFICATIONS.html" />
+    <link rel="prev" title="Developer Notes" href="README_DEVELOPER_NOTES.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#saving-data">Saving Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-a-key">Specifying a key</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#getting-data">Getting Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-form-of-data">Specifying form of data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-objects">Single objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-dictionaries">Single dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-of-dictionaries">Set of Dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-data">Filtering data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#other-methods">Other methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>DataObject</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README_DATAOBJECT.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dataobject">
+<h1>DataObject<a class="headerlink" href="#dataobject" title="Permalink to this headline">¶</a></h1>
+<p>One of the key features of <code class="docutils literal notranslate"><span class="pre">primrose</span></code> is that it keeps data in memory. As data is shuffled among nodes for reading, processesing, modeling, and writing, it is readily available for nodes to use without unnecessary serialization and deserialization.</p>
+<p>A central object receives new data, stores it, hands it to nodes that request it, and does all the book-keeping under the hood. This is the <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DataObject</span></code> is a repository, a single instance that is handed to each node (in the sequence determined by the <code class="docutils literal notranslate"><span class="pre">DAGRunner</span></code>) to both add new data, but also to consume data, either reading it, transforming it, or popping it off the <code class="docutils literal notranslate"><span class="pre">DataObject</span></code> completely.</p>
+<p>This concept is so central to <code class="docutils literal notranslate"><span class="pre">primrose</span></code> that is plays a pivotal role in the notion of a node and running a node. That is, <code class="docutils literal notranslate"><span class="pre">AbstractNode</span></code> has a method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            run the node. For a reader, that means read, for a writer that means write etc.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data_object (DataObject): DataObject instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">           (tuple): tuple containing:</span>
+
+<span class="sd">               data_object (DataObject): instance of DataObject</span>
+
+<span class="sd">               terminate (bool): terminate the DAG?</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Every node in the DAG, receives the <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>, runs (does whatever it needs to do) and returns that same DataObject. It might add new data, it might consume data, or it might just return it as is.</p>
+</div>
+<div class="section" id="saving-data">
+<h1>Saving Data<a class="headerlink" href="#saving-data" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">DataObject</span></code> is designed to hide some of the decisions and underlying book-keeping. If you want to save some data, you call the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">some_object</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s it! This will save the data <code class="docutils literal notranslate"><span class="pre">some_object</span></code>, associating it with the node that did the saving.</p>
+<p><code class="docutils literal notranslate"><span class="pre">some_object</span></code> can be anything at all. It might be a data frame, a string, a dictionary, any object that Python can handle.</p>
+<p>For instance, a <code class="docutils literal notranslate"><span class="pre">CsvReader</span></code> might implement its <code class="docutils literal notranslate"><span class="pre">run</span></code> method as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_config</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Reading </span><span class="si">{}</span><span class="s1"> from CSV&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+    <span class="n">terminate</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span>
+    <span class="k">return</span> <span class="n">data_object</span><span class="p">,</span> <span class="n">terminate</span>
+</pre></div>
+</div>
+<p>taking the filename listed in the config, reading into a pandas dataframe, and checking for empty data frame, and return <code class="docutils literal notranslate"><span class="pre">data_object</span></code>.</p>
+<div class="section" id="specifying-a-key">
+<h2>Specifying a key<a class="headerlink" href="#specifying-a-key" title="Permalink to this headline">¶</a></h2>
+<p>The data is saved with a default key (<code class="docutils literal notranslate"><span class="pre">DataObject.DATA_KEY</span></code>). However, you can use your own key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">some_object</span><span class="p">,</span> <span class="n">some_key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>such as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;tennis_df&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is important if you wish to save multiple objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="s2">&quot;DF1&quot;</span><span class="p">)</span>
+    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="s2">&quot;DF2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>although you could always save as a single dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;DF1&quot;</span><span class="p">:</span> <span class="n">df1</span><span class="p">,</span> <span class="s2">&quot;DF2&quot;</span><span class="p">:</span> <span class="n">df2</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>You have options.</p>
+</div>
+</div>
+<div class="section" id="getting-data">
+<h1>Getting Data<a class="headerlink" href="#getting-data" title="Permalink to this headline">¶</a></h1>
+<p>Typically, a node will need data that was stored in another node, upstream in the DAG. Thus, the typical action in a node is to save data (<code class="docutils literal notranslate"><span class="pre">data_object.add()</span></code> above) and/or to get upstream data. To do the latter, use <code class="docutils literal notranslate"><span class="pre">get_upstream_data</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">data_object</span><span class="o">.</span><span class="n">get_upstream_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_name</span><span class="p">,</span>
+                    <span class="n">pop_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">KEY_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first argument is the name of the requestor (typically <code class="docutils literal notranslate"><span class="pre">self.instance_name</span></code>). Which node is requesting the data? This is used to determine which nodes are upstream of the focal node.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pop_data</span></code> flag determines whether you want to pop the data off the <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>, oin which it will be garbge collected when no longer referenced. This is important as you might not want more and more data accumulating in memory.</p>
+<div class="section" id="specifying-form-of-data">
+<h2>Specifying form of data<a class="headerlink" href="#specifying-form-of-data" title="Permalink to this headline">¶</a></h2>
+<p>The last input to <code class="docutils literal notranslate"><span class="pre">get_upstream_data</span></code> is <code class="docutils literal notranslate"><span class="pre">rtype</span></code>, short for <code class="docutils literal notranslate"><span class="pre">DataObjectResponseType</span></code>, which specifies how you want the data delivered.</p>
+<div class="section" id="single-objects">
+<h3>Single objects<a class="headerlink" href="#single-objects" title="Permalink to this headline">¶</a></h3>
+<p>The simplest scenario is you just want a single object back. For instance, suppose the only upstream node was a reader that read data into a dataframe. You just want that data frame. In that case, you can specify</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">VALUE</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>For instance,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_upstream_data</span><span class="p">(</span><span class="n">instance_name</span><span class="p">,</span>
+            <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will deliver the data to <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+<p>If, however, there are multiple keys for the upstream node, instread of single data object, you will receive a dictionary of all the data, such <code class="docutils literal notranslate"><span class="pre">{&quot;DF1&quot;:</span> <span class="pre">df1,</span> <span class="pre">&quot;DF2&quot;:</span> <span class="pre">df2}</span></code>.</p>
+</div>
+<div class="section" id="single-dictionaries">
+<h3>Single dictionaries<a class="headerlink" href="#single-dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>A more complex scenario is if an upstream node saved multiple objects, such as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="s2">&quot;DF1&quot;</span><span class="p">)</span>
+    <span class="n">data_object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="s2">&quot;DF2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, it is likely easiest to get a single dictionary back (especially if you don’t know how many objects were saved and with what keys). For this, specify</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">KEY_VALUE</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>This will return a single dictionary back, which in the case of the above example will be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span><span class="s2">&quot;DF1&quot;</span><span class="p">:</span> <span class="n">df1</span><span class="p">,</span> <span class="s2">&quot;DF2&quot;</span><span class="p">:</span> <span class="n">df2</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>It will combine the separate, individual keys and objects into a single dictionary for you. To be clear, for this option, specify <code class="docutils literal notranslate"><span class="pre">KEY_VALUE</span></code> in <code class="docutils literal notranslate"><span class="pre">get_upstream_data</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_dictionary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_upstream_data</span><span class="p">(</span><span class="n">instance_name</span><span class="p">,</span>
+        <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">KEY_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-of-dictionaries">
+<h3>Set of Dictionaries<a class="headerlink" href="#set-of-dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>The last scenario is the most complex. Suppose that multiple upstream nodes feed into a node. For instance, perhaps 3 readers feed into a pipeline node. For this, you will want to get the data but associated with each upstream node; that is, a dictionary of instance_name keys and their data dictionaries. For this, specify</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">rtype</span><span class="o">=</span><span class="n">DataObjectResponseType</span><span class="o">.</span><span class="n">INSTANCE_KEY_VALUE</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>This will return a single dictionary but where the keys are the names of the upstream nodes, and the values are dictionaries of the stored data and their associated key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span><span class="s1">&#39;instance_name&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">},</span> <span class="s1">&#39;instance_name2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="n">value2</span><span class="p">},</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering-data">
+<h3>Filtering data<a class="headerlink" href="#filtering-data" title="Permalink to this headline">¶</a></h3>
+<p>You can also filter data for a given data key. You could request data with <code class="docutils literal notranslate"><span class="pre">KEY_VALUE</span></code> or <code class="docutils literal notranslate"><span class="pre">INSTANCE_KEY_VALUE</span></code> and inspect the key yourself but you can also use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">get_filtered_upstream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">,</span> <span class="n">filter_for_key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">filter_for_key</span></code> filters for data keys. For instance, with stored data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span><span class="s1">&#39;instance_name&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">},</span> <span class="s1">&#39;instance_name2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="n">value2</span><span class="p">},</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>and calling</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">data_object</span><span class="o">.</span><span class="n">get_filtered_upstream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>would return <code class="docutils literal notranslate"><span class="pre">{'key2':</span> <span class="pre">value2}</span></code>.</p>
+<p>If you ask for <code class="docutils literal notranslate"><span class="pre">INSTANCE_KEY_VALUE</span></code> but there is a single key, you will still recive a dictionary keyed with instance name (<code class="docutils literal notranslate"><span class="pre">{'instance_name':</span> <span class="pre">{'key':</span> <span class="pre">value}</span></code>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="other-methods">
+<h1>Other methods<a class="headerlink" href="#other-methods" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">DataObject</span></code> has other methods for inspecting data currently stored in <code class="docutils literal notranslate"><span class="pre">DataObject</span></code> such as <code class="docutils literal notranslate"><span class="pre">upstream_keys()</span></code> which provides the keys and <code class="docutils literal notranslate"><span class="pre">get()</span></code> which gets the data for a given instance name. It also handles local caching of data. However, the <code class="docutils literal notranslate"><span class="pre">add()</span></code> and <code class="docutils literal notranslate"><span class="pre">get_upstream_data()</span></code> are the methods most often used in nodes.</p>
+<div class="section" id="next">
+<h2>Next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
+<p>Learn more about Notifications: <a class="reference internal" href="README_NOTIFICATIONS.html"><span class="doc">Notifications</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="README_NOTIFICATIONS.html" class="btn btn-neutral float-right" title="Notifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="README_DEVELOPER_NOTES.html" class="btn btn-neutral float-left" title="Developer Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

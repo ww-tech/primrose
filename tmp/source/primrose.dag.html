@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.dag package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.dag package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.dag.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-dag-package">
+<h1>primrose.dag package<a class="headerlink" href="#primrose-dag-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.dag.config_layer_traverser">
+<span id="primrose-dag-config-layer-traverser-module"></span><h2>primrose.dag.config_layer_traverser module<a class="headerlink" href="#module-primrose.dag.config_layer_traverser" title="Permalink to this headline">¶</a></h2>
+<p>Module to traverse DAG by running all readers, then all pipelines, then all models,
+then all postprocess, then all cleanup</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.config_layer_traverser.</code><code class="sig-name descname">ConfigLayerTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.dag.dag_traverser.DagTraverser" title="primrose.dag.dag_traverser.DagTraverser"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.dag.dag_traverser.DagTraverser</span></code></a></p>
+<p>Module to traverse DAG by running all readers, then all pipelines,
+then all models, then all postprocess, then all cleanup</p>
+<dl class="method">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser.run_section_by_section">
+<code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do we want go through section by section?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>suppose we had 5 sections and we asked to run just 2: section1 and section2.
+Is it important that we run section1 and then section 2 (if so, return True)
+or just that we run all the nodes from section1 and section2 together in some
+desired order (return False)</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>result (Boolean)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser.traversal_list">
+<code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of nodes to traverse doing all readers, then all pipelines, then all models etc,
+or from user-defined list from metadata.section_registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of node names in the order that they will be run</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sequence (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.dag.dag_traverser">
+<span id="primrose-dag-dag-traverser-module"></span><h2>primrose.dag.dag_traverser module<a class="headerlink" href="#module-primrose.dag.dag_traverser" title="Permalink to this headline">¶</a></h2>
+<p>Abstract module to traverse a DAG</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.dag.dag_traverser.DagTraverser">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.dag_traverser.</code><code class="sig-name descname">DagTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract module to traverse a DAG</p>
+<dl class="method">
+<dt id="primrose.dag.dag_traverser.DagTraverser.run_section_by_section">
+<em class="property">abstract </em><code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do we want go through section by section?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>suppose we had 5 sections and we asked to run just 2: section1 and section2.
+Is it important that we run section1 and then section 2 (if so, return True)
+or just that we run all the nodes from section1 and section2 together in some
+desired order (return False)</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>result (Boolean)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag.dag_traverser.DagTraverser.traversal_list">
+<em class="property">abstract </em><code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of nodes to traverse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of node name in the order that they should be run</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sequence (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.dag.depth_first_traverser">
+<span id="primrose-dag-depth-first-traverser-module"></span><h2>primrose.dag.depth_first_traverser module<a class="headerlink" href="#module-primrose.dag.depth_first_traverser" title="Permalink to this headline">¶</a></h2>
+<p>Module to traverse DAG by running depth first algorithm</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.depth_first_traverser.</code><code class="sig-name descname">DepthFirstTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#primrose.dag.dag_traverser.DagTraverser" title="primrose.dag.dag_traverser.DagTraverser"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.dag.dag_traverser.DagTraverser</span></code></a></p>
+<p>a traverser that traverses in depth first manner</p>
+<dl class="method">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser.run_section_by_section">
+<code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do we want go through section by section?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>suppose we had 5 sections and we asked to run just 2: section1 and section2.
+Is it important that we run section1 and then section 2 (if so, return True)
+or just that we run all the nodes from section1 and section2 together in some
+desired order (return False)</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>result (Boolean)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser.traversal_list">
+<code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of nodes to traverse doing a depth first traversal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of node name in the order that they will be run</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sequence (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.dag.traverser_factory">
+<span id="primrose-dag-traverser-factory-module"></span><h2>primrose.dag.traverser_factory module<a class="headerlink" href="#module-primrose.dag.traverser_factory" title="Permalink to this headline">¶</a></h2>
+<p>Singleton Factory where one can register traversers for instantiation</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.dag.traverser_factory.TraverserFactory">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.traverser_factory.</code><code class="sig-name descname">TraverserFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Singleton Factory where one can register traversers for instantiation</p>
+<dl class="method">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.__getattr__">
+<code class="sig-name descname">__getattr__</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__getattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>getattr with instance name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>gettattr</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.instance">
+<code class="sig-name descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.dag">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.dag" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+primrose.notifications package
+==============================
+
+Submodules
+----------
+
+primrose.notifications.abstract\_notification module
+----------------------------------------------------
+
+.. automodule:: primrose.notifications.abstract_notification
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+primrose.notifications.success\_notification module
+---------------------------------------------------
+
+.. automodule:: primrose.notifications.success_notification
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.notifications
+   :members:
+   :undoc-members:
+   :show-inheritance:
