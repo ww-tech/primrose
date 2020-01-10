@@ -22,7 +22,7 @@ if [[ $TRAVIS_EVENT_TYPE != 'pull_request' ]]; then
         echo "bumping release version"
 
         message="[skip travis] Bump version: $current_version -> {new_version}"
-        bump2version --allow-dirty --tag --commit --message=$message release
+        bump2version --allow-dirty --tag --commit --message="$message" release
         push_commit
 
     elif [[ $TRAVIS_BRANCH == 'master' ]]; then
