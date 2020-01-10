@@ -9,6 +9,7 @@ push_commit() {
 
 # use git tag to trigger a build and decide how to increment
 current_version=`cat $TRAVIS_BUILD_DIR/.bumpversion.cfg | grep "current_version =" | sed -E s,"^.* = ",,`
+echo "current version: $current_version"
 
 if [[ $TRAVIS_EVENT_TYPE != 'pull_request' ]]; then
     if [[ $TRAVIS_BRANCH == *'release'* ]]; then
@@ -19,9 +20,10 @@ if [[ $TRAVIS_EVENT_TYPE != 'pull_request' ]]; then
             bump2version $BUMP_PART
         fi
         
-        echo "bumping release version"
-
         message="[skip travis] Bump version: $current_version -> {new_version}"
+        
+        echo "bumping release version: $message"
+        
         bump2version --allow-dirty --tag --commit --message="$message" release
         push_commit
 
