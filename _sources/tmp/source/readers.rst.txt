@@ -84,6 +84,14 @@ readers.postgres\_reader module
    :undoc-members:
    :show-inheritance:
 
+readers.r\_reader module
+------------------------
+
+.. automodule:: readers.r_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 readers.redshift\_reader module
 -------------------------------
 

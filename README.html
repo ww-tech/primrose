@@ -244,8 +244,9 @@
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> has a couple of optional tools:</p>
 <ul class="simple">
-<li><p>a postgres database reader</p></li>
+<li><p>a PostgreSQL database reader</p></li>
 <li><p>a plotting tool</p></li>
+<li><p>an R-dataset reader. E.g., to read in R’s iris dataset see config/example_read_r.json</p></li>
 </ul>
 <p>These require a few external dependencies, prior to its installation. If interested in their functionality, follow the appropriate instructions for your OS below. Otherwise, you can proceed with the basic package installation.</p>
 <div class="section" id="installation">
@@ -264,7 +265,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">,</span> <span class="n">plotting</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>To install <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> with just the postgres option:</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> with just the PostgreSQL option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -272,10 +273,14 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">plotting</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">primrose</span></code> with just the R dataset reading option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">R</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="external-dependenices">
 <h3>External dependenices<a class="headerlink" href="#external-dependenices" title="Permalink to this headline">¶</a></h3>
-<p><strong>Postgres</strong></p>
+<p><strong>PostgreSQL</strong></p>
 <div class="section" id="macosx">
 <h4>MacOSX<a class="headerlink" href="#macosx" title="Permalink to this headline">¶</a></h4>
 <p>We recommend using homebrew to manage OS level external packages. If you do not already have homebrew installed, please visit <a class="reference external" href="https://brew.sh/">their website</a>.</p>

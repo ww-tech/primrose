@@ -689,6 +689,60 @@ blob_name: name of the blob</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-primrose.readers.r_reader">
+<span id="primrose-readers-r-reader-module"></span><h2>primrose.readers.r_reader module<a class="headerlink" href="#module-primrose.readers.r_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read datasets from R</p>
+<blockquote>
+<div><p>This is a simple example to show that primrose can work with other languages.
+Note:</p>
+<blockquote>
+<div><p>It works with simple 2D R dataframes (e.g. iris dataset) but not higher tensors (e.g. iris3 dataset)
+It does not work with timeseries, such as <cite>lh</cite> dataset</p>
+<p>We perform an R as.data.frame conversion on all data to help stadardize the data structure.
+For instance, the R <cite>euro</cite> dataset is essentially a labelled vector but converts nicely to a dataframe.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;ww&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.r_reader.RReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.r_reader.</code><code class="sig-name descname">RReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Reads in canned dataset from R</p>
+<dl class="method">
+<dt id="primrose.readers.r_reader.RReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys within the implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<em>string</em>) – name of dataset in R</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of keys necessary to run implementation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.r_reader.RReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read canned dataset from R to a pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataObject instance
+terminate (bool): should we terminate the DAG? true or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-primrose.readers.redshift_reader">
 <span id="primrose-readers-redshift-reader-module"></span><h2>primrose.readers.redshift_reader module<a class="headerlink" href="#module-primrose.readers.redshift_reader" title="Permalink to this headline">¶</a></h2>
 <p>Module with AbstractReader implementation, able to read from AWS Redshift</p>
