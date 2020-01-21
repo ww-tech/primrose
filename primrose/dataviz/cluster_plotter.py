@@ -42,7 +42,6 @@ class ClusterPlotter(AbstractNode):
         X = dat['data']
         cluster_ids = X[self.node_config['id_col']]
         centers = X.groupby(self.node_config['id_col']).mean()
-        del X[self.node_config['id_col']]
 
         plt.scatter(X.iloc[:,0],X.iloc[:,1], c=cluster_ids, s=50, cmap='viridis')
         plt.scatter(centers.iloc[:,0], centers.iloc[:,1], c='black', s=200, alpha=0.5)
