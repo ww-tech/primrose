@@ -33,6 +33,7 @@ matrix:
     after_success:
     - bash scripts/bump_script.sh || exit 1
     - bash scripts/generate_docs.sh || exit 1
+    - export TRAVIS_TAG=`git describe --exact-match --tags`
     deploy:
       - provider: pypi
         user: $PYPI_USER
@@ -138,4 +139,4 @@ script:
 branches:
   only:
   - master
-  - .*release.*
+  - /.*release.*/

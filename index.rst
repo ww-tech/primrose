@@ -13,7 +13,7 @@ Welcome to `primrose`! `Primrose` is a Python framework for executing in-memory 
 
 
 .. toctree::
-   :maxdepth: 8
+   :maxdepth: 2
    :caption: Contents:
 
    README.md

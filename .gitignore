@@ -68,7 +68,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs
 
 # PyBuilder
 target/
@@ -115,6 +115,7 @@ venv.bak/
 # mkdocs documentation
 /site
 
+
 # mypy
 .mypy_cache/
 .dmypy.json
@@ -129,3 +130,5 @@ cache/
 # IDE specific files
 .vscode/
 .idea/
+
+
