@@ -36,7 +36,7 @@ class SklearnPreprocessingPipeline(TrainTestSplit):
             args = operation.get('args', None)
             columns = operation.get('columns', None)
             
-            p = SklearnPreprocessingPipeline._instantiate_preprocessor(operation['class'], args, columns)
+            p = self._instantiate_preprocessor(operation['class'], args, columns)
             ts.add(p)
 
         return ts

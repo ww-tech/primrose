@@ -3,8 +3,10 @@
 push_commit() {
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
+  echo `git branch`
+  echo `git status --porcelain`
   git remote add origin https://$GITHUB_PERSONAL_ACCESS_TOKEN@github.com/ww-tech/primrose.git > /dev/null 2>&1
-  git push origin $TRAVIS_BRANCH:master --quiet && git push origin $TRAVIS_BRANCH:master --tags --quiet
+  git push origin HEAD:$TRAVIS_BRANCH --quiet && git push origin HEAD:$TRAVIS_BRANCH --tags --quiet
 }
 
 # use git tag to trigger a build and decide how to increment
@@ -25,15 +27,16 @@ if [[ $TRAVIS_EVENT_TYPE != 'pull_request' ]]; then
         
         bump2version --allow-dirty --tag --commit --message="$message" release
         push_commit
-
-    elif [[ $TRAVIS_BRANCH == 'master' ]]; then
-        if ! [[ $current_version =~ ^(.+dev|.+prod)$ ]]; then
-            # assume we increment by a patch for dev
-            echo "not tagging this release - bump and create dev version"
-            bump2version --commit patch
-            push_commit
-        fi
     fi
 else
-    echo "on pull request - not bumping"
+    echo "on pull request"
+    if ! [[ $current_version =~ ^(.+dev|.+prod)$ ]]; then
+        # assume we increment by a patch for dev
+        echo "not tagging this release - bump and create dev version"
+        message="[skip travis] Bump version: $current_version -> {new_version}"
+        echo "bumping release version: $message"
+
+        bump2version --allow-dirty --commit --message="$message" patch
+        push_commit
+    fi
 fi
