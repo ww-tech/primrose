@@ -180,3 +180,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## Contributing
+To contribute, start a feature branch and send a PR to merge with master!
+Please adhere to coding best practices and make sure to do everything in the PR template checklist.
+* Write small, modular, reusable, and testable code where possible.
+* Write tests ([pytest](https://docs.pytest.org/en/latest/) or [unittest](https://docs.python.org/3/library/unittest.html)) for that code and make sure it passes (pytest).
+* [Squash your commits](https://github.com/wprig/wprig/wiki/How-to-squash-commits) so that commits are [fewer but more meaningful](https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/).
+* Update our [documentation](https://ww-tech.github.io/primrose/).
+That means adhering to our [docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) and adding [markdown](https://www.markdownguide.org/) when necessary.
