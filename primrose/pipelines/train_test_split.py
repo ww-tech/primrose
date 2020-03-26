@@ -83,7 +83,7 @@ class TrainTestSplit(AbstractPipeline):
         else:
             if 'target_variable' in self.node_config:
                 data_train, data_test, target_train, target_test = train_test_split(
-                    data[sorted(list(set(data.columns) - set([self.node_config['target_variable']])))],
+                    data[sorted(list(set(data.columns) - set([self.node_config.get('target_variable')])))],
                     data[self.node_config['target_variable']],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
@@ -94,7 +94,7 @@ class TrainTestSplit(AbstractPipeline):
 
             else:
                 data_train, data_test = train_test_split(
-                    data[sorted(list(set(data.columns) - set([self.node_config['target_variable']])))],
+                    data[sorted(list(set(data.columns) - set([self.node_config.get('target_variable')])))],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
 
