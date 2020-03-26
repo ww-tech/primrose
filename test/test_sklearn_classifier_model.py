@@ -44,16 +44,16 @@ def test_train_model(model, data_obj):
     assert model.model is not None
     x_train, y_train, x_test, y_test = model._get_data(data_obj)
     predictions = model.model.predict(x_test)
-    assert list(predictions) == [1, 1, 0, 1, 1]
+    assert list(predictions) == [1, 0, 0, 1, 1]
 
 
 def test_eval(model, data_obj):
     model.train_model(data_obj)
     model.eval_model(data_obj)
     print(model.scores)
-    assert model.scores['recall'] == 1.0
-    assert model.scores['precision'] == 0.75
-    assert model.scores['predicted_class_fraction'] == 0.8
+    assert round(model.scores['recall'], 2) == 0.67
+    assert round(model.scores['precision'], 2) == 0.67
+    assert model.scores['predicted_class_fraction'] == 0.6
     assert model.scores['positive_class_fraction'] == 0.6
 
 
@@ -63,4 +63,4 @@ def test_predict(model, data_obj):
     predicted = data_object.get('decision_tree_model', rtype=DataObjectResponseType.KEY_VALUE.value)
 
     assert predicted['predictions'].shape[0] == 5
-    assert list(predicted['predictions'].predictions) == ['yes', 'yes', 'no', 'yes', 'yes']
+    assert list(predicted['predictions'].predictions) == ['yes', 'no', 'no', 'yes', 'yes']

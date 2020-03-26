@@ -83,7 +83,7 @@ class TrainTestSplit(AbstractPipeline):
         else:
             if 'target_variable' in self.node_config:
                 data_train, data_test, target_train, target_test = train_test_split(
-                    data[self.features(data)],
+                    data[sorted(list(set(data.columns) - set([self.node_config['target_variable']])))],
                     data[self.node_config['target_variable']],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
@@ -94,7 +94,7 @@ class TrainTestSplit(AbstractPipeline):
 
             else:
                 data_train, data_test = train_test_split(
-                    data[self.features(data)],
+                    data[sorted(list(set(data.columns) - set([self.node_config['target_variable']])))],
                     test_size=(1.0 - float(self.node_config['training_fraction'])),
                     random_state=self.node_config['seed'])
 
@@ -152,7 +152,7 @@ class TrainTestSplit(AbstractPipeline):
 
                     dataframes_to_join.append(data[source][key])
 
-        return pd.concat(dataframes_to_join)
+        return pd.concat(dataframes_to_join).reset_index(drop=True)
 
     def fit_transform(self, data_object):
         """Split data into testing and training sets, then applies the categorical transform to each
