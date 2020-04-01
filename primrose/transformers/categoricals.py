@@ -101,7 +101,7 @@ class ExplicitCategoricalTransform(AbstractTransformer):
                 if sum(pd.to_numeric(data[name], errors='coerce').isnull()) > 0:
                     logging.info("Can't convert these entries in {}. Replacing with {}: {}".format(
                         name, ExplicitCategoricalTransform.DEFAULT_NUMERIC,
-                        np.unique(data[name][pd.to_numeric(data[name], errors='coerce').isnull()])))
+                        np.unique(data[name][pd.to_numeric(data[name], errors='coerce').isnull()].astype(str))))
 
                     data[name][pd.to_numeric(data[name], errors='coerce').isnull()] = ExplicitCategoricalTransform.DEFAULT_NUMERIC
                 try:
