@@ -38,7 +38,7 @@ setup(name='primrose',
       extras_require={
         'postgres': ["psycopg2>=2.8.3", "psycopg2_binary>=2.8.2"],
         'plotting': ["pygraphviz>=1.5"],
-        'R': ["rpy2>=2.9.1"],
-        'all': ["psycopg2>=2.8.3", "psycopg2_binary>=2.8.2", "pygraphviz>=1.5", "rpy2>=2.9.1"]
+        'R': ["rpy2>=2.9.1,<=3.2.7"],
+        'all': ["psycopg2>=2.8.3", "psycopg2_binary>=2.8.2", "pygraphviz>=1.5", "rpy2>=2.9.1,<=3.2.7"]
       }
     )
