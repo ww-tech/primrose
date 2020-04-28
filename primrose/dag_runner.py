@@ -286,6 +286,7 @@ class DagRunner():
                 logging.error(msg)
                 if client:
                     client.post_message(msg)
+                    client.post_message(e)
                 raise e
 
             if terminate:
