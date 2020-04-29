@@ -9,6 +9,7 @@ import networkx as nx
 import os
 import logging
 import collections
+import traceback
 from primrose.node_factory import NodeFactory
 from primrose.configuration.configuration import OperationType
 from primrose.notification_utils import get_notification_client
@@ -285,7 +286,7 @@ class DagRunner():
                 msg = "Issue with %s" % node
                 logging.error(msg)
                 if client:
-                    client.post_message(msg)
+                    client.post_message(f"{msg}\n{traceback.format_exc()}")
                 raise e
 
             if terminate:
