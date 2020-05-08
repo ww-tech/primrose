@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -185,12 +185,112 @@
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="configuration.Configuration">
-<em class="property">class </em><code class="sig-prename descclassname">configuration.</code><code class="sig-name descname">Configuration</code><span class="sig-paren">(</span><em class="sig-param">config_location</em>, <em class="sig-param">is_dict_config=False</em>, <em class="sig-param">dict_config=None</em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">configuration.</code><code class="sig-name descname">Configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_location</span></em>, <em class="sig-param"><span class="n">is_dict_config</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">dict_config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Stores user defined configuration for primrose job</p>
-<dl class="method">
+<dl class="py method">
+<dt id="configuration.Configuration._get_configuration_hash">
+<code class="sig-name descname">_get_configuration_hash</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._get_configuration_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get configuration file string and hash</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>configuration_string (str):  configuration_string</p>
+<p>configuration_file_hashname (str): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="configuration.Configuration._get_file_candidates">
+<code class="sig-name descname">_get_file_candidates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._get_file_candidates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get file candidates to search through when specifying a class package.</p>
+<p>Priority will first consider environment variable PRIMROSE_EXT_NODE_PACKAGE. If unset, will
+search the configuration metadata for key <cite>class_package</cite>. If nothing is specified, in either
+location, an empty list is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of potential files to search for classes to register</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="configuration.Configuration._import_file">
+<em class="property">static </em><code class="sig-name descname">_import_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_name</span></em>, <em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._import_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import module from given path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_name</strong> (<em>str</em>) – full module name to import</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – full path to python module</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>module imported from the path with given name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="configuration.Configuration._parse_config">
+<code class="sig-name descname">_parse_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._parse_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign top level keys to config attributes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assign top level keys to config attributes. The method then assigns the inner dict to the top level key object</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Nothing, side effect is that top level keys are added as config attributes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="configuration.Configuration._register_class">
+<code class="sig-name descname">_register_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_key</span></em>, <em class="sig-param"><span class="n">class_prefix</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._register_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a class specified in the config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_key</strong> (<em>str</em>) – class key to register</p></li>
+<li><p><strong>class_prefix</strong> (<em>str</em>) – the prefix of the class to register. Can be in <cite>path.to.module</cite> format,
+or a full path <cite>path/to/module</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None - attempts to register the class with it’s default name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="configuration.Configuration._traverse_node_package">
+<code class="sig-name descname">_traverse_node_package</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">unique_class_keys</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration._traverse_node_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverse node package to find classes in the DAG to register.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>unique_class_keys</strong> (<em>tuple</em><em>(</em><em>str</em><em>, </em><em>str</em><em>)</em>) – a tuple of class names and prefixes.</p></li>
+<li><p><strong>overwrite</strong> (<em>boolean</em><em>, </em><em>Optional</em>) – If a prefix is already set from the configuration, do we overwrite?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(class_name, class_prefix) tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="configuration.Configuration.check_config">
 <code class="sig-name descname">check_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.check_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>check the configuration as much as we can as early as we can</p>
@@ -201,7 +301,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.check_metadata">
 <code class="sig-name descname">check_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.check_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>checks some dependencies among metadata keys</p>
@@ -212,7 +312,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.check_sections">
 <code class="sig-name descname">check_sections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.check_sections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that all the sections in implementation are supported ones.
@@ -227,9 +327,9 @@ Either the user supplied metata.section_registry, or they are using default sect
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.config_for_instance">
-<code class="sig-name descname">config_for_instance</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.config_for_instance" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">config_for_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.config_for_instance" title="Permalink to this definition">¶</a></dt>
 <dd><p>get the configuration for a given node / instance_name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -238,9 +338,9 @@ Either the user supplied metata.section_registry, or they are using default sect
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.dict_raise_on_duplicates">
-<code class="sig-name descname">dict_raise_on_duplicates</code><span class="sig-paren">(</span><em class="sig-param">ordered_pairs</em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.dict_raise_on_duplicates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dict_raise_on_duplicates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ordered_pairs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.dict_raise_on_duplicates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reject duplicate keys in JSON string, ie. sections and node names.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -255,9 +355,9 @@ Either the user supplied metata.section_registry, or they are using default sect
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.perform_any_config_fragment_substitution">
-<em class="property">static </em><code class="sig-name descname">perform_any_config_fragment_substitution</code><span class="sig-paren">(</span><em class="sig-param">config_str</em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.perform_any_config_fragment_substitution" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">perform_any_config_fragment_substitution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.perform_any_config_fragment_substitution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given some configuration file content string, look for         subtitutions given by <cite>$$FILE=path/to/config/file/fragment.json$$</cite> and make the         replacements using the filenames provided        For example:         {             $$FILE=/tmp/metadata.json$$             “implementation_config”: {                 $$FILE= config/read_write_fragment.json $$             }         }         will inject /tmp/metadata.json into the 2nd line of that config.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -272,7 +372,7 @@ Either the user supplied metata.section_registry, or they are using default sect
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="configuration.Configuration.sections_in_order">
 <code class="sig-name descname">sections_in_order</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#configuration.Configuration.sections_in_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return list of section names in order, either explicitly from metadata or from default Enum order</p>

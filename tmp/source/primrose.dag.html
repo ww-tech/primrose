@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -176,13 +176,38 @@ then all postprocess, then all cleanup</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.config_layer_traverser.</code><code class="sig-name descname">ConfigLayerTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.config_layer_traverser.</code><code class="sig-name descname">ConfigLayerTraverser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#primrose.dag.dag_traverser.DagTraverser" title="primrose.dag.dag_traverser.DagTraverser"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.dag.dag_traverser.DagTraverser</span></code></a></p>
 <p>Module to traverse DAG by running all readers, then all pipelines,
 then all models, then all postprocess, then all cleanup</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._sort_by_depth_first">
+<code class="sig-name descname">_sort_by_depth_first</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">candidates</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._sort_by_depth_first" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser.run_section_by_section">
 <code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do we want go through section by section?</p>
@@ -200,7 +225,7 @@ desired order (return False)</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser.traversal_list">
 <code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>get list of nodes to traverse doing all readers, then all pipelines, then all models etc,
@@ -225,12 +250,32 @@ or from user-defined list from metadata.section_registry</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="primrose.dag.dag_traverser.DagTraverser">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.dag_traverser.</code><code class="sig-name descname">DagTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.dag_traverser.</code><code class="sig-name descname">DagTraverser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Abstract module to traverse a DAG</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="primrose.dag.dag_traverser.DagTraverser._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.dag_traverser.DagTraverser._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.dag_traverser.DagTraverser._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.dag_traverser.DagTraverser._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="primrose.dag.dag_traverser.DagTraverser.run_section_by_section">
 <em class="property">abstract </em><code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do we want go through section by section?</p>
@@ -248,7 +293,7 @@ desired order (return False)</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="primrose.dag.dag_traverser.DagTraverser.traversal_list">
 <em class="property">abstract </em><code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>get list of nodes to traverse</p>
@@ -272,12 +317,32 @@ desired order (return False)</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.depth_first_traverser.</code><code class="sig-name descname">DepthFirstTraverser</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag.depth_first_traverser.</code><code class="sig-name descname">DepthFirstTraverser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#primrose.dag.dag_traverser.DagTraverser" title="primrose.dag.dag_traverser.DagTraverser"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.dag.dag_traverser.DagTraverser</span></code></a></p>
 <p>a traverser that traverses in depth first manner</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser.run_section_by_section">
 <code class="sig-name descname">run_section_by_section</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser.run_section_by_section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do we want go through section by section?</p>
@@ -295,7 +360,7 @@ desired order (return False)</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser.traversal_list">
 <code class="sig-name descname">traversal_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser.traversal_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>get list of nodes to traverse doing a depth first traversal</p>
@@ -319,14 +384,20 @@ desired order (return False)</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="primrose.dag.traverser_factory.TraverserFactory">
 <em class="property">class </em><code class="sig-prename descclassname">primrose.dag.traverser_factory.</code><code class="sig-name descname">TraverserFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Singleton Factory where one can register traversers for instantiation</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="primrose.dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory">
+<code class="sig-name descname">_TraverserFactory__HiddenFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">TraverserFactory.__HiddenFactory</span></code></p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="primrose.dag.traverser_factory.TraverserFactory.__getattr__">
-<code class="sig-name descname">__getattr__</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__getattr__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__getattr__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__getattr__" title="Permalink to this definition">¶</a></dt>
 <dd><p>getattr with instance name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -335,7 +406,7 @@ desired order (return False)</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="primrose.dag.traverser_factory.TraverserFactory.instance">
 <code class="sig-name descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.instance" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>

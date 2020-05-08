@@ -11,6 +11,7 @@ primrose.configuration.configuration module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.configuration.configuration\_dag module
 ------------------------------------------------
@@ -19,6 +20,7 @@ primrose.configuration.configuration\_dag module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.configuration.util module
 ----------------------------------
@@ -27,6 +29,7 @@ primrose.configuration.util module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -36,3 +39,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

@@ -5,6 +5,7 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
    primrose.base
    primrose.cleanup
@@ -30,6 +31,7 @@ primrose.dag\_runner module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.data\_object module
 ----------------------------
@@ -38,6 +40,7 @@ primrose.data\_object module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.node\_factory module
 -----------------------------
@@ -46,6 +49,7 @@ primrose.node\_factory module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.notification\_utils module
 -----------------------------------
@@ -54,6 +58,7 @@ primrose.notification\_utils module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.util module
 --------------------
@@ -62,6 +67,7 @@ primrose.util module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -71,3 +77,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

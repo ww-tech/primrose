@@ -11,6 +11,7 @@ primrose.templates.awesome\_model module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.templates.awesome\_reader module
 -----------------------------------------
@@ -19,6 +20,7 @@ primrose.templates.awesome\_reader module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.templates.run\_plot\_dag module
 ----------------------------------------
@@ -27,6 +29,7 @@ primrose.templates.run\_plot\_dag module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.templates.run\_primrose module
 ---------------------------------------
@@ -35,6 +38,7 @@ primrose.templates.run\_primrose module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.templates.user\_registration\_template module
 ------------------------------------------------------
@@ -43,6 +47,7 @@ primrose.templates.user\_registration\_template module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -52,3 +57,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

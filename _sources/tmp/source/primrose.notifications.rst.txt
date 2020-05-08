@@ -11,6 +11,7 @@ primrose.notifications.abstract\_notification module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.notifications.success\_notification module
 ---------------------------------------------------
@@ -19,6 +20,7 @@ primrose.notifications.success\_notification module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -28,3 +30,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

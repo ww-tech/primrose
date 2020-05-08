@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -175,14 +175,34 @@
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.conditional_path_node.AbstractConditionalPath">
-<em class="property">class </em><code class="sig-prename descclassname">base.conditional_path_node.</code><code class="sig-name descname">AbstractConditionalPath</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.conditional_path_node.</code><code class="sig-name descname">AbstractConditionalPath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>A class that supports conditional pathing through the DAG.
 After running, prune() can provide a list of destination nodes, representing start of paths to prune.
 DAGRunner can then prune those nodes, and all paths downstream of those nodes, from the DAG</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.conditional_path_node.AbstractConditionalPath._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.conditional_path_node.AbstractConditionalPath._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.conditional_path_node.AbstractConditionalPath._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.conditional_path_node.AbstractConditionalPath._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.conditional_path_node.AbstractConditionalPath.all_nodes_to_prune">
 <code class="sig-name descname">all_nodes_to_prune</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath.all_nodes_to_prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>What are all the nodes we should prune from the DAG?</p>
@@ -198,7 +218,7 @@ the complete subgraphs starting with those destinations</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.conditional_path_node.AbstractConditionalPath.destinations_to_prune">
 <em class="property">abstract </em><code class="sig-name descname">destinations_to_prune</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.conditional_path_node.AbstractConditionalPath.destinations_to_prune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Which destinations, if any, should we prune from DAG?</p>
@@ -220,14 +240,34 @@ the complete subgraphs starting with those destinations</p>
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.model.AbstractModel">
-<em class="property">class </em><code class="sig-prename descclassname">base.model.</code><code class="sig-name descname">AbstractModel</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.model.</code><code class="sig-name descname">AbstractModel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>Model class should be able to train, evaluate or predict</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.model.AbstractModel._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.model.AbstractModel._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.model.AbstractModel._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.model.AbstractModel._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.model.AbstractModel._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.model.AbstractModel._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.model.AbstractModel._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.model.AbstractModel._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.model.AbstractModel.eval_model">
-<em class="property">abstract </em><code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.eval_model" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.eval_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate a previously trained model performance using labeled data</p>
 <blockquote>
 <div><p>Method should be able to load a serialized model if necessary (load_model method), or work from a model
@@ -247,9 +287,9 @@ model error into attributes that are serialized with the save_model method</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.model.AbstractModel.necessary_config">
-<em class="property">abstract static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of necessary configuration keys within the implementation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -267,9 +307,9 @@ model error into attributes that are serialized with the save_model method</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.model.AbstractModel.predict">
-<em class="property">abstract </em><code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.predict" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make predictions using a pre-trained model on the features in the feature_df dataframe</p>
 <blockquote>
 <div><p>Using a pre-trained model (either from an in-scope run of train_model or a call to the load_model method)
@@ -294,9 +334,9 @@ also add feature importance columns, for importance analysis</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.model.AbstractModel.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>run the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -311,9 +351,9 @@ also add feature importance columns, for importance analysis</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.model.AbstractModel.train_model">
-<em class="property">abstract </em><code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.train_model" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.model.AbstractModel.train_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train an internal model attribute, then save the trained model with the save_model method</p>
 <blockquote>
 <div><p>Using the training features in feature_df (pandas dataframe object) and the target_variable (pandas series),
@@ -343,13 +383,33 @@ in parameters</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.node.AbstractNode">
-<em class="property">class </em><code class="sig-prename descclassname">base.node.</code><code class="sig-name descname">AbstractNode</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.node.</code><code class="sig-name descname">AbstractNode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.node.AbstractNode._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.node.AbstractNode._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.node.AbstractNode._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.node.AbstractNode._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.node.AbstractNode._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.node.AbstractNode._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.node.AbstractNode._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.node.AbstractNode._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.node.AbstractNode.necessary_config">
-<em class="property">abstract static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of necessary configuration keys within the implementation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -365,9 +425,9 @@ configuration</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.node.AbstractNode.run">
-<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode.run" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.node.AbstractNode.run" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>run the node. For a reader, that means read, for a writer that means write etc.</p>
 </div></blockquote>
@@ -400,14 +460,34 @@ configuration</p>
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.pipeline.AbstractPipeline">
-<em class="property">class </em><code class="sig-prename descclassname">base.pipeline.</code><code class="sig-name descname">AbstractPipeline</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.pipeline.</code><code class="sig-name descname">AbstractPipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>Pipeline class should have a defined pipeline that it executes and the ability to transform raw data</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.pipeline.AbstractPipeline._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.pipeline.AbstractPipeline._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.pipeline.AbstractPipeline._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.pipeline.AbstractPipeline._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.pipeline.AbstractPipeline._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.pipeline.AbstractPipeline._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.pipeline.AbstractPipeline._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.pipeline.AbstractPipeline._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.check_for_upstream_transformers">
-<code class="sig-name descname">check_for_upstream_transformers</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.check_for_upstream_transformers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_for_upstream_transformers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.check_for_upstream_transformers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Examine the upstream data_object for any TransformerSequence</p>
 <p>if not found, then initialize a new TransformerSequence</p>
 <dl class="field-list simple">
@@ -420,9 +500,9 @@ configuration</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.execute_pipeline">
-<code class="sig-name descname">execute_pipeline</code><span class="sig-paren">(</span><em class="sig-param">input_</em>, <em class="sig-param">mode</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.execute_pipeline" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">execute_pipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_</span></em>, <em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.execute_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run a TransformerSequence of functions with chained input and output data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -437,9 +517,9 @@ configuration</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.fit_transform">
-<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean/transform or filter data using a pipeline of functions</p>
 <p>The method should also cache results and report on sizing for debugging. fit_transform must store the
 information necessary for data transformations on test data, so any encodings or model-based imputations must be
@@ -457,7 +537,7 @@ cached in this method, to be called when the transform method is used.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.init_pipeline">
 <code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.init_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the pipeline if no pipeline object is found in the upstream data objects</p>
@@ -468,9 +548,9 @@ cached in this method, to be called when the transform method is used.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of necessary configuration keys within the implementation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -485,9 +565,9 @@ cached in this method, to be called when the transform method is used.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run pipeline on the data object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -507,9 +587,9 @@ cached in this method, to be called when the transform method is used.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.pipeline.AbstractPipeline.transform">
-<em class="property">abstract </em><code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.transform" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.AbstractPipeline.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean/transform or filter data using a pipeline of functions and any cached objects from fit_transform</p>
 <p>The method should cache post-transform results and report on sizing for debugging. tranform uses the cached
 objects scored in the fit_tranform call to transform data. It’s likely to be used for live predictions or
@@ -526,7 +606,7 @@ test (hold-out) data.</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="base.pipeline.PipelineModeType">
 <em class="property">class </em><code class="sig-prename descclassname">base.pipeline.</code><code class="sig-name descname">PipelineModeType</code><a class="headerlink" href="#base.pipeline.PipelineModeType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
@@ -537,30 +617,42 @@ test (hold-out) data.</p>
 TRANSFORM = transform data only from (previously) fit transformers in a pipeline
 FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 </div>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="base.pipeline.PipelineModeType.FIT">
 <code class="sig-name descname">FIT</code><em class="property"> = 'FIT'</em><a class="headerlink" href="#base.pipeline.PipelineModeType.FIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="base.pipeline.PipelineModeType.FIT_TRANSFORM">
 <code class="sig-name descname">FIT_TRANSFORM</code><em class="property"> = 'FIT_TRANSFORM'</em><a class="headerlink" href="#base.pipeline.PipelineModeType.FIT_TRANSFORM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="base.pipeline.PipelineModeType.TRANSFORM">
 <code class="sig-name descname">TRANSFORM</code><em class="property"> = 'TRANSFORM'</em><a class="headerlink" href="#base.pipeline.PipelineModeType.TRANSFORM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py method">
 <dt id="base.pipeline.PipelineModeType.names">
-<code class="sig-name descname">names</code><em class="property"> = &lt;function PipelineModeType.names&gt;</em><a class="headerlink" href="#base.pipeline.PipelineModeType.names" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">static </em><code class="sig-name descname">names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.PipelineModeType.names" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all the names in the enum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of Enum’s names</p>
+</dd>
+</dl>
+</dd></dl>
 
-<dl class="attribute">
+<dl class="py method">
 <dt id="base.pipeline.PipelineModeType.values">
-<code class="sig-name descname">values</code><em class="property"> = &lt;function PipelineModeType.values&gt;</em><a class="headerlink" href="#base.pipeline.PipelineModeType.values" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">static </em><code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.pipeline.PipelineModeType.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of the enum’s values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of (value, PipelineModeType) pairs</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -573,11 +665,31 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.postprocess.AbstractPostprocess">
-<em class="property">class </em><code class="sig-prename descclassname">base.postprocess.</code><code class="sig-name descname">AbstractPostprocess</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.postprocess.AbstractPostprocess" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.postprocess.</code><code class="sig-name descname">AbstractPostprocess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.postprocess.AbstractPostprocess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>Postprocess module which must have an postprocess method to send data to an external source</p>
+<dl class="py attribute">
+<dt id="base.postprocess.AbstractPostprocess._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.postprocess.AbstractPostprocess._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.postprocess.AbstractPostprocess._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.postprocess.AbstractPostprocess._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.postprocess.AbstractPostprocess._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.postprocess.AbstractPostprocess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.postprocess.AbstractPostprocess._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.postprocess.AbstractPostprocess._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -588,11 +700,31 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.reader.AbstractReader">
-<em class="property">class </em><code class="sig-prename descclassname">base.reader.</code><code class="sig-name descname">AbstractReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.reader.AbstractReader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.reader.</code><code class="sig-name descname">AbstractReader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.reader.AbstractReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>read some data from somewhere</p>
+<dl class="py attribute">
+<dt id="base.reader.AbstractReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.reader.AbstractReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.reader.AbstractReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.reader.AbstractReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.reader.AbstractReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.reader.AbstractReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.reader.AbstractReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.reader.AbstractReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -603,12 +735,32 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.search_engine.AbstractSearchEngine">
-<em class="property">class </em><code class="sig-prename descclassname">base.search_engine.</code><code class="sig-name descname">AbstractSearchEngine</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.search_engine.</code><code class="sig-name descname">AbstractSearchEngine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.model.AbstractModel" title="primrose.base.model.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.model.AbstractModel</span></code></a></p>
 <p>an abstract search engine</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.search_engine.AbstractSearchEngine._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.search_engine.AbstractSearchEngine._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.search_engine.AbstractSearchEngine._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.search_engine.AbstractSearchEngine._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.search_engine.AbstractSearchEngine._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.search_engine.AbstractSearchEngine._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.search_engine.AbstractSearchEngine._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.search_engine.AbstractSearchEngine._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.cosine_similarity_matrix">
 <code class="sig-name descname">cosine_similarity_matrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.cosine_similarity_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute the cosine similarities between all document pairs in the corpus</p>
@@ -622,9 +774,9 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.eval_model">
-<code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.eval_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">eval_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.eval_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>evaluate the model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -639,9 +791,9 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of necessary configuration keys for AbstractSearchEngine</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -660,9 +812,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>make predictions from this corpus, meaning create cosine similarity matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -677,9 +829,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.tokenize">
-<em class="property">abstract </em><code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">s</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.tokenize" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.tokenize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given some string, tokenize it</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -691,9 +843,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.search_engine.AbstractSearchEngine.train_model">
-<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.train_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.search_engine.AbstractSearchEngine.train_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>train the model which means run fit_transform on a TFIDF model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -718,20 +870,110 @@ doc_key: key used in the corpus object for docs</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.sql_reader.AbstractSqlReader">
-<em class="property">class </em><code class="sig-prename descclassname">base.sql_reader.</code><code class="sig-name descname">AbstractSqlReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.sql_reader.</code><code class="sig-name descname">AbstractSqlReader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
 <p>A reader that explicitly reads from relational DB using SQL and is able to run pd.read_sql.</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.sql_reader.AbstractSqlReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.sql_reader.AbstractSqlReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.sql_reader.AbstractSqlReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.sql_reader.AbstractSqlReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.sql_reader.AbstractSqlReader._generate_queries">
+<code class="sig-name descname">_generate_queries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._generate_queries" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate final queries, using parameter substitution, if requested</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>query_json should be structured as:                 “query_json”: [                     {                         “query”: “somequery.sql”,                         “parameters”: {                             “x”: 1,                             “y”: 2                         }                     },                     {                         “query”: “someotherquery.sql”,                         “parameters”: {                             “x”: 3,                             “y”: “somestring”                         }                     }                 ]             where parameters is an optional key.</p>
+<p>This generator will return each query string with variables substituted from parameters (if any)</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>query (str)</em> – query</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.sql_reader.AbstractSqlReader._get_key">
+<code class="sig-name descname">_get_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._get_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the key name for the ith query in the query_json list. This is the key used when adding the dataframe to the dataobject.
+If none is provided, default to <cite>query_i</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – the index of the query</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>key name for placement in a <cite>DataObject</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>key (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.sql_reader.AbstractSqlReader._substitute_query">
+<em class="property">static </em><code class="sig-name descname">_substitute_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query_json</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader._substitute_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitue our paramters in a query string. Renders the file as a jinja template to allow for advanced
+query nesting and logic. Uses a jinja environment which searches for templates (sql queries) using relative
+path and absolute path.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>given JSON:</p>
+<dl>
+<dt>{</dt><dd><p>“query”: “somequery.sql”,
+“parameters”: {</p>
+<blockquote>
+<div><p>“x”: 3,
+“y”: “somestring”</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}</p>
+<p>and <cite>somequery.sql</cite>:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">from</span> <span class="pre">table_01</span> <span class="pre">where</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">{x}</span> <span class="pre">and</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">{y}</span>
+<span class="pre">`</span></code></p>
+<p>This function will read in the SQL file via jinja, and if parameters is present, substitue out the parameters, returning the final query string</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>JSON</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>query_json (JSON)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="base.sql_reader.AbstractSqlReader.get_connection">
 <em class="property">abstract </em><code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.get_connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a database connection, one that is compatible with pd.read_sql</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.sql_reader.AbstractSqlReader.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of necessary configuration keys within the implementation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -749,9 +991,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.sql_reader.AbstractSqlReader.query_db">
-<code class="sig-name descname">query_db</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">conn</em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.query_db" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">query_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">conn</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.query_db" title="Permalink to this definition">¶</a></dt>
 <dd><p>Query the db using Bigquery logic if specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -769,9 +1011,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.sql_reader.AbstractSqlReader.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.sql_reader.AbstractSqlReader.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>run SQL queries into pandas dataframes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -802,11 +1044,31 @@ doc_key: key used in the corpus object for docs</p>
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.success.AbstractSuccess">
-<em class="property">class </em><code class="sig-prename descclassname">base.success.</code><code class="sig-name descname">AbstractSuccess</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.success.AbstractSuccess" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.success.</code><code class="sig-name descname">AbstractSuccess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.success.AbstractSuccess" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>Ability to cleanup, such as notify success</p>
+<dl class="py attribute">
+<dt id="base.success.AbstractSuccess._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.success.AbstractSuccess._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.success.AbstractSuccess._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.success.AbstractSuccess._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.success.AbstractSuccess._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.success.AbstractSuccess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.success.AbstractSuccess._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.success.AbstractSuccess._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -818,14 +1080,34 @@ doc_key: key used in the corpus object for docs</p>
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.transformer.AbstractTransformer">
 <em class="property">class </em><code class="sig-prename descclassname">base.transformer.</code><code class="sig-name descname">AbstractTransformer</code><a class="headerlink" href="#base.transformer.AbstractTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Serializable object that can be string together within a pipeline</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="base.transformer.AbstractTransformer._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.transformer.AbstractTransformer._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.transformer.AbstractTransformer._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.transformer.AbstractTransformer._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.transformer.AbstractTransformer._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.transformer.AbstractTransformer._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.transformer.AbstractTransformer._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.transformer.AbstractTransformer._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="base.transformer.AbstractTransformer.fit">
-<em class="property">abstract </em><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>User implements fit operation on a single data element from a data_object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -837,9 +1119,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.transformer.AbstractTransformer.fit_transform">
-<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit then transform data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -851,9 +1133,9 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.transformer.AbstractTransformer.transform">
-<em class="property">abstract </em><code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer.AbstractTransformer.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>User implements internal transform function which operates on a single data element from a data_object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -875,14 +1157,14 @@ doc_key: key used in the corpus object for docs</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.transformer_sequence.TransformerSequence">
-<em class="property">class </em><code class="sig-prename descclassname">base.transformer_sequence.</code><code class="sig-name descname">TransformerSequence</code><span class="sig-paren">(</span><em class="sig-param">sequence=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer_sequence.TransformerSequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.transformer_sequence.</code><code class="sig-name descname">TransformerSequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sequence</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer_sequence.TransformerSequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A container for list of transformers</p>
-<dl class="method">
+<dl class="py method">
 <dt id="base.transformer_sequence.TransformerSequence.add">
-<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">transformer</em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer_sequence.TransformerSequence.add" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer_sequence.TransformerSequence.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>add a transformer to the sequence</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -894,7 +1176,7 @@ doc_key: key used in the corpus object for docs</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="base.transformer_sequence.TransformerSequence.transformers">
 <code class="sig-name descname">transformers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.transformer_sequence.TransformerSequence.transformers" title="Permalink to this definition">¶</a></dt>
 <dd><p>generate: yield each transformer</p>
@@ -915,11 +1197,31 @@ doc_key: key used in the corpus object for docs</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="base.writer.AbstractWriter">
-<em class="property">class </em><code class="sig-prename descclassname">base.writer.</code><code class="sig-name descname">AbstractWriter</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#base.writer.AbstractWriter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">base.writer.</code><code class="sig-name descname">AbstractWriter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.writer.AbstractWriter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>write some data somewhere</p>
+<dl class="py attribute">
+<dt id="base.writer.AbstractWriter._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.writer.AbstractWriter._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.writer.AbstractWriter._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.writer.AbstractWriter._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.writer.AbstractWriter._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#base.writer.AbstractWriter._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.writer.AbstractWriter._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#base.writer.AbstractWriter._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>

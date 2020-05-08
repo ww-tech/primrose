@@ -11,6 +11,7 @@ primrose.pipelines.dataframe\_joiner module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.pipelines.encode\_train\_test\_split module
 ----------------------------------------------------
@@ -19,6 +20,7 @@ primrose.pipelines.encode\_train\_test\_split module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.pipelines.sklearn\_preprocessing\_pipeline module
 ----------------------------------------------------------
@@ -27,6 +29,7 @@ primrose.pipelines.sklearn\_preprocessing\_pipeline module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.pipelines.train\_test\_split module
 --------------------------------------------
@@ -35,6 +38,7 @@ primrose.pipelines.train\_test\_split module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -44,3 +48,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

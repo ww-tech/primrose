@@ -11,6 +11,7 @@ writers.abstract\_file\_writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 writers.csv\_writer module
 --------------------------
@@ -19,6 +20,7 @@ writers.csv\_writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 writers.dill\_writer module
 ---------------------------
@@ -27,6 +29,7 @@ writers.dill\_writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 writers.file\_writer module
 ---------------------------
@@ -35,6 +38,7 @@ writers.file\_writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 writers.s3\_writer module
 -------------------------
@@ -43,6 +47,7 @@ writers.s3\_writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 writers.serializer module
 -------------------------
@@ -51,6 +56,7 @@ writers.serializer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -60,3 +66,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

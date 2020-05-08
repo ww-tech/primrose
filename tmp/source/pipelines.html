@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -175,12 +175,32 @@
 <dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="pipelines.dataframe_joiner.DataFrameJoiner">
-<em class="property">class </em><code class="sig-prename descclassname">pipelines.dataframe_joiner.</code><code class="sig-name descname">DataFrameJoiner</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pipelines.dataframe_joiner.</code><code class="sig-name descname">DataFrameJoiner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.pipeline.AbstractPipeline" title="primrose.base.pipeline.AbstractPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.pipeline.AbstractPipeline</span></code></a></p>
 <p>Join upstream dataframes</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="pipelines.dataframe_joiner.DataFrameJoiner._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.dataframe_joiner.DataFrameJoiner._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.dataframe_joiner.DataFrameJoiner._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.dataframe_joiner.DataFrameJoiner._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pipelines.dataframe_joiner.DataFrameJoiner.init_pipeline">
 <code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner.init_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>create the pipeline’s TransformerSequence</p>
@@ -191,9 +211,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.dataframe_joiner.DataFrameJoiner.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the necessary configuration keys for the DataFrameJoiner object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -212,9 +232,9 @@ join_key: list of column names to join dataframes from different readers on</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.dataframe_joiner.DataFrameJoiner.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.dataframe_joiner.DataFrameJoiner.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get DataFrames from the data object then put them into a alphabetical list for constant join order</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -239,14 +259,34 @@ join_key: list of column names to join dataframes from different readers on</p>
 <dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit">
-<em class="property">class </em><code class="sig-prename descclassname">pipelines.encode_train_test_split.</code><code class="sig-name descname">EncodeTrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pipelines.encode_train_test_split.</code><code class="sig-name descname">EncodeTrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.pipelines.html#primrose.pipelines.train_test_split.TrainTestSplit" title="primrose.pipelines.train_test_split.TrainTestSplit"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.pipelines.train_test_split.TrainTestSplit</span></code></a></p>
 <p>Encode all string df columns to numeric labels, inherit test/train split from parent</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit.final_data_object_additions">
-<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overload function which adds the label encoder after running fit_transform or transform</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -258,7 +298,7 @@ join_key: list of column names to join dataframes from different readers on</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit.first_transformer_in_sequence">
 <em class="property">property </em><code class="sig-name descname">first_transformer_in_sequence</code><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit.first_transformer_in_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns 1st transformer in a sequence</p>
@@ -269,7 +309,7 @@ join_key: list of column names to join dataframes from different readers on</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.encode_train_test_split.EncodeTrainTestSplit.init_pipeline">
 <code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.encode_train_test_split.EncodeTrainTestSplit.init_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>create the pipeline’s TransformerSequence</p>
@@ -290,11 +330,42 @@ join_key: list of column names to join dataframes from different readers on</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline">
-<em class="property">class </em><code class="sig-prename descclassname">pipelines.sklearn_preprocessing_pipeline.</code><code class="sig-name descname">SklearnPreprocessingPipeline</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pipelines.sklearn_preprocessing_pipeline.</code><code class="sig-name descname">SklearnPreprocessingPipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.pipelines.html#primrose.pipelines.train_test_split.TrainTestSplit" title="primrose.pipelines.train_test_split.TrainTestSplit"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.pipelines.train_test_split.TrainTestSplit</span></code></a></p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._instantiate_preprocessor">
+<em class="property">static </em><code class="sig-name descname">_instantiate_preprocessor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classname</span></em>, <em class="sig-param"><span class="n">args</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline._instantiate_preprocessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import and validate user-defined sklearn preprocessor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>SklearnPreprocessingTransformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.init_pipeline">
 <code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.init_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>create the pipeline’s TransformerSequence</p>
@@ -305,9 +376,9 @@ join_key: list of column names to join dataframes from different readers on</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.sklearn_preprocessing_pipeline.SklearnPreprocessingPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the necessary configuration keys for the SklearnPreprocessingPipeline object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -327,9 +398,9 @@ join_key: list of column names to join dataframes from different readers on</p>
 Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="pipelines.train_test_split.TrainTestSplit">
-<em class="property">class </em><code class="sig-prename descclassname">pipelines.train_test_split.</code><code class="sig-name descname">TrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pipelines.train_test_split.</code><code class="sig-name descname">TrainTestSplit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.pipeline.AbstractPipeline" title="primrose.base.pipeline.AbstractPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.pipeline.AbstractPipeline</span></code></a></p>
 <p>Parent pipeline to split into training / testing data, and run a transform</p>
 <div class="admonition note">
@@ -340,9 +411,64 @@ Otherwise, make a child class and write an init_pipeline method to perform opera
 <p>This class also handles writing your transformer_sequence into the data_object, so there’s no need
 to write in child classes.</p>
 </div>
-<dl class="method">
+<dl class="py attribute">
+<dt id="pipelines.train_test_split.TrainTestSplit._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.train_test_split.TrainTestSplit._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.train_test_split.TrainTestSplit._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.train_test_split.TrainTestSplit._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.train_test_split.TrainTestSplit._concatenate_upstream_dataframes">
+<em class="property">static </em><code class="sig-name descname">_concatenate_upstream_dataframes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._concatenate_upstream_dataframes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate multiple upstream data sources into a single dataframe</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Upstream objects must add dataframes with the same schema, otherwise mismatched columns will have
+all NULL values in the mutual exclusive indexes</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – list of dicts keyed to instances</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>concatenated dataframes from the data list</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dataframe (DataFrame)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.train_test_split.TrainTestSplit._train_test_split">
+<code class="sig-name descname">_train_test_split</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit._train_test_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split data into test/train sets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p>train_data_to_transform (DataFrame)</p>
+<p>test_data_to_transform (DataFrame)</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pipelines.train_test_split.TrainTestSplit.features">
-<code class="sig-name descname">features</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.features" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">features</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.features" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use user-specified features if available, otherwise use all non-target columns</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -354,9 +480,9 @@ to write in child classes.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.train_test_split.TrainTestSplit.final_data_object_additions">
-<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">final_data_object_additions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.final_data_object_additions" title="Permalink to this definition">¶</a></dt>
 <dd><p>DataObject: Template method to be overloaded in child classes</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -375,9 +501,9 @@ to write in child classes.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.train_test_split.TrainTestSplit.fit_transform">
-<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split data into testing and training sets, then applies the categorical transform to each</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -392,9 +518,9 @@ to write in child classes.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.train_test_split.TrainTestSplit.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the necessary configuration keys for the DataFrameJoiner object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -412,9 +538,9 @@ to write in child classes.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pipelines.train_test_split.TrainTestSplit.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.train_test_split.TrainTestSplit.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform the data into label encoded data using the pre-trained transformer sequence</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

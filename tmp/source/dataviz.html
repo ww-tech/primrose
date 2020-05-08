@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -175,14 +175,34 @@
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="dataviz.cluster_plotter.ClusterPlotter">
-<em class="property">class </em><code class="sig-prename descclassname">dataviz.cluster_plotter.</code><code class="sig-name descname">ClusterPlotter</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dataviz.cluster_plotter.</code><code class="sig-name descname">ClusterPlotter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.node.AbstractNode" title="primrose.base.node.AbstractNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.node.AbstractNode</span></code></a></p>
 <p>Plot clusters on a 2D scatter plot</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="dataviz.cluster_plotter.ClusterPlotter._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dataviz.cluster_plotter.ClusterPlotter._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dataviz.cluster_plotter.ClusterPlotter._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="dataviz.cluster_plotter.ClusterPlotter._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="dataviz.cluster_plotter.ClusterPlotter.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the necessary configuration keys for the ClusterPlotter object</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -196,9 +216,9 @@ filename (str): name of the file</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="dataviz.cluster_plotter.ClusterPlotter.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataviz.cluster_plotter.ClusterPlotter.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a PNG image of the clustered data</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

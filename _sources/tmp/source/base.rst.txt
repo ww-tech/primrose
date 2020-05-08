@@ -11,6 +11,7 @@ base.conditional\_path\_node module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.model module
 -----------------
@@ -19,6 +20,7 @@ base.model module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.node module
 ----------------
@@ -27,6 +29,7 @@ base.node module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.pipeline module
 --------------------
@@ -35,6 +38,7 @@ base.pipeline module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.postprocess module
 -----------------------
@@ -43,6 +47,7 @@ base.postprocess module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.reader module
 ------------------
@@ -51,6 +56,7 @@ base.reader module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.search\_engine module
 --------------------------
@@ -59,6 +65,7 @@ base.search\_engine module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.sql\_reader module
 -----------------------
@@ -67,6 +74,7 @@ base.sql\_reader module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.success module
 -------------------
@@ -75,6 +83,7 @@ base.success module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.transformer module
 -----------------------
@@ -83,6 +92,7 @@ base.transformer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.transformer\_sequence module
 ---------------------------------
@@ -91,6 +101,7 @@ base.transformer\_sequence module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 base.writer module
 ------------------
@@ -99,6 +110,7 @@ base.writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -108,3 +120,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

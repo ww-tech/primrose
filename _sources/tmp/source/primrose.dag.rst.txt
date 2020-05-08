@@ -11,6 +11,7 @@ primrose.dag.config\_layer\_traverser module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.dag.dag\_traverser module
 ----------------------------------
@@ -19,6 +20,7 @@ primrose.dag.dag\_traverser module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.dag.depth\_first\_traverser module
 -------------------------------------------
@@ -27,6 +29,7 @@ primrose.dag.depth\_first\_traverser module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.dag.traverser\_factory module
 --------------------------------------
@@ -35,6 +38,7 @@ primrose.dag.traverser\_factory module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -44,3 +48,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

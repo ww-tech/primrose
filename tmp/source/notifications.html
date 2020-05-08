@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -175,13 +175,33 @@
 <dt>Author(s):</dt><dd><p>Parul Laul (<a class="reference external" href="mailto:parul&#46;laul&#37;&#52;&#48;ww&#46;com">parul<span>&#46;</span>laul<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="notifications.abstract_notification.AbstractNotification">
 <em class="property">class </em><code class="sig-prename descclassname">notifications.abstract_notification.</code><code class="sig-name descname">AbstractNotification</code><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="notifications.abstract_notification.AbstractNotification._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.abstract_notification.AbstractNotification._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.abstract_notification.AbstractNotification._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.abstract_notification.AbstractNotification._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="notifications.abstract_notification.AbstractNotification.post_message">
-<em class="property">abstract </em><code class="sig-name descname">post_message</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification.post_message" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">post_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.abstract_notification.AbstractNotification.post_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends message to the notification client.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,23 +218,43 @@
 <p>Module with AbstractSuccess implementation.
 Provides slack notification after job completion</p>
 <p>author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul&#37;&#52;&#48;ww&#46;com">parul<span>&#46;</span>laul<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
-<dl class="class">
+<dl class="py class">
 <dt id="notifications.success_notification.ClientNotification">
-<em class="property">class </em><code class="sig-prename descclassname">notifications.success_notification.</code><code class="sig-name descname">ClientNotification</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">notifications.success_notification.</code><code class="sig-name descname">ClientNotification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.success.AbstractSuccess" title="primrose.base.success.AbstractSuccess"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.success.AbstractSuccess</span></code></a></p>
 <p>Outputs success notification using specified client after job completion.</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="notifications.success_notification.ClientNotification._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.success_notification.ClientNotification._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.success_notification.ClientNotification._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.success_notification.ClientNotification._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.success_notification.ClientNotification._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#notifications.success_notification.ClientNotification._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="notifications.success_notification.ClientNotification._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#notifications.success_notification.ClientNotification._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="notifications.success_notification.ClientNotification.necessary_config">
-<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification.necessary_config" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification.necessary_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the necessary configuration keys for the ClientNotification object</p>
 <p class="rubric">Notes</p>
 <p>client (<cite>str</cite>): The client object to be instantiated (ex. ‘SlackClient’)
 token (<cite>str</cite>): The token used to initialize the client</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="notifications.success_notification.ClientNotification.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.ClientNotification.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run job to post slack message</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -228,9 +268,9 @@ token (<cite>str</cite>): The token used to initialize the client</p>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="notifications.success_notification.get_client_params">
-<code class="sig-prename descclassname">notifications.success_notification.</code><code class="sig-name descname">get_client_params</code><span class="sig-paren">(</span><em class="sig-param">params: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.get_client_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">notifications.success_notification.</code><code class="sig-name descname">get_client_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notifications.success_notification.get_client_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates the parameter dictionary to be read by the
 <cite>get_notification_client</cite> method.</p>
 <dl class="field-list simple">

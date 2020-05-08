@@ -11,6 +11,7 @@ primrose.base.conditional\_path\_node module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.model module
 --------------------------
@@ -19,6 +20,7 @@ primrose.base.model module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.node module
 -------------------------
@@ -27,6 +29,7 @@ primrose.base.node module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.pipeline module
 -----------------------------
@@ -35,6 +38,7 @@ primrose.base.pipeline module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.postprocess module
 --------------------------------
@@ -43,6 +47,7 @@ primrose.base.postprocess module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.reader module
 ---------------------------
@@ -51,6 +56,7 @@ primrose.base.reader module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.search\_engine module
 -----------------------------------
@@ -59,6 +65,7 @@ primrose.base.search\_engine module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.sql\_reader module
 --------------------------------
@@ -67,6 +74,7 @@ primrose.base.sql\_reader module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.success module
 ----------------------------
@@ -75,6 +83,7 @@ primrose.base.success module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.transformer module
 --------------------------------
@@ -83,6 +92,7 @@ primrose.base.transformer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.transformer\_sequence module
 ------------------------------------------
@@ -91,6 +101,7 @@ primrose.base.transformer\_sequence module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 primrose.base.writer module
 ---------------------------
@@ -99,6 +110,7 @@ primrose.base.writer module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 
 Module contents
@@ -108,3 +120,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

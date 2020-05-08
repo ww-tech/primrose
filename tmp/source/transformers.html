@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -175,18 +175,101 @@
 <dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.categoricals.ExplicitCategoricalTransform">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ExplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param">categoricals</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ExplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">categoricals</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="transformers.categoricals.ExplicitCategoricalTransform.DEFAULT_NUMERIC">
 <code class="sig-name descname">DEFAULT_NUMERIC</code><em class="property"> = -9999</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.DEFAULT_NUMERIC" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._process_numeric">
+<em class="property">static </em><code class="sig-name descname">_process_numeric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">input_data</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._process_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert column to numeric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – dataframe</p></li>
+<li><p><strong>configuration</strong> (<em>input</em>) – JSON categorical config for this variable</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – field name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data with the colun converted to numeric</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._process_rename">
+<em class="property">static </em><code class="sig-name descname">_process_rename</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">input_data</span></em>, <em class="sig-param"><span class="n">categorical</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._process_rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>rename a field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – dataframe</p></li>
+<li><p><strong>configuration</strong> (<em>input</em>) – JSON categorical config for this variable</p></li>
+<li><p><strong>categorical</strong> (<em>str</em>) – varible name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data (dataframe): dataframe</p>
+<p>name (str): original name (if not “to_numeric”: True), new_name otherwise</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="transformers.categoricals.ExplicitCategoricalTransform._process_transformations">
+<em class="property">static </em><code class="sig-name descname">_process_transformations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">input_data</span></em>, <em class="sig-param"><span class="n">categorical</span></em>, <em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform._process_transformations" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform a column</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – dataframe</p></li>
+<li><p><strong>configuration</strong> (<em>input</em>) – JSON categorical config for this variable</p></li>
+<li><p><strong>categorical</strong> (<em>str</em>) – varible name</p></li>
+<li><p><strong>x</strong> (<em>str</em>) – transformation string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data (dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="transformers.categoricals.ExplicitCategoricalTransform.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>User implements fit operation on a single data element from a data_object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,9 +281,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.categoricals.ExplicitCategoricalTransform.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ExplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform categorical variables into one or more numeric ones, no need to separate testing &amp; training data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -214,14 +297,34 @@
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.categoricals.ImplicitCategoricalTransform">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ImplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param">target_variable</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.categoricals.</code><code class="sig-name descname">ImplicitCategoricalTransform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_variable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
 <p>Class which implicitly transforms all string columns of a dataframe with sklearn LabelEncoder</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.categoricals.ImplicitCategoricalTransform._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="transformers.categoricals.ImplicitCategoricalTransform.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>encode the data as categorical labels</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -233,9 +336,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.categoricals.ImplicitCategoricalTransform.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.categoricals.ImplicitCategoricalTransform.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform data into categorical variables using pre-trained label encoder</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -257,14 +360,34 @@
 <dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.combine.LeftJoinDataCombiner">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">LeftJoinDataCombiner</code><span class="sig-paren">(</span><em class="sig-param">join_key</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">LeftJoinDataCombiner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">join_key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
 <p>combine two dataframes doing a left join</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.combine.LeftJoinDataCombiner._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.combine.LeftJoinDataCombiner._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.combine.LeftJoinDataCombiner._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.combine.LeftJoinDataCombiner._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="transformers.combine.LeftJoinDataCombiner.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit the data, here doing nothing</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -276,9 +399,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.combine.LeftJoinDataCombiner.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.LeftJoinDataCombiner.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies left joins to combine dataframes from different readers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -292,9 +415,9 @@
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="transformers.combine.left_merge_dataframe_on_validated_join_keys">
-<code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">left_merge_dataframe_on_validated_join_keys</code><span class="sig-paren">(</span><em class="sig-param">left_df</em>, <em class="sig-param">right_df</em>, <em class="sig-param">join_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.left_merge_dataframe_on_validated_join_keys" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">transformers.combine.</code><code class="sig-name descname">left_merge_dataframe_on_validated_join_keys</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">left_df</span></em>, <em class="sig-param"><span class="n">right_df</span></em>, <em class="sig-param"><span class="n">join_keys</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.combine.left_merge_dataframe_on_validated_join_keys" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge two dataframes together or return just the left_df if the right df is None</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -319,14 +442,34 @@
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.filter.FilterByPandasExpression">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.filter.</code><code class="sig-name descname">FilterByPandasExpression</code><span class="sig-paren">(</span><em class="sig-param">feature_filters</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.filter.</code><code class="sig-name descname">FilterByPandasExpression</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">feature_filters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
 <p>Applies filters to data as defined in feature_filters</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.filter.FilterByPandasExpression._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.filter.FilterByPandasExpression._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.filter.FilterByPandasExpression._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.filter.FilterByPandasExpression._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.filter.FilterByPandasExpression._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.filter.FilterByPandasExpression._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.filter.FilterByPandasExpression._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.filter.FilterByPandasExpression._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="transformers.filter.FilterByPandasExpression.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit data, here just passing</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -335,9 +478,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.filter.FilterByPandasExpression.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.filter.FilterByPandasExpression.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies filters to data as defined in feature_filters. This is neccessary so we can filter rows in one reader
 based on information from another, and therefore has to be applied after the combiner step.</p>
 <p>The filters can operate on a single column with a fixed set of operations and a static value:</p>
@@ -374,14 +517,34 @@ based on information from another, and therefore has to be applied after the com
 <p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.impute.ColumnSpecificImpute">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.impute.</code><code class="sig-name descname">ColumnSpecificImpute</code><span class="sig-paren">(</span><em class="sig-param">columns_to_zero</em>, <em class="sig-param">columns_to_mean</em>, <em class="sig-param">columns_to_median</em>, <em class="sig-param">columns_to_mode</em>, <em class="sig-param">columns_to_infinity</em>, <em class="sig-param">columns_to_neg_infinity</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.impute.</code><code class="sig-name descname">ColumnSpecificImpute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">columns_to_zero</span></em>, <em class="sig-param"><span class="n">columns_to_mean</span></em>, <em class="sig-param"><span class="n">columns_to_median</span></em>, <em class="sig-param"><span class="n">columns_to_mode</span></em>, <em class="sig-param"><span class="n">columns_to_infinity</span></em>, <em class="sig-param"><span class="n">columns_to_neg_infinity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
 <p>Transform config specified columns NULL values into zero, mean, median, mode, inf or negative inf</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.impute.ColumnSpecificImpute._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.impute.ColumnSpecificImpute._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.impute.ColumnSpecificImpute._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.impute.ColumnSpecificImpute._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="transformers.impute.ColumnSpecificImpute.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit encoder imputation values to dataframe metrics
 Create a dictionary of column name to imputed values. These values might be straight constants or might
 be a function of the complete column’s value, such as mode or median</p>
@@ -398,9 +561,9 @@ be a function of the complete column’s value, such as mode or median</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.impute.ColumnSpecificImpute.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.impute.ColumnSpecificImpute.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Impute columns in data according to the imputations fit by self.fit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -425,13 +588,33 @@ be a function of the complete column’s value, such as mode or median</p>
 <dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.sklearn_preprocessing_transformer.</code><code class="sig-name descname">SklearnPreprocessingTransformer</code><span class="sig-paren">(</span><em class="sig-param">preprocessor</em>, <em class="sig-param">columns</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.sklearn_preprocessing_transformer.</code><code class="sig-name descname">SklearnPreprocessingTransformer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">preprocessor</span></em>, <em class="sig-param"><span class="n">columns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>User implements fit operation on a single data element from a data_object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -443,9 +626,9 @@ be a function of the complete column’s value, such as mode or median</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit_transform">
-<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit then transform data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -457,9 +640,9 @@ be a function of the complete column’s value, such as mode or median</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>User implements internal transform function which operates on a single data element from a data_object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -481,14 +664,51 @@ be a function of the complete column’s value, such as mode or median</p>
 <dt>Author(s):</dt><dd><p>Brian Graham (<a class="reference external" href="mailto:brian&#46;graham&#37;&#52;&#48;weightwatchers&#46;com">brian<span>&#46;</span>graham<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
 </dd>
 </dl>
-<dl class="class">
+<dl class="py class">
 <dt id="transformers.strings.StringTransformer">
-<em class="property">class </em><code class="sig-prename descclassname">transformers.strings.</code><code class="sig-name descname">StringTransformer</code><span class="sig-paren">(</span><em class="sig-param">method</em>, <em class="sig-param">columns</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">transformers.strings.</code><code class="sig-name descname">StringTransformer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">columns</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.transformer.AbstractTransformer" title="primrose.base.transformer.AbstractTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.transformer.AbstractTransformer</span></code></a></p>
 <p>Transforms Series of strings in a Series or DataFrame.</p>
-<dl class="method">
+<dl class="py attribute">
+<dt id="transformers.strings.StringTransformer._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.strings.StringTransformer._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.strings.StringTransformer._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.strings.StringTransformer._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.strings.StringTransformer._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#transformers.strings.StringTransformer._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="transformers.strings.StringTransformer._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#transformers.strings.StringTransformer._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="transformers.strings.StringTransformer._execute_str_method">
+<code class="sig-name descname">_execute_str_method</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">series</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer._execute_str_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes string method on pandas series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>series</strong> (<em>pd.Series</em>) – pandas series to transform</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>transformed pandas series</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>series (pd.Series)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="transformers.strings.StringTransformer.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">df</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit data, here just passing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -497,9 +717,9 @@ be a function of the complete column’s value, such as mode or median</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="transformers.strings.StringTransformer.transform">
-<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">df</em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformers.strings.StringTransformer.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies string operation on dataframe columns.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
