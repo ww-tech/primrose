@@ -6,6 +6,10 @@ from primrose.configuration.configuration import Configuration
 from primrose.writers.abstract_file_writer import AbstractFileWriter
 from primrose.node_factory import NodeFactory
 
+@pytest.fixture
+def mock_env(monkeypatch):
+    monkeypatch.setenv("PRIMROSE_EXT_NODE_PACKAGE", "test")
+
 def test_init_error0():
     config = {}
     with pytest.raises(Exception) as e:
@@ -463,7 +467,7 @@ implementation_config:
     """
     assert final_str == expected
 
-def test_class_prefix():
+def test_class_prefix(mock_env):
     config_path = {
         "implementation_config": {
             "reader_config": {
@@ -493,7 +497,7 @@ def test_class_prefix():
         NodeFactory().unregister('TestExtNode')
         
 
-def test_class_package():
+def test_class_package(mock_env):
     config_path = {
         "metadata": {
             "class_package": "test"
@@ -534,7 +538,6 @@ def test_class_package():
             }
         }
     }
-    os.environ['PRIMROSE_EXT_NODE_PACKAGE'] = 'test'
     for config in [config_full_path, config_path, config_full_dot]:
         config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
         assert config.config_string
@@ -542,7 +545,7 @@ def test_class_package():
         NodeFactory().unregister('TestExtNode')
 
 
-def test_env_override_class_package():
+def test_env_override_class_package(mock_env):
     config = {
         "metadata": {
             "class_package": "junk"
@@ -556,12 +559,10 @@ def test_env_override_class_package():
             }
         }
     }
-    os.environ['PRIMROSE_EXT_NODE_PACKAGE'] = 'test'
     config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
     assert config.config_string
     assert config.config_hash
     NodeFactory().unregister('TestExtNode')
-    os.environ.pop('PRIMROSE_EXT_NODE_PACKAGE')
 
 
 def test_incorrect_class_package():
