@@ -534,6 +534,7 @@ def test_class_package():
             }
         }
     }
+    os.environ['PRIMROSE_EXT_NODE_PACKAGE'] = 'test'
     for config in [config_full_path, config_path, config_full_dot]:
         config = Configuration(config_location=None, is_dict_config=True, dict_config=config)
         assert config.config_string
