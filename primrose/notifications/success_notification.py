@@ -11,6 +11,7 @@ import os
 import logging
 
 from primrose.base.success import AbstractSuccess
+from primrose.data_object import DataObjectResponseType
 
 from primrose.notification_utils import get_notification_client
 
@@ -81,6 +82,9 @@ class ClientNotification(AbstractSuccess):
         """
         super().__init__(configuration, instance_name)
         self.message = self.node_config.get("message", "SUCCESS! DAG Completed")
+        self.use_configuration_file_message = self.node_config.get("use_configuration_file_message", True)
+        self.node_name = self.node_config.get("node_name", "")
+        self.message_key = self.node_config.get("message_key", "")
 
         # read from config dict or environment variables
         self.client = get_notification_client(params=get_client_params(self.node_config))
@@ -97,6 +101,27 @@ class ClientNotification(AbstractSuccess):
         config_params = set(["client", "token"])
         return config_params.union(AbstractSuccess.necessary_config(node_config))
 
+    @staticmethod
+    def optional_config(node_config):
+        """Returns the optional configuration keys
+
+        Args:
+            node_config (dict): set of parameters for the node
+
+        optional keys:
+            use_configuration_file_message(bool): True if you want the slack client to send message from
+            configuration file. This is the default behavior. If you set it to false
+            pass the next two parameters to send alternate message passed from another node.
+
+            node_name(str): the name of the node where this module will find the message to
+            post
+
+            message_key(str): the key in the node that should be used for getting the message
+        Returns:
+            Set of optional keys for the pipeline object
+        """
+        return set(["use_config_message", "node_name", "message_key",])
+
     def run(self, data_object):
         """
             Run job to post slack message
@@ -106,6 +131,24 @@ class ClientNotification(AbstractSuccess):
                 terminate (`bool`). Should we terminate the DAG? True or False
 
         """
+
+        if not self.use_configuration_file_message:
+            logging.info("Posting message passed by a node")
+
+            if self.node_name and self.message_key:
+                upstream_data = data_object.get_upstream_data(
+                    self.instance_name, pop_data=False, rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value,
+                )
+
+                self.message = upstream_data[self.node_name][self.message_key]
+            else:
+                logging.info(
+                    """Do not have adequate information to retrieve message from
+                                an upstream node; reverting to default behavior.
+                                If you want to post message from an upstream node, provide
+                                values for node_name and message_key """
+                )
+    
         # execute response
         _ = self.client.post_message(message=self.message)
 
