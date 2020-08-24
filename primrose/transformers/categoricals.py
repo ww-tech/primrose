@@ -91,25 +91,23 @@ class ExplicitCategoricalTransform(AbstractTransformer):
             data with the colun converted to numeric
 
         """
-        if 'to_numeric' in input_data.keys():
+        if input_data.get('to_numeric', False):
 
             logging.info("Applying key {} to variable {}".format('to_numeric', name))
 
-            if input_data['to_numeric']:
+            # if there are errors converting to numerical values, we need to sub in a reasonable value
+            if sum(pd.to_numeric(data[name], errors='coerce').isnull()) > 0:
+                logging.info("Can't convert these entries in {}. Replacing with {}: {}".format(
+                    name, ExplicitCategoricalTransform.DEFAULT_NUMERIC,
+                    np.unique(data[name][pd.to_numeric(data[name], errors='coerce').isnull()].astype(str))))
 
-                # if there are errors converting to numerical values, we need to sub in a reasonable value
-                if sum(pd.to_numeric(data[name], errors='coerce').isnull()) > 0:
-                    logging.info("Can't convert these entries in {}. Replacing with {}: {}".format(
-                        name, ExplicitCategoricalTransform.DEFAULT_NUMERIC,
-                        np.unique(data[name][pd.to_numeric(data[name], errors='coerce').isnull()].astype(str))))
+                data[name][pd.to_numeric(data[name], errors='coerce').isnull()] = ExplicitCategoricalTransform.DEFAULT_NUMERIC
+            try:
+                data[name] = pd.to_numeric(data[name])
+                return data
 
-                    data[name][pd.to_numeric(data[name], errors='coerce').isnull()] = ExplicitCategoricalTransform.DEFAULT_NUMERIC
-                try:
-                    data[name] = pd.to_numeric(data[name])
-                    return data
-
-                except:
-                    raise TypeError('Failed to convert feature {} to numeric'.format(name))
+            except:
+                raise TypeError('Failed to convert feature {} to numeric'.format(name))
 
         else:
             return data
