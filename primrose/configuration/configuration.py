@@ -373,10 +373,9 @@ class Configuration:
 
         # loading from module
         else:
-            if self.config_metadata:
-                if 'class_package' in self.config_metadata:
-                    class_package = self.config_metadata['class_package']
-                    prefix = '.'.join(filter(None, [class_package, class_prefix]))
+            if self.config_metadata and 'class_package' in self.config_metadata:
+                class_package = self.config_metadata['class_package']
+                prefix = '.'.join(filter(None, [class_package, class_prefix]))
             else:
                 prefix = class_prefix
 
