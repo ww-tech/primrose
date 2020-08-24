@@ -86,6 +86,6 @@ def get_notification_client(params: dict):
 
         return client(**client_params)
 
-    except AttributeError as error:
+    except AttributeError:
         msg = "Are you sure {} is in {}?".format(params["client"], module)
-        logging.error(msg, error)
+        logging.exception(msg)
