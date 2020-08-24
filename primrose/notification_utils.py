@@ -68,7 +68,15 @@ def get_notification_client(params: dict):
         instantiated client object
 
     """
-    exclude = ["class", "client", "message", "destinations"]
+    exclude = [
+        "class",
+        "client",
+        "message",
+        "destinations",
+        "use_configuration_file_message",
+        "node_name",
+        "message_key",
+    ]
     client_params = {k: v for k, v in params.items() if k not in exclude}
 
     # instantiate client
