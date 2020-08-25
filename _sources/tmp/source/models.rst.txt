@@ -49,7 +49,6 @@ models.sklearn\_regression\_model module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

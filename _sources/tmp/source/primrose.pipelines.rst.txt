@@ -40,7 +40,6 @@ primrose.pipelines.train\_test\_split module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

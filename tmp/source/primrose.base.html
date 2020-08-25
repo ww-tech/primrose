@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -29,10 +34,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -48,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> primrose
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> primrose
           
 
           
@@ -71,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -104,6 +106,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>primrose.base package</li>
     
@@ -194,7 +197,7 @@ DAGRunner can then prune those nodes, and all paths downstream of those nodes, f
 
 <dl class="py attribute">
 <dt id="primrose.base.conditional_path_node.AbstractConditionalPath._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.base.conditional_path_node.AbstractConditionalPath._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 228</em><a class="headerlink" href="#primrose.base.conditional_path_node.AbstractConditionalPath._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -257,7 +260,7 @@ the complete subgraphs starting with those destinations</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.model.AbstractModel._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.base.model.AbstractModel._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 42</em><a class="headerlink" href="#primrose.base.model.AbstractModel._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -477,7 +480,7 @@ configuration</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.pipeline.AbstractPipeline._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 42</em><a class="headerlink" href="#primrose.base.pipeline.AbstractPipeline._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 228</em><a class="headerlink" href="#primrose.base.pipeline.AbstractPipeline._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -608,7 +611,7 @@ test (hold-out) data.</p>
 
 <dl class="py class">
 <dt id="primrose.base.pipeline.PipelineModeType">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.base.pipeline.</code><code class="sig-name descname">PipelineModeType</code><a class="headerlink" href="#primrose.base.pipeline.PipelineModeType" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.base.pipeline.</code><code class="sig-name descname">PipelineModeType</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.base.pipeline.PipelineModeType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>Mode when performing the pipeline</p>
 <div class="admonition note">
@@ -682,7 +685,7 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.postprocess.AbstractPostprocess._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#primrose.base.postprocess.AbstractPostprocess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.base.postprocess.AbstractPostprocess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -752,7 +755,7 @@ FIT_TRANSFORM = fit data then transform data in a pipeline</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.search_engine.AbstractSearchEngine._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#primrose.base.search_engine.AbstractSearchEngine._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.base.search_engine.AbstractSearchEngine._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -887,7 +890,7 @@ doc_key: key used in the corpus object for docs</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.sql_reader.AbstractSqlReader._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 224</em><a class="headerlink" href="#primrose.base.sql_reader.AbstractSqlReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 227</em><a class="headerlink" href="#primrose.base.sql_reader.AbstractSqlReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1061,7 +1064,7 @@ path and absolute path.</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.success.AbstractSuccess._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.base.success.AbstractSuccess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 228</em><a class="headerlink" href="#primrose.base.success.AbstractSuccess._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1214,7 +1217,7 @@ path and absolute path.</p>
 
 <dl class="py attribute">
 <dt id="primrose.base.writer.AbstractWriter._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 231</em><a class="headerlink" href="#primrose.base.writer.AbstractWriter._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.base.writer.AbstractWriter._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1241,11 +1244,19 @@ path and absolute path.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, WW International, Inc
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1256,7 +1267,6 @@ path and absolute path.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

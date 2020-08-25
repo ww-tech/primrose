@@ -1,9 +1,7 @@
 
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -13,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +34,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> primrose
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> primrose
           
 
           
@@ -72,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -105,6 +106,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Index</li>
     
@@ -1167,8 +1169,6 @@
         <li><a href="tmp/source/primrose.models.html#primrose.models.sklearn_model.SklearnModel._make_predictions">(primrose.models.sklearn_model.SklearnModel method)</a>
 </li>
       </ul></li>
-      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory._NodeFactory__HiddenFactory">_NodeFactory__HiddenFactory (primrose.node_factory.NodeFactory attribute)</a>
-</li>
       <li><a href="tmp/source/configuration.html#configuration.Configuration._parse_config">_parse_config() (configuration.Configuration method)</a>
 
       <ul>
@@ -1221,12 +1221,6 @@
 
       <ul>
         <li><a href="tmp/source/primrose.configuration.html#primrose.configuration.configuration.Configuration._traverse_node_package">(primrose.configuration.configuration.Configuration method)</a>
-</li>
-      </ul></li>
-      <li><a href="tmp/source/dag.html#dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory">_TraverserFactory__HiddenFactory (dag.traverser_factory.TraverserFactory attribute)</a>
-
-      <ul>
-        <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory">(primrose.dag.traverser_factory.TraverserFactory attribute)</a>
 </li>
       </ul></li>
       <li><a href="tmp/source/primrose.writers.html#primrose.writers.s3_writer.S3Writer._write_locally">_write_locally() (primrose.writers.s3_writer.S3Writer method)</a>
@@ -1678,8 +1672,6 @@
 </li>
       <li><a href="tmp/source/primrose.html#primrose.data_object.DataObjectResponseType">DataObjectResponseType (class in primrose.data_object)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dataviz
 
@@ -1687,6 +1679,8 @@
         <li><a href="tmp/source/dataviz.html#module-dataviz">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tmp/source/primrose.configuration.html#primrose.configuration.util.OperationType.dataviz">dataviz (primrose.configuration.util.OperationType attribute)</a>
 </li>
       <li>
@@ -1704,6 +1698,12 @@
       </ul></li>
       <li><a href="tmp/source/primrose.html#primrose.data_object.DataObject.DEFAULT_RESPONSE_TYPE">DEFAULT_RESPONSE_TYPE (primrose.data_object.DataObject attribute)</a>
 </li>
+      <li><a href="tmp/source/dag.html#dag.traverser_factory.TraverserFactory.__HiddenFactory.default_traverser">default_traverser() (dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+
+      <ul>
+        <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.default_traverser">(primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+</li>
+      </ul></li>
       <li><a href="tmp/source/dag.html#dag.depth_first_traverser.DepthFirstTraverser">DepthFirstTraverser (class in dag.depth_first_traverser)</a>
 
       <ul>
@@ -2077,6 +2077,16 @@
 </li>
       </ul></li>
       <li><a href="tmp/source/primrose.html#primrose.data_object.DataObjectResponseType.INSTANCE_KEY_VALUE">INSTANCE_KEY_VALUE (primrose.data_object.DataObjectResponseType attribute)</a>
+</li>
+      <li><a href="tmp/source/dag.html#dag.traverser_factory.TraverserFactory.__HiddenFactory.instantiate">instantiate() (dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+
+      <ul>
+        <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.instantiate">(primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+</li>
+        <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.instantiate">(primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
+</li>
+      </ul></li>
+      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.is_registered">is_registered() (primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -2631,6 +2641,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory">NodeFactory (class in primrose.node_factory)</a>
 </li>
+      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory">NodeFactory.__HiddenFactory (class in primrose.node_factory)</a>
+</li>
       <li><a href="tmp/source/primrose.configuration.html#primrose.configuration.configuration_dag.ConfigurationDag.nodes_of_type">nodes_of_type() (primrose.configuration.configuration_dag.ConfigurationDag method)</a>
 </li>
       <li>
@@ -2662,6 +2674,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tmp/source/primrose.configuration.html#primrose.configuration.util.OperationType">OperationType (class in primrose.configuration.util)</a>
 </li>
+      <li><a href="tmp/source/notifications.html#notifications.success_notification.ClientNotification.optional_config">optional_config() (notifications.success_notification.ClientNotification static method)</a>
+
+      <ul>
+        <li><a href="tmp/source/primrose.notifications.html#primrose.notifications.success_notification.ClientNotification.optional_config">(primrose.notifications.success_notification.ClientNotification static method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tmp/source/primrose.readers.html#primrose.readers.oracle_reader.OracleReader">OracleReader (class in primrose.readers.oracle_reader)</a>
 
       <ul>
@@ -3488,6 +3508,16 @@
         <li><a href="tmp/source/readers.html#module-readers.sqlite_reader">module</a>
 </li>
       </ul></li>
+      <li><a href="tmp/source/dag.html#dag.traverser_factory.TraverserFactory.__HiddenFactory.register">register() (dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+
+      <ul>
+        <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.register">(primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory method)</a>
+</li>
+        <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.register">(primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
+</li>
+      </ul></li>
+      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.register_module_classes">register_module_classes() (primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
+</li>
       <li><a href="tmp/source/primrose.html#primrose.replace_line">replace_line() (in module primrose)</a>
 </li>
       <li><a href="tmp/source/primrose.readers.html#primrose.readers.r_reader.RReader">RReader (class in primrose.readers.r_reader)</a>
@@ -3885,12 +3915,20 @@
         <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory">(class in primrose.dag.traverser_factory)</a>
 </li>
       </ul></li>
+      <li><a href="tmp/source/dag.html#dag.traverser_factory.TraverserFactory.__HiddenFactory">TraverserFactory.__HiddenFactory (class in dag.traverser_factory)</a>
+
+      <ul>
+        <li><a href="tmp/source/primrose.dag.html#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory">(class in primrose.dag.traverser_factory)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.unregister">unregister() (primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
+</li>
       <li><a href="tmp/source/primrose.configuration.html#primrose.configuration.configuration_dag.ConfigurationDag.upstream_keys">upstream_keys() (primrose.configuration.configuration_dag.ConfigurationDag method)</a>
 
       <ul>
@@ -3909,6 +3947,8 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tmp/source/primrose.html#primrose.node_factory.NodeFactory.__HiddenFactory.valid_configuration">valid_configuration() (primrose.node_factory.NodeFactory.__HiddenFactory method)</a>
+</li>
       <li><a href="tmp/source/primrose.html#primrose.data_object.DataObjectResponseType.VALUE">VALUE (primrose.data_object.DataObjectResponseType attribute)</a>
 </li>
       <li><a href="tmp/source/base.html#base.pipeline.PipelineModeType.values">values() (base.pipeline.PipelineModeType static method)</a>
@@ -4005,11 +4045,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, WW International, Inc
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -4020,7 +4068,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

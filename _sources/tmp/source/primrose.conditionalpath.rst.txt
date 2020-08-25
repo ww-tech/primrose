@@ -13,7 +13,6 @@ primrose.conditionalpath.simple\_switch module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

@@ -13,7 +13,6 @@ dataviz.cluster\_plotter module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

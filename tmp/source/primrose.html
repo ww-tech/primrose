@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -29,10 +34,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -48,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> primrose
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> primrose
           
 
           
@@ -71,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -104,6 +106,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>primrose package</li>
     
@@ -597,7 +600,7 @@ is returned</p>
 
 <dl class="py class">
 <dt id="primrose.data_object.DataObjectResponseType">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.data_object.</code><code class="sig-name descname">DataObjectResponseType</code><a class="headerlink" href="#primrose.data_object.DataObjectResponseType" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.data_object.</code><code class="sig-name descname">DataObjectResponseType</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObjectResponseType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>Type of object when getting data from DataObject</p>
 <dl class="simple">
@@ -661,10 +664,114 @@ value. Readers are often a good example as they typically read in and provide a 
 <code class="sig-name descname">CLASS_PREFIX</code><em class="property"> = 'class_prefix'</em><a class="headerlink" href="#primrose.node_factory.NodeFactory.CLASS_PREFIX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt id="primrose.node_factory.NodeFactory._NodeFactory__HiddenFactory">
-<code class="sig-name descname">_NodeFactory__HiddenFactory</code><a class="headerlink" href="#primrose.node_factory.NodeFactory._NodeFactory__HiddenFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NodeFactory.__HiddenFactory</span></code></p>
+<dl class="py class">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory">
+<em class="property">class </em><code class="sig-name descname">__HiddenFactory</code><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>actual factory where registry and instantiation happens</p>
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.instantiate">
+<code class="sig-name descname">instantiate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em>, <em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.instantiate" title="Permalink to this definition">¶</a></dt>
+<dd><p>instantiate instances of node, given name key of node (typically a classname but is not required to be)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_name</strong> (<em>str</em>) – name key for the class</p></li>
+<li><p><strong>configuration</strong> (<a class="reference internal" href="configuration.html#configuration.Configuration" title="configuration.Configuration"><em>Configuration</em></a>) – Configuration instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of a traverser</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>instance (Traverser)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.is_registered">
+<code class="sig-name descname">is_registered</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.is_registered" title="Permalink to this definition">¶</a></dt>
+<dd><p>is this class registered?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>class_key</strong> (<em>str</em>) – key used to register class</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>determination (boolean) of whether this is already register</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.register">
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">class_obj</span></em>, <em class="sig-param"><span class="n">raise_on_overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registering class_obj with key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – key such as class name, e.g. ‘BQWriter’</p></li>
+<li><p><strong>class_obj</strong> (<em>class obj</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Side effect is to register the class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.register_module_classes">
+<code class="sig-name descname">register_module_classes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.register_module_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given some module, find and register any AbstractNode classes it finds in that module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>module</strong> (<em>str</em>) – e.g. __name__, ‘src’</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Side effect is to register the Node classes found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.unregister">
+<code class="sig-name descname">unregister</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.unregister" title="Permalink to this definition">¶</a></dt>
+<dd><p>unregister an entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – key to unregister</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Side effect is that the object is unregistered</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.node_factory.NodeFactory.__HiddenFactory.valid_configuration">
+<code class="sig-name descname">valid_configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance_class</span></em>, <em class="sig-param"><span class="n">configuration_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__HiddenFactory.valid_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for all the correct configuration keys via the necessary_config method</p>
+<blockquote>
+<div><p>For instance, if a CSVWriter has a required filename key,
+check that it exists as a key in the configuration</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_class</strong> – class to validate</p></li>
+<li><p><strong>configuration_dict</strong> – configuration dictionary from a Configuration object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True for valid configuration</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception if keys not valid</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py method">
@@ -710,7 +817,7 @@ Author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul
 
 <dl class="py attribute">
 <dt id="primrose.notification_utils.SlackClient._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 231</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -762,7 +869,7 @@ Author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul
 </dl>
 <dl class="py class">
 <dt id="primrose.util.RunModes">
-<em class="property">class </em><code class="sig-prename descclassname">primrose.util.</code><code class="sig-name descname">RunModes</code><a class="headerlink" href="#primrose.util.RunModes" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">primrose.util.</code><code class="sig-name descname">RunModes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.util.RunModes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>set of operation type identifiers</p>
 <dl class="py attribute">
@@ -839,11 +946,19 @@ Author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, WW International, Inc
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -854,7 +969,6 @@ Author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

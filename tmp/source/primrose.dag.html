@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,18 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -29,10 +34,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -48,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> primrose
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> primrose
           
 
           
@@ -71,6 +72,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -104,6 +106,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>primrose.dag package</li>
     
@@ -194,7 +197,7 @@ then all models, then all postprocess, then all cleanup</p>
 
 <dl class="py attribute">
 <dt id="primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.dag.config_layer_traverser.ConfigLayerTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -267,7 +270,7 @@ or from user-defined list from metadata.section_registry</p>
 
 <dl class="py attribute">
 <dt id="primrose.dag.dag_traverser.DagTraverser._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.dag.dag_traverser.DagTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -334,7 +337,7 @@ desired order (return False)</p>
 
 <dl class="py attribute">
 <dt id="primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache_version">
-<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 53</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#primrose.dag.depth_first_traverser.DepthFirstTraverser._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -389,10 +392,62 @@ desired order (return False)</p>
 <em class="property">class </em><code class="sig-prename descclassname">primrose.dag.traverser_factory.</code><code class="sig-name descname">TraverserFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Singleton Factory where one can register traversers for instantiation</p>
-<dl class="py attribute">
-<dt id="primrose.dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory">
-<code class="sig-name descname">_TraverserFactory__HiddenFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory._TraverserFactory__HiddenFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">TraverserFactory.__HiddenFactory</span></code></p>
+<dl class="py class">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory">
+<em class="property">class </em><code class="sig-name descname">__HiddenFactory</code><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>actual factory where registry and instantiation happens</p>
+<dl class="py method">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.default_traverser">
+<code class="sig-name descname">default_traverser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.default_traverser" title="Permalink to this definition">¶</a></dt>
+<dd><p>instantiate the default traverser class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configuration</strong> (<a class="reference internal" href="configuration.html#configuration.Configuration" title="configuration.Configuration"><em>Configuration</em></a>) – Configuration instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Traverser instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.instantiate">
+<code class="sig-name descname">instantiate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em>, <em class="sig-param"><span class="n">configuration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.instantiate" title="Permalink to this definition">¶</a></dt>
+<dd><p>instantiate instances of rule, given name of rule class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>class_name</strong> (<em>str</em>) – name of the class</p></li>
+<li><p><strong>configuration</strong> (<a class="reference internal" href="configuration.html#configuration.Configuration" title="configuration.Configuration"><em>Configuration</em></a>) – Configuration instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instance of a traverser</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>instance (Traverser)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.register">
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">class_obj</span></em>, <em class="sig-param"><span class="n">raise_on_overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag.traverser_factory.TraverserFactory.__HiddenFactory.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registering class_obj with key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – key such as class name, e.g. ‘ConfigLayerTraverser’</p></li>
+<li><p><strong>class_obj</strong> (<em>class obj</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing. Side effect is to register the class</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py method">
@@ -430,11 +485,19 @@ desired order (return False)</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019, WW International, Inc
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -445,7 +508,6 @@ desired order (return False)</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

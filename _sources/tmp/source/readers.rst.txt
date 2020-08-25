@@ -130,7 +130,6 @@ readers.sqlite\_reader module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

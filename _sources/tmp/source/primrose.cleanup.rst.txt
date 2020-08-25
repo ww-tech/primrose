@@ -13,7 +13,6 @@ primrose.cleanup.logging\_success module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

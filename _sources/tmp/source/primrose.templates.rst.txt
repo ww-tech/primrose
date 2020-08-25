@@ -49,7 +49,6 @@ primrose.templates.user\_registration\_template module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

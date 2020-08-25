@@ -22,7 +22,6 @@ primrose.notifications.success\_notification module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 

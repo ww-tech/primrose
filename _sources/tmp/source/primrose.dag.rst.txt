@@ -40,7 +40,6 @@ primrose.dag.traverser\_factory module
    :show-inheritance:
    :private-members:
 
-
 Module contents
 ---------------
 
