@@ -12,7 +12,7 @@ def test__instantiate_transformer_1():
             "class": "primrose.transformers.sklearn_preprocessing_transformer.SklearnPreprocessingTransformer",
             "preprocessor": "preprocessing.StandardScaler",
             "columns":["test"],
-            "kwargs": {"with_mean": False}
+            "args": {"with_mean": False}
         })
     assert isinstance(processor, SklearnPreprocessingTransformer)
     assert processor.preprocessor.with_mean == False
