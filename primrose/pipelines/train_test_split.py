@@ -27,8 +27,8 @@ class TrainTestSplit(AbstractPipeline):
     """
     def __init__(self,configuration, instance_name):
         super(TrainTestSplit, self).__init__(configuration, instance_name)
-        self.training_fraction = self.node_config.get("training_fraction")
-        self.seed = self.node_config.get("seed")
+        self.training_fraction = self.node_config.get("training_fraction",0)
+        self.seed = self.node_config.get("seed",0)
         
     @staticmethod
     def necessary_config(node_config):

@@ -14,11 +14,6 @@ from primrose.pipelines.train_test_split import TrainTestSplit
 
 class TransformerPipeline(TrainTestSplit):
 
-    def __init__(self,configuration, instance_name):
-        super(TransformerPipeline,self).__init__(configuration, instance_name)
-        self.training_fraction = self.node_config.get("training_fraction", 0)
-        self.seed = self.node_config.get("seed",0)
-
     @staticmethod
     def necessary_config(node_config):
         """Return the necessary configuration keys for the TransformerPipeline object
@@ -46,20 +41,20 @@ class TransformerPipeline(TrainTestSplit):
             a TransformerSequence
 
         """
-        ts = TransformerSequence()
+        self.transformer_sequence = TransformerSequence()
 
         for transformer in self.node_config["transformer_sequence"]:
-            transformer_args = transformer.get('args', None)
-            columns = transformer.get('columns', None)
-
             p = self._instantiate_transformer(transformer)
-            ts.add(p)
+            self.transformer_sequence.add(p)
 
-        return ts
+        return self.transformer_sequence
 
     @staticmethod
     def _instantiate_transformer(transformer):
-        """Import and validate user-defined sklearn preprocessor
+        """Import and validate user-defined transformer either from primrose or a custom codebase
+
+        Args:
+            transformer (AbstractTransformer): a subclass of primrose AbstractTransformer
 
         Returns:
             AbstractTransformer
