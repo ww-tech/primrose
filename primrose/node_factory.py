@@ -27,7 +27,7 @@ from primrose.pipelines.dataframe_joiner import DataFrameJoiner
 from primrose.pipelines.encode_train_test_split import EncodeTrainTestSplit
 from primrose.pipelines.train_test_split import TrainTestSplit
 from primrose.pipelines.sklearn_preprocessing_pipeline import SklearnPreprocessingPipeline
-
+from primrose.pipelines.transformer_pipeline import TransformerPipeline
 from primrose.models.sklearn_classifier_model import SklearnClassifierModel
 from primrose.models.sklearn_cluster_model import SklearnClusterModel
 from primrose.models.sklearn_regression_model import SklearnRegressionModel
@@ -102,6 +102,7 @@ class NodeFactory:
                 'SklearnDatasetReader': SklearnDatasetReader,
                 'SklearnRegressionModel': SklearnRegressionModel,
                 'SimpleSwitch': SimpleSwitch,
+                'TransformerPipeline': TransformerPipeline,
                 'ClientNotification': ClientNotification,
                 'RReader': RReader}
 

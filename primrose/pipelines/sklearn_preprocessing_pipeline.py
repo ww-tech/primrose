@@ -9,9 +9,12 @@ from primrose.base.transformer_sequence import TransformerSequence
 from primrose.transformers.sklearn_preprocessing_transformer import SklearnPreprocessingTransformer
 from primrose.data_object import DataObjectResponseType
 from primrose.pipelines.train_test_split import TrainTestSplit
+import warnings
+
 
 class SklearnPreprocessingPipeline(TrainTestSplit):
-
+    warnings.warn('SklearnPreprocessingPipeline will deprecated in a future release. Please use TransformerPipeline instead',
+        DeprecationWarning)
     @staticmethod
     def necessary_config(node_config):
         """Return the necessary configuration keys for the SklearnPreprocessingPipeline object
