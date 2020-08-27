@@ -13,7 +13,7 @@ import warnings
 
 
 class SklearnPreprocessingPipeline(TrainTestSplit):
-    warnings.warn('SklearnPreprocessingPipeline will deprecated in a future release. Please use TransformerPipeline instead',
+    warnings.warn('SklearnPreprocessingPipeline will be deprecated in a future release. Please use TransformerPipeline instead',
         DeprecationWarning)
     @staticmethod
     def necessary_config(node_config):

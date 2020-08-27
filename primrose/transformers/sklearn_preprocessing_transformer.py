@@ -22,7 +22,7 @@ class SklearnPreprocessingTransformer(AbstractTransformer):
 
         """
         #Ideally, would check that this is a preprocessor but there is no good class to check against
-        self.preprocessor = self._instantiate_preprocessor(preprocessor,args)
+        self.preprocessor = self._instantiate_preprocessor(preprocessor, args)
         self.columns = columns
 
     def _instantiate_preprocessor(self, preprocessor, args):
