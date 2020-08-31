@@ -16,6 +16,7 @@ from primrose.base.reader import AbstractReader
 import logging
 import pandas as pd
 
+
 class RReader(AbstractReader):
     """Reads in canned dataset from R"""
 
@@ -30,7 +31,7 @@ class RReader(AbstractReader):
             set of keys necessary to run implementation
 
         """
-        return set(['dataset'])
+        return set(["dataset"])
 
     def run(self, data_object):
         """Read canned dataset from R to a pandas dataframe
@@ -40,44 +41,46 @@ class RReader(AbstractReader):
             terminate (bool): should we terminate the DAG? true or false
 
         """
-        dataset = self.node_config['dataset']
-        logging.info('Reading {} from R'.format(dataset))
+        dataset = self.node_config["dataset"]
+        logging.info("Reading {} from R".format(dataset))
 
         try:
             from rpy2.robjects.packages import importr, data
-        except ImportError: # pragma: no cover
+        except ImportError:  # pragma: no cover
             raise ImportError(
                 "This example needs Rpy2."
                 "Please refer to the R requirements in the README"
-            )        
-        datasets = importr('datasets')
+            )
+        datasets = importr("datasets")
         r_env = data(datasets).fetch(dataset)
 
         import rpy2.robjects as robjects
+
         # why we do this:
-        #> data(euro)
-        #> euro
-        #ATS         BEF         DEM         ESP         FIM         FRF         IEP         ITL         LUF         NLG         PTE 
-        #13.760300   40.339900    1.955830  166.386000    5.945730    6.559570    0.787564 1936.270000   40.339900    2.203710  200.482000 
+        # > data(euro)
+        # > euro
+        # ATS         BEF         DEM         ESP         FIM         FRF         IEP         ITL         LUF         NLG         PTE
+        # 13.760300   40.339900    1.955830  166.386000    5.945730    6.559570    0.787564 1936.270000   40.339900    2.203710  200.482000
         #
-        #> as.data.frame(euro)
+        # > as.data.frame(euro)
         #        euro
-        #ATS   13.760300
-        #BEF   40.339900
-        #DEM    1.955830
-        data = robjects.r('as.data.frame(%s)' % dataset)
+        # ATS   13.760300
+        # BEF   40.339900
+        # DEM    1.955830
+        data = robjects.r("as.data.frame(%s)" % dataset)
 
         # at time of writing, rpy2's R dataframe to pandas dataframe was not fully supported
         # However, as python list() seems to work for FloatVector, StrVector, and FactorVector, let's use it
         from rpy2.robjects import r
+
         colnames = r.colnames(data)
         pandas_data = {}
         # convert each column of the R dataframe in turn
         for i, colname in enumerate(colnames):
             pandas_data[colname] = list(data[i])
-        # Unfortunately, some datasets have rownames that should be an ID column (e.g., see mtcars where rownames=names of the cars). 
+        # Unfortunately, some datasets have rownames that should be an ID column (e.g., see mtcars where rownames=names of the cars).
         # This is the best we can do: pull it out as an additional column for each and every dataset
-        pandas_data['row_names'] = list(data.rownames)
+        pandas_data["row_names"] = list(data.rownames)
 
         df = pd.DataFrame(pandas_data)
         data_object.add(self, df)

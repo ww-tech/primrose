@@ -16,8 +16,11 @@ from primrose.base.reader import AbstractReader
 class GcsDillReader(AbstractReader):
     """Read a file from Gcs and un-dills it into memory"""
 
-    DATA_KEY = 'reader_data'
-    warnings.warn('Use Deserializer instead. GcsDillReader will be deprecated in a future release.', DeprecationWarning)
+    DATA_KEY = "reader_data"
+    warnings.warn(
+        "Use Deserializer instead. GcsDillReader will be deprecated in a future release.",
+        DeprecationWarning,
+    )
 
     @staticmethod
     def necessary_config(node_config):
@@ -34,7 +37,7 @@ class GcsDillReader(AbstractReader):
             set of necessary keys for the CsvReader object
 
         """
-        return set(['bucket_name', 'blob_name'])
+        return set(["bucket_name", "blob_name"])
 
     def download_blobs_as_strings(self):
         """Downloads a blob from the bucket contining the user specified blob_name
@@ -44,24 +47,28 @@ class GcsDillReader(AbstractReader):
 
         """
 
-        if 'gcs_project' in self.node_config:
-            storage_client = storage.Client(project=self.node_config['gcs_project'])
+        if "gcs_project" in self.node_config:
+            storage_client = storage.Client(project=self.node_config["gcs_project"])
         else:
             storage_client = storage.Client()
 
-        bucket = storage_client.get_bucket(self.node_config['bucket_name'])
+        bucket = storage_client.get_bucket(self.node_config["bucket_name"])
 
-        if 'prefix' in self.node_config:
-            prefix = self.node_config['prefix']
+        if "prefix" in self.node_config:
+            prefix = self.node_config["prefix"]
         else:
             prefix = None
 
         blob_list = bucket.list_blobs(prefix=prefix)
 
-        valid_blobs = [blob for blob in blob_list if self.node_config['blob_name'] in blob.name]
+        valid_blobs = [
+            blob for blob in blob_list if self.node_config["blob_name"] in blob.name
+        ]
 
         if len(valid_blobs) == 0:
-            raise Exception('{} not found in GCS bucket.'.format(self.node_config['blob_name']))
+            raise Exception(
+                "{} not found in GCS bucket.".format(self.node_config["blob_name"])
+            )
 
         return [blob.download_as_string() for blob in valid_blobs]
 
@@ -79,7 +86,7 @@ class GcsDillReader(AbstractReader):
                 terminate (bool): terminate the DAG?
 
         """
-        logging.info('Reading {} from GCS'.format(self.node_config['blob_name']))
+        logging.info("Reading {} from GCS".format(self.node_config["blob_name"]))
         objects = [dill.loads(obj) for obj in self.download_blobs_as_strings()]
 
         terminate = len(objects) == 0

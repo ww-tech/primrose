@@ -7,6 +7,7 @@ Author(s):
 import sqlite3
 from primrose.base.sql_reader import AbstractSqlReader
 
+
 class SQLiteReader(AbstractSqlReader):
     """Runs SQLite queries into pandas dataframes"""
 
@@ -24,7 +25,7 @@ class SQLiteReader(AbstractSqlReader):
             set of keys necessary to run implementation
 
         """
-        return set(['filename', 'query_json'])
+        return set(["filename", "query_json"])
 
     def get_connection(self):
         """return connection to SQLite DB
@@ -33,4 +34,4 @@ class SQLiteReader(AbstractSqlReader):
             connection to SQLite DB file
 
         """
-        return sqlite3.connect(self.node_config['filename'])
+        return sqlite3.connect(self.node_config["filename"])

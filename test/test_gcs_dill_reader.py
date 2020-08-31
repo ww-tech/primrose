@@ -1,4 +1,3 @@
-
 import pytest
 from primrose.readers.gcs_dill_reader import GcsDillReader
 from primrose.data_object import DataObject
@@ -7,8 +6,10 @@ from primrose.configuration.configuration import Configuration
 import dill
 import os
 
+
 def test_necessary_config():
     assert len(GcsDillReader.necessary_config({})) == 2
+
 
 def test_run(monkeypatch):
     # returns 2 objects from dill reader
@@ -19,12 +20,14 @@ def test_run(monkeypatch):
                     "class": "GcsDillReader",
                     "bucket_name": "test1",
                     "blob_name": "test2",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDillReader(configuration, "myreader")
 
@@ -39,7 +42,7 @@ def test_run(monkeypatch):
         dat2 = open("test/dill_reader_blob2.pkl", "rb").read()
         return [dat1, dat2]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -47,10 +50,10 @@ def test_run(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    datlist = dat['reader_data']
+    datlist = dat["reader_data"]
 
     assert len(datlist) == 2
 
@@ -62,6 +65,7 @@ def test_run(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
+
 def test_run2(monkeypatch):
     # returns 1 objects from dill reader
     config = {
@@ -71,12 +75,14 @@ def test_run2(monkeypatch):
                     "class": "GcsDillReader",
                     "bucket_name": "test1",
                     "blob_name": "test2",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDillReader(configuration, "myreader")
 
@@ -88,7 +94,7 @@ def test_run2(monkeypatch):
         dat1 = open("test/dill_reader_blob1.pkl", "rb").read()
         return [dat1]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -96,10 +102,10 @@ def test_run2(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    data = dat['reader_data']
+    data = dat["reader_data"]
 
     assert "some_data" == data
 
@@ -107,4 +113,3 @@ def test_run2(monkeypatch):
     for f in files:
         if os.path.exists(f):
             os.remove(f)
-

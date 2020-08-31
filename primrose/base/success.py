@@ -10,6 +10,8 @@ Author(s):
 from abc import abstractmethod
 from primrose.base.node import AbstractNode
 
+
 class AbstractSuccess(AbstractNode):
     """ Ability to cleanup, such as notify success"""
+
     pass

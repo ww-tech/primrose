@@ -26,7 +26,7 @@ class AbstractModel(AbstractNode):
 
         """
 
-        mode = self.node_config['mode'].lower()
+        mode = self.node_config["mode"].lower()
         assert mode in RunModes.values()
 
         if mode == RunModes.TRAIN.value:
@@ -54,7 +54,7 @@ class AbstractModel(AbstractNode):
             set of keys necessary to run implementation
 
         """
-        return set(['mode']) # pragma: no cover
+        return set(["mode"])  # pragma: no cover
 
     @abstractmethod
     def train_model(self, data_object):
@@ -67,11 +67,11 @@ class AbstractModel(AbstractNode):
         Args:
             data_object (DataObject): instance of DataObject
 
-        Returns: 
+        Returns:
             data_object (DataObject): instance of DataObject
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover
 
     @abstractmethod
     def eval_model(self, data_object):
@@ -84,11 +84,11 @@ class AbstractModel(AbstractNode):
         Args:
             data_object (DataObject): instance of DataObject
 
-        Returns: 
+        Returns:
             data_object (DataObject): instance of DataObject
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover
 
     @abstractmethod
     def predict(self, data_object):
@@ -109,4 +109,4 @@ class AbstractModel(AbstractNode):
                 terminate (bool): terminate the DAG?
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover

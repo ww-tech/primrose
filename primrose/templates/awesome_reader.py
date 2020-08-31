@@ -26,7 +26,7 @@ class AwesomeReader(AbstractReader):
             set of necessary keys for the AwesomeReader object
 
         """
-        return set(['data_to_read'])
+        return set(["data_to_read"])
 
     def run(self, data_object):
         """Read data from node_config
@@ -41,8 +41,8 @@ class AwesomeReader(AbstractReader):
         # any valid python can be used here for reading data into the data_object
         # examples of other readers can be found in primrose/readers/*
         # -------------------------------
-        data = self.node_config['data_to_read']
-        print('Reading in data!: {}'.format(data))
+        data = self.node_config["data_to_read"]
+        print("Reading in data!: {}".format(data))
         # -------------------------------
         # add data into data object for use downstream
         data_object.add(self, data)

@@ -1,13 +1,13 @@
-'''Top level notion of a node in the graph
+"""Top level notion of a node in the graph
 
 Author(s):
     Carl Anderson (carl.anderson@weightwatchers.com)
 
-'''
+"""
 from abc import ABC, abstractmethod
 
-class AbstractNode(ABC):
 
+class AbstractNode(ABC):
     def __init__(self, configuration, instance_name):
         """
 
@@ -37,7 +37,7 @@ class AbstractNode(ABC):
             set of keys necessary to run implementation
 
         """
-        return set() # pragma: no cover
+        return set()  # pragma: no cover
 
     @abstractmethod
     def run(self, data_object):
@@ -55,4 +55,4 @@ class AbstractNode(ABC):
                 terminate (bool): terminate the DAG?
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover

@@ -20,7 +20,7 @@ class EncodeTrainTestSplit(TrainTestSplit):
 
         """
         ts = TransformerSequence()
-        ts.add(ImplicitCategoricalTransform(self.node_config['target_variable']))
+        ts.add(ImplicitCategoricalTransform(self.node_config["target_variable"]))
         return ts
 
     @property
@@ -35,12 +35,12 @@ class EncodeTrainTestSplit(TrainTestSplit):
 
     def final_data_object_additions(self, data_object):
         """Overload function which adds the label encoder after running fit_transform or transform
-        
+
         Returns:
             data_object (DataObject): instance of DataObject
-        
+
         """
         # add target label encoder to the data object if it's needed downstream
         target_label_encoder = self.first_transformer_in_sequence.target_encoder
-        data_object.add(self, target_label_encoder, key='target_encoder')
+        data_object.add(self, target_label_encoder, key="target_encoder")
         return data_object

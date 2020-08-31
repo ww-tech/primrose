@@ -6,10 +6,10 @@ Author(s):
 """
 from primrose.base.conditional_path_node import AbstractConditionalPath
 
-class SimpleSwitch(AbstractConditionalPath):
 
+class SimpleSwitch(AbstractConditionalPath):
     @staticmethod
-    def necessary_config(node_config): 
+    def necessary_config(node_config):
         """Return a list of necessary configuration keys within the implementation
 
         Args:
@@ -19,17 +19,17 @@ class SimpleSwitch(AbstractConditionalPath):
             set of keys necessary to run implementation
 
         """
-        return set(['path_to_travel'])
+        return set(["path_to_travel"])
 
     def destinations_to_prune(self):
         """List destinations that the node wishes to be pruned from the DAG
-        
+
         Returns:
             destinations (list): list of destinations
 
         """
-        destinations = self.node_config['destinations']
-        destinations.remove(self.node_config['path_to_travel'])
+        destinations = self.node_config["destinations"]
+        destinations.remove(self.node_config["path_to_travel"])
         return destinations
 
     def run(self, data_object):

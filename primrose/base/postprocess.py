@@ -8,6 +8,8 @@ Author(s):
 """
 from primrose.base.node import AbstractNode
 
+
 class AbstractPostprocess(AbstractNode):
     """Postprocess module which must have an postprocess method to send data to an external source"""
+
     pass

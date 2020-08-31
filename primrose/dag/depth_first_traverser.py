@@ -7,6 +7,7 @@ Author(s):
 import networkx as nx
 from primrose.dag.dag_traverser import DagTraverser
 
+
 class DepthFirstTraverser(DagTraverser):
     """a traverser that traverses in depth first manner"""
 

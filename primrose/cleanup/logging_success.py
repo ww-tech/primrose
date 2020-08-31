@@ -7,6 +7,7 @@ Author(s):
 import logging
 from primrose.base.success import AbstractSuccess
 
+
 class LoggingSuccess(AbstractSuccess):
     """simple success node: log a message"""
 
@@ -25,7 +26,7 @@ class LoggingSuccess(AbstractSuccess):
             set of keys necessary to run implementation
 
         """
-        return set(['msg', 'level']) 
+        return set(["msg", "level"])
 
     def run(self, data_object):
         """Signal success by logging a message at specified log level
@@ -37,9 +38,9 @@ class LoggingSuccess(AbstractSuccess):
             nothing. Side effect is to signal success via logging
 
         """
-        msg = self.node_config['msg']
+        msg = self.node_config["msg"]
 
-        level = str(self.node_config['level']).upper()
+        level = str(self.node_config["level"]).upper()
 
         # check whether valid level: will throw KeyError if level not recognized
         logging._nameToLevel[level]

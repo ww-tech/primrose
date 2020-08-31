@@ -11,8 +11,8 @@ from sklearn.metrics import roc_curve, auc
 from sklearn import metrics
 import datetime
 
-class SklearnModel(AbstractModel):
 
+class SklearnModel(AbstractModel):
     def __init__(self, configuration, instance_name):
         """A Sklearn-based model to train, evaluate and predict on dataframe feature data
 
@@ -37,12 +37,16 @@ class SklearnModel(AbstractModel):
         """
 
         # check for a valid pipeline object inside the data object
-        model = data_object.get_filtered_upstream_data(self.instance_name, filter_for_key='reader_data')['reader_data']
+        model = data_object.get_filtered_upstream_data(
+            self.instance_name, filter_for_key="reader_data"
+        )["reader_data"]
 
         if model is None:
-            raise Exception('No valid upstream model found in the data object for model.')
+            raise Exception(
+                "No valid upstream model found in the data object for model."
+            )
 
-        logging.info('Model successfully loaded from upstream data_object.')
+        logging.info("Model successfully loaded from upstream data_object.")
 
         return model
 
@@ -59,13 +63,17 @@ class SklearnModel(AbstractModel):
             instance of a sklearn mode
 
         """
-        sk_module_name, sk_model_name = classname.split('.')
-        sk_module = importlib.import_module('sklearn.{}'.format(sk_module_name))
+        sk_module_name, sk_model_name = classname.split(".")
+        sk_module = importlib.import_module("sklearn.{}".format(sk_module_name))
 
         try:
             m = getattr(sk_module, sk_model_name)
         except AttributeError:
-            raise Exception('Sklearn model {} not found in {} module'.format(sk_model_name, sk_module_name))
+            raise Exception(
+                "Sklearn model {} not found in {} module".format(
+                    sk_model_name, sk_module_name
+                )
+            )
         logging.info("Instantiating model " + classname)
         if args:
             return m(**args)
@@ -97,35 +105,42 @@ class SklearnModel(AbstractModel):
         """
 
         # get upstream data dict which contains the subkey data_test or data_train
-        data = (data_object.get_filtered_upstream_data(self.instance_name, 'data_test') or 
-                data_object.get_filtered_upstream_data(self.instance_name, 'data_train'))
+        data = data_object.get_filtered_upstream_data(
+            self.instance_name, "data_test"
+        ) or data_object.get_filtered_upstream_data(self.instance_name, "data_train")
 
         X_train = None
-        if 'data_train' in data:
-            X_train = data['data_train']
-            if 'features' in self.node_config:
-                X_train = X_train[self.node_config['features']]
+        if "data_train" in data:
+            X_train = data["data_train"]
+            if "features" in self.node_config:
+                X_train = X_train[self.node_config["features"]]
 
         y_train = None
-        if 'target_train' in data:
-            y_train = data['target_train']
+        if "target_train" in data:
+            y_train = data["target_train"]
 
         X_test = None
-        if 'data_test' in data:
-            X_test = data['data_test']
-            if 'features' in self.node_config:
-                X_test = X_test[self.node_config['features']]
+        if "data_test" in data:
+            X_test = data["data_test"]
+            if "features" in self.node_config:
+                X_test = X_test[self.node_config["features"]]
 
         y_test = None
-        if 'target_test' in data:
-            y_test = data['target_test']
+        if "target_test" in data:
+            y_test = data["target_test"]
 
         def size(obj):
             if obj is None:
                 return None
-            return(str(obj.shape))
+            return str(obj.shape)
 
-        logging.info("Get_data, X_train %s, y_train %s, X_test %s, y_test %s", size(X_train), size(y_train), size(X_test), size(y_test))
+        logging.info(
+            "Get_data, X_train %s, y_train %s, X_test %s, y_test %s",
+            size(X_train),
+            size(y_train),
+            size(X_test),
+            size(y_test),
+        )
 
         return X_train, y_train, X_test, y_test
 
@@ -139,18 +154,20 @@ class SklearnModel(AbstractModel):
             data_object (DataObject): instance of DataObject
 
         """
-        self.X_train, self.y_train, self.X_test, self.y_test = self._get_data(data_object)
+        self.X_train, self.y_train, self.X_test, self.y_test = self._get_data(
+            data_object
+        )
 
         args = None
-        if 'args' in self.node_config['model']:
-            args = self.node_config['model']['args']
+        if "args" in self.node_config["model"]:
+            args = self.node_config["model"]["args"]
 
-        self.model = self._instantiate_model(self.node_config['model']['class'], args)
+        self.model = self._instantiate_model(self.node_config["model"]["class"], args)
 
         logging.info("Fitting model")
-        self.fit_training_data() #delegate down as args to self.model.fit() vary by model
+        self.fit_training_data()  # delegate down as args to self.model.fit() vary by model
 
-        data_object.add(self, self.model, 'model')
+        data_object.add(self, self.model, "model")
 
         return data_object
 
@@ -164,13 +181,15 @@ class SklearnModel(AbstractModel):
             nothing. Predictions stored in self.predictions
 
         """
-        if hasattr(self, 'predictions') and self.predictions is not None:
+        if hasattr(self, "predictions") and self.predictions is not None:
             return
 
         if self.model is None:
             self.model = self.load_model(data_object)
 
-        self.X_train, self.y_train, self.X_test, self.y_test = self._get_data(data_object)
+        self.X_train, self.y_train, self.X_test, self.y_test = self._get_data(
+            data_object
+        )
 
         logging.info("Making predictions with model")
         self.predictions = self.model.predict(self.X_test)
@@ -183,16 +202,16 @@ class SklearnModel(AbstractModel):
 
             load_model: load model object from gcs or not
 
-        Returns: 
+        Returns:
             data_object (DataObject): instance of DataObject
 
         """
         self._make_predictions(data_object)
 
         data = self.X_test
-        data['predictions'] = self.predictions
+        data["predictions"] = self.predictions
         if self.y_test is not None:
-            data['actual'] = self.y_test
+            data["actual"] = self.y_test
 
         data_object.add(self, data)
         return data_object
@@ -207,13 +226,12 @@ class SklearnModel(AbstractModel):
         self._make_predictions(data_object)
 
         logging.info("Evaluating metrics")
-        scores = self.get_scores() #delegate down as appropriate metrics vary by model
-        scores['eval_time'] = datetime.datetime.now()
+        scores = self.get_scores()  # delegate down as appropriate metrics vary by model
+        scores["eval_time"] = datetime.datetime.now()
         logging.info("Scores" + str(scores))
 
         data_object.add(self, scores, "scores")
         return data_object
-
 
     @staticmethod
     def evaluate_no_ground_truth_classifier_metrics(X, labels):
@@ -228,9 +246,11 @@ class SklearnModel(AbstractModel):
 
         """
         scores = {}
-        scores['Silhouette Score']         = metrics.silhouette_score(X, labels, metric='euclidean')
-        scores['Calinski Harabasz Score']  = metrics.calinski_harabasz_score(X, labels)
-        scores['Davies Bouldin Score']     = metrics.davies_bouldin_score(X, labels)
+        scores["Silhouette Score"] = metrics.silhouette_score(
+            X, labels, metric="euclidean"
+        )
+        scores["Calinski Harabasz Score"] = metrics.calinski_harabasz_score(X, labels)
+        scores["Davies Bouldin Score"] = metrics.davies_bouldin_score(X, labels)
         return scores
 
     @staticmethod
@@ -246,11 +266,17 @@ class SklearnModel(AbstractModel):
 
         """
         scores = {}
-        scores['Explained variance']       = metrics.explained_variance_score(actual, predictions)
-        scores['Max error']                = metrics.max_error(actual, predictions)
-        scores['Mean absolute error']      = metrics.mean_absolute_error(actual, predictions)
-        scores['MSE']                      = metrics.mean_squared_error(actual, predictions)
-        scores['Mean squared log error']   = metrics.mean_squared_log_error(actual, predictions)
-        scores['Mean absolute error']      = metrics.median_absolute_error(actual, predictions)
-        scores['R2']                       = metrics.r2_score(actual, predictions)
+        scores["Explained variance"] = metrics.explained_variance_score(
+            actual, predictions
+        )
+        scores["Max error"] = metrics.max_error(actual, predictions)
+        scores["Mean absolute error"] = metrics.mean_absolute_error(actual, predictions)
+        scores["MSE"] = metrics.mean_squared_error(actual, predictions)
+        scores["Mean squared log error"] = metrics.mean_squared_log_error(
+            actual, predictions
+        )
+        scores["Mean absolute error"] = metrics.median_absolute_error(
+            actual, predictions
+        )
+        scores["R2"] = metrics.r2_score(actual, predictions)
         return scores

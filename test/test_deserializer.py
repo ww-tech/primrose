@@ -17,35 +17,37 @@ def test_init_ok_dill():
                 "dill_reader": {
                     "class": "Deserializer",
                     "filename": "test/tinymodel.dill",
-                    "deserializer": 'dill',
-                    "destinations": []
+                    "deserializer": "dill",
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
     data_object = DataObject(configuration)
 
     reader = Deserializer(configuration, "dill_reader")
     data_object, terminate = reader.run(data_object)
     assert not terminate
-    data = data_object.get('dill_reader', rtype=DataObjectResponseType.VALUE.value)
+    data = data_object.get("dill_reader", rtype=DataObjectResponseType.VALUE.value)
 
     assert data is not None
-    assert set(data.keys()) == {'test', 'model'}
+    assert set(data.keys()) == {"test", "model"}
 
     node_config = {
-                    "class": "Deserializer",
-                    "filename": "test/tinymodel.dill",
-                    "deserializer": 'dill',
-                    "destinations": []
-                }
+        "class": "Deserializer",
+        "filename": "test/tinymodel.dill",
+        "deserializer": "dill",
+        "destinations": [],
+    }
 
     assert isinstance(Deserializer.necessary_config(node_config), set)
     assert len(Deserializer.necessary_config(node_config)) > 0
 
-    assert data['test'] == [1, 2, 3]
-    assert isinstance(data['model'], DecisionTreeClassifier)
+    assert data["test"] == [1, 2, 3]
+    assert isinstance(data["model"], DecisionTreeClassifier)
 
 
 def test_init_ok_pickle():
@@ -55,25 +57,28 @@ def test_init_ok_pickle():
                 "pickle_reader": {
                     "class": "Deserializer",
                     "filename": "test/tinymodel.pickle",
-                    "deserializer": 'pickle',
-                    "destinations": []
+                    "deserializer": "pickle",
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
     data_object = DataObject(configuration)
 
     reader = Deserializer(configuration, "pickle_reader")
     data_object, terminate = reader.run(data_object)
     assert not terminate
-    data = data_object.get('pickle_reader', rtype=DataObjectResponseType.VALUE.value)
+    data = data_object.get("pickle_reader", rtype=DataObjectResponseType.VALUE.value)
 
     assert data is not None
-    assert set(data.keys()) == {'test', 'model'}
+    assert set(data.keys()) == {"test", "model"}
 
-    assert data['test'] == [1, 2, 3]
-    assert isinstance(data['model'], DecisionTreeClassifier)
+    assert data["test"] == [1, 2, 3]
+    assert isinstance(data["model"], DecisionTreeClassifier)
+
 
 def test_init_ok_unsupported():
     config = {
@@ -82,21 +87,25 @@ def test_init_ok_unsupported():
                 "other_reader": {
                     "class": "Deserializer",
                     "filename": "test/tinymodel.pickle",
-                    "deserializer": 'other',
-                    "destinations": []
+                    "deserializer": "other",
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
     data_object = DataObject(configuration)
 
     reader = Deserializer(configuration, "other_reader")
     with pytest.raises(Exception, match=r"Unsupported"):
         reader.run(data_object)
 
+
 def test_gcsdeserializer_necessary_config():
     assert len(GcsDeserializer.necessary_config({})) == 3
+
 
 def test_run_dill(monkeypatch):
     # returns 2 objects from dill reader
@@ -108,12 +117,14 @@ def test_run_dill(monkeypatch):
                     "bucket_name": "test1",
                     "blob_name": "test2",
                     "deserializer": "dill",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDeserializer(configuration, "myreader")
 
@@ -128,7 +139,7 @@ def test_run_dill(monkeypatch):
         dat2 = open("test/dill_reader_blob2.pkl", "rb").read()
         return [dat1, dat2]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -136,10 +147,10 @@ def test_run_dill(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    datlist = dat['reader_data']
+    datlist = dat["reader_data"]
 
     assert len(datlist) == 2
 
@@ -151,6 +162,7 @@ def test_run_dill(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
+
 def test_run_dill_2(monkeypatch):
     # returns 1 objects from dill reader
     config = {
@@ -161,12 +173,14 @@ def test_run_dill_2(monkeypatch):
                     "bucket_name": "test1",
                     "blob_name": "test2",
                     "deserializer": "dill",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDeserializer(configuration, "myreader")
 
@@ -178,7 +192,7 @@ def test_run_dill_2(monkeypatch):
         dat1 = open("test/dill_reader_blob1.pkl", "rb").read()
         return [dat1]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -186,10 +200,10 @@ def test_run_dill_2(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    data = dat['reader_data']
+    data = dat["reader_data"]
 
     assert "some_data" == data
 
@@ -197,6 +211,7 @@ def test_run_dill_2(monkeypatch):
     for f in files:
         if os.path.exists(f):
             os.remove(f)
+
 
 def test_run_pickle(monkeypatch):
     # returns 2 objects from pickle reader
@@ -208,12 +223,14 @@ def test_run_pickle(monkeypatch):
                     "bucket_name": "test1",
                     "blob_name": "test2",
                     "deserializer": "pickle",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDeserializer(configuration, "myreader")
 
@@ -228,7 +245,7 @@ def test_run_pickle(monkeypatch):
         dat2 = open("test/pickle_reader_blob2.pkl", "rb").read()
         return [dat1, dat2]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -236,10 +253,10 @@ def test_run_pickle(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    datlist = dat['reader_data']
+    datlist = dat["reader_data"]
 
     assert len(datlist) == 2
 
@@ -251,6 +268,7 @@ def test_run_pickle(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
+
 def test_run_pickle_2(monkeypatch):
     # returns 1 objects from pickle reader
     config = {
@@ -261,12 +279,14 @@ def test_run_pickle_2(monkeypatch):
                     "bucket_name": "test1",
                     "blob_name": "test2",
                     "deserializer": "pickle",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDeserializer(configuration, "myreader")
 
@@ -278,7 +298,7 @@ def test_run_pickle_2(monkeypatch):
         dat1 = open("test/pickle_reader_blob1.pkl", "rb").read()
         return [dat1]
 
-    monkeypatch.setattr(reader,'download_blobs_as_strings',fake_blobs)
+    monkeypatch.setattr(reader, "download_blobs_as_strings", fake_blobs)
 
     reader_object, terminate = reader.run(data_object)
 
@@ -286,10 +306,10 @@ def test_run_pickle_2(monkeypatch):
 
     assert "myreader" in reader_object.data_dict
 
-    dat = reader_object.data_dict['myreader']
+    dat = reader_object.data_dict["myreader"]
 
     assert "reader_data" in dat
-    data = dat['reader_data']
+    data = dat["reader_data"]
 
     assert "some_data" == data
 
@@ -297,6 +317,7 @@ def test_run_pickle_2(monkeypatch):
     for f in files:
         if os.path.exists(f):
             os.remove(f)
+
 
 def test_run_other(monkeypatch):
     config = {
@@ -307,12 +328,14 @@ def test_run_other(monkeypatch):
                     "bucket_name": "test1",
                     "blob_name": "test2",
                     "deserializer": "other",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     reader = GcsDeserializer(configuration, "myreader")
 
@@ -320,7 +343,3 @@ def test_run_other(monkeypatch):
 
     with pytest.raises(Exception, match=r"Unsupported"):
         reader.run(data_object)
-
-
-
-
