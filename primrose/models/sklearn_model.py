@@ -96,8 +96,9 @@ class SklearnModel(AbstractModel):
 
         """
 
-        # get upstream data dict which contains the subkey data_test
-        data = data_object.get_filtered_upstream_data(self.instance_name, 'data_test')
+        # get upstream data dict which contains the subkey data_test or data_train
+        data = (data_object.get_filtered_upstream_data(self.instance_name, 'data_test') or 
+                data_object.get_filtered_upstream_data(self.instance_name, 'data_train'))
 
         X_train = None
         if 'data_train' in data:
@@ -144,7 +145,7 @@ class SklearnModel(AbstractModel):
         if 'args' in self.node_config['model']:
             args = self.node_config['model']['args']
 
-        self.model = SklearnModel._instantiate_model(self.node_config['model']['class'], args)
+        self.model = self._instantiate_model(self.node_config['model']['class'], args)
 
         logging.info("Fitting model")
         self.fit_training_data() #delegate down as args to self.model.fit() vary by model

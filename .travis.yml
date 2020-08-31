@@ -100,7 +100,7 @@ install:
     elif [ $TRAVIS_OS_NAME = 'osx' ]; then
       brew install r
     fi
-    pip install rpy2>=2.9.1
+    pip install "rpy2>=2.9.1,<=3.2.7"
   elif [ $PYPI_BUILD = 'only_postgres' ]; then
     echo "Installing postgres requirements"
     pip install psycopg2>=2.8.3
@@ -118,7 +118,7 @@ install:
     elif [ $TRAVIS_OS_NAME = 'osx' ]; then
       brew install r
     fi
-    pip install rpy2>=2.9.1
+    pip install "rpy2>=2.9.1,<=3.2.7"
   fi
 
 script:

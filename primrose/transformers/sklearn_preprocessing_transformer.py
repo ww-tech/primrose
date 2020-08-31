@@ -2,8 +2,10 @@
 
 Author(s):
     Carl Anderson (carl.anderson@weightwatchers.com)
+    Brian Graham (brian.graham@ww.com)
 
 """
+import importlib
 import logging
 import pandas as pd
 
@@ -11,18 +13,34 @@ from primrose.base.transformer import AbstractTransformer
 
 class SklearnPreprocessingTransformer(AbstractTransformer):
 
-    def __init__(self, preprocessor, columns):
+    def __init__(self, preprocessor, columns, args=None):
         """initialize the proprocessor
 
         Args:
-            preprocessor (SKlearn preprocessor): preprocesor from Sklearn
+            preprocessor (SKlearn preprocessor or str specifying the preprocessor): preprocesor from Sklearn
             columns (list of str): list of columns
 
         """
         #Ideally, would check that this is a preprocessor but there is no good class to check against
-        self.preprocessor = preprocessor
+        self.preprocessor = self._instantiate_preprocessor(preprocessor, args)
         self.columns = columns
 
+    def _instantiate_preprocessor(self, preprocessor, args):
+        if isinstance(preprocessor, str):
+            sk_module_name, sk_transformer_name = preprocessor.split('.')
+            sk_module = importlib.import_module('sklearn.{}'.format(sk_module_name))
+
+            try:
+                t = getattr(sk_module, sk_transformer_name)
+            except AttributeError:
+                raise Exception('Preprocessor {} not found in {} module'.format(sk_transformer_name, sk_module_name))
+
+            if args:
+                return t(**args)
+
+            return t()
+
+        return preprocessor
     def fit(self, data):
         """User implements fit operation on a single data element from a data_object
         
