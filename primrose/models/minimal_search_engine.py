@@ -8,6 +8,7 @@ from nltk import ngrams
 from primrose.base.search_engine import AbstractSearchEngine
 from nltk import WordNetLemmatizer
 
+
 class MinimalSearchEngine(AbstractSearchEngine):
     """simple TFIDF search engine"""
 
@@ -23,7 +24,7 @@ class MinimalSearchEngine(AbstractSearchEngine):
         self.lemmatizer = WordNetLemmatizer()
 
     def tokenize(self, s, stopwords=[], add_ngrams=True):
-        """ tokenize a string document, optimized for recipe names given default stopwords and other
+        """tokenize a string document, optimized for recipe names given default stopwords and other
             string cleanup operations
 
         Args:

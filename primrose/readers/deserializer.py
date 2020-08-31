@@ -15,8 +15,9 @@ from primrose.base.reader import AbstractReader
 
 class Deserializer(AbstractReader):
     """Read a local file and de-serialize it into memory."""
-    DATA_KEY = 'reader_data'
-    SUPPORTED_DESERIALIZERS = {'dill': dill, 'pickle': pickle}
+
+    DATA_KEY = "reader_data"
+    SUPPORTED_DESERIALIZERS = {"dill": dill, "pickle": pickle}
 
     @staticmethod
     def necessary_config(node_config):
@@ -33,7 +34,7 @@ class Deserializer(AbstractReader):
             set of necessary keys for the Deserializer object
 
         """
-        return set(['filename','deserializer'])
+        return set(["filename", "deserializer"])
 
     def run(self, data_object):
         """Read dill object(s) from local filesystem
@@ -49,16 +50,29 @@ class Deserializer(AbstractReader):
                 terminate (bool): terminate the DAG?
 
         """
-        logging.info('Reading {} from local filesystem'.format(self.node_config['filename']))
+        logging.info(
+            "Reading {} from local filesystem".format(self.node_config["filename"])
+        )
 
-        if self.node_config['deserializer'] not in Deserializer.SUPPORTED_DESERIALIZERS.keys():
-            logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
-            logging.warning(f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}.")
-            raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
+        if (
+            self.node_config["deserializer"]
+            not in Deserializer.SUPPORTED_DESERIALIZERS.keys()
+        ):
+            logging.warning(
+                f"{self.node_config['deserializer']} deserializer not supported."
+            )
+            logging.warning(
+                f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}."
+            )
+            raise Exception(
+                f"Unsupported Deserializer: {self.node_config['deserializer']}"
+            )
 
-        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[self.node_config['deserializer']]
+        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[
+            self.node_config["deserializer"]
+        ]
 
-        object = deserializer.load(open(self.node_config['filename'], 'rb'))
+        object = deserializer.load(open(self.node_config["filename"], "rb"))
 
         data_object.add(self, object, key=Deserializer.DATA_KEY)
 
@@ -66,11 +80,12 @@ class Deserializer(AbstractReader):
 
         return data_object, terminate
 
+
 class GcsDeserializer(AbstractReader):
     """Read a file from GCS and de-serialize it into memory."""
 
-    DATA_KEY = 'reader_data'
-    SUPPORTED_DESERIALIZERS = {'dill': dill, 'pickle': pickle}
+    DATA_KEY = "reader_data"
+    SUPPORTED_DESERIALIZERS = {"dill": dill, "pickle": pickle}
 
     @staticmethod
     def necessary_config(node_config):
@@ -88,7 +103,7 @@ class GcsDeserializer(AbstractReader):
             set of necessary keys for the GcsDeserializer object
 
         """
-        return set(['bucket_name', 'blob_name','deserializer'])
+        return set(["bucket_name", "blob_name", "deserializer"])
 
     def download_blobs_as_strings(self):
         """Downloads a blob from the bucket contining the user specified blob_name
@@ -98,24 +113,28 @@ class GcsDeserializer(AbstractReader):
 
         """
 
-        if 'gcs_project' in self.node_config:
-            storage_client = storage.Client(project=self.node_config['gcs_project'])
+        if "gcs_project" in self.node_config:
+            storage_client = storage.Client(project=self.node_config["gcs_project"])
         else:
             storage_client = storage.Client()
 
-        bucket = storage_client.get_bucket(self.node_config['bucket_name'])
+        bucket = storage_client.get_bucket(self.node_config["bucket_name"])
 
-        if 'prefix' in self.node_config:
-            prefix = self.node_config['prefix']
+        if "prefix" in self.node_config:
+            prefix = self.node_config["prefix"]
         else:
             prefix = None
 
         blob_list = bucket.list_blobs(prefix=prefix)
 
-        valid_blobs = [blob for blob in blob_list if self.node_config['blob_name'] in blob.name]
+        valid_blobs = [
+            blob for blob in blob_list if self.node_config["blob_name"] in blob.name
+        ]
 
         if len(valid_blobs) == 0:
-            raise Exception('{} not found in GCS bucket.'.format(self.node_config['blob_name']))
+            raise Exception(
+                "{} not found in GCS bucket.".format(self.node_config["blob_name"])
+            )
 
         return [blob.download_as_string() for blob in valid_blobs]
 
@@ -133,14 +152,25 @@ class GcsDeserializer(AbstractReader):
                 terminate (bool): terminate the DAG?
 
         """
-        logging.info('Reading {} from GCS'.format(self.node_config['blob_name']))
+        logging.info("Reading {} from GCS".format(self.node_config["blob_name"]))
 
-        if self.node_config['deserializer'] not in Deserializer.SUPPORTED_DESERIALIZERS.keys():
-            logging.warning(f"{self.node_config['deserializer']} deserializer not supported.")
-            logging.warning(f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}.")
-            raise Exception(f"Unsupported Deserializer: {self.node_config['deserializer']}")
+        if (
+            self.node_config["deserializer"]
+            not in Deserializer.SUPPORTED_DESERIALIZERS.keys()
+        ):
+            logging.warning(
+                f"{self.node_config['deserializer']} deserializer not supported."
+            )
+            logging.warning(
+                f"The following deserializers are supported {Deserializer.SUPPORTED_DESERIALIZERS.keys()}."
+            )
+            raise Exception(
+                f"Unsupported Deserializer: {self.node_config['deserializer']}"
+            )
 
-        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[self.node_config['deserializer']]
+        deserializer = Deserializer.SUPPORTED_DESERIALIZERS[
+            self.node_config["deserializer"]
+        ]
 
         objects = [deserializer.loads(obj) for obj in self.download_blobs_as_strings()]
 

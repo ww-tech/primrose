@@ -8,11 +8,13 @@ Author(s):
 """
 from enum import Enum
 
+
 class RunModes(Enum):
     """set of operation type identifiers"""
-    TRAIN = 'train'
-    PREDICT = 'predict'
-    EVAL = 'eval'
+
+    TRAIN = "train"
+    PREDICT = "predict"
+    EVAL = "eval"
 
     @staticmethod
     def names():

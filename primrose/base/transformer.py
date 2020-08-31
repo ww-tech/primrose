@@ -9,13 +9,14 @@ Author(s):
 
 from abc import ABC, abstractmethod
 
+
 class AbstractTransformer(ABC):
     """Serializable object that can be string together within a pipeline"""
 
     @abstractmethod
     def fit(self, data):
         """User implements fit operation on a single data element from a data_object
-        
+
         Args:
             data (object): some data
 
@@ -23,12 +24,12 @@ class AbstractTransformer(ABC):
             data
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover
 
     @abstractmethod
     def transform(self, data):
         """User implements internal transform function which operates on a single data element from a data_object
-        
+
         Args:
             data (object): input data
 
@@ -36,7 +37,7 @@ class AbstractTransformer(ABC):
             data, transformed
 
         """
-        return data # pragma: no cover
+        return data  # pragma: no cover
 
     def fit_transform(self, data):
         """fit then transform data

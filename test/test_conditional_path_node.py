@@ -3,12 +3,16 @@ from primrose.base.conditional_path_node import AbstractConditionalPath
 from primrose.configuration.configuration import Configuration
 from primrose.node_factory import NodeFactory
 
+
 def test_all_nodes_to_prune():
     class TestConditionalNode(AbstractConditionalPath):
         @staticmethod
-        def necessary_config(node_config): return set()
+        def necessary_config(node_config):
+            return set()
+
         def destinations_to_prune(self):
             return ["csv_writer2"]
+
         def run(self, data_object):
             return data_object, False
 
@@ -19,30 +23,30 @@ def test_all_nodes_to_prune():
             "reader_config": {
                 "conditional_node": {
                     "class": "TestConditionalNode",
-                    "destinations": ['csv_writer', 'csv_writer2']
+                    "destinations": ["csv_writer", "csv_writer2"],
                 }
             },
             "writer_config": {
                 "csv_writer": {
                     "class": "CsvWriter",
-                    "key":"test_data",
+                    "key": "test_data",
                     "dir": "cache",
-                    "filename": "unittest_similar_recipes.csv"
+                    "filename": "unittest_similar_recipes.csv",
                 },
                 "csv_writer2": {
                     "class": "CsvWriter",
-                    "key":"test_data",
+                    "key": "test_data",
                     "dir": "cache",
                     "filename": "unittest_similar_recipes.csv",
-                    "destinations": ["csv_writer3"]
+                    "destinations": ["csv_writer3"],
                 },
                 "csv_writer3": {
                     "class": "CsvWriter",
-                    "key":"test_data",
+                    "key": "test_data",
                     "dir": "cache",
-                    "filename": "unittest_similar_recipes.csv"
-                }
-            }
+                    "filename": "unittest_similar_recipes.csv",
+                },
+            },
         }
     }
     configuration = Configuration(None, is_dict_config=True, dict_config=config)
@@ -56,11 +60,7 @@ def test_all_nodes_to_prune():
 
     config = {
         "implementation_config": {
-            "reader_config": {
-                "conditional_node": {
-                    "class": "TestConditionalNode"
-                }
-            }
+            "reader_config": {"conditional_node": {"class": "TestConditionalNode"}}
         }
     }
     configuration = Configuration(None, is_dict_config=True, dict_config=config)
@@ -70,14 +70,19 @@ def test_all_nodes_to_prune():
         node.all_nodes_to_prune()
     assert "Destinations key is missing" in str(e)
 
+
 def test_all_nodes_to_prune2():
     class TestConditionalNode(AbstractConditionalPath):
         @staticmethod
-        def necessary_config(node_config): return set()
+        def necessary_config(node_config):
+            return set()
+
         def destinations_to_prune(self):
             return ["junk"]
+
         def run(self, data_object):
             return data_object, False
+
     NodeFactory().register("TestConditionalNode", TestConditionalNode)
 
     config = {
@@ -85,17 +90,17 @@ def test_all_nodes_to_prune2():
             "reader_config": {
                 "conditional_node": {
                     "class": "TestConditionalNode",
-                    "destinations": ['csv_writer']
+                    "destinations": ["csv_writer"],
                 }
             },
             "writer_config": {
                 "csv_writer": {
                     "class": "CsvWriter",
-                    "key":"test_data",
+                    "key": "test_data",
                     "dir": "cache",
-                    "filename": "unittest_similar_recipes.csv"
+                    "filename": "unittest_similar_recipes.csv",
                 }
-            }
+            },
         }
     }
 

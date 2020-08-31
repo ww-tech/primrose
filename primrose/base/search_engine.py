@@ -12,6 +12,7 @@ from primrose.data_object import DataObjectResponseType
 import pandas as pd
 import logging
 
+
 class AbstractSearchEngine(AbstractModel):
     """an abstract search engine"""
 
@@ -28,7 +29,7 @@ class AbstractSearchEngine(AbstractModel):
         self.docs = None
         self.tfidf = None
         self.term_document_matrix = None
-        self.corpus_key = self.node_config.get('corpus_key','corpus')
+        self.corpus_key = self.node_config.get("corpus_key", "corpus")
 
     @staticmethod
     def necessary_config(node_config):
@@ -45,7 +46,9 @@ class AbstractSearchEngine(AbstractModel):
             set of keys necessary to run AbstractSearchEngine
 
         """
-        return set(['id_key', 'doc_key']).union(AbstractModel.necessary_config(node_config))
+        return set(["id_key", "doc_key"]).union(
+            AbstractModel.necessary_config(node_config)
+        )
 
     def train_model(self, data_object):
         """train the model which means run fit_transform on a TFIDF model
@@ -58,8 +61,9 @@ class AbstractSearchEngine(AbstractModel):
 
         """
 
-        upstream_data = data_object.get_upstream_data(self.instance_name,
-            rtype=DataObjectResponseType.VALUE.value)
+        upstream_data = data_object.get_upstream_data(
+            self.instance_name, rtype=DataObjectResponseType.VALUE.value
+        )
 
         if isinstance(upstream_data, pd.DataFrame):
             corpus = upstream_data
@@ -70,22 +74,29 @@ class AbstractSearchEngine(AbstractModel):
 
                 # check that the data object is a dataframe, if not skip
                 if not isinstance(data, pd.DataFrame):
-                    logging.info("Upstream data from {}.{} not in necessary format, skipping".format(self.instance_name,
-                                                                                                            data_key))
+                    logging.info(
+                        "Upstream data from {}.{} not in necessary format, skipping".format(
+                            self.instance_name, data_key
+                        )
+                    )
                     continue
 
                 if data_key == self.corpus_key:
                     corpus = data
                 else:
-                    logging.info("{} key not found for data entry in upstream {} object, skipping".format(
-                        self.corpus_key, data_key))
+                    logging.info(
+                        "{} key not found for data entry in upstream {} object, skipping".format(
+                            self.corpus_key, data_key
+                        )
+                    )
         else:
-            raise Exception('Search Engine requires a corpus dataframe'.format())
+            raise Exception("Search Engine requires a corpus dataframe".format())
 
-
-        self.ids = list(corpus[self.node_config['id_key']])
-        self.docs = list(corpus[self.node_config['doc_key']])
-        self.tfidf = TfidfVectorizer(tokenizer=self.tokenize,stop_words=None,ngram_range=(1,1))
+        self.ids = list(corpus[self.node_config["id_key"]])
+        self.docs = list(corpus[self.node_config["doc_key"]])
+        self.tfidf = TfidfVectorizer(
+            tokenizer=self.tokenize, stop_words=None, ngram_range=(1, 1)
+        )
         self.term_document_matrix = self.tfidf.fit_transform(self.docs)
 
         return data_object
@@ -132,7 +143,7 @@ class AbstractSearchEngine(AbstractModel):
 
         """
         # this code is essentially unreachable as it has to be overridden in concrete subclass
-        pass # pragma: no cover
+        pass  # pragma: no cover
 
     def cosine_similarity_matrix(self):
         """compute the cosine similarities between all document pairs in the corpus

@@ -9,6 +9,7 @@ from primrose.data_object import DataObjectResponseType
 import matplotlib.pyplot as plt
 import logging
 
+
 class ClusterPlotter(AbstractNode):
     """Plot clusters on a 2D scatter plot"""
 
@@ -20,11 +21,11 @@ class ClusterPlotter(AbstractNode):
             id_col (str): name of column with cluster IDs
             filename (str): name of the file
 
-        Returns: 
+        Returns:
             set of necessary keys for the CsvReader object
 
         """
-        return set(['id_col', 'filename'])
+        return set(["id_col", "filename"])
 
     def run(self, data_object):
         """Create a PNG image of the clustered data
@@ -38,19 +39,23 @@ class ClusterPlotter(AbstractNode):
             terminate (bool): should we terminate the DAG? true or false. Terminate if empty data
 
         """
-        dat = data_object.get_upstream_data(self.instance_name, pop_data=False, rtype=DataObjectResponseType.KEY_VALUE.value)
-        X = dat['data']
-        cluster_ids = X[self.node_config['id_col']]
-        centers = X.groupby(self.node_config['id_col']).mean()
+        dat = data_object.get_upstream_data(
+            self.instance_name,
+            pop_data=False,
+            rtype=DataObjectResponseType.KEY_VALUE.value,
+        )
+        X = dat["data"]
+        cluster_ids = X[self.node_config["id_col"]]
+        centers = X.groupby(self.node_config["id_col"]).mean()
 
-        plt.scatter(X.iloc[:,0],X.iloc[:,1], c=cluster_ids, s=50, cmap='viridis')
-        plt.scatter(centers.iloc[:,0], centers.iloc[:,1], c='black', s=200, alpha=0.5)
+        plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=cluster_ids, s=50, cmap="viridis")
+        plt.scatter(centers.iloc[:, 0], centers.iloc[:, 1], c="black", s=200, alpha=0.5)
 
-        if self.node_config['title']:
-            plt.title(self.node_config['title'])
+        if self.node_config["title"]:
+            plt.title(self.node_config["title"])
 
-        plt.savefig(self.node_config['filename'])
-        logging.info("Saved cluster plot to " + self.node_config['filename'])
+        plt.savefig(self.node_config["filename"])
+        logging.info("Saved cluster plot to " + self.node_config["filename"])
 
         terminate = X.empty
         return data_object, terminate

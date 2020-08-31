@@ -23,6 +23,7 @@ class PipelineModeType(Enum):
         FIT_TRANSFORM = fit data then transform data in a pipeline
 
     """
+
     FIT = "FIT"
     FIT_TRANSFORM = "FIT_TRANSFORM"
     TRANSFORM = "TRANSFORM"
@@ -84,15 +85,21 @@ class AbstractPipeline(AbstractNode):
             # NOTE: some readers in primrose have objects nested TransformerSequences one level deeper than others
             # we will allow for this scenario by checking both the first and second level keys for a TransformerSequence
             if isinstance(source_dict[source], TransformerSequence):
-                logging.info('Upstream TransformerSequence found, initializing pipeline...')
+                logging.info(
+                    "Upstream TransformerSequence found, initializing pipeline..."
+                )
                 return source_dict[source]
             elif isinstance(source_dict[source], dict):
                 for subkey in source_dict[source]:
                     if isinstance(source_dict[source][subkey], TransformerSequence):
-                        logging.info('Upstream TransformerSequence found, initializing pipeline...')
+                        logging.info(
+                            "Upstream TransformerSequence found, initializing pipeline..."
+                        )
                         return source_dict[source][subkey]
 
-        logging.info('No upstream TransformerSequence found. Creating new TransformerSequence...')
+        logging.info(
+            "No upstream TransformerSequence found. Creating new TransformerSequence..."
+        )
 
         return self.init_pipeline()
 
@@ -110,10 +117,12 @@ class AbstractPipeline(AbstractNode):
                 terminate (bool): terminate the DAG?
 
         """
-        is_training = self.node_config.get('is_training', None)
+        is_training = self.node_config.get("is_training", None)
 
         if is_training is None:
-            logging.info('"is_training" key not found in the node_config, assuming production data')
+            logging.info(
+                '"is_training" key not found in the node_config, assuming production data'
+            )
             is_training = False
         else:
             is_training = str(is_training).lower() == "true"
@@ -141,7 +150,7 @@ class AbstractPipeline(AbstractNode):
             set of keys necessary to run implementation
 
         """
-        return set(['is_training']) # pragma: no cover
+        return set(["is_training"])  # pragma: no cover
 
     def fit_transform(self, data_object):
         """Clean/transform or filter data using a pipeline of functions
@@ -174,7 +183,7 @@ class AbstractPipeline(AbstractNode):
             data_object (DataObject)
 
         """
-        return data_object # pragma: no cover
+        return data_object  # pragma: no cover
 
     def init_pipeline(self):
         """Initialize the pipeline if no pipeline object is found in the upstream data objects
@@ -197,10 +206,12 @@ class AbstractPipeline(AbstractNode):
 
         """
         if not self.transformer_sequence:
-            raise Exception("run() must be called to extract/create a TransformerSequence")
+            raise Exception(
+                "run() must be called to extract/create a TransformerSequence"
+            )
 
         if mode not in PipelineModeType.names() and mode not in PipelineModeType:
-            raise Exception('mode must be of type PipelineModeType Enum object.')
+            raise Exception("mode must be of type PipelineModeType Enum object.")
 
         for transformer in self.transformer_sequence.transformers():
 

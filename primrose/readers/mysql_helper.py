@@ -7,7 +7,8 @@ Author(s):
 import mysql.connector
 from primrose.readers.database_helper import get_env_val
 
-class MySQLHelper():
+
+class MySQLHelper:
     """"some utility methods for connecting to MySQL"""
 
     @staticmethod
@@ -32,13 +33,26 @@ class MySQLHelper():
 
     @staticmethod
     def create_db_connection():
-        '''authenticate with MySQL database
+        """authenticate with MySQL database
 
         Returns:
             db (connection object): MySQL db object
 
-        '''
+        """
 
-        host, port, username, password, database = MySQLHelper.extract_mysql_credentials()
-        conn = mysql.connector.connect(database=database, user=username, passwd=password, host=host, port=port, auth_plugin='mysql_native_password')
+        (
+            host,
+            port,
+            username,
+            password,
+            database,
+        ) = MySQLHelper.extract_mysql_credentials()
+        conn = mysql.connector.connect(
+            database=database,
+            user=username,
+            passwd=password,
+            host=host,
+            port=port,
+            auth_plugin="mysql_native_password",
+        )
         return conn

@@ -9,6 +9,7 @@ import logging
 import pandas as pd
 from primrose.base.reader import AbstractReader
 
+
 class CsvReader(AbstractReader):
     """Reads CSV file into a pandas dataframe"""
 
@@ -22,11 +23,11 @@ class CsvReader(AbstractReader):
         Note:
             filename: name of the file
 
-        Returns: 
+        Returns:
             set of necessary keys for the CsvReader object
 
         """
-        return set(['filename'])
+        return set(["filename"])
 
     def get_optional_config(self):
         """Optionally get kwargs to pass to pandas csv reader.
@@ -45,8 +46,8 @@ class CsvReader(AbstractReader):
             } \
 
         """
-        if 'kwargs' in self.node_config:
-            return self.node_config['kwargs']
+        if "kwargs" in self.node_config:
+            return self.node_config["kwargs"]
         else:
             return {}
 
@@ -58,8 +59,8 @@ class CsvReader(AbstractReader):
             terminate (bool): should we terminate the DAG? true or false
 
         """
-        filename = self.node_config['filename']
-        logging.info('Reading {} from CSV'.format(filename))
+        filename = self.node_config["filename"]
+        logging.info("Reading {} from CSV".format(filename))
         kwargs = self.get_optional_config()
         df = pd.read_csv(filename, **kwargs)
         data_object.add(self, df)

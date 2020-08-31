@@ -8,6 +8,7 @@ Author(s):
 from primrose.dag.dag_traverser import DagTraverser
 from primrose.dag.depth_first_traverser import DepthFirstTraverser
 
+
 class ConfigLayerTraverser(DagTraverser):
     """Module to traverse DAG by running all readers, then all pipelines,
     then all models, then all postprocess, then all cleanup
