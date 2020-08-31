@@ -6,6 +6,7 @@ Author(s):
 """
 import os
 
+
 def get_env_val(key):
     """get environmental variable
 
@@ -17,4 +18,3 @@ def get_env_val(key):
     if val is None:
         raise Exception("Did not find env variable for " + str(key))
     return val
-

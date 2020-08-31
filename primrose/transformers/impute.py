@@ -10,11 +10,19 @@ import pandas as pd
 import logging
 from primrose.base.transformer import AbstractTransformer
 
+
 class ColumnSpecificImpute(AbstractTransformer):
     """Transform config specified columns NULL values into zero, mean, median, mode, inf or negative inf"""
 
-    def __init__(self, columns_to_zero, columns_to_mean, columns_to_median, columns_to_mode,
-                columns_to_infinity, columns_to_neg_infinity):
+    def __init__(
+        self,
+        columns_to_zero,
+        columns_to_mean,
+        columns_to_median,
+        columns_to_mode,
+        columns_to_infinity,
+        columns_to_neg_infinity,
+    ):
         """Transform config specified columns NULL values into zero, mean, median, mode, inf or negative inf
 
         Args:
@@ -56,12 +64,14 @@ class ColumnSpecificImpute(AbstractTransformer):
         self.encoder = {}
         columns_so_far = set()
 
-        for cols in [self.columns_to_zero,
-                    self.columns_to_mean,
-                    self.columns_to_median,
-                    self.columns_to_mode,
-                    self.columns_to_infinity,
-                    self.columns_to_neg_infinity]:
+        for cols in [
+            self.columns_to_zero,
+            self.columns_to_mean,
+            self.columns_to_median,
+            self.columns_to_mode,
+            self.columns_to_infinity,
+            self.columns_to_neg_infinity,
+        ]:
 
             # does column exist?
             for col in cols:
@@ -71,27 +81,33 @@ class ColumnSpecificImpute(AbstractTransformer):
             # is it in some previous list?
             in_common = columns_so_far.intersection(set(cols))
             if in_common:
-                raise Exception("There are columns in multiple lists "+ str(in_common))
+                raise Exception("There are columns in multiple lists " + str(in_common))
             columns_so_far = columns_so_far.union(set(cols))
 
-        logging.info('Specifying columns to impute 0')
+        logging.info("Specifying columns to impute 0")
         [self.encoder.setdefault(col, 0) for col in self.columns_to_zero]
 
-        logging.info('Specifying columns to impute median')
-        [self.encoder.setdefault(col, data[col].median()) for col in self.columns_to_median]
+        logging.info("Specifying columns to impute median")
+        [
+            self.encoder.setdefault(col, data[col].median())
+            for col in self.columns_to_median
+        ]
 
-        logging.info('Specifying columns to impute mean')
+        logging.info("Specifying columns to impute mean")
         [self.encoder.setdefault(col, data[col].mean()) for col in self.columns_to_mean]
 
-        logging.info('Specifying columns to impute large values')
-        [self.encoder.setdefault(col, 999999999.) for col in self.columns_to_infinity]
+        logging.info("Specifying columns to impute large values")
+        [self.encoder.setdefault(col, 999999999.0) for col in self.columns_to_infinity]
 
-        logging.info('Specifying columns to impute large negative values')
-        [self.encoder.setdefault(col, -999999999.) for col in self.columns_to_neg_infinity]
+        logging.info("Specifying columns to impute large negative values")
+        [
+            self.encoder.setdefault(col, -999999999.0)
+            for col in self.columns_to_neg_infinity
+        ]
 
-        logging.info('Specifying columns to impute mode')
+        logging.info("Specifying columns to impute mode")
         for col in self.columns_to_mode:
-            logging.info('imputing {}'.format(col))
+            logging.info("imputing {}".format(col))
             try:
                 if pd.notnull(data[col].mode().values[0]):
                     col_mode = data[col].mode().values[0]
@@ -117,7 +133,9 @@ class ColumnSpecificImpute(AbstractTransformer):
         """
 
         if self.encoder is None:
-            raise Exception('ColumnSpecificImpute must train imputations with fit before calling transform.')
+            raise Exception(
+                "ColumnSpecificImpute must train imputations with fit before calling transform."
+            )
 
         for col, val in self.encoder.items():
             data[col] = data[col].fillna(val)

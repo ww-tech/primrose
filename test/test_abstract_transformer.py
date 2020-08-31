@@ -1,8 +1,8 @@
-
 import pytest
 from primrose.base.transformer import AbstractTransformer
 import logging
 from testfixtures import LogCapture
+
 
 def test_fit_transform():
     class TestTransformer(AbstractTransformer):
@@ -18,7 +18,6 @@ def test_fit_transform():
     with LogCapture() as l:
         t.fit_transform(None)
     l.check(
-        ('root', 'INFO', 'Transfer FIT CALLED'),
-        ('root', 'INFO', 'Transfer TRANSFORM CALLED')
+        ("root", "INFO", "Transfer FIT CALLED"),
+        ("root", "INFO", "Transfer TRANSFORM CALLED"),
     )
-

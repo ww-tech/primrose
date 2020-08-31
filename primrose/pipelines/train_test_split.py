@@ -25,11 +25,12 @@ class TrainTestSplit(AbstractPipeline):
         to write in child classes.
 
     """
-    def __init__(self,configuration, instance_name):
+
+    def __init__(self, configuration, instance_name):
         super(TrainTestSplit, self).__init__(configuration, instance_name)
-        self.training_fraction = self.node_config.get("training_fraction",0)
-        self.seed = self.node_config.get("seed",0)
-        
+        self.training_fraction = self.node_config.get("training_fraction", 0)
+        self.seed = self.node_config.get("seed", 0)
+
     @staticmethod
     def necessary_config(node_config):
         """Return the necessary configuration keys for the DataFrameJoiner object
@@ -46,51 +47,63 @@ class TrainTestSplit(AbstractPipeline):
             set of keys
 
         """
-        return set(['training_fraction', 'seed']).union(AbstractPipeline.necessary_config(node_config))
+        return set(["training_fraction", "seed"]).union(
+            AbstractPipeline.necessary_config(node_config)
+        )
 
     def features(self, data):
         """Use user-specified features if available, otherwise use all non-target columns
-        
+
         Args:
             data (DataFrame): pandas dataframe
 
         Returns:
             lsit of feature names
-        
+
         """
-        if 'features' in self.node_config:
-            return self.node_config['features']
+        if "features" in self.node_config:
+            return self.node_config["features"]
 
         else:
-            if 'target_variable' in self.node_config:
-                return [f for f in data.columns if f != self.node_config['target_variable']]
+            if "target_variable" in self.node_config:
+                return [
+                    f for f in data.columns if f != self.node_config["target_variable"]
+                ]
             else:
                 return data.columns
 
     def _train_test_split(self, data):
         """Split data into test/train sets
-        
+
         Returns:
             train_data_to_transform (DataFrame)
-            
+
             test_data_to_transform (DataFrame)
-        
+
         """
         logging.info("Splitting data into testing and training sets.")
 
-        test_size = (1.0 - float(self.training_fraction))
+        test_size = 1.0 - float(self.training_fraction)
 
         if test_size == 0:
             train_data_to_transform = data
             test_data_to_transform = pd.DataFrame()
-        
+
         else:
-            if 'target_variable' in self.node_config:
+            if "target_variable" in self.node_config:
                 data_train, data_test, target_train, target_test = train_test_split(
-                    data[sorted(list(set(data.columns) - set([self.node_config.get('target_variable')])))],
-                    data[self.node_config['target_variable']],
+                    data[
+                        sorted(
+                            list(
+                                set(data.columns)
+                                - set([self.node_config.get("target_variable")])
+                            )
+                        )
+                    ],
+                    data[self.node_config["target_variable"]],
                     test_size=(1.0 - float(self.training_fraction)),
-                    random_state=self.seed)
+                    random_state=self.seed,
+                )
 
                 # re-merge training and target data into a single dataframe for transforming
                 train_data_to_transform = pd.concat([data_train, target_train], axis=1)
@@ -98,15 +111,26 @@ class TrainTestSplit(AbstractPipeline):
 
             else:
                 data_train, data_test = train_test_split(
-                    data[sorted(list(set(data.columns) - set([self.node_config.get('target_variable')])))],
+                    data[
+                        sorted(
+                            list(
+                                set(data.columns)
+                                - set([self.node_config.get("target_variable")])
+                            )
+                        )
+                    ],
                     test_size=(1.0 - float(self.training_fraction)),
-                    random_state=self.seed)
+                    random_state=self.seed,
+                )
 
                 train_data_to_transform = data_train
                 test_data_to_transform = data_test
 
-        logging.info('Training data rows: {}, Testing data rows: {}'.format(len(train_data_to_transform),
-                                                                            len(test_data_to_transform)))
+        logging.info(
+            "Training data rows: {}, Testing data rows: {}".format(
+                len(train_data_to_transform), len(test_data_to_transform)
+            )
+        )
 
         return train_data_to_transform, test_data_to_transform
 
@@ -151,8 +175,12 @@ class TrainTestSplit(AbstractPipeline):
                 if isinstance(data[source][key], pd.DataFrame):
 
                     if dataframes_to_join:
-                        if set(data[source][key].columns) != set(dataframes_to_join[0].columns):
-                            logging.warning('Concatenated dataframe schemas do not match, subbed with NULL values.')
+                        if set(data[source][key].columns) != set(
+                            dataframes_to_join[0].columns
+                        ):
+                            logging.warning(
+                                "Concatenated dataframe schemas do not match, subbed with NULL values."
+                            )
 
                     dataframes_to_join.append(data[source][key])
 
@@ -170,35 +198,59 @@ class TrainTestSplit(AbstractPipeline):
         """
 
         # we're can expect multiple objects from a reader, so we need to concatenate
-        data_list = data_object.get_upstream_data(self.instance_name,
-                                            pop_data=False,
-                                            rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value)
+        data_list = data_object.get_upstream_data(
+            self.instance_name,
+            pop_data=False,
+            rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value,
+        )
 
         data = self._concatenate_upstream_dataframes(data_list)
 
         train_data, test_data = self._train_test_split(data)
 
         if not train_data.empty:
-            train_data = self.execute_pipeline(train_data, PipelineModeType.FIT_TRANSFORM)
-            data_object.add(self, train_data[self.features(train_data)], key='data_train', overwrite=False)
+            train_data = self.execute_pipeline(
+                train_data, PipelineModeType.FIT_TRANSFORM
+            )
+            data_object.add(
+                self,
+                train_data[self.features(train_data)],
+                key="data_train",
+                overwrite=False,
+            )
 
-            if 'target_variable' in self.node_config:
-                data_object.add(self, train_data[self.node_config['target_variable']], key='target_train',
-                            overwrite=False)
+            if "target_variable" in self.node_config:
+                data_object.add(
+                    self,
+                    train_data[self.node_config["target_variable"]],
+                    key="target_train",
+                    overwrite=False,
+                )
 
         # run the pre-trained pipeline on the testing data
         if not test_data.empty:
             # run the pipeline in Transform mode since we've already fit the pipeline with training data
             test_data = self.execute_pipeline(test_data, PipelineModeType.TRANSFORM)
             self.data = test_data  # assign the data to the testing data if available
-            data_object.add(self, test_data[self.features(train_data)], key='data_test', overwrite=False)
+            data_object.add(
+                self,
+                test_data[self.features(train_data)],
+                key="data_test",
+                overwrite=False,
+            )
 
-            if 'target_variable' in self.node_config:
-                data_object.add(self, test_data[self.node_config['target_variable']], key='target_test',
-                            overwrite=False)
+            if "target_variable" in self.node_config:
+                data_object.add(
+                    self,
+                    test_data[self.node_config["target_variable"]],
+                    key="target_test",
+                    overwrite=False,
+                )
 
         # save pipeline for writing later
-        data_object.add(self, self.transformer_sequence, key='transformer_sequence', overwrite=False)
+        data_object.add(
+            self, self.transformer_sequence, key="transformer_sequence", overwrite=False
+        )
         data_object = self.final_data_object_additions(data_object)
 
         return data_object
@@ -214,20 +266,31 @@ class TrainTestSplit(AbstractPipeline):
 
         """
         # we're can expect multiple objects from a reader, so we need to concatenate
-        data_list = data_object.get_upstream_data(self.instance_name,
-                                                pop_data=False,
-                                                rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value)
+        data_list = data_object.get_upstream_data(
+            self.instance_name,
+            pop_data=False,
+            rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value,
+        )
 
         data = self._concatenate_upstream_dataframes(data_list)
 
         data = self.execute_pipeline(data, PipelineModeType.TRANSFORM)
 
-        self.data = data  # keep the data for use in the final_data_object_additions method
+        self.data = (
+            data  # keep the data for use in the final_data_object_additions method
+        )
 
-        data_object.add(self, data[self.features(data)], key='data_test', overwrite=False)
+        data_object.add(
+            self, data[self.features(data)], key="data_test", overwrite=False
+        )
 
-        if 'target_variable' in self.node_config:
-            data_object.add(self, data[self.node_config['target_variable']], key='target_test', overwrite=False)
+        if "target_variable" in self.node_config:
+            data_object.add(
+                self,
+                data[self.node_config["target_variable"]],
+                key="target_test",
+                overwrite=False,
+            )
 
         data_object = self.final_data_object_additions(data_object)
 

@@ -15,8 +15,12 @@ from primrose.base.reader import AbstractReader
 class DillReader(AbstractReader):
     """Read a file from Gcs and un-dills it into memory"""
 
-    DATA_KEY = 'reader_data'
-    warnings.warn('Use Deserializer instead. DillReader will be deprecated in a future release.', DeprecationWarning)
+    DATA_KEY = "reader_data"
+    warnings.warn(
+        "Use Deserializer instead. DillReader will be deprecated in a future release.",
+        DeprecationWarning,
+    )
+
     @staticmethod
     def necessary_config(node_config):
         """Returns the necessary configuration keys for the DillReader object
@@ -31,7 +35,7 @@ class DillReader(AbstractReader):
             set of necessary keys for the DillReader object
 
         """
-        return set(['filename'])
+        return set(["filename"])
 
     def run(self, data_object):
         """Read dill object(s) from local filesystem
@@ -47,9 +51,11 @@ class DillReader(AbstractReader):
                 terminate (bool): terminate the DAG?
 
         """
-        logging.info('Reading {} from local filesystem'.format(self.node_config['filename']))
+        logging.info(
+            "Reading {} from local filesystem".format(self.node_config["filename"])
+        )
 
-        object = dill.load(open(self.node_config['filename'], 'rb'))
+        object = dill.load(open(self.node_config["filename"], "rb"))
 
         data_object.add(self, object, key=DillReader.DATA_KEY)
 

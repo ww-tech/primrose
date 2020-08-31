@@ -6,6 +6,7 @@ Author(s):
 """
 from abc import ABC, abstractmethod
 
+
 class DagTraverser(ABC):
     """Abstract module to traverse a DAG"""
 
@@ -41,4 +42,4 @@ class DagTraverser(ABC):
             sequence (list): list of node name in the order that they should be run
 
         """
-        pass # pragma: no cover
+        pass  # pragma: no cover

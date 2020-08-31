@@ -7,7 +7,8 @@ Author(s):
 
 from primrose.base.transformer import AbstractTransformer
 
-class TransformerSequence():
+
+class TransformerSequence:
     """A container for list of transformers"""
 
     def __init__(self, sequence=[]):
@@ -21,7 +22,7 @@ class TransformerSequence():
 
         """
         self.sequence = []
-        
+
         for s in sequence:
             self.add(s)
 

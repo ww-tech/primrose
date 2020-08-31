@@ -3,19 +3,22 @@ from primrose.readers.sklearn_dataset_reader import SklearnDatasetReader
 from primrose.configuration.configuration import Configuration
 from primrose.data_object import DataObject, DataObjectResponseType
 
+
 def test_run():
     config = {
-        "implementation_config":{
+        "implementation_config": {
             "reader_config": {
                 "dataset_reader": {
                     "class": "SklearnDatasetReader",
                     "dataset": "iris",
-                    "destinations": []
+                    "destinations": [],
                 }
             }
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
     data_object = DataObject(configuration)
     reader = SklearnDatasetReader(configuration, "dataset_reader")
     data_object, terminate = reader.run(data_object)
@@ -24,4 +27,4 @@ def test_run():
     assert len(df.columns) == 5
     assert "target" in df.columns
     assert df.shape == (150, 5)
-    assert 'sepal length (cm)' in df.columns
+    assert "sepal length (cm)" in df.columns

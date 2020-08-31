@@ -7,8 +7,8 @@ Author(s):
 import logging
 from primrose.models.sklearn_model import SklearnModel
 
-class SklearnRegressionModel(SklearnModel):
 
+class SklearnRegressionModel(SklearnModel):
     @staticmethod
     def necessary_config(node_config):
         """Return a list of necessary configuration keys
@@ -28,9 +28,9 @@ class SklearnRegressionModel(SklearnModel):
 
     def get_scores(self):
         """get the scores for y_test
-        
+
         Returns:
             dictionary of scores
-        
+
         """
         return SklearnModel.evaluate_regression_metrics(self.y_test, self.predictions)

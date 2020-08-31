@@ -35,23 +35,40 @@ def left_merge_dataframe_on_validated_join_keys(left_df, right_df, join_keys):
         for j in join_keys:
 
             if not j in left_df.columns:
-                raise Exception('Join key {} not in left {}. Aborting merge.'.format(j, left_df.columns))
+                raise Exception(
+                    "Join key {} not in left {}. Aborting merge.".format(
+                        j, left_df.columns
+                    )
+                )
             elif not j in right_df.columns:
-                raise Exception('Join key {} not in right {}. Aborting merge.'.format(j, right_df.columns))
+                raise Exception(
+                    "Join key {} not in right {}. Aborting merge.".format(
+                        j, right_df.columns
+                    )
+                )
 
             if not left_df[j].dtype == right_df[j].dtype:
-                logging.info('Join key {} is not of type {}. Casting.'.format(j, right_df[j].dtype))
+                logging.info(
+                    "Join key {} is not of type {}. Casting.".format(
+                        j, right_df[j].dtype
+                    )
+                )
                 try:
                     right_df[j] = right_df[j].astype(left_df[j].dtype)
                 except:
-                    raise Exception('Cannot cast join key {} as {}'.format(j, left_df[j].dtype))
+                    raise Exception(
+                        "Cannot cast join key {} as {}".format(j, left_df[j].dtype)
+                    )
 
-        left_df = left_df.merge(right_df, on=join_keys, how='left')
+        left_df = left_df.merge(right_df, on=join_keys, how="left")
         left_df.reset_index(inplace=True, drop=True)
 
         if len(left_df) > initial_data_length:
-            logging.warning("Merge increased data size by {} rows.".format(
-                len(left_df) - initial_data_length))
+            logging.warning(
+                "Merge increased data size by {} rows.".format(
+                    len(left_df) - initial_data_length
+                )
+            )
 
         return left_df
 
@@ -70,7 +87,7 @@ class LeftJoinDataCombiner(AbstractTransformer):
 
     def fit(self, data):
         """fit the data, here doing nothing
-        
+
         Args:
             data (list)L : list of pandas data frames
 
@@ -90,17 +107,23 @@ class LeftJoinDataCombiner(AbstractTransformer):
 
         """
         if not isinstance(data, list):
-            raise Exception("In this transformer, data needs to be a list of dataframes")
+            raise Exception(
+                "In this transformer, data needs to be a list of dataframes"
+            )
 
         if len(data) < 2:
 
-            logging.warning("Combiner needs at least two reader inputs, passing unchanged data.")
+            logging.warning(
+                "Combiner needs at least two reader inputs, passing unchanged data."
+            )
 
             return data
 
         elif not isinstance(data[0], pd.DataFrame):
 
-            raise Exception('LeftJoinDataCombiner must operate on an iterable of pandas.DataFrame objects.')
+            raise Exception(
+                "LeftJoinDataCombiner must operate on an iterable of pandas.DataFrame objects."
+            )
 
         else:
 
@@ -108,8 +131,12 @@ class LeftJoinDataCombiner(AbstractTransformer):
 
             # loop over each reader key and merge into a single combined dataframe
             for d in data:
-                combined_data = d if combined_data is None else left_merge_dataframe_on_validated_join_keys(
-                    combined_data, d, self.join_key)
+                combined_data = (
+                    d
+                    if combined_data is None
+                    else left_merge_dataframe_on_validated_join_keys(
+                        combined_data, d, self.join_key
+                    )
+                )
 
             return combined_data
-

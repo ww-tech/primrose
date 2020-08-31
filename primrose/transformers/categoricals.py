@@ -47,9 +47,11 @@ class ExplicitCategoricalTransform(AbstractTransformer):
             data (dataframe)
 
         """
-        if 'transformations' in input_data.keys():
-            logging.info("Applying key {} to variable {}".format('transformations', categorical))
-            for transformation in input_data['transformations']:
+        if "transformations" in input_data.keys():
+            logging.info(
+                "Applying key {} to variable {}".format("transformations", categorical)
+            )
+            for transformation in input_data["transformations"]:
                 exec(transformation.format(x=x))
 
     @staticmethod
@@ -70,10 +72,10 @@ class ExplicitCategoricalTransform(AbstractTransformer):
 
                 name (str): original name (if not "to_numeric": True), new_name otherwise
         """
-        if 'rename' in input_data.keys():
-            logging.info("Applying key {} to variable {}".format('rename', categorical))
-            data = data.rename({categorical: input_data['rename']}, axis='columns')
-            return data, input_data['rename']
+        if "rename" in input_data.keys():
+            logging.info("Applying key {} to variable {}".format("rename", categorical))
+            data = data.rename({categorical: input_data["rename"]}, axis="columns")
+            return data, input_data["rename"]
         return data, categorical
 
     @staticmethod
@@ -91,23 +93,33 @@ class ExplicitCategoricalTransform(AbstractTransformer):
             data with the colun converted to numeric
 
         """
-        if input_data.get('to_numeric', False):
+        if input_data.get("to_numeric", False):
 
-            logging.info("Applying key {} to variable {}".format('to_numeric', name))
+            logging.info("Applying key {} to variable {}".format("to_numeric", name))
 
             # if there are errors converting to numerical values, we need to sub in a reasonable value
-            if sum(pd.to_numeric(data[name], errors='coerce').isnull()) > 0:
-                logging.info("Can't convert these entries in {}. Replacing with {}: {}".format(
-                    name, ExplicitCategoricalTransform.DEFAULT_NUMERIC,
-                    np.unique(data[name][pd.to_numeric(data[name], errors='coerce').isnull()].astype(str))))
+            if sum(pd.to_numeric(data[name], errors="coerce").isnull()) > 0:
+                logging.info(
+                    "Can't convert these entries in {}. Replacing with {}: {}".format(
+                        name,
+                        ExplicitCategoricalTransform.DEFAULT_NUMERIC,
+                        np.unique(
+                            data[name][
+                                pd.to_numeric(data[name], errors="coerce").isnull()
+                            ].astype(str)
+                        ),
+                    )
+                )
 
-                data[name][pd.to_numeric(data[name], errors='coerce').isnull()] = ExplicitCategoricalTransform.DEFAULT_NUMERIC
+                data[name][
+                    pd.to_numeric(data[name], errors="coerce").isnull()
+                ] = ExplicitCategoricalTransform.DEFAULT_NUMERIC
             try:
                 data[name] = pd.to_numeric(data[name])
                 return data
 
             except:
-                raise TypeError('Failed to convert feature {} to numeric'.format(name))
+                raise TypeError("Failed to convert feature {} to numeric".format(name))
 
         else:
             return data
@@ -128,11 +140,17 @@ class ExplicitCategoricalTransform(AbstractTransformer):
 
             input_data = self.categoricals[categorical]
 
-            ExplicitCategoricalTransform._process_transformations(data, input_data, categorical, x)
+            ExplicitCategoricalTransform._process_transformations(
+                data, input_data, categorical, x
+            )
 
-            data, new_name = ExplicitCategoricalTransform._process_rename(data, input_data, categorical)
+            data, new_name = ExplicitCategoricalTransform._process_rename(
+                data, input_data, categorical
+            )
 
-            data = ExplicitCategoricalTransform._process_numeric(data, input_data, new_name)
+            data = ExplicitCategoricalTransform._process_numeric(
+                data, input_data, new_name
+            )
 
         return data
 
@@ -162,7 +180,7 @@ class ImplicitCategoricalTransform(AbstractTransformer):
 
         """
 
-        logging.info('Fitting LabelEncoders on all string-based dataframe columns...')
+        logging.info("Fitting LabelEncoders on all string-based dataframe columns...")
 
         data.is_copy = False
 
@@ -170,7 +188,7 @@ class ImplicitCategoricalTransform(AbstractTransformer):
 
             if data[column_name].dtype == object:
 
-                logging.info('Fitting LabelEncoder for column {}'.format(column_name))
+                logging.info("Fitting LabelEncoder for column {}".format(column_name))
 
                 self._encoder[column_name] = preprocessing.LabelEncoder()
                 self._encoder[column_name].fit(data[column_name])
@@ -199,8 +217,10 @@ class ImplicitCategoricalTransform(AbstractTransformer):
 
             if column_name in self._encoder:
 
-                logging.info('LabelEncoding column {}'.format(column_name))
+                logging.info("LabelEncoding column {}".format(column_name))
 
-                data[column_name] = self._encoder[column_name].transform(data[column_name])
+                data[column_name] = self._encoder[column_name].transform(
+                    data[column_name]
+                )
 
         return data

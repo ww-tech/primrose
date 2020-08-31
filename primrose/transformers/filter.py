@@ -13,6 +13,7 @@ import pandas as pd
 
 from primrose.base.transformer import AbstractTransformer
 
+
 class FilterByPandasExpression(AbstractTransformer):
     """Applies filters to data as defined in feature_filters"""
 
@@ -49,7 +50,7 @@ class FilterByPandasExpression(AbstractTransformer):
             feature_filters (list): list of lists with columns and operators to filter on
             instance_name (str): name of this pipeline instance
 
-        Returns: 
+        Returns:
             dataframe with filtered data
 
         Raises:
@@ -66,7 +67,7 @@ class FilterByPandasExpression(AbstractTransformer):
             "<": operator.lt,
             "<=": operator.le,
             ">": operator.gt,
-            ">=": operator.ge
+            ">=": operator.ge,
         }
 
         if len(self.feature_filters) == 0:
@@ -90,6 +91,6 @@ class FilterByPandasExpression(AbstractTransformer):
             filtered_data = data[np.all(filters, axis=0)]
             filtered_data = filtered_data.reset_index(drop=True)
 
-            logging.info('Filtered out %d rows' % (len(data) - len(filtered_data)))
+            logging.info("Filtered out %d rows" % (len(data) - len(filtered_data)))
 
         return filtered_data

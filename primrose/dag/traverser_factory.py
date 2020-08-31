@@ -9,14 +9,14 @@ import logging
 from primrose.dag.config_layer_traverser import ConfigLayerTraverser
 from primrose.dag.depth_first_traverser import DepthFirstTraverser
 
+
 class TraverserFactory:
     """Singleton Factory where one can register traversers for instantiation"""
 
     instance = None
 
     def __init__(self):
-        """instantiate the factory but as a singleton. The guard raails are here
-        """
+        """instantiate the factory but as a singleton. The guard raails are here"""
         # where the magic happens, only one instance allowed:
         if not TraverserFactory.instance:
             TraverserFactory.instance = TraverserFactory.__HiddenFactory()
@@ -30,16 +30,15 @@ class TraverserFactory:
         """
         return getattr(self.instance, name)
 
-    class __HiddenFactory():
+    class __HiddenFactory:
         """actual factory where registry and instantiation happens"""
 
-        
         def __init__(self):
             """instantiate the HiddenFactory"""
             self.name_dict = {}
-            self.register('ConfigLayerTraverser', ConfigLayerTraverser)
-            self.register('DepthFirstTraverser', DepthFirstTraverser)
-            self.DEFAULT_TRAVERSER = 'ConfigLayerTraverser'
+            self.register("ConfigLayerTraverser", ConfigLayerTraverser)
+            self.register("DepthFirstTraverser", DepthFirstTraverser)
+            self.DEFAULT_TRAVERSER = "ConfigLayerTraverser"
 
         def register(self, key, class_obj, raise_on_overwrite=False):
             """Registering class_obj with key
@@ -70,7 +69,7 @@ class TraverserFactory:
             return self.instantiate(self.DEFAULT_TRAVERSER, configuration)
 
         def instantiate(self, class_name, configuration):
-            '''instantiate instances of rule, given name of rule class
+            """instantiate instances of rule, given name of rule class
 
             Args:
                 class_name (str): name of the class
@@ -79,5 +78,5 @@ class TraverserFactory:
             Returns:
                 instance (Traverser): instance of a traverser
 
-            '''
+            """
             return self.name_dict[class_name](configuration)

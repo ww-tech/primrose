@@ -9,8 +9,9 @@ import logging
 from primrose.writers.abstract_file_writer import AbstractFileWriter
 from primrose.data_object import DataObjectResponseType
 
+
 class FileWriter(AbstractFileWriter):
-    ''' write some data object to a local file '''
+    """ write some data object to a local file """
 
     def run(self, data_object):
         """write some data to a local file
@@ -26,12 +27,14 @@ class FileWriter(AbstractFileWriter):
                 terminate (bool): terminate the DAG?
 
         """
-        filename = self.node_config['dir'] + os.path.sep + self.node_config['filename']
-        data_key = self.node_config['key']
+        filename = self.node_config["dir"] + os.path.sep + self.node_config["filename"]
+        data_key = self.node_config["key"]
         logging.info("Saving %s data to %s", data_key, filename)
-        data_to_write = data_object.get_upstream_data(self.instance_name, pop_data=False, rtype=DataObjectResponseType.VALUE.value)
+        data_to_write = data_object.get_upstream_data(
+            self.instance_name, pop_data=False, rtype=DataObjectResponseType.VALUE.value
+        )
 
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             f.write(data_to_write)
         f.close()
 

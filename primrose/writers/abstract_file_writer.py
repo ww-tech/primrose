@@ -7,10 +7,11 @@ Author(s):
 import pathlib
 from primrose.base.writer import AbstractWriter
 
+
 class AbstractFileWriter(AbstractWriter):
     """write some data to a some file"""
 
-    def __init__(self,configuration, instance_name):
+    def __init__(self, configuration, instance_name):
         """
 
         Args:
@@ -25,7 +26,7 @@ class AbstractFileWriter(AbstractWriter):
 
     def _check_directory(self):
         """Create directory or directory structure if it does not already exist."""
-        pathlib.Path(self.node_config['dir']).mkdir(parents=True, exist_ok=True)
+        pathlib.Path(self.node_config["dir"]).mkdir(parents=True, exist_ok=True)
 
     @staticmethod
     def necessary_config(node_config):
