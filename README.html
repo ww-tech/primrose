@@ -370,11 +370,26 @@ limitations under the License.</p>
 </div>
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>To contribute, start a feature branch and send a PR to merge with master!
-Please adhere to coding best practices and make sure to do everything in the PR template checklist.</p>
+<p>To contribute, start a feature branch and install
+<a class="reference external" href="https://github.com/psf/black">black</a> in your dev environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">black</span>
+</pre></div>
+</div>
+<p>Black is our python formatter of choice. We have also set up
+<a class="reference external" href="https://pre-commit.com/">pre-commit</a> hooks to enforce this formatting.
+This means you will get a commit error when you try to commit without
+adhering to our black formatting. Check out these packages for further
+instructions on their usage.</p>
+<p>Once you have made your commits, make a PR to master! We have dedicated
+time to review open PRs at least once per week, so we shouldn’t miss any
+new PRs.</p>
+<p>Please adhere to coding best practices and make sure to do everything in
+the PR template checklist.</p>
 <ul class="simple">
 <li><p>Write small, modular, reusable, and testable code where possible.</p></li>
-<li><p>Write tests (<a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> or <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a>) for that code and make sure it passes (pytest).</p></li>
+<li><p>Write tests (<a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> or
+<a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a>) for that
+code and make sure it passes (pytest).</p></li>
 <li><p><a class="reference external" href="https://github.com/wprig/wprig/wiki/How-to-squash-commits">Squash your commits</a> so that commits are <a class="reference external" href="https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/">fewer but more meaningful</a>.</p></li>
 <li><p>Update our <a class="reference external" href="https://ww-tech.github.io/primrose/">documentation</a>.
 That means adhering to our <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">docstring format</a> and adding <a class="reference external" href="https://www.markdownguide.org/">markdown</a> when necessary.</p></li>

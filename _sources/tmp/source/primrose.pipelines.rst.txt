@@ -40,6 +40,15 @@ primrose.pipelines.train\_test\_split module
    :show-inheritance:
    :private-members:
 
+primrose.pipelines.transformer\_pipeline module
+-----------------------------------------------
+
+.. automodule:: primrose.pipelines.transformer_pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
 Module contents
 ---------------
 

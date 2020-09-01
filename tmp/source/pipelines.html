@@ -561,6 +561,88 @@ all NULL values in the mutual exclusive indexes</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-pipelines.transformer_pipeline">
+<span id="pipelines-transformer-pipeline-module"></span><h2>pipelines.transformer_pipeline module<a class="headerlink" href="#module-pipelines.transformer_pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Module to run any sequence of transformers, both custom transformers and sklearn preprocessors.</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)
+Brian Graham (<a class="reference external" href="mailto:brian&#46;graham&#37;&#52;&#48;ww&#46;com">brian<span>&#46;</span>graham<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline">
+<em class="property">class </em><code class="sig-prename descclassname">pipelines.transformer_pipeline.</code><code class="sig-name descname">TransformerPipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">instance_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.pipelines.html#primrose.pipelines.train_test_split.TrainTestSplit" title="primrose.pipelines.train_test_split.TrainTestSplit"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.pipelines.train_test_split.TrainTestSplit</span></code></a></p>
+<dl class="py attribute">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 234</em><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline._instantiate_transformer">
+<em class="property">static </em><code class="sig-name descname">_instantiate_transformer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transformer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline._instantiate_transformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import and validate user-defined transformer either from primrose or a custom codebase</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>transformer</strong> (<a class="reference internal" href="base.html#base.transformer.AbstractTransformer" title="base.transformer.AbstractTransformer"><em>AbstractTransformer</em></a>) – a subclass of primrose AbstractTransformer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>AbstractTransformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline.init_pipeline">
+<code class="sig-name descname">init_pipeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline.init_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>create the pipeline’s TransformerSequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a TransformerSequence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the necessary configuration keys for the TransformerPipeline object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pipelines.transformer_pipeline.TransformerPipeline.optional_config">
+<em class="property">static </em><code class="sig-name descname">optional_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipelines.transformer_pipeline.TransformerPipeline.optional_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the optional configuration keys for the TransformerPipeline object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-pipelines">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pipelines" title="Permalink to this headline">¶</a></h2>
 </div>
