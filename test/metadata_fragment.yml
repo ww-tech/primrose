@@ -1,1 +1,2 @@
-metadata: {}
+metadata:
+  test : {{ "default" | env("TEST") }}
