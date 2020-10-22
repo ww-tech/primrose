@@ -441,7 +441,7 @@ def test_yaml_config2():
     assert c.config_hash
 
 
-def test_yaml_perform_any_config_fragment_substitution():
+def test_yaml_perform_any_config_fragment_substitution_default():
     config_str = """
 {% include "test/metadata_fragment.yml" %}
 implementation_config:
@@ -449,7 +449,35 @@ implementation_config:
     """
     final_str = Configuration.perform_any_config_fragment_substitution(config_str)
     expected = """
-metadata: {}
+metadata: 
+    test: default
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - write_output
+      filename: data/tennis.csv
+  writer_config:
+    write_output:
+      class: CsvWriter
+      dir: cache
+      filename: tennis_output.csv
+      key: data
+    """
+    assert final_str == expected
+
+def test_yaml_perform_any_config_fragment_substitution_env_var(monkeypatch):
+    monkeypatch.setenv("TEST","foo")
+    config_str = """
+{% include "test/metadata_fragment.yml" %}
+implementation_config:
+{% include "test/read_write_fragment.yml" %}
+    """
+    final_str = Configuration.perform_any_config_fragment_substitution(config_str)
+    expected = """
+metadata: 
+    test: foo
 implementation_config:
   reader_config:
     read_data:
