@@ -1,2 +1,2 @@
 metadata:
-  test : {{ "default" | env("TEST") }}
+  test: {{ "default" | env_override("TEST") }}

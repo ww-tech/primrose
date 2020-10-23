@@ -151,7 +151,10 @@ class Configuration:
             config_str (str): the post-substituted configuration string
 
         """
+        def env_override(value, key):
+            return os.getenv(key, value)
         jinja_env = Environment(loader=FileSystemLoader([".", "/"]))
+        jinja_env.filters['env_override'] = env_override
         try:
             config_str_template = jinja_env.from_string(config_str)
             config_str = config_str_template.render()
