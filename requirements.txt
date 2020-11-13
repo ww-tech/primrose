@@ -26,3 +26,6 @@ Sphinx>=2.3.0
 sphinxcontrib-napoleon==0.7
 sphinx-rtd-theme>=0.4.3
 testfixtures>=6.8.2
+six==1.13.0
+
+

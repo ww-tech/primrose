@@ -32,7 +32,7 @@ This is the highest level skeleton of a configuration file:
 }
 ```
 
-The typical flow of a machine learning job is 
+The typical flow of a machine learning job is
 
 ```
 readers --> pipelines --> models --> postprocess --> writers --> success
@@ -71,7 +71,7 @@ Here is an example configuration consisting of a single reader node flowing into
 If you wish to have sections other than `reader_config`, `pipeline_config`, `model_config`, `postprocess_config`, `writer_config`, or `success_config`, you can do so but you will need to register them in the metadata section. Please see [Configuration Metadata](README_METADATA.md) for full details.
 
 ## Section Order
-The order of the sections within `implementation_config` is not important and does not impact the order of operations. Thus, 
+The order of the sections within `implementation_config` is not important and does not impact the order of operations. Thus,
 
 ```
 {
@@ -146,7 +146,7 @@ In the example above `read_data` specifies that it has an edge connecting to the
 
 or it may be missing completely, as in the `write_output` node above.
 
-As you might expect, the names listed within the `destinations` list must be valid names of nodes within the DAG. Moreover, they must not be node names that would create cycles within the graph. 
+As you might expect, the names listed within the `destinations` list must be valid names of nodes within the DAG. Moreover, they must not be node names that would create cycles within the graph.
 
 For instance, this would **not** be a valid DAG:
 
@@ -200,12 +200,12 @@ Nodes may define keys other than `class`, `destinations`, `is_training`, and `mo
 ```
 we find a `filename` key. This makes sense, a `CsvReader` has to know the path to the file it must read from.
 
-Each node class may define a set of additional required keys. Those are defined in the `necessary_config()` method of the class implementation. To find out which keys are needed, you can 
+Each node class may define a set of additional required keys. Those are defined in the `necessary_config()` method of the class implementation. To find out which keys are needed, you can
  - attempt to run the job with the configuration file and the validation process will tell you which keys are necessary but missing.
  - examine other example configuration files
  - examine the source code of the class.
 
-Other nodes may require many more additional fields than the single `filename` key above. For instance, in this `DecisionTreeModel`-type node, four other keys are required: `seed` (to make the job reproducible), `train_percent` (to define the train-test split percentage), `y` (the target or dependent variable), and `X` (the features that define the feature matrix). 
+Other nodes may require many more additional fields than the single `filename` key above. For instance, in this `DecisionTreeModel`-type node, four other keys are required: `seed` (to make the job reproducible), `train_percent` (to define the train-test split percentage), `y` (the target or dependent variable), and `X` (the features that define the feature matrix).
 ```
     "decision_tree_model": {
         "class": "DecisionTreeModel",
@@ -274,7 +274,7 @@ Thus,
                 "destinations": [
                     "write_output"   /* more comments */
                 ]
-            }   
+            }
         },
         "writer_config": {
             "write_output": {
@@ -290,11 +290,11 @@ Thus,
 will be parsed correctly as a JSON configuration.
 
 # Configuration File Fragment Substitution
-There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. `primrose` supports the ability to bring in that configuration fragment using [jinja](https://jinja.palletsprojects.com/en/2.10.x/) substitution for both json and yaml config files. 
+There are times when you may have a section of a configuration file that represents some coherent chunk of functionality that you would like to reuse in multiple configurations. `primrose` supports the ability to bring in that configuration fragment using [jinja](https://jinja.palletsprojects.com/en/2.10.x/) substitution for both json and yaml config files.
 
 It looks for the presence of {% include some/path/to/configuration/fragment.json %} in your file.
 
-This is more easily explained with an example. 
+This is more easily explained with an example.
 
 Suppose you have the following configuration file:
 ```
@@ -355,6 +355,98 @@ and `test/read_write_fragment.json` is
     }
 ```
 Note: the final configuration will go through the normal validation process (see below) and it is up to the user to make sure that the destinations listed in the fragments line up with the rest of the configuration correctly.
+
+# Environment Variable Substitution
+There are times when you need to perform environment variable substitution in your DAG. `primrose` supports environment variable substitution for both json and yaml config files.
+
+It performs substitution by looking for custom filter `env_override` in your config file. This can be demonstrated with a similar example to the previous section.
+
+Suppose you have the following configuration file:
+```
+    {
+        {% include "test/metadata_fragment.json" %}
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "CsvReader",
+                    "filename": "data/tennis.csv",
+                    "destinations": [
+                        "write_output"
+                    ]
+                }
+            },
+            "writer_config": {
+                "write_output": {
+                    "class": "CsvWriter",
+                    "key": "{{ "default" | env_override("KEY") }}",
+                    "dir": "cache",
+                    "filename": "tennis_output.csv"
+                }
+            }
+        }
+    }
+```
+and `test/metadata_fragment.json` is
+```
+        "metadata":{
+            "test": "{{ "default" | env_override("TEST") }}"
+        },
+```
+
+`primrose` will swap `{{ "default" | env_override("TEST") }}` and `{ "default" | env_override("KEY") }}` with environment variable `TEST` and `KEY` respectively. If the appropriate environment variable is set as `export TEST=foo` and `export KEY=data`, it will produce:
+```
+    {
+        "metadata":{
+            "test": "foo"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "CsvReader",
+                    "filename": "data/tennis.csv",
+                    "destinations": [
+                        "write_output"
+                    ]
+                }
+            },
+            "writer_config": {
+                "write_output": {
+                    "class": "CsvWriter",
+                    "key": "data",
+                    "dir": "cache",
+                    "filename": "tennis_output.csv"
+                }
+            }
+        }
+    }
+```
+Otherwise, the default values will be used, producing
+```
+    {
+        "metadata":{
+            "test": "default"
+        },
+        "implementation_config": {
+            "reader_config": {
+                "read_data": {
+                    "class": "CsvReader",
+                    "filename": "data/tennis.csv",
+                    "destinations": [
+                        "write_output"
+                    ]
+                }
+            },
+            "writer_config": {
+                "write_output": {
+                    "class": "CsvWriter",
+                    "key": "default",
+                    "dir": "cache",
+                    "filename": "tennis_output.csv"
+                }
+            }
+        }
+    }
+```
 
 # Configuration File Validation
 When you run, or attempt to run, a job using

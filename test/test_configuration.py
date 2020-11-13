@@ -390,7 +390,7 @@ def test_perform_any_config_fragment_substitution_bad():
     assert "Substitution files do not exist: does/not/exist" in str(e)
 
 
-def test_perform_any_config_fragment_substitution():
+def test_perform_any_config_fragment_substitution_default():
     config_str = """
     {
         {% include "test/metadata_fragment.json" %}
@@ -402,7 +402,9 @@ def test_perform_any_config_fragment_substitution():
     final_str = Configuration.perform_any_config_fragment_substitution(config_str)
     expected = """
     {
-        "metadata":{},
+        "metadata":{
+            "test": "default"
+        },
         "implementation_config": {
 
         "reader_config": {
@@ -422,12 +424,52 @@ def test_perform_any_config_fragment_substitution():
                 "filename": "tennis_output.csv"
             }
         }
-        
+
         }
     }
     """
     assert json.loads(final_str) == json.loads(expected)
 
+def test_perform_any_config_fragment_substitution_env_var(monkeypatch):
+    monkeypatch.setenv("TEST","foo")
+    config_str = """
+    {
+        {% include "test/metadata_fragment.json" %}
+        "implementation_config": {
+            {% include "test/read_write_fragment.json" %}
+        }
+    }
+    """
+    final_str = Configuration.perform_any_config_fragment_substitution(config_str)
+    expected = """
+    {
+        "metadata":{
+            "test": "foo"
+        },
+        "implementation_config": {
+
+        "reader_config": {
+            "read_data": {
+                "class": "CsvReader",
+                "filename": "data/tennis.csv",
+                "destinations": [
+                    "write_output"
+                ]
+            }
+        },
+        "writer_config": {
+            "write_output": {
+                "class": "CsvWriter",
+                "key": "data",
+                "dir": "cache",
+                "filename": "tennis_output.csv"
+            }
+        }
+
+        }
+    }
+    """
+    assert json.loads(final_str) == json.loads(expected)
 
 def test_yaml_config1():
     config_yaml = Configuration(config_location="test/hello_world_tennis.yml")
@@ -441,7 +483,7 @@ def test_yaml_config2():
     assert c.config_hash
 
 
-def test_yaml_perform_any_config_fragment_substitution():
+def test_yaml_perform_any_config_fragment_substitution_default():
     config_str = """
 {% include "test/metadata_fragment.yml" %}
 implementation_config:
@@ -449,7 +491,35 @@ implementation_config:
     """
     final_str = Configuration.perform_any_config_fragment_substitution(config_str)
     expected = """
-metadata: {}
+metadata:
+  test: default
+implementation_config:
+  reader_config:
+    read_data:
+      class: CsvReader
+      destinations:
+      - write_output
+      filename: data/tennis.csv
+  writer_config:
+    write_output:
+      class: CsvWriter
+      dir: cache
+      filename: tennis_output.csv
+      key: data
+    """
+    assert final_str == expected
+
+def test_yaml_perform_any_config_fragment_substitution_env_var(monkeypatch):
+    monkeypatch.setenv("TEST","foo")
+    config_str = """
+{% include "test/metadata_fragment.yml" %}
+implementation_config:
+{% include "test/read_write_fragment.yml" %}
+    """
+    final_str = Configuration.perform_any_config_fragment_substitution(config_str)
+    expected = """
+metadata:
+  test: foo
 implementation_config:
   reader_config:
     read_data:
