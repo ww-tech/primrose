@@ -114,10 +114,10 @@ class LeftJoinDataCombiner(AbstractTransformer):
         if len(data) < 2:
 
             logging.warning(
-                "Combiner needs at least two reader inputs, passing unchanged data."
+                "Combiner needs at least two reader inputs, returning input data from list to dataframe."
             )
 
-            return data
+            return pd.DataFrame(data[0])
 
         elif not isinstance(data[0], pd.DataFrame):
 
