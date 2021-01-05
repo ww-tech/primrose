@@ -20,7 +20,7 @@ pytest-cov>=2.8.0
 python-dateutil==2.8.0
 PyYAML>=5.1
 recommonmark>=0.6.0
-scikit-learn>=0.21.2
+scikit-learn>=0.21.2,<=0.23.2
 slackclient==2.4.0
 Sphinx>=2.3.0
 sphinxcontrib-napoleon==0.7
