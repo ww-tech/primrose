@@ -102,8 +102,14 @@ class FilterByUnivariateQuantile(AbstractTransformer):
     def __init__(self, features_to_filter, multiplier=2.0, verbose=False):
         """
 
+        Parameters
+        ----------
         features_to_filter: list of str
             cols to perform filtering on
+
+        multiplier: float
+            value to multiply IQR by to remove outliers, typical standard is 1.5x, 2.0 is more conservative
+
 
         """
         self.features_to_filter = features_to_filter
@@ -128,8 +134,9 @@ class FilterByUnivariateQuantile(AbstractTransformer):
 
         Parameters
         ----------
-            xvarlist: list of str
-                colnames
+        xvarlist: list of str
+            colnames to perform filtering on
+
         """
 
         df = df.dropna(inplace=False)
