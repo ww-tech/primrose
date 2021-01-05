@@ -3,6 +3,7 @@ import pandas as pd
 from primrose.transformers.combine import left_merge_dataframe_on_validated_join_keys
 from testfixtures import LogCapture
 from primrose.transformers.combine import LeftJoinDataCombiner
+from pandas.testing import assert_frame_equal
 
 
 def test_left_merge_dataframe_on_validated_join_keys():
@@ -110,14 +111,8 @@ def test_LeftJoinDataCombiner():
 
     with LogCapture() as l:
         out = combiner.transform([corpus])
-    l.check(
-        (
-            "root",
-            "WARNING",
-            "Combiner needs at least two reader inputs, passing unchanged data.",
-        )
-    )
-    assert out == [corpus]
+
+    assert_frame_equal(out, corpus)
 
 
 def test_LeftJoinDataCombiner2():
