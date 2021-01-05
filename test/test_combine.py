@@ -147,3 +147,35 @@ def test_LeftJoinDataCombiner4():
         "last": "poppins",
         "age": 42,
     }
+
+
+def test_LeftJoinDataCombiner_transform1():
+    df = pd.read_csv("test/tennis.csv")
+
+    df_transformed = LeftJoinDataCombiner('id').transform([df])
+
+    assert type(df_transformed) == pd.DataFrame
+    assert df_transformed.shape == df.shape
+
+
+
+def test_LeftJoinDataCombiner_transform2():
+
+    df = pd.read_csv("test/tennis.csv")
+    df2 = df.iloc[:5]
+
+    df_transformed = LeftJoinDataCombiner(['id', 'outlook', 'temp', 'windy', 'humidity', 'play']).transform([df, df2])
+
+    assert len(df_transformed) == len(df)
+
+
+
+def test_LeftJoinDataCombiner_transform3():
+
+    df = pd.read_csv("test/tennis.csv")
+    df2 = df.iloc[:5].copy()
+    df2.loc[0, 'temp'] = 'mild'
+
+    df_transformed = LeftJoinDataCombiner(['id', 'outlook', 'temp', 'windy', 'humidity', 'play']).transform([df, df2])
+
+    assert len(df_transformed) == len(df)
