@@ -7,6 +7,7 @@ Author(s):
 from primrose.base.sql_reader import AbstractSqlReader
 from primrose.readers.postgres_helper import PostgresHelper
 
+
 class PostgresReader(AbstractSqlReader):
     """Runs PostgreSQL queries into pandas dataframes"""
 

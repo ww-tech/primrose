@@ -9,9 +9,11 @@ import pandas as pd
 import logging
 from primrose.base.transformer import AbstractTransformer
 
+
 class StringTransformer(AbstractTransformer):
     """Transforms Series of strings in a Series or DataFrame."""
-    def __init__(self,method,columns,*args,**kwargs):
+
+    def __init__(self, method, columns, *args, **kwargs):
         """
 
         Args:
@@ -45,16 +47,18 @@ class StringTransformer(AbstractTransformer):
             df (pd.DataFrame): pandas dataframe
 
         """
-        if isinstance(self.columns,str):
+        if isinstance(self.columns, str):
             df[self.columns] = self._execute_str_method(df[self.columns])
-        elif isinstance(self.columns,list):
+        elif isinstance(self.columns, list):
             for col in self.columns:
                 df[col] = self._execute_str_method(df[col])
         else:
-            logging.info('Column not passed as string or list of columns, returning original dataframe.')
+            logging.info(
+                "Column not passed as string or list of columns, returning original dataframe."
+            )
         return df
 
-    def _execute_str_method(self,series):
+    def _execute_str_method(self, series):
         """Executes string method on pandas series.
 
         Args:

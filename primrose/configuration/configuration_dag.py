@@ -1,10 +1,10 @@
-'''A class that creates a directed acyclic graph (DAG) and perhaps a number of checks,
+"""A class that creates a directed acyclic graph (DAG) and perhaps a number of checks,
 such as detecting cycles, orphans, and unrecognized nodes
 
 Author(s):
     Carl Anderson (carl.anderson@weightwatchers.com)
 
-'''
+"""
 import logging
 import networkx as nx
 from primrose.configuration.util import OperationType, ConfigurationError
@@ -14,8 +14,7 @@ from primrose.node_factory import NodeFactory
 from primrose.base.conditional_path_node import AbstractConditionalPath
 
 
-class ConfigurationDag():
-
+class ConfigurationDag:
     def __init__(self, config):
         """instantiate ComfigurationDAG instance
 
@@ -81,7 +80,13 @@ class ConfigurationDag():
             set of keys, if any, of the given operation type
 
         """
-        return set([k for k in self.node_map.keys() if self.node_map[k] == operation_type.value])
+        return set(
+            [
+                k
+                for k in self.node_map.keys()
+                if self.node_map[k] == operation_type.value
+            ]
+        )
 
     def upstream_nodes_of_type(self, target_node_name, operation_type):
         """get set of nodes of a given operation type (OperationType.reader, OperationType.writer etc)
@@ -143,10 +148,10 @@ class ConfigurationDag():
         except nx.exception.NetworkXNoCycle as e:
             # it throws an error if there are no cycles, the opposite of what we want
             if str(e) != "No cycle found.":
-                raise e # pragma: no cover
+                raise e  # pragma: no cover
             else:
                 logging.info("OK: no cycles found")
-        #to get here, we must have cycles!
+        # to get here, we must have cycles!
         if cycles:
             raise ConfigurationError("Cycle(s) found: %s" % str(cycles))
 
@@ -160,7 +165,10 @@ class ConfigurationDag():
         connected_components = nx.connected_components(self.G)
         n = sum([1 for c in connected_components])
         if n > 1:
-            raise ConfigurationError("Found multiple connected components: %s" % str(list( nx.connected_components(self.G) )))
+            raise ConfigurationError(
+                "Found multiple connected components: %s"
+                % str(list(nx.connected_components(self.G)))
+            )
         else:
             logging.info("OK: 1 connected component")
 
@@ -214,7 +222,7 @@ class ConfigurationDag():
 
         self.conditional_nodes = set()
 
-        #add the nodes to the graph:
+        # add the nodes to the graph:
         for section_key in self.config.keys():
 
             for key in self.config[section_key].keys():
@@ -227,7 +235,7 @@ class ConfigurationDag():
 
                 # root out conditional nodes...
                 node_config = self.config[section_key][key]
-                node_class = node_config['class']
+                node_class = node_config["class"]
                 class_obj = NodeFactory().name_dict[node_class]
                 if issubclass(class_obj, AbstractConditionalPath):
                     self.conditional_nodes.add(key)
@@ -238,7 +246,10 @@ class ConfigurationDag():
 
                 # hack: we are going to add an edge from a postprcocess step (any one) to cleanup nodes so they
                 # are not a separate connected component
-                if section_key == OperationType.postprocess.value and some_postprocess_node is None:
+                if (
+                    section_key == OperationType.postprocess.value
+                    and some_postprocess_node is None
+                ):
                     some_postprocess_node = key
 
         # add the edges
@@ -247,16 +258,23 @@ class ConfigurationDag():
             for key in self.config[section_key].keys():
                 d = self.config[section_key][key]
 
-                if 'destinations' in d:
-                    for destination in d['destinations']:
+                if "destinations" in d:
+                    for destination in d["destinations"]:
 
                         if not isinstance(destination, str):
-                            raise ConfigurationError("Unrecognized destination type: %s" % destination)
+                            raise ConfigurationError(
+                                "Unrecognized destination type: %s" % destination
+                            )
 
                         if destination in node_map:
-                            ConfigurationDag.add_edge(G,G2,node_names,key,destination)
+                            ConfigurationDag.add_edge(
+                                G, G2, node_names, key, destination
+                            )
                         else:
-                            raise ConfigurationError("Did not find %s destination in %s.%s" % (destination, section_key, key))
+                            raise ConfigurationError(
+                                "Did not find %s destination in %s.%s"
+                                % (destination, section_key, key)
+                            )
 
         logging.info("OK: good referential integrity")
 
@@ -282,7 +300,16 @@ class ConfigurationDag():
 
         self.check_for_cycles()
 
-    def plot_dag(self, filename, traverser, node_size=500, label_font_size=12, text_angle=0, image_width=16, image_height=12):
+    def plot_dag(
+        self,
+        filename,
+        traverser,
+        node_size=500,
+        label_font_size=12,
+        text_angle=0,
+        image_width=16,
+        image_height=12,
+    ):
         """plot the DAG to image file
 
         Args:
@@ -301,7 +328,7 @@ class ConfigurationDag():
         # map nodes to a color for their operation type
         # https://stackoverflow.com/questions/27030473/how-to-set-colors-for-nodes-in-networkx-python
         color_map = []
-        colors = ['#fbb4ae','#b3cde3','#ccebc5','#decbe4','#fed9a6']
+        colors = ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6"]
         for node in self.G2:
             if self.node_map[node] == OperationType.reader.value:
                 color_map.append(colors[0])
@@ -314,14 +341,14 @@ class ConfigurationDag():
             else:
                 color_map.append(colors[4])
 
-        fig = plt.figure(figsize=(image_width,image_height))
+        fig = plt.figure(figsize=(image_width, image_height))
         ax = plt.subplot(111)
         ax.set_title(filename, fontsize=10)
 
         try:
             import pydot
             from networkx.drawing.nx_pydot import graphviz_layout
-        except ImportError: # pragma: no cover
+        except ImportError:  # pragma: no cover
             raise ImportError(
                 "This example needs Graphviz and pydot."
                 "Please refer to the Plotting requirements in the README"
@@ -332,37 +359,55 @@ class ConfigurationDag():
         # pos = nx.kamada_kawai_layout(G)
         # pos = nx.shell_layout(G)
         # pos = nx.spectral_layout(G)
-        pos = graphviz_layout(self.G2, prog='dot') #, prog='twopi', args='')
+        pos = graphviz_layout(self.G2, prog="dot")  # , prog='twopi', args='')
 
-        nx.draw(self.G2, pos, node_size=node_size,node_color = color_map, edge_color='#939393', font_size=8, font_weight='bold')
+        nx.draw(
+            self.G2,
+            pos,
+            node_size=node_size,
+            node_color=color_map,
+            edge_color="#939393",
+            font_size=8,
+            font_weight="bold",
+        )
         # nx.draw_networkx_nodes(G, pos, node_color='b', node_size=500, alpha=0.8)
 
         if len(self.conditional_nodes) > 0:
-            cnodes = nx.draw_networkx_nodes(self.G2, pos, node_color='#e6b655', node_size=1.5*node_size, alpha=0.8, node_shape="D", nodelist=list(self.conditional_nodes))
-            cnodes.set_edgecolor('red')
+            cnodes = nx.draw_networkx_nodes(
+                self.G2,
+                pos,
+                node_color="#e6b655",
+                node_size=1.5 * node_size,
+                alpha=0.8,
+                node_shape="D",
+                nodelist=list(self.conditional_nodes),
+            )
+            cnodes.set_edgecolor("red")
 
-#        nx.draw_networkx_labels(self.G2,pos, font_size=9)
+        #        nx.draw_networkx_labels(self.G2,pos, font_size=9)
 
-        text = nx.draw_networkx_labels(self.G2,pos,with_labels=False, font_size=label_font_size) #, bbox=Bbox.from_bounds(x0, y0, 20,30)) #, wrap=True)
+        text = nx.draw_networkx_labels(
+            self.G2, pos, with_labels=False, font_size=label_font_size
+        )  # , bbox=Bbox.from_bounds(x0, y0, 20,30)) #, wrap=True)
 
         if traverser:
-            #map node name to sequence number
+            # map node name to sequence number
             sequence = traverser.traversal_list()
-            idx = list(range(1,len(sequence) + 1))
-            d = dict(zip(sequence,idx))
+            idx = list(range(1, len(sequence) + 1))
+            d = dict(zip(sequence, idx))
 
             # let's plot the sequence numner above the node. How far above it?
-            ys = [t._y for _,t in text.items()]
+            ys = [t._y for _, t in text.items()]
             ysrange = max(ys) - min(ys)
             offset = 0.02 * abs(ysrange)
 
-        for _,t in text.items():
+        for _, t in text.items():
             t.set_rotation(text_angle)
 
             if traverser:
-                plt.text(t._x, t._y + offset, d[t._text], fontsize=24, color='red')
+                plt.text(t._x, t._y + offset, d[t._text], fontsize=24, color="red")
 
-        plt.axis('off')
+        plt.axis("off")
         plt.tight_layout()
         plt.savefig(filename, format="PNG")
         logging.info("Graph written to %s" % filename)

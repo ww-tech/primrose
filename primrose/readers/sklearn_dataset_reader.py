@@ -8,6 +8,7 @@ from primrose.base.sql_reader import AbstractReader
 from sklearn.datasets import *
 import pandas as pd
 
+
 class SklearnDatasetReader(AbstractReader):
     """Read data from sklearn.dataset into a pandas dataframe"""
 
@@ -17,12 +18,12 @@ class SklearnDatasetReader(AbstractReader):
 
         Note:
             dataset (str): name of supported sklearn.dataset. One of "iris", "boston", "diabetes", "breast_cancer", "linnerud", "wine"
-            
-        Returns: 
+
+        Returns:
             set of necessary keys for the SklearnDatasetReader object
 
         """
-        return set(['dataset'])
+        return set(["dataset"])
 
     def run(self, data_object):
         """Read sklearn dataset to a pandas dataframe
@@ -32,7 +33,7 @@ class SklearnDatasetReader(AbstractReader):
             terminate (bool): should we terminate the DAG? true or false
 
         """
-        dataset = self.node_config['dataset']
+        dataset = self.node_config["dataset"]
 
         function_map = {
             "iris": load_iris,
@@ -40,7 +41,7 @@ class SklearnDatasetReader(AbstractReader):
             "diabetes": load_diabetes,
             "breast_cancer": load_breast_cancer,
             "linnerud": load_linnerud,
-            "wine": load_wine
+            "wine": load_wine,
         }
 
         if not dataset in function_map.keys():
@@ -48,8 +49,8 @@ class SklearnDatasetReader(AbstractReader):
 
         data = function_map[dataset]()
 
-        df = pd.DataFrame(data['data'], columns = data['feature_names'])
-        df['target'] = data['target']
+        df = pd.DataFrame(data["data"], columns=data["feature_names"])
+        df["target"] = data["target"]
 
         data_object.add(self, df)
 

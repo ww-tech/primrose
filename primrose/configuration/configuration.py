@@ -19,13 +19,18 @@ import logging
 import importlib
 import glob
 from primrose.node_factory import NodeFactory
-from primrose.configuration.util import OperationType, ConfigurationError, ConfigurationSectionType
+from primrose.configuration.util import (
+    OperationType,
+    ConfigurationError,
+    ConfigurationSectionType,
+)
 from primrose.configuration.configuration_dag import ConfigurationDag
 from primrose.dag.traverser_factory import TraverserFactory
 
 
-SUPPORTED_EXTS = frozenset(['.json', '.yaml', '.yml'])
-CLASS_ENV_PACKAGE_KEY = 'PRIMROSE_EXT_NODE_PACKAGE'
+SUPPORTED_EXTS = frozenset([".json", ".yaml", ".yml"])
+CLASS_ENV_PACKAGE_KEY = "PRIMROSE_EXT_NODE_PACKAGE"
+
 
 class Configuration:
     """Stores user defined configuration for primrose job"""
@@ -43,35 +48,45 @@ class Configuration:
             ext = None
 
             if dict_config is None:
-                raise Exception('expected dict_config was None')
+                raise Exception("expected dict_config was None")
 
             if not isinstance(dict_config, dict):
-                raise Exception('did not receive expected dict_config')
+                raise Exception("did not receive expected dict_config")
 
             dict_str = jstyleson.dumps(dict_config)
 
-            config_str = Configuration.perform_any_config_fragment_substitution(dict_str)
+            config_str = Configuration.perform_any_config_fragment_substitution(
+                dict_str
+            )
 
         else:
-            logging.info('Loading config file at {}'.format(config_location))
+            logging.info("Loading config file at {}".format(config_location))
             self.config_location = config_location
 
             if os.path.exists(config_location):
                 ext = os.path.splitext(config_location)[1].lower()
                 if ext not in SUPPORTED_EXTS:
-                    raise ValueError('config file at: {} has improper extension type - please use a .json or .yml file'.format(config_location))
+                    raise ValueError(
+                        "config file at: {} has improper extension type - please use a .json or .yml file".format(
+                            config_location
+                        )
+                    )
 
-                with open(config_location, 'r') as f:
+                with open(config_location, "r") as f:
                     config_str = f.read()
 
-                config_str = Configuration.perform_any_config_fragment_substitution(config_str)
+                config_str = Configuration.perform_any_config_fragment_substitution(
+                    config_str
+                )
 
             else:
-                raise Exception('config file at: {} not found'.format(config_location))
+                raise Exception("config file at: {} not found".format(config_location))
 
-        if ext is None or ext == '.json':
-            self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
-        elif ext in ['.yaml', '.yml']:
+        if ext is None or ext == ".json":
+            self.config = jstyleson.loads(
+                config_str, object_pairs_hook=self.dict_raise_on_duplicates
+            )
+        elif ext in [".yaml", ".yml"]:
             self.config = yaml.load(config_str, Loader=yaml.FullLoader)
 
         assert isinstance(self.config, dict)
@@ -90,7 +105,10 @@ class Configuration:
 
         # implemetation_config section is required
         if not ConfigurationSectionType.IMPLEMENTATION_CONFIG.value in self.config:
-            raise ConfigurationError("Did not find required top-level key %s" % ConfigurationSectionType.IMPLEMENTATION_CONFIG.value)
+            raise ConfigurationError(
+                "Did not find required top-level key %s"
+                % ConfigurationSectionType.IMPLEMENTATION_CONFIG.value
+            )
 
         # keep a copy of the complete configuration
         self.complete_config = self.config.copy()
@@ -105,7 +123,7 @@ class Configuration:
         self.config_string, self.config_hash = self._get_configuration_hash()
 
         # get the formatted time this file was instantiated
-        self.config_time = datetime.datetime.now().strftime('%Y%m%d_%H%M')
+        self.config_time = datetime.datetime.now().strftime("%Y%m%d_%H%M")
 
         # parse the file into an internal config object
         self._parse_config()
@@ -133,11 +151,14 @@ class Configuration:
             config_str (str): the post-substituted configuration string
 
         """
-        jinja_env = Environment(loader=FileSystemLoader(['.', '/']))
+        def env_override(value, key):
+            return os.getenv(key, value)
+        jinja_env = Environment(loader=FileSystemLoader([".", "/"]))
+        jinja_env.filters['env_override'] = env_override
         try:
             config_str_template = jinja_env.from_string(config_str)
             config_str = config_str_template.render()
-        except(TemplateNotFound) as error:
+        except (TemplateNotFound) as error:
             filenames = str(error)
             raise ConfigurationError(f"Substitution files do not exist: {filenames}")
         return config_str
@@ -154,7 +175,7 @@ class Configuration:
             dictionary (dict): dictionary of key (node type) and value (node name)
 
         """
-        #https://stackoverflow.com/questions/14902299/json-loads-allows-duplicate-keys-in-a-dictionary-overwriting-the-first-value
+        # https://stackoverflow.com/questions/14902299/json-loads-allows-duplicate-keys-in-a-dictionary-overwriting-the-first-value
 
         d = {}
         for k, v in ordered_pairs:
@@ -176,7 +197,9 @@ class Configuration:
 
         """
         configuration_string = json.dumps(self.complete_config, sort_keys=True)
-        configuration_file_hashname = hashlib.sha256(configuration_string.encode('utf-8')).hexdigest()
+        configuration_file_hashname = hashlib.sha256(
+            configuration_string.encode("utf-8")
+        ).hexdigest()
         return configuration_string, configuration_file_hashname
 
     def check_metadata(self):
@@ -188,30 +211,45 @@ class Configuration:
         """
         if self.config_metadata:
 
-            if 'traverser' in self.config_metadata:
-                classname = self.config_metadata['traverser']
+            if "traverser" in self.config_metadata:
+                classname = self.config_metadata["traverser"]
                 try:
                     TraverserFactory().instantiate(classname, self)
                 except KeyError:
-                    raise Exception(classname + " is not a valid and/or registered Traverser")
+                    raise Exception(
+                        classname + " is not a valid and/or registered Traverser"
+                    )
 
-            if 'data_object' in self.config_metadata:
+            if "data_object" in self.config_metadata:
 
-                cfg = self.config_metadata['data_object']
+                cfg = self.config_metadata["data_object"]
 
-                if 'read_from_cache' in cfg and (cfg['read_from_cache'] or str(cfg['read_from_cache']).lower() == "true"):
+                if "read_from_cache" in cfg and (
+                    cfg["read_from_cache"]
+                    or str(cfg["read_from_cache"]).lower() == "true"
+                ):
 
-                    if not 'read_filename' in cfg:
-                        raise ConfigurationError("metadata.data_object: if read_from_cache==true, you must set 'read_filename'")
+                    if not "read_filename" in cfg:
+                        raise ConfigurationError(
+                            "metadata.data_object: if read_from_cache==true, you must set 'read_filename'"
+                        )
 
-                    #just check path exists but not that one can read into a DataObject
-                    if not os.path.exists(cfg['read_filename']):
-                        raise ConfigurationError("Invalid metadata.data_object.read_filename: " + str(cfg['read_filename']))
+                    # just check path exists but not that one can read into a DataObject
+                    if not os.path.exists(cfg["read_filename"]):
+                        raise ConfigurationError(
+                            "Invalid metadata.data_object.read_filename: "
+                            + str(cfg["read_filename"])
+                        )
 
-                if 'write_to_cache' in cfg and (cfg['write_to_cache'] or str(cfg['write_to_cache']).lower() == "true"):
+                if "write_to_cache" in cfg and (
+                    cfg["write_to_cache"]
+                    or str(cfg["write_to_cache"]).lower() == "true"
+                ):
 
-                    if not 'write_filename' in cfg:
-                        raise ConfigurationError("metadata.data_object: if write_to_cache==true, you must set 'write_filename'")
+                    if not "write_filename" in cfg:
+                        raise ConfigurationError(
+                            "metadata.data_object: if write_to_cache==true, you must set 'write_filename'"
+                        )
 
     def check_sections(self):
         """Check that all the sections in implementation are supported ones.
@@ -222,20 +260,30 @@ class Configuration:
             or vice versa, or if using default operations but sections found that were not supported
 
         """
-        if self.config_metadata and 'section_registry' in self.config_metadata and len(self.config_metadata['section_registry']) > 0:
+        if (
+            self.config_metadata
+            and "section_registry" in self.config_metadata
+            and len(self.config_metadata["section_registry"]) > 0
+        ):
             actual_set = set(self.config.keys())
-            user_set = set(self.config_metadata['section_registry'])
+            user_set = set(self.config_metadata["section_registry"])
 
             if actual_set != user_set:
 
                 diff = user_set.difference(actual_set)
                 if len(diff) > 0:
-                    msg = "Following sections from metadata were not found implementation: " + str(diff)
+                    msg = (
+                        "Following sections from metadata were not found implementation: "
+                        + str(diff)
+                    )
                     raise ConfigurationError(msg)
 
                 diff = actual_set.difference(user_set)
                 if len(diff) > 0:
-                    msg = "Following sections from implementation were not found in metadata: " + str(diff)
+                    msg = (
+                        "Following sections from implementation were not found in metadata: "
+                        + str(diff)
+                    )
                     raise ConfigurationError(msg)
 
             logging.info("OK: section_registry sections match implementation sections")
@@ -278,13 +326,21 @@ class Configuration:
                 source (str): where did the list come from? section_run, section_registry, or default?
 
         """
-        if self.config_metadata and 'section_run' in self.config_metadata and len(self.config_metadata['section_run']) > 0:
-            return self.config_metadata['section_run'], 'section_run'
+        if (
+            self.config_metadata
+            and "section_run" in self.config_metadata
+            and len(self.config_metadata["section_run"]) > 0
+        ):
+            return self.config_metadata["section_run"], "section_run"
 
-        if self.config_metadata and 'section_registry' in self.config_metadata and len(self.config_metadata['section_registry']) > 0:
-            return self.config_metadata['section_registry'], 'section_registry'
+        if (
+            self.config_metadata
+            and "section_registry" in self.config_metadata
+            and len(self.config_metadata["section_registry"]) > 0
+        ):
+            return self.config_metadata["section_registry"], "section_registry"
 
-        return [k for k in OperationType.values() if k in self.config.keys()], 'default'
+        return [k for k in OperationType.values() if k in self.config.keys()], "default"
 
     def check_config(self):
         """check the configuration as much as we can as early as we can
@@ -313,15 +369,27 @@ class Configuration:
                 self.instance_to_config[child_key] = child
 
                 if not NodeFactory.CLASS_KEY in child:
-                    raise ConfigurationError("No class key found in %s.%s" % (section_key,child_key))
+                    raise ConfigurationError(
+                        "No class key found in %s.%s" % (section_key, child_key)
+                    )
 
                 self.nodename_to_classname[child_key] = child[NodeFactory.CLASS_KEY]
 
-                unique_class_keys.add((child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX)))
+                unique_class_keys.add(
+                    (child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX))
+                )
 
-                for k in ['destination_pipeline', 'destination_models', 'destination_postprocesses', 'destination_writer']:
+                for k in [
+                    "destination_pipeline",
+                    "destination_models",
+                    "destination_postprocesses",
+                    "destination_writer",
+                ]:
                     if k in child:
-                        raise Exception("Do you have a old config file? You have %s. Nodes just have 'destinations':[] now", k)
+                        raise Exception(
+                            "Do you have a old config file? You have %s. Nodes just have 'destinations':[] now",
+                            k,
+                        )
 
         logging.info("OK: all class keys are present")
 
@@ -332,12 +400,12 @@ class Configuration:
         for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
                 try:
-                    logging.info(f'attempting to register {class_key}')
+                    logging.info(f"attempting to register {class_key}")
                     self._register_class(class_key, class_prefix)
                 except:
                     raise ConfigurationError(f"Cannot register node class {class_key}")
 
-        #check necessary_configs
+        # check necessary_configs
         for instance_name in self.nodename_to_classname:
             class_key = self.nodename_to_classname[instance_name]
 
@@ -366,16 +434,16 @@ class Configuration:
         """
         # convert to string before checking if file
         if class_prefix is None:
-            class_prefix = ''
+            class_prefix = ""
 
         if os.path.isfile(class_prefix):
             modulename = self._import_file(class_key, class_prefix)
 
         # loading from module
         else:
-            if self.config_metadata and 'class_package' in self.config_metadata:
-                class_package = self.config_metadata['class_package']
-                prefix = '.'.join(filter(None, [class_package, class_prefix]))
+            if self.config_metadata and "class_package" in self.config_metadata:
+                class_package = self.config_metadata["class_package"]
+                prefix = ".".join(filter(None, [class_package, class_prefix]))
             else:
                 prefix = class_prefix
 
@@ -415,8 +483,8 @@ class Configuration:
         if CLASS_ENV_PACKAGE_KEY in os.environ:
             pkg_name = os.environ[CLASS_ENV_PACKAGE_KEY]
         elif self.config_metadata:
-            if 'class_package' in self.config_metadata:
-                pkg_name = self.config_metadata['class_package']
+            if "class_package" in self.config_metadata:
+                pkg_name = self.config_metadata["class_package"]
             else:
                 return []
         else:
@@ -430,10 +498,12 @@ class Configuration:
             if not os.path.isdir(pkg_name):
                 pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
         except ModuleNotFoundError:
-            logging.warning("Could not find module specified for external node configuration")
+            logging.warning(
+                "Could not find module specified for external node configuration"
+            )
             return []
 
-        candidates = glob.glob(os.path.join(pkg_name, '**', '*.py'), recursive=True)
+        candidates = glob.glob(os.path.join(pkg_name, "**", "*.py"), recursive=True)
 
         return candidates
 
@@ -450,7 +520,7 @@ class Configuration:
         class_keys_prefix = []
         candidates = self._get_file_candidates()
         for filename in candidates:
-            with open(filename, 'r') as f:
+            with open(filename, "r") as f:
                 src_str = f.read()
                 for class_key, class_key_prefix in unique_class_keys:
                     if (class_key_prefix is None) or (overwrite == True):
@@ -481,6 +551,9 @@ class Configuration:
             self.__setattr__(key, section_dict)
             for k2 in section_dict.keys():
                 if k2 in all_keys:
-                    raise ConfigurationError("Operations must all have unique names in the configuration. Duplicate key: '%s'" % k2)
+                    raise ConfigurationError(
+                        "Operations must all have unique names in the configuration. Duplicate key: '%s'"
+                        % k2
+                    )
                 else:
                     all_keys.add(k2)

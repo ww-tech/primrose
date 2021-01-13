@@ -6,6 +6,7 @@ Author(s):
 """
 from primrose.base.sql_reader import AbstractSqlReader
 
+
 class OracleReader(AbstractSqlReader):
     """Runs Oracle queries into pandas dataframes"""
 

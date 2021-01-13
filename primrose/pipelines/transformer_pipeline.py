@@ -13,7 +13,6 @@ from primrose.pipelines.train_test_split import TrainTestSplit
 
 
 class TransformerPipeline(TrainTestSplit):
-
     @staticmethod
     def necessary_config(node_config):
         """Return the necessary configuration keys for the TransformerPipeline object
@@ -22,7 +21,7 @@ class TransformerPipeline(TrainTestSplit):
             set of keys
 
         """
-        return set(['transformer_sequence'])
+        return set(["transformer_sequence"])
 
     @staticmethod
     def optional_config(node_config):
@@ -60,20 +59,20 @@ class TransformerPipeline(TrainTestSplit):
             AbstractTransformer
 
         """
-        classname = transformer['class']
-        path_sequence = classname.split('.')
+        classname = transformer["class"]
+        path_sequence = classname.split(".")
         target_class_name = path_sequence.pop(-1)
-        module = importlib.import_module('.'.join(path_sequence))
+        module = importlib.import_module(".".join(path_sequence))
 
         try:
             t = getattr(module, target_class_name)
         except AttributeError:
-            raise Exception(f'Transformer {target_class_name} not found in {".".join(path_sequence)} module')
+            raise Exception(
+                f'Transformer {target_class_name} not found in {".".join(path_sequence)} module'
+            )
 
-        class_args = {k: v for k,v in transformer.items() if k != "class"}
+        class_args = {k: v for k, v in transformer.items() if k != "class"}
         params = [p for p in inspect.signature(t).parameters]
         t_args = [class_args.pop(p) for p in params if p in class_args.keys()]
 
         return t(*t_args, **class_args)
-
-

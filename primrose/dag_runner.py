@@ -17,7 +17,7 @@ from primrose.dag.traverser_factory import TraverserFactory
 from primrose.base.conditional_path_node import AbstractConditionalPath
 
 
-class DagRunner():
+class DagRunner:
     """class that runs the DAG: gets the list of nodes to traverse and then asks them to run"""
 
     def __init__(self, configuration):
@@ -33,8 +33,13 @@ class DagRunner():
         self.configuration = configuration
         self.dag = self.configuration.dag
 
-        if configuration.config_metadata and 'traverser' in configuration.config_metadata:
-            self.dag_traverser = TraverserFactory().instantiate(configuration.config_metadata['traverser'], configuration)
+        if (
+            configuration.config_metadata
+            and "traverser" in configuration.config_metadata
+        ):
+            self.dag_traverser = TraverserFactory().instantiate(
+                configuration.config_metadata["traverser"], configuration
+            )
         else:
             self.dag_traverser = TraverserFactory().default_traverser(configuration)
 
@@ -47,13 +52,16 @@ class DagRunner():
             data_object (DataObject)
 
         """
-        if self.configuration.config_metadata and 'data_object' in self.configuration.config_metadata:
+        if (
+            self.configuration.config_metadata
+            and "data_object" in self.configuration.config_metadata
+        ):
 
-            cfg = self.configuration.config_metadata['data_object']
+            cfg = self.configuration.config_metadata["data_object"]
 
-            if "read_from_cache" in cfg and cfg['read_from_cache']:
+            if "read_from_cache" in cfg and cfg["read_from_cache"]:
                 # we can assume that read_filename exists due to configuration checks
-                filename = cfg['read_filename']
+                filename = cfg["read_filename"]
                 assert os.path.exists(filename)
 
                 logging.info("Reading DataObject from cache " + filename)
@@ -74,11 +82,14 @@ class DagRunner():
 
         """
 
-        if self.configuration.config_metadata and 'data_object' in self.configuration.config_metadata:
+        if (
+            self.configuration.config_metadata
+            and "data_object" in self.configuration.config_metadata
+        ):
 
-            cfg = self.configuration.config_metadata['data_object']
+            cfg = self.configuration.config_metadata["data_object"]
 
-            if "write_to_cache" in cfg and cfg['write_to_cache']:
+            if "write_to_cache" in cfg and cfg["write_to_cache"]:
 
                 assert "write_filename" in cfg
                 filename = cfg["write_filename"]
@@ -103,13 +114,18 @@ class DagRunner():
             complain about the partition [section2_node1, section1_node1] [section2_node2] as they are mixed from sections.
 
         """
-        dupes = [item for item, count in collections.Counter(sequence).items() if count > 1]
+        dupes = [
+            item for item, count in collections.Counter(sequence).items() if count > 1
+        ]
 
         if len(dupes) > 0:
             raise Exception("You have duplicate nodes from traverser! " + str(dupes))
 
         # explictly check that each of these is a known node in config, raising exception if not
-        [self.configuration.config_for_instance(instance_name) for instance_name in sequence]
+        [
+            self.configuration.config_for_instance(instance_name)
+            for instance_name in sequence
+        ]
 
     def filter_sequence(self, sequence):
         """The user may have specified some subset of sections to run in metadata.section_run
@@ -129,7 +145,7 @@ class DagRunner():
             complain about the partition [section2_node1, section1_node1] [section2_node2] as they are mixed from sections.
 
         """
-        self. initial_check_sequence(sequence)
+        self.initial_check_sequence(sequence)
 
         # it might be that traverser provides a sequence of all config nodes and we only want to run those in section2
         # Thus, first, let's only consider the nodes in that section
@@ -139,7 +155,9 @@ class DagRunner():
         logging.info("Taking nodes to run from " + source)
 
         for section_name in sections:
-            nodes_to_run = nodes_to_run.union(set(self.configuration.config[section_name].keys()))
+            nodes_to_run = nodes_to_run.union(
+                set(self.configuration.config[section_name].keys())
+            )
         sequence = [n for n in sequence if n in nodes_to_run]
 
         if not self.dag_traverser.run_section_by_section():
@@ -150,7 +168,7 @@ class DagRunner():
 
         for section_name in sections:
 
-            #get a set of all nodes in this section
+            # get a set of all nodes in this section
             this_section = set(self.configuration.config[section_name].keys())
 
             n = len(this_section)
@@ -160,13 +178,13 @@ class DagRunner():
 
                 subset = sequence[:n]
 
-                #logic: the set of first n nodes of sequence should match this set of this_section
+                # logic: the set of first n nodes of sequence should match this set of this_section
                 if this_section == set(subset):
 
-                    #these nodes passed the checks
+                    # these nodes passed the checks
                     filtered_sequence.extend(sequence[:n])
 
-                    #pop off the first n nodes and repeat until we've gone through each section
+                    # pop off the first n nodes and repeat until we've gone through each section
                     sequence = sequence[n:]
                 else:
                     # We can't get here if there is only 1 section to run as we raise on dupes and importantly, we now filter on sections earlier.
@@ -183,7 +201,12 @@ class DagRunner():
                     msg += " Received list " + str(sorted(subset))
                     raise Exception(msg)
             else:
-                raise Exception("Ran out of nodes for section " + section_name + ". Only received " + str(sequence))
+                raise Exception(
+                    "Ran out of nodes for section "
+                    + section_name
+                    + ". Only received "
+                    + str(sequence)
+                )
 
         self.check_for_upstream(filtered_sequence)
 
@@ -205,8 +228,13 @@ class DagRunner():
         for idx_from in range(len(sequence)):
             for idx_to in range(len(sequence)):
                 if idx_from > idx_to:
-                    if self.configuration.dag.paths(sequence[idx_from],  sequence[idx_to]):
-                        msg = "Upstream path found, from %s to %s" % (sequence[idx_from], sequence[idx_to])
+                    if self.configuration.dag.paths(
+                        sequence[idx_from], sequence[idx_to]
+                    ):
+                        msg = "Upstream path found, from %s to %s" % (
+                            sequence[idx_from],
+                            sequence[idx_to],
+                        )
                         raise Exception(msg)
         return False
 
@@ -234,19 +262,21 @@ class DagRunner():
 
         pruned_nodes = set()
 
-        if (self.configuration.config_metadata and
-            'notify_on_error' in self.configuration.config_metadata):
+        if (
+            self.configuration.config_metadata
+            and "notify_on_error" in self.configuration.config_metadata
+        ):
             try:
-                params = self.configuration.config_metadata['notify_on_error']
+                params = self.configuration.config_metadata["notify_on_error"]
                 client = get_notification_client(params)
 
             except Exception as error:
                 msg = (
-                    'Error trying to instantiate notification client.'
+                    "Error trying to instantiate notification client."
                     'Check class name and parameters"'
                 )
                 logging.error(error)
-                raise(msg)
+                raise (msg)
         else:
             client = None
 
@@ -260,13 +290,26 @@ class DagRunner():
             class_name = self.configuration.nodename_to_classname[node]
 
             if dry_run:
-                logging.info("DRY RUN %s: would run node %s of type %s and class %s", i, node, section, class_name)
+                logging.info(
+                    "DRY RUN %s: would run node %s of type %s and class %s",
+                    i,
+                    node,
+                    section,
+                    class_name,
+                )
                 continue
             else:
-                logging.info("received node %s of type %s and class %s", node, section, class_name)
+                logging.info(
+                    "received node %s of type %s and class %s",
+                    node,
+                    section,
+                    class_name,
+                )
 
             try:
-                node_instance = NodeFactory().instantiate(class_name, self.configuration, node)
+                node_instance = NodeFactory().instantiate(
+                    class_name, self.configuration, node
+                )
             except Exception as e:
                 msg = "Issue instantiating %s and class %s" % (node, class_name)
                 logging.error(msg)

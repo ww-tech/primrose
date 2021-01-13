@@ -7,6 +7,7 @@ Author(s):
 from primrose.base.sql_reader import AbstractSqlReader
 from primrose.readers.mysql_helper import MySQLHelper
 
+
 class MySQLReader(AbstractSqlReader):
     """Runs MySQL queries into pandas dataframes"""
 

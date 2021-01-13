@@ -6,35 +6,42 @@ Author(s):
 """
 from enum import Enum
 
+
 class ConfigurationError(Exception):
-    ''' named error specifically for configuration errors'''
+    """ named error specifically for configuration errors"""
+
     pass
 
+
 ########################################################################
-# note: am adding this Enum in file separate from configuration.py 
+# note: am adding this Enum in file separate from configuration.py
 # to fend off circular dependencies:
 #   configuration -> factory -> individual operation classes -> configuration
 ########################################################################
 
+
 class ConfigurationSectionType(Enum):
     """set of top-level sections in config"""
-    METADATA = 'metadata'
-    IMPLEMENTATION_CONFIG = 'implementation_config'
+
+    METADATA = "metadata"
+    IMPLEMENTATION_CONFIG = "implementation_config"
 
     @staticmethod
     def values():
-        '''list of the enum's values'''
+        """list of the enum's values"""
         return list(map(lambda t: t.value, ConfigurationSectionType))
+
 
 class OperationType(Enum):
     """set of operation type identifiers"""
-    reader = 'reader_config'
-    pipeline = 'pipeline_config'
-    model = 'model_config'
-    postprocess = 'postprocess_config'
-    writer = 'writer_config'
-    dataviz = 'dataviz_config'
-    cleanup = 'cleanup_config'
+
+    reader = "reader_config"
+    pipeline = "pipeline_config"
+    model = "model_config"
+    postprocess = "postprocess_config"
+    writer = "writer_config"
+    dataviz = "dataviz_config"
+    cleanup = "cleanup_config"
 
     @staticmethod
     def names():

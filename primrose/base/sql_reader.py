@@ -12,6 +12,7 @@ import logging
 import hashlib
 from jinja2 import Environment, FileSystemLoader
 
+
 class AbstractSqlReader(AbstractReader):
     """A reader that explicitly reads from relational DB using SQL and is able to run pd.read_sql."""
 
@@ -29,14 +30,14 @@ class AbstractSqlReader(AbstractReader):
             set of keys necessary to run implementation
 
         """
-        return set(['query_json']) # pragma: no cover
+        return set(["query_json"])  # pragma: no cover
 
     @staticmethod
     def _substitute_query(query_json):
         """Substitue our paramters in a query string. Renders the file as a jinja template to allow for advanced
-        query nesting and logic. Uses a jinja environment which searches for templates (sql queries) using relative 
+        query nesting and logic. Uses a jinja environment which searches for templates (sql queries) using relative
         path and absolute path.
-        
+
         Note:
             given JSON:
 
@@ -59,18 +60,20 @@ class AbstractSqlReader(AbstractReader):
             query_json (JSON): JSON
 
         """
-        assert 'query' in query_json
-        assert os.path.exists(query_json['query'])
+        assert "query" in query_json
+        assert os.path.exists(query_json["query"])
 
         sql_input = {}
-        if 'parameters' in query_json:
-            sql_input = query_json['parameters']
+        if "parameters" in query_json:
+            sql_input = query_json["parameters"]
 
-        jinja_env = Environment(loader=FileSystemLoader(['.', '/']), 
-                                variable_start_string='{',
-                                variable_end_string='}')
-        
-        query = jinja_env.get_template(query_json['query'])
+        jinja_env = Environment(
+            loader=FileSystemLoader([".", "/"]),
+            variable_start_string="{",
+            variable_end_string="}",
+        )
+
+        query = jinja_env.get_template(query_json["query"])
         return query.render(**sql_input)
 
     def _generate_queries(self):
@@ -102,7 +105,7 @@ class AbstractSqlReader(AbstractReader):
             query (str): query
 
         """
-        for individual_query_json in self.node_config['query_json']:
+        for individual_query_json in self.node_config["query_json"]:
             yield self._substitute_query(individual_query_json)
 
     def _get_key(self, i):
@@ -111,20 +114,20 @@ class AbstractSqlReader(AbstractReader):
 
         Args:
             i (int): the index of the query
-        
+
         Returns:
             key (str): key name for placement in a `DataObject`
         """
         key = "query_" + str(i)
-        this_query_config = self.node_config['query_json'][i]
+        this_query_config = self.node_config["query_json"][i]
         if "key" in this_query_config.keys():
-            key = this_query_config['key']
+            key = this_query_config["key"]
         return key
 
     @abstractmethod
     def get_connection(self):
         """return a database connection, one that is compatible with pd.read_sql"""
-        pass # pragma: no cover
+        pass  # pragma: no cover
 
     def run(self, data_object):
         """run SQL queries into pandas dataframes
@@ -141,13 +144,13 @@ class AbstractSqlReader(AbstractReader):
 
         """
         conn = self.get_connection()
-        debug = self.node_config.setdefault('debug',False)
+        debug = self.node_config.setdefault("debug", False)
         for i, query in enumerate(self._generate_queries()):
 
             if debug:
-                with open('debug_query_' + str(i) + '.sql', 'w') as qfile:
+                with open("debug_query_" + str(i) + ".sql", "w") as qfile:
                     qfile.write(os.path.join(query))
-            df = self.query_db(query,conn)
+            df = self.query_db(query, conn)
             key = self._get_key(i)
             logging.info("Adding df with key %s", key)
             data_object.add(self, df, key)

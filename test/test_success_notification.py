@@ -12,21 +12,21 @@ from primrose.data_object import DataObject
 from primrose.node_factory import NodeFactory
 from primrose.base.reader import AbstractReader
 from primrose.configuration.configuration import Configuration
-from primrose.notifications.success_notification import get_client_params, ClientNotification
+from primrose.notifications.success_notification import (
+    get_client_params,
+    ClientNotification,
+)
 
 
 config_dict = {
     "metadata": {
-        "section_registry": [
-        "initialize",
-        "cleanup_config"
-    ],
+        "section_registry": ["initialize", "cleanup_config"],
         "notify_on_error": {
             "client": "SlackClient",
             "channel": "some-channel",
             "member_id": None,
-            "token": "some-token"
-        }
+            "token": "some-token",
+        },
     },
     "implementation_config": {
         "initialize": {
@@ -37,9 +37,7 @@ config_dict = {
                 "message": "starting job...",
                 "member_id": "USomeUserID",
                 "token": "some-token",
-                "destinations": [
-                    "notification"
-                ]
+                "destinations": ["notification"],
             }
         },
         "cleanup_config": {
@@ -49,33 +47,28 @@ config_dict = {
                 "channel": "some-channel",
                 "message": "TEST SUCCESS!",
                 "member_id": "USomeUserID",
-                "token": "some-token"
+                "token": "some-token",
             }
-        }
-    }
+        },
+    },
 }
 
 
 config_dict_node_message = {
     "metadata": {
-        "section_registry": [
-        "reader_config",
-        "cleanup_config"
-    ],
+        "section_registry": ["reader_config", "cleanup_config"],
         "notify_on_error": {
             "client": "SlackClient",
             "channel": "some-channel",
             "member_id": None,
-            "token": "some-token"
-        }
+            "token": "some-token",
+        },
     },
     "implementation_config": {
         "reader_config": {
             "test_node": {
                 "class": "SlackDataMock",
-                "destinations": [
-                    "node_notification"
-                ]
+                "destinations": ["node_notification"],
             }
         },
         "cleanup_config": {
@@ -86,13 +79,14 @@ config_dict_node_message = {
                 "message": "TEST SUCCESS!",
                 "member_id": "USomeUserID",
                 "token": "some-token",
-                "use_configuration_file_message" : False,
-                "node_name" : "test_node",
-                "message_key" : "test"
+                "use_configuration_file_message": False,
+                "node_name": "test_node",
+                "message_key": "test",
             }
-        }
-    }
+        },
+    },
 }
+
 
 class SlackDataMock(AbstractReader):
     def __init__(self, configuration, instance_name):
@@ -108,19 +102,16 @@ class SlackDataMock(AbstractReader):
 
         return data_object
 
+
 class TestClientNotification(unittest.TestCase):
     """Tests for success_notification.py"""
-
 
     def test_get_client_params(self):
         os.environ["SLACKCLIENT_CHANNEL"] = "test-channel"
         os.environ["SLACKCLIENT_MEMBER_ID"] = "test-member_id"
         os.environ["SLACKCLIENT_TOKEN"] = "test-token"
 
-        params = {
-            "client": "SlackClient",
-            "message": "starting job..."
-        }
+        params = {"client": "SlackClient", "message": "starting job..."}
 
         ans = get_client_params(params)
         expected = {
@@ -128,34 +119,35 @@ class TestClientNotification(unittest.TestCase):
             "channel": "test-channel",
             "message": "starting job...",
             "member_id": "test-member_id",
-            "token": "test-token"
+            "token": "test-token",
         }
         self.assertDictEqual(ans, expected)
-
 
     def test_necessary_config(self):
         self.assertEqual(
             first=ClientNotification.necessary_config(node_config={}),
-            second={'client', 'token'}
+            second={"client", "token"},
         )
 
     def test_run(self):
 
-        path = 'primrose.notifications.success_notification.get_notification_client'
+        path = "primrose.notifications.success_notification.get_notification_client"
         with mock.patch(path) as get_client_mock:
             get_client_mock.return_value = mock.Mock()
 
-            configuration = Configuration(None, is_dict_config=True, dict_config=config_dict)
+            configuration = Configuration(
+                None, is_dict_config=True, dict_config=config_dict
+            )
             success_instance = ClientNotification(
-                configuration=configuration,
-                instance_name='notification'
+                configuration=configuration, instance_name="notification"
             )
             success_instance.client = get_client_mock.return_value
 
-            success_instance.run('some_data_object')
+            success_instance.run("some_data_object")
 
-            success_instance.client.post_message.assert_called_once_with(message='TEST SUCCESS!')
-
+            success_instance.client.post_message.assert_called_once_with(
+                message="TEST SUCCESS!"
+            )
 
     def test_run_node(self):
 
@@ -165,20 +157,26 @@ class TestClientNotification(unittest.TestCase):
 
             NodeFactory().register("SlackDataMock", SlackDataMock)
 
-            config = Configuration(None, is_dict_config=True, dict_config=config_dict_node_message)
+            config = Configuration(
+                None, is_dict_config=True, dict_config=config_dict_node_message
+            )
             data_object = DataObject(config)
 
             reader = SlackDataMock(config, "test_node")
             data_object = reader.run(data_object)
 
-            success_instance = ClientNotification(configuration=config, instance_name="node_notification",)
+            success_instance = ClientNotification(
+                configuration=config,
+                instance_name="node_notification",
+            )
             success_instance.client = get_client_mock.return_value
 
             success_instance.run(data_object)
 
-            success_instance.client.post_message.assert_called_once_with(message="Node Success!")
+            success_instance.client.post_message.assert_called_once_with(
+                message="Node Success!"
+            )
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -16,9 +16,9 @@ def config():
 def data_obj(config):
     df = pd.read_csv("test/tennis.csv")
     data_object = DataObject(config)
-    reader = CsvReader(config, 'read_data')
+    reader = CsvReader(config, "read_data")
     data_object.add(reader, df)
-    encoder = EncodeTrainTestSplit(config, 'encode_and_split')
+    encoder = EncodeTrainTestSplit(config, "encode_and_split")
     data_object, terminate = encoder.run(data_object)
     return data_object
 
@@ -29,14 +29,23 @@ def model(config):
 
 
 def test_necessary_config():
-    assert SklearnClassifierModel.necessary_config({}) == set(["model_parameters", "mode", "sklearn_classifier_name",
-                                                             "grid_search_scoring", "cv_folds"])
+    assert SklearnClassifierModel.necessary_config({}) == set(
+        [
+            "model_parameters",
+            "mode",
+            "sklearn_classifier_name",
+            "grid_search_scoring",
+            "cv_folds",
+        ]
+    )
 
 
 def test_get_data(model, data_obj):
     x_train, y_train, x_test, y_test = model._get_data(data_obj)
     assert x_train.shape[0] == y_train.shape[0]
-    assert x_test.shape[0] == y_test.shape[0]  # we removed the ID column by not specifying it in X
+    assert (
+        x_test.shape[0] == y_test.shape[0]
+    )  # we removed the ID column by not specifying it in X
 
 
 def test_train_model(model, data_obj):
@@ -51,16 +60,24 @@ def test_eval(model, data_obj):
     model.train_model(data_obj)
     model.eval_model(data_obj)
     print(model.scores)
-    assert round(model.scores['recall'], 2) == 0.67
-    assert round(model.scores['precision'], 2) == 0.67
-    assert model.scores['predicted_class_fraction'] == 0.6
-    assert model.scores['positive_class_fraction'] == 0.6
+    assert round(model.scores["recall"], 2) == 0.67
+    assert round(model.scores["precision"], 2) == 0.67
+    assert model.scores["predicted_class_fraction"] == 0.6
+    assert model.scores["positive_class_fraction"] == 0.6
 
 
 def test_predict(model, data_obj):
     model.train_model(data_obj)
     data_object = model.predict(data_obj)
-    predicted = data_object.get('decision_tree_model', rtype=DataObjectResponseType.KEY_VALUE.value)
+    predicted = data_object.get(
+        "decision_tree_model", rtype=DataObjectResponseType.KEY_VALUE.value
+    )
 
-    assert predicted['predictions'].shape[0] == 5
-    assert list(predicted['predictions'].predictions) == ['yes', 'no', 'no', 'yes', 'yes']
+    assert predicted["predictions"].shape[0] == 5
+    assert list(predicted["predictions"].predictions) == [
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+    ]

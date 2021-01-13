@@ -10,10 +10,11 @@ import logging
 from enum import Enum
 import dill
 
+
 class DataObjectResponseType(Enum):
     """Type of object when getting data from DataObject
 
-    INSTANCE_KEY_VALUE = dictionary of instance_name keys and their data dictionaries: 
+    INSTANCE_KEY_VALUE = dictionary of instance_name keys and their data dictionaries:
         {'instance_name': {'key':value}, 'instance_name2': {'key2':value2}, ... }
         e.g. {'corpus_reader': {'data': dataframe}}
         this is useful if there is a set of upstream data arriving from mulitple sources
@@ -23,26 +24,28 @@ class DataObjectResponseType(Enum):
         this is useful if there are multiple keys for a given instance_name
         or if you want to explicitly check against expected keys
 
-    VALUE = value only (for 1st or only instance name and for only key): 
+    VALUE = value only (for 1st or only instance name and for only key):
         e.g. dataframe
         this is useful if you know a node in DAG has only a single upsteam source and only a single
         value. Readers are often a good example as they typically read in and provide a single data frame
 
     """
+
     INSTANCE_KEY_VALUE = "ikv"
     KEY_VALUE = "kv"
     VALUE = "v"
 
     @staticmethod
     def values():
-        ''' list of all the values in the enum'''
+        """ list of all the values in the enum"""
         return list(map(lambda t: t.value, DataObjectResponseType))
 
-class DataObject():
+
+class DataObject:
     """DataObject: a container for "data" (strings, dicts, arbitrary objects etc)"""
 
     # when we are storing some basic data, what is key we use?
-    DATA_KEY = 'data'
+    DATA_KEY = "data"
 
     DEFAULT_RESPONSE_TYPE = DataObjectResponseType.KEY_VALUE.value
 
@@ -53,7 +56,7 @@ class DataObject():
             config (Configuration): Configuration instance
 
         """
-        #assert isinstance(config, Configuration)
+        # assert isinstance(config, Configuration)
         self.config = config
         self.data_dict = defaultdict(dict)
 
@@ -69,7 +72,7 @@ class DataObject():
 
         """
         assert os.path.exists(filename)
-        with open(filename, 'rb') as f:
+        with open(filename, "rb") as f:
             data_object = dill.load(f)
             assert isinstance(data_object, DataObject)
             return data_object
@@ -81,13 +84,13 @@ class DataObject():
             nothing. Side effect is to cache object to file
 
         """
-        with open(filename, 'wb') as f:
-            logging.info("Cache DataObect to " + filename) 
+        with open(filename, "wb") as f:
+            logging.info("Cache DataObect to " + filename)
             dill.dump(self, f)
 
     def __repr__(self):
         """string representation of the class
-        
+
         Returns:
             string representation
 
@@ -106,8 +109,14 @@ class DataObject():
             nothing.
         """
         assert isinstance(key, str)
-        if not overwrite and requestor.instance_name in self.data_dict and key in self.data_dict[requestor.instance_name]:
-            raise Exception("Key already exists for %s:%s" % (requestor.instance_name, key))
+        if (
+            not overwrite
+            and requestor.instance_name in self.data_dict
+            and key in self.data_dict[requestor.instance_name]
+        ):
+            raise Exception(
+                "Key already exists for %s:%s" % (requestor.instance_name, key)
+            )
 
         # as this is  defaultdict(dict) it should update existing dict with new key
         self.data_dict[requestor.instance_name][key] = data
@@ -173,11 +182,21 @@ class DataObject():
         keys = self.config.dag.upstream_keys(instance_name)
 
         if operation_type_filter:
-            keys = [k for k in keys if self.config.dag.node_map[k] == operation_type_filter.value]
+            keys = [
+                k
+                for k in keys
+                if self.config.dag.node_map[k] == operation_type_filter.value
+            ]
 
         return keys
 
-    def get_upstream_data(self, instance_name, pop_data=False, rtype=DEFAULT_RESPONSE_TYPE, operation_type_filter=None):
+    def get_upstream_data(
+        self,
+        instance_name,
+        pop_data=False,
+        rtype=DEFAULT_RESPONSE_TYPE,
+        operation_type_filter=None,
+    ):
         """Return data from upstream source(s), choose to pop or not from the dict
 
         Note:
@@ -187,7 +206,7 @@ class DataObject():
             and
             ii) value_only=True
             then return the value only.
-            
+
             This option is useful if you expect 1 upstream source only and it returns
             a single artifact, such as a single dataframe. In that case just the dataframe
             is returned
@@ -200,25 +219,31 @@ class DataObject():
 
         """
         assert instance_name
-        upstream_keys = self.upstream_keys(instance_name, operation_type_filter=operation_type_filter)
+        upstream_keys = self.upstream_keys(
+            instance_name, operation_type_filter=operation_type_filter
+        )
 
         # While upstream_keys list the upstream sources, it doesn't mean any data were set for them.
         # Thus, we need to see which of these we have data for
-        upstream_keys_with_data = set(upstream_keys).intersection(set(self.data_dict.keys()))
+        upstream_keys_with_data = set(upstream_keys).intersection(
+            set(self.data_dict.keys())
+        )
 
         if not upstream_keys_with_data:
             raise Exception("No upstream keys with data found for %s" % instance_name)
 
         # if there are multiple keys, returning key:value or value makes no sense so ignore rtype
         if len(upstream_keys) > 1:
-            return {iname_key: self.get(iname_key, pop_data) for iname_key in upstream_keys}
+            return {
+                iname_key: self.get(iname_key, pop_data) for iname_key in upstream_keys
+            }
 
         # we must have only 1 key now so this is now simple:
         return self.get(upstream_keys[0], pop_data, rtype)
 
     def get_filtered_upstream_data(self, instance_name, filter_for_key):
         """Upstream data where first level dict keys are first checked for the presence of a filter key
-        
+
         Args:
             instance_name (str): name of instance to look upstream from
 
@@ -230,8 +255,11 @@ class DataObject():
             None otherwise
 
         """
-        data = self.get_upstream_data(instance_name, pop_data=False,
-                                        rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value)
+        data = self.get_upstream_data(
+            instance_name,
+            pop_data=False,
+            rtype=DataObjectResponseType.INSTANCE_KEY_VALUE.value,
+        )
 
         data_to_return = []
 

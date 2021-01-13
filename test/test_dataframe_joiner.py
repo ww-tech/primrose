@@ -1,4 +1,3 @@
-
 import pytest
 from primrose.pipelines.dataframe_joiner import DataFrameJoiner
 from primrose.base.transformer_sequence import TransformerSequence
@@ -16,23 +15,26 @@ def test_init_pipeline():
                 "myreader": {
                     "class": "CsvReader",
                     "filename": "test/minimal.csv",
-                    "destinations": ["mypipeline"]
+                    "destinations": ["mypipeline"],
                 }
             },
             "pipeline_config": {
-                "mypipeline":{
+                "mypipeline": {
                     "class": "DataFrameJoiner",
                     "join_key": ["first"],
-                    "start_table": "myreader"
+                    "start_table": "myreader",
                 }
-            }
+            },
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     pipeline = DataFrameJoiner(configuration, "mypipeline")
     ts = pipeline.init_pipeline()
     assert isinstance(ts, TransformerSequence)
+
 
 def test_transform():
     config = {
@@ -41,25 +43,27 @@ def test_transform():
                 "myreader_left": {
                     "class": "CsvReader",
                     "filename": "test/minimal.csv",
-                    "destinations": ["mypipeline"]
+                    "destinations": ["mypipeline"],
                 },
                 "myreader_right": {
                     "class": "CsvReader",
                     "filename": "test/merge_right3.csv",
-                    "destinations": ["mypipeline"]
-                }
+                    "destinations": ["mypipeline"],
+                },
             },
             "pipeline_config": {
-                "mypipeline":{
+                "mypipeline": {
                     "class": "DataFrameJoiner",
                     "join_key": ["first"],
                     "start_table": "myreader_left",
-                    "is_training": True
+                    "is_training": True,
                 }
-            }
+            },
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     data_object = DataObject(configuration)
 
@@ -77,11 +81,21 @@ def test_transform():
 
     assert not terminate
 
-    joined_data = data_object.get("mypipeline", pop_data=True, rtype=DataObjectResponseType.VALUE.value)
+    joined_data = data_object.get(
+        "mypipeline", pop_data=True, rtype=DataObjectResponseType.VALUE.value
+    )
     assert joined_data.shape[0] == 2
 
-    assert list(joined_data.T.to_dict().values())[0] == {'first': 'joe', 'last': 'doe', 'age': 47}
-    assert list(joined_data.T.to_dict().values())[1] == {'first': 'mary', 'last': 'poppins', 'age': 42}
+    assert list(joined_data.T.to_dict().values())[0] == {
+        "first": "joe",
+        "last": "doe",
+        "age": 47,
+    }
+    assert list(joined_data.T.to_dict().values())[1] == {
+        "first": "mary",
+        "last": "poppins",
+        "age": 42,
+    }
 
 
 def test_transform2():
@@ -91,25 +105,27 @@ def test_transform2():
                 "myreader_left": {
                     "class": "CsvReader",
                     "filename": "test/minimal.csv",
-                    "destinations": ["mypipeline"]
+                    "destinations": ["mypipeline"],
                 },
                 "myreader_right": {
                     "class": "CsvReader",
                     "filename": "test/merge_right3.csv",
-                    "destinations": ["mypipeline"]
-                }
+                    "destinations": ["mypipeline"],
+                },
             },
             "pipeline_config": {
-                "mypipeline":{
+                "mypipeline": {
                     "class": "DataFrameJoiner",
                     "join_key": ["first"],
                     "start_table": "JUNK",
-                    "is_training": True
+                    "is_training": True,
                 }
-            }
+            },
         }
     }
-    configuration = Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    configuration = Configuration(
+        config_location=None, is_dict_config=True, dict_config=config
+    )
 
     data_object = DataObject(configuration)
 
@@ -119,7 +135,7 @@ def test_transform2():
     right_df = pd.read_csv("test/merge_right3.csv")
     reader_right = CsvReader(configuration, "myreader_right")
 
-    #note: am deliberately swapping order to right is first
+    # note: am deliberately swapping order to right is first
     data_object.add(reader_right, right_df)
     data_object.add(reader_left, left_df)
 

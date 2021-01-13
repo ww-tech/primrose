@@ -38,7 +38,7 @@ class AwesomeModel(AbstractModel):
 
         # Example model training code for building your own model
         # ----------------------------------
-        print('I am training my model.')
+        print("I am training my model.")
 
         # Example showing how to get upstream data
         # get some training data if it exists
@@ -46,7 +46,7 @@ class AwesomeModel(AbstractModel):
             training_data = data_object.get_upstream_data(self.instance_name)
 
         except:
-            print('No upstream data exists')
+            print("No upstream data exists")
         # ----------------------------------
 
         return data_object
@@ -54,13 +54,13 @@ class AwesomeModel(AbstractModel):
     def eval_model(self, data_object):
         """Code to evaluate your models performance"""
 
-        print('My model is doing pretty well.')
+        print("My model is doing pretty well.")
 
         return data_object
 
     def predict(self, data_object):
         """Make predictions using your model"""
 
-        print('I am predicting!')
+        print("I am predicting!")
 
         return data_object
