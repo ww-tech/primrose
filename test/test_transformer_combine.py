@@ -3,6 +3,7 @@ import pandas as pd
 from primrose.transformers.combine import left_merge_dataframe_on_validated_join_keys
 from testfixtures import LogCapture
 from primrose.transformers.combine import LeftJoinDataCombiner
+from pandas.testing import assert_frame_equal
 
 
 def test_left_merge_dataframe_on_validated_join_keys():
@@ -110,14 +111,8 @@ def test_LeftJoinDataCombiner():
 
     with LogCapture() as l:
         out = combiner.transform([corpus])
-    l.check(
-        (
-            "root",
-            "WARNING",
-            "Combiner needs at least two reader inputs, passing unchanged data.",
-        )
-    )
-    assert out == [corpus]
+
+    assert_frame_equal(out, corpus)
 
 
 def test_LeftJoinDataCombiner2():
@@ -152,3 +147,35 @@ def test_LeftJoinDataCombiner4():
         "last": "poppins",
         "age": 42,
     }
+
+
+def test_LeftJoinDataCombiner_transform1():
+    df = pd.read_csv("test/tennis.csv")
+
+    df_transformed = LeftJoinDataCombiner('id').transform([df])
+
+    assert type(df_transformed) == pd.DataFrame
+    assert df_transformed.shape == df.shape
+
+
+
+def test_LeftJoinDataCombiner_transform2():
+
+    df = pd.read_csv("test/tennis.csv")
+    df2 = df.iloc[:5]
+
+    df_transformed = LeftJoinDataCombiner(['id', 'outlook', 'temp', 'windy', 'humidity', 'play']).transform([df, df2])
+
+    assert len(df_transformed) == len(df)
+
+
+
+def test_LeftJoinDataCombiner_transform3():
+
+    df = pd.read_csv("test/tennis.csv")
+    df2 = df.iloc[:5].copy()
+    df2.loc[0, 'temp'] = 'mild'
+
+    df_transformed = LeftJoinDataCombiner(['id', 'outlook', 'temp', 'windy', 'humidity', 'play']).transform([df, df2])
+
+    assert len(df_transformed) == len(df)
