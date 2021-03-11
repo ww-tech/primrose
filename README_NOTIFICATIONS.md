@@ -60,8 +60,7 @@ implementation_config:
       filename: data/tennis.csv
 ```
 
-The  `notify_on_error` key triggers the DAG runner to instantiate your client with the given parameters, and will post to `name-of-channel` upon hitting an error.
-Specifically, it will preface the error message with the value of `message` in the your `notify_on_error` keys (this is defaulted to `Job error`, if you leave out the `message` key). For example, if `data/tennis.csv` does not exist, your app will post `Job Name 123: Issue with read_data`, followed by the traceback message. This is useful in identifying which of your DAGs has the error if you have multiple jobs posting to the same channel. 
+The  `notify_on_error` key triggers the DAG runner to instantiate your client with the given parameters, and will post to `name-of-channel` upon hitting an error.  Specifically, it will preface the error message with the value of `message` in the your `notify_on_error` keys (this is defaulted to `Job error`, if you leave out the `message` key). For example, if `data/tennis.csv` does not exist, your app will post `Job Name 123: Issue with read_data`, followed by the traceback message. This is useful in identifying which of your DAGs has the error if you have multiple jobs posting to the same channel. 
 
 ## Environment Variables
 
