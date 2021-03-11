@@ -33,10 +33,7 @@ class DagRunner:
         self.configuration = configuration
         self.dag = self.configuration.dag
 
-        if (
-            configuration.config_metadata
-            and "traverser" in configuration.config_metadata
-        ):
+        if configuration.config_metadata and "traverser" in configuration.config_metadata:
             self.dag_traverser = TraverserFactory().instantiate(
                 configuration.config_metadata["traverser"], configuration
             )
@@ -52,10 +49,7 @@ class DagRunner:
             data_object (DataObject)
 
         """
-        if (
-            self.configuration.config_metadata
-            and "data_object" in self.configuration.config_metadata
-        ):
+        if self.configuration.config_metadata and "data_object" in self.configuration.config_metadata:
 
             cfg = self.configuration.config_metadata["data_object"]
 
@@ -82,10 +76,7 @@ class DagRunner:
 
         """
 
-        if (
-            self.configuration.config_metadata
-            and "data_object" in self.configuration.config_metadata
-        ):
+        if self.configuration.config_metadata and "data_object" in self.configuration.config_metadata:
 
             cfg = self.configuration.config_metadata["data_object"]
 
@@ -114,18 +105,13 @@ class DagRunner:
             complain about the partition [section2_node1, section1_node1] [section2_node2] as they are mixed from sections.
 
         """
-        dupes = [
-            item for item, count in collections.Counter(sequence).items() if count > 1
-        ]
+        dupes = [item for item, count in collections.Counter(sequence).items() if count > 1]
 
         if len(dupes) > 0:
             raise Exception("You have duplicate nodes from traverser! " + str(dupes))
 
         # explictly check that each of these is a known node in config, raising exception if not
-        [
-            self.configuration.config_for_instance(instance_name)
-            for instance_name in sequence
-        ]
+        [self.configuration.config_for_instance(instance_name) for instance_name in sequence]
 
     def filter_sequence(self, sequence):
         """The user may have specified some subset of sections to run in metadata.section_run
@@ -155,9 +141,7 @@ class DagRunner:
         logging.info("Taking nodes to run from " + source)
 
         for section_name in sections:
-            nodes_to_run = nodes_to_run.union(
-                set(self.configuration.config[section_name].keys())
-            )
+            nodes_to_run = nodes_to_run.union(set(self.configuration.config[section_name].keys()))
         sequence = [n for n in sequence if n in nodes_to_run]
 
         if not self.dag_traverser.run_section_by_section():
@@ -201,12 +185,7 @@ class DagRunner:
                     msg += " Received list " + str(sorted(subset))
                     raise Exception(msg)
             else:
-                raise Exception(
-                    "Ran out of nodes for section "
-                    + section_name
-                    + ". Only received "
-                    + str(sequence)
-                )
+                raise Exception("Ran out of nodes for section " + section_name + ". Only received " + str(sequence))
 
         self.check_for_upstream(filtered_sequence)
 
@@ -228,13 +207,8 @@ class DagRunner:
         for idx_from in range(len(sequence)):
             for idx_to in range(len(sequence)):
                 if idx_from > idx_to:
-                    if self.configuration.dag.paths(
-                        sequence[idx_from], sequence[idx_to]
-                    ):
-                        msg = "Upstream path found, from %s to %s" % (
-                            sequence[idx_from],
-                            sequence[idx_to],
-                        )
+                    if self.configuration.dag.paths(sequence[idx_from], sequence[idx_to]):
+                        msg = "Upstream path found, from %s to %s" % (sequence[idx_from], sequence[idx_to],)
                         raise Exception(msg)
         return False
 
@@ -262,19 +236,14 @@ class DagRunner:
 
         pruned_nodes = set()
 
-        if (
-            self.configuration.config_metadata
-            and "notify_on_error" in self.configuration.config_metadata
-        ):
+        if self.configuration.config_metadata and "notify_on_error" in self.configuration.config_metadata:
             try:
                 params = self.configuration.config_metadata["notify_on_error"]
+                slack_exception_label = params.get("message", "Job error")
                 client = get_notification_client(params)
 
             except Exception as error:
-                msg = (
-                    "Error trying to instantiate notification client."
-                    'Check class name and parameters"'
-                )
+                msg = "Error trying to instantiate notification client." 'Check class name and parameters"'
                 logging.error(error)
                 raise (msg)
         else:
@@ -291,30 +260,21 @@ class DagRunner:
 
             if dry_run:
                 logging.info(
-                    "DRY RUN %s: would run node %s of type %s and class %s",
-                    i,
-                    node,
-                    section,
-                    class_name,
+                    "DRY RUN %s: would run node %s of type %s and class %s", i, node, section, class_name,
                 )
                 continue
             else:
                 logging.info(
-                    "received node %s of type %s and class %s",
-                    node,
-                    section,
-                    class_name,
+                    "received node %s of type %s and class %s", node, section, class_name,
                 )
 
             try:
-                node_instance = NodeFactory().instantiate(
-                    class_name, self.configuration, node
-                )
+                node_instance = NodeFactory().instantiate(class_name, self.configuration, node)
             except Exception as e:
                 msg = "Issue instantiating %s and class %s" % (node, class_name)
                 logging.error(msg)
                 if client:
-                    client.post_message(msg)
+                    client.post_message(f"{slack_exception_label}: {msg}")
                 raise Exception(msg)
 
             try:
@@ -329,13 +289,13 @@ class DagRunner:
                 msg = "Issue with %s" % node
                 logging.error(msg)
                 if client:
-                    client.post_message(f"{msg}\n{traceback.format_exc()}")
+                    client.post_message(f"{slack_exception_label}: {msg}\n{traceback.format_exc()}")
                 raise e
 
             if terminate:
                 logging.info("Terminating early due to signal from %s", node)
                 if client:
-                    client.post_message(msg)
+                    client.post_message(f"{slack_exception_label}: {msg}")
                 break
 
         self.cache_data_object(data_object)
