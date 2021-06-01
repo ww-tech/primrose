@@ -387,8 +387,8 @@ class ConfigurationDag:
         #        nx.draw_networkx_labels(self.G2,pos, font_size=9)
 
         text = nx.draw_networkx_labels(
-            self.G2, pos, with_labels=False, font_size=label_font_size
-        )  # , bbox=Bbox.from_bounds(x0, y0, 20,30)) #, wrap=True)
+            self.G2, pos, font_size=label_font_size
+        )
 
         if traverser:
             # map node name to sequence number
