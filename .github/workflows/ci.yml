@@ -123,6 +123,7 @@ jobs:
         python -m
         pip install
         build
+        sphinx
         --user
     - name: Build a binary wheel and a source tarball
       run: >-
