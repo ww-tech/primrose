@@ -1,0 +1,1149 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose.readers package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#environment-variable-substitution">Environment Variable Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose.readers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.readers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-readers-package">
+<h1>primrose.readers package<a class="headerlink" href="#primrose-readers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.readers.csv_reader">
+<span id="primrose-readers-csv-reader-module"></span><h2>primrose.readers.csv_reader module<a class="headerlink" href="#module-primrose.readers.csv_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, able to read from CSV</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.csv_reader.CsvReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.csv_reader.</code><code class="sig-name descname">CsvReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Reads CSV file into a pandas dataframe</p>
+<dl class="attribute">
+<dt id="primrose.readers.csv_reader.CsvReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.csv_reader.CsvReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.csv_reader.CsvReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.csv_reader.CsvReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.csv_reader.CsvReader.get_optional_config">
+<code class="sig-name descname">get_optional_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader.get_optional_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optionally get kwargs to pass to pandas csv reader.</p>
+<p class="rubric">Notes</p>
+<p>kwargs (dict): dictionary of kwargs key-value pairs</p>
+<p class="rubric">Example</p>
+<p>“csv_reader”: {                 “class”: “CsvReader”,                 “filename”: “data/mydata.csv”,                 “kwargs”: {                 “header”: None,                 “sep”: “:”                 }             }</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.csv_reader.CsvReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the CsvReader object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename: name of the file</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the CsvReader object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.csv_reader.CsvReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.csv_reader.CsvReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read CSV to a pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataObject instance
+terminate (bool): should we terminate the DAG? true or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.database_helper">
+<span id="primrose-readers-database-helper-module"></span><h2>primrose.readers.database_helper module<a class="headerlink" href="#module-primrose.readers.database_helper" title="Permalink to this headline">¶</a></h2>
+<p>Helper function for get os.environ values</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="function">
+<dt id="primrose.readers.database_helper.get_env_val">
+<code class="sig-prename descclassname">primrose.readers.database_helper.</code><code class="sig-name descname">get_env_val</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.database_helper.get_env_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>get environmental variable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>env variable (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.deserializer">
+<span id="primrose-readers-deserializer-module"></span><h2>primrose.readers.deserializer module<a class="headerlink" href="#module-primrose.readers.deserializer" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, able to read from local and gcs dill and pickle files</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)
+Brian Graham (<a class="reference external" href="mailto:brian&#46;graham&#37;&#52;&#48;weightwatchers&#46;com">brian<span>&#46;</span>graham<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.deserializer.Deserializer">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.deserializer.</code><code class="sig-name descname">Deserializer</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.Deserializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a local file and de-serialize it into memory.</p>
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer.SUPPORTED_DESERIALIZERS">
+<code class="sig-name descname">SUPPORTED_DESERIALIZERS</code><em class="property"> = {'dill': &lt;module 'dill' from '/anaconda3/envs/primrose/lib/python3.6/site-packages/dill/__init__.py'&gt;, 'pickle': &lt;module 'pickle' from '/anaconda3/envs/primrose/lib/python3.6/pickle.py'&gt;}</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer.SUPPORTED_DESERIALIZERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.Deserializer._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.Deserializer._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.deserializer.Deserializer.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.Deserializer.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the Deserializer object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename (str): local filename to be de-serialized
+deserializer (str): ‘dill’ or ‘pickle’</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the Deserializer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.deserializer.Deserializer.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.Deserializer.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read dill object(s) from local filesystem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="primrose.readers.deserializer.GcsDeserializer">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.deserializer.</code><code class="sig-name descname">GcsDeserializer</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a file from GCS and de-serialize it into memory.</p>
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer.SUPPORTED_DESERIALIZERS">
+<code class="sig-name descname">SUPPORTED_DESERIALIZERS</code><em class="property"> = {'dill': &lt;module 'dill' from '/anaconda3/envs/primrose/lib/python3.6/site-packages/dill/__init__.py'&gt;, 'pickle': &lt;module 'pickle' from '/anaconda3/envs/primrose/lib/python3.6/pickle.py'&gt;}</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer.SUPPORTED_DESERIALIZERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.deserializer.GcsDeserializer._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.deserializer.GcsDeserializer.download_blobs_as_strings">
+<code class="sig-name descname">download_blobs_as_strings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer.download_blobs_as_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a blob from the bucket contining the user specified blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.deserializer.GcsDeserializer.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the GcsDeserializer object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>bucket_name: name of the GCS bucket
+blob_name: name of the blob
+deserializer (str): ‘dill’ or ‘pickle’</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the GcsDeserializer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.deserializer.GcsDeserializer.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.deserializer.GcsDeserializer.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read serialized object(s) from GCS bucket which contain the blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.dill_reader">
+<span id="primrose-readers-dill-reader-module"></span><h2>primrose.readers.dill_reader module<a class="headerlink" href="#module-primrose.readers.dill_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, able to read from local dill files</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.dill_reader.DillReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.dill_reader.</code><code class="sig-name descname">DillReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.dill_reader.DillReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a file from Gcs and un-dills it into memory</p>
+<dl class="attribute">
+<dt id="primrose.readers.dill_reader.DillReader.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#primrose.readers.dill_reader.DillReader.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.dill_reader.DillReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.dill_reader.DillReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.dill_reader.DillReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.dill_reader.DillReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.dill_reader.DillReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.dill_reader.DillReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.dill_reader.DillReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.dill_reader.DillReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.dill_reader.DillReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.dill_reader.DillReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the DillReader object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>filename: local filename to be de-serialized</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the DillReader object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.dill_reader.DillReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.dill_reader.DillReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read dill object(s) from local filesystem</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.gcs_dill_reader">
+<span id="primrose-readers-gcs-dill-reader-module"></span><h2>primrose.readers.gcs_dill_reader module<a class="headerlink" href="#module-primrose.readers.gcs_dill_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractNode implementation, able to read from GCS</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Mike Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.gcs_dill_reader.</code><code class="sig-name descname">GcsDillReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read a file from Gcs and un-dills it into memory</p>
+<dl class="attribute">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'reader_data'</em><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader.download_blobs_as_strings">
+<code class="sig-name descname">download_blobs_as_strings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader.download_blobs_as_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a blob from the bucket contining the user specified blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of strings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the GcsDillReader object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>bucket_name: name of the GCS bucket
+blob_name: name of the blob</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the CsvReader object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.gcs_dill_reader.GcsDillReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.gcs_dill_reader.GcsDillReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read dill object(s) from GCS bucket which contain the blob_name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> – DataObject instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple containing:</p>
+<blockquote>
+<div><p>data_object (DataObject): instance of DataObject</p>
+<p>terminate (bool): terminate the DAG?</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.mysql_helper">
+<span id="primrose-readers-mysql-helper-module"></span><h2>primrose.readers.mysql_helper module<a class="headerlink" href="#module-primrose.readers.mysql_helper" title="Permalink to this headline">¶</a></h2>
+<p>MySQL helper</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.mysql_helper.MySQLHelper">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.mysql_helper.</code><code class="sig-name descname">MySQLHelper</code><a class="headerlink" href="#primrose.readers.mysql_helper.MySQLHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>“some utility methods for connecting to MySQL</p>
+<dl class="method">
+<dt id="primrose.readers.mysql_helper.MySQLHelper.create_db_connection">
+<em class="property">static </em><code class="sig-name descname">create_db_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.mysql_helper.MySQLHelper.create_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>authenticate with MySQL database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>MySQL db object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>db (connection object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.mysql_helper.MySQLHelper.extract_mysql_credentials">
+<em class="property">static </em><code class="sig-name descname">extract_mysql_credentials</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.mysql_helper.MySQLHelper.extract_mysql_credentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract MySQL credentials from config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple containing:                 host (str): host                 port (int): port                 database (str): database name                 username (str): username                 password (str): password</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.mysql_reader">
+<span id="primrose-readers-mysql-reader-module"></span><h2>primrose.readers.mysql_reader module<a class="headerlink" href="#module-primrose.readers.mysql_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read from MySQL</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.mysql_reader.MySQLReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.mysql_reader.</code><code class="sig-name descname">MySQLReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.sql_reader.AbstractSqlReader" title="primrose.base.sql_reader.AbstractSqlReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.sql_reader.AbstractSqlReader</span></code></a></p>
+<p>Runs MySQL queries into pandas dataframes</p>
+<dl class="attribute">
+<dt id="primrose.readers.mysql_reader.MySQLReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.mysql_reader.MySQLReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.mysql_reader.MySQLReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.mysql_reader.MySQLReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.mysql_reader.MySQLReader.get_connection">
+<code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.mysql_reader.MySQLReader.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>return connection to MySQL DB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>connection to MySQL DB</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.oracle_reader">
+<span id="primrose-readers-oracle-reader-module"></span><h2>primrose.readers.oracle_reader module<a class="headerlink" href="#module-primrose.readers.oracle_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read from Oracle</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.oracle_reader.OracleReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.oracle_reader.</code><code class="sig-name descname">OracleReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.sql_reader.AbstractSqlReader" title="primrose.base.sql_reader.AbstractSqlReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.sql_reader.AbstractSqlReader</span></code></a></p>
+<p>Runs Oracle queries into pandas dataframes</p>
+<dl class="attribute">
+<dt id="primrose.readers.oracle_reader.OracleReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.oracle_reader.OracleReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.oracle_reader.OracleReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.oracle_reader.OracleReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.oracle_reader.OracleReader.get_connection">
+<code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.oracle_reader.OracleReader.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>return connection to Oracle DB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>connection to Oracle DB</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.postgres_helper">
+<span id="primrose-readers-postgres-helper-module"></span><h2>primrose.readers.postgres_helper module<a class="headerlink" href="#module-primrose.readers.postgres_helper" title="Permalink to this headline">¶</a></h2>
+<p>Postgres helper</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Wassym Kalouache (<a class="reference external" href="mailto:wassym&#46;kalouache&#37;&#52;&#48;weightwatchers&#46;com">wassym<span>&#46;</span>kalouache<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.postgres_helper.PostgresHelper">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.postgres_helper.</code><code class="sig-name descname">PostgresHelper</code><a class="headerlink" href="#primrose.readers.postgres_helper.PostgresHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>some utility methods for connecting to postgres</p>
+<dl class="method">
+<dt id="primrose.readers.postgres_helper.PostgresHelper.create_db_connection">
+<em class="property">static </em><code class="sig-name descname">create_db_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.postgres_helper.PostgresHelper.create_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>authenticate with postgres database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>postgres db object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>db (connection)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.postgres_helper.PostgresHelper.extract_postgres_credentials">
+<em class="property">static </em><code class="sig-name descname">extract_postgres_credentials</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.postgres_helper.PostgresHelper.extract_postgres_credentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>extract PostgreSQL credentials from config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple containing:                 host (str): host                 port (int): port                 database (str): database name                 username (str): username                 password (str): password</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(tuple)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.postgres_reader">
+<span id="primrose-readers-postgres-reader-module"></span><h2>primrose.readers.postgres_reader module<a class="headerlink" href="#module-primrose.readers.postgres_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read from PostgreSQL</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.postgres_reader.PostgresReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.postgres_reader.</code><code class="sig-name descname">PostgresReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.sql_reader.AbstractSqlReader" title="primrose.base.sql_reader.AbstractSqlReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.sql_reader.AbstractSqlReader</span></code></a></p>
+<p>Runs PostgreSQL queries into pandas dataframes</p>
+<dl class="attribute">
+<dt id="primrose.readers.postgres_reader.PostgresReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.postgres_reader.PostgresReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.postgres_reader.PostgresReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.postgres_reader.PostgresReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.postgres_reader.PostgresReader.get_connection">
+<code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.postgres_reader.PostgresReader.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>return connection to PostgreSQL DB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>connection to PostgreSQL DB</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.r_reader">
+<span id="primrose-readers-r-reader-module"></span><h2>primrose.readers.r_reader module<a class="headerlink" href="#module-primrose.readers.r_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read datasets from R</p>
+<blockquote>
+<div><p>This is a simple example to show that primrose can work with other languages.
+Note:</p>
+<blockquote>
+<div><p>It works with simple 2D R dataframes (e.g. iris dataset) but not higher tensors (e.g. iris3 dataset)
+It does not work with timeseries, such as <cite>lh</cite> dataset</p>
+<p>We perform an R as.data.frame conversion on all data to help stadardize the data structure.
+For instance, the R <cite>euro</cite> dataset is essentially a labelled vector but converts nicely to a dataframe.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;ww&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.r_reader.RReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.r_reader.</code><code class="sig-name descname">RReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Reads in canned dataset from R</p>
+<dl class="attribute">
+<dt id="primrose.readers.r_reader.RReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.r_reader.RReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.r_reader.RReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.r_reader.RReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.r_reader.RReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.r_reader.RReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.r_reader.RReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.r_reader.RReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.r_reader.RReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys within the implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<em>string</em>) – name of dataset in R</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set of keys necessary to run implementation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.r_reader.RReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.r_reader.RReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read canned dataset from R to a pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataObject instance
+terminate (bool): should we terminate the DAG? true or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.redshift_reader">
+<span id="primrose-readers-redshift-reader-module"></span><h2>primrose.readers.redshift_reader module<a class="headerlink" href="#module-primrose.readers.redshift_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read from AWS Redshift</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.redshift_reader.OracleReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.redshift_reader.</code><code class="sig-name descname">OracleReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.sql_reader.AbstractSqlReader" title="primrose.base.sql_reader.AbstractSqlReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.sql_reader.AbstractSqlReader</span></code></a></p>
+<p>Runs Redshift queries into pandas dataframes</p>
+<dl class="attribute">
+<dt id="primrose.readers.redshift_reader.OracleReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.redshift_reader.OracleReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.redshift_reader.OracleReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.redshift_reader.OracleReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.redshift_reader.OracleReader.get_connection">
+<code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.redshift_reader.OracleReader.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>return connection to Redshift DB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>connection to Redshift DB</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.sklearn_dataset_reader">
+<span id="primrose-readers-sklearn-dataset-reader-module"></span><h2>primrose.readers.sklearn_dataset_reader module<a class="headerlink" href="#module-primrose.readers.sklearn_dataset_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module to read canned datasets from sklearn</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.sklearn_dataset_reader.</code><code class="sig-name descname">SklearnDatasetReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.reader.AbstractReader" title="primrose.base.reader.AbstractReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.reader.AbstractReader</span></code></a></p>
+<p>Read data from sklearn.dataset into a pandas dataframe</p>
+<dl class="attribute">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the necessary configuration keys for the SklearnDatasetReader object</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>dataset (str): name of supported sklearn.dataset. One of “iris”, “boston”, “diabetes”, “breast_cancer”, “linnerud”, “wine”</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of necessary keys for the SklearnDatasetReader object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.sklearn_dataset_reader.SklearnDatasetReader.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sklearn_dataset_reader.SklearnDatasetReader.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read sklearn dataset to a pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataObject instance
+terminate (bool): should we terminate the DAG? true or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>data_object (<a class="reference internal" href="primrose.html#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers.sqlite_reader">
+<span id="primrose-readers-sqlite-reader-module"></span><h2>primrose.readers.sqlite_reader module<a class="headerlink" href="#module-primrose.readers.sqlite_reader" title="Permalink to this headline">¶</a></h2>
+<p>Module with AbstractReader implementation, able to read from SQLite</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.readers.sqlite_reader.</code><code class="sig-name descname">SQLiteReader</code><span class="sig-paren">(</span><em class="sig-param">configuration</em>, <em class="sig-param">instance_name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.base.html#primrose.base.sql_reader.AbstractSqlReader" title="primrose.base.sql_reader.AbstractSqlReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.base.sql_reader.AbstractSqlReader</span></code></a></p>
+<p>Runs SQLite queries into pandas dataframes</p>
+<dl class="attribute">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 225</em><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader.get_connection">
+<code class="sig-name descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>return connection to SQLite DB</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>connection to SQLite DB file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.readers.sqlite_reader.SQLiteReader.necessary_config">
+<em class="property">static </em><code class="sig-name descname">necessary_config</code><span class="sig-paren">(</span><em class="sig-param">node_config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.readers.sqlite_reader.SQLiteReader.necessary_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of necessary configuration keys within the implementation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_config</strong> (<em>dict</em>) – set of parameters / attributes for the node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After adding this list, validation automatically occurs before instantiation in the pipeline factory.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>set of keys necessary to run implementation</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.readers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose.readers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

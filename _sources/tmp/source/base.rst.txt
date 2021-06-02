@@ -1,0 +1,132 @@
+base package
+============
+
+Submodules
+----------
+
+base.conditional\_path\_node module
+-----------------------------------
+
+.. automodule:: base.conditional_path_node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.do\_nothing\_node module
+-----------------------------
+
+.. automodule:: base.do_nothing_node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.model module
+-----------------
+
+.. automodule:: base.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.node module
+----------------
+
+.. automodule:: base.node
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.pipeline module
+--------------------
+
+.. automodule:: base.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.postprocess module
+-----------------------
+
+.. automodule:: base.postprocess
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.reader module
+------------------
+
+.. automodule:: base.reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.search\_engine module
+--------------------------
+
+.. automodule:: base.search_engine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.sql\_reader module
+-----------------------
+
+.. automodule:: base.sql_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.success module
+-------------------
+
+.. automodule:: base.success
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.transformer module
+-----------------------
+
+.. automodule:: base.transformer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.transformer\_sequence module
+---------------------------------
+
+.. automodule:: base.transformer_sequence
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+base.writer module
+------------------
+
+.. automodule:: base.writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+
+Module contents
+---------------
+
+.. automodule:: base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

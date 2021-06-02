@@ -1,0 +1,141 @@
+primrose.readers package
+========================
+
+Submodules
+----------
+
+primrose.readers.csv\_reader module
+-----------------------------------
+
+.. automodule:: primrose.readers.csv_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.database\_helper module
+----------------------------------------
+
+.. automodule:: primrose.readers.database_helper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.deserializer module
+------------------------------------
+
+.. automodule:: primrose.readers.deserializer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.dill\_reader module
+------------------------------------
+
+.. automodule:: primrose.readers.dill_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.gcs\_dill\_reader module
+-----------------------------------------
+
+.. automodule:: primrose.readers.gcs_dill_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.mysql\_helper module
+-------------------------------------
+
+.. automodule:: primrose.readers.mysql_helper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.mysql\_reader module
+-------------------------------------
+
+.. automodule:: primrose.readers.mysql_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.oracle\_reader module
+--------------------------------------
+
+.. automodule:: primrose.readers.oracle_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.postgres\_helper module
+----------------------------------------
+
+.. automodule:: primrose.readers.postgres_helper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.postgres\_reader module
+----------------------------------------
+
+.. automodule:: primrose.readers.postgres_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.r\_reader module
+---------------------------------
+
+.. automodule:: primrose.readers.r_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.redshift\_reader module
+----------------------------------------
+
+.. automodule:: primrose.readers.redshift_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.sklearn\_dataset\_reader module
+------------------------------------------------
+
+.. automodule:: primrose.readers.sklearn_dataset_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.readers.sqlite\_reader module
+--------------------------------------
+
+.. automodule:: primrose.readers.sqlite_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+
+Module contents
+---------------
+
+.. automodule:: primrose.readers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

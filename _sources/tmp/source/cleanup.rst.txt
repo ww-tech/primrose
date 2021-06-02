@@ -1,0 +1,24 @@
+cleanup package
+===============
+
+Submodules
+----------
+
+cleanup.logging\_success module
+-------------------------------
+
+.. automodule:: cleanup.logging_success
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+
+Module contents
+---------------
+
+.. automodule:: cleanup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

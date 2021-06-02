@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>primrose package &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#environment-variable-substitution">Environment Variable Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>primrose package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tmp/source/primrose.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="primrose-package">
+<h1>primrose package<a class="headerlink" href="#primrose-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="primrose.base.html">primrose.base package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.conditional_path_node">primrose.base.conditional_path_node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.do_nothing_node">primrose.base.do_nothing_node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.model">primrose.base.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.node">primrose.base.node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.pipeline">primrose.base.pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.postprocess">primrose.base.postprocess module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.reader">primrose.base.reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.search_engine">primrose.base.search_engine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.sql_reader">primrose.base.sql_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.success">primrose.base.success module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.transformer">primrose.base.transformer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.transformer_sequence">primrose.base.transformer_sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base.writer">primrose.base.writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-primrose.base">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.cleanup.html">primrose.cleanup package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#module-primrose.cleanup.logging_success">primrose.cleanup.logging_success module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#module-primrose.cleanup">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.conditionalpath.html">primrose.conditionalpath package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#module-primrose.conditionalpath.simple_switch">primrose.conditionalpath.simple_switch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#module-primrose.conditionalpath">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.configuration.html">primrose.configuration package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#module-primrose.configuration.configuration">primrose.configuration.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#module-primrose.configuration.configuration_dag">primrose.configuration.configuration_dag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#module-primrose.configuration.util">primrose.configuration.util module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#module-primrose.configuration">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.dag.html">primrose.dag package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-primrose.dag.config_layer_traverser">primrose.dag.config_layer_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-primrose.dag.dag_traverser">primrose.dag.dag_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-primrose.dag.depth_first_traverser">primrose.dag.depth_first_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-primrose.dag.traverser_factory">primrose.dag.traverser_factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-primrose.dag">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.dataviz.html">primrose.dataviz package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#module-primrose.dataviz.cluster_plotter">primrose.dataviz.cluster_plotter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#module-primrose.dataviz">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.models.html">primrose.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models.minimal_search_engine">primrose.models.minimal_search_engine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models.sklearn_classifier_model">primrose.models.sklearn_classifier_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models.sklearn_cluster_model">primrose.models.sklearn_cluster_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models.sklearn_model">primrose.models.sklearn_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models.sklearn_regression_model">primrose.models.sklearn_regression_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-primrose.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.notifications.html">primrose.notifications package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#module-primrose.notifications.abstract_notification">primrose.notifications.abstract_notification module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#module-primrose.notifications.success_notification">primrose.notifications.success_notification module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#module-primrose.notifications">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.pipelines.html">primrose.pipelines package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines.dataframe_joiner">primrose.pipelines.dataframe_joiner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines.encode_train_test_split">primrose.pipelines.encode_train_test_split module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines.sklearn_preprocessing_pipeline">primrose.pipelines.sklearn_preprocessing_pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines.train_test_split">primrose.pipelines.train_test_split module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines.transformer_pipeline">primrose.pipelines.transformer_pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-primrose.pipelines">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.readers.html">primrose.readers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.csv_reader">primrose.readers.csv_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.database_helper">primrose.readers.database_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.deserializer">primrose.readers.deserializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.dill_reader">primrose.readers.dill_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.gcs_dill_reader">primrose.readers.gcs_dill_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.mysql_helper">primrose.readers.mysql_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.mysql_reader">primrose.readers.mysql_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.oracle_reader">primrose.readers.oracle_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.postgres_helper">primrose.readers.postgres_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.postgres_reader">primrose.readers.postgres_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.r_reader">primrose.readers.r_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.redshift_reader">primrose.readers.redshift_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.sklearn_dataset_reader">primrose.readers.sklearn_dataset_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers.sqlite_reader">primrose.readers.sqlite_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-primrose.readers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.templates.html">primrose.templates package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-primrose.templates.awesome_model">primrose.templates.awesome_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-primrose.templates.awesome_reader">primrose.templates.awesome_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-primrose.templates.run_plot_dag">primrose.templates.run_plot_dag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-primrose.templates.run_primrose">primrose.templates.run_primrose module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-user-registration-template-module">primrose.templates.user_registration_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-primrose.templates">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.transformers.html">primrose.transformers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.categoricals">primrose.transformers.categoricals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.combine">primrose.transformers.combine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.filter">primrose.transformers.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.impute">primrose.transformers.impute module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.sklearn_preprocessing_transformer">primrose.transformers.sklearn_preprocessing_transformer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers.strings">primrose.transformers.strings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-primrose.transformers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.writers.html">primrose.writers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.abstract_file_writer">primrose.writers.abstract_file_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.csv_writer">primrose.writers.csv_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.dill_writer">primrose.writers.dill_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.file_writer">primrose.writers.file_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.s3_writer">primrose.writers.s3_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers.serializer">primrose.writers.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-primrose.writers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-primrose.dag_runner">
+<span id="primrose-dag-runner-module"></span><h2>primrose.dag_runner module<a class="headerlink" href="#module-primrose.dag_runner" title="Permalink to this headline">¶</a></h2>
+<p>Run the DAG: gets list of nodes to traverse then calls run(data_object) on each</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.dag_runner.DagRunner">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.dag_runner.</code><code class="sig-name descname">DagRunner</code><span class="sig-paren">(</span><em class="sig-param">configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>class that runs the DAG: gets the list of nodes to traverse and then asks them to run</p>
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.cache_data_object">
+<code class="sig-name descname">cache_data_object</code><span class="sig-paren">(</span><em class="sig-param">data_object</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.cache_data_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>cache the data object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data_object</strong> (<a class="reference internal" href="#primrose.data_object.DataObject" title="primrose.data_object.DataObject"><em>DataObject</em></a>) – instance of DataObject</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>whether it was cached (bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.check_for_upstream">
+<code class="sig-name descname">check_for_upstream</code><span class="sig-paren">(</span><em class="sig-param">sequence</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.check_for_upstream" title="Permalink to this definition">¶</a></dt>
+<dd><p>check for any upstream paths with the input sequence.
+That is, suppose we had a reader flowing to writer. It would not make sense
+to run writer before the reader.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sequence</strong> (<em>list</em>) – list of node names</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception if any upstream paths found</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.create_data_object">
+<code class="sig-name descname">create_data_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.create_data_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>restore data_object from cache</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>data_object (DataObject)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.filter_sequence">
+<code class="sig-name descname">filter_sequence</code><span class="sig-paren">(</span><em class="sig-param">sequence</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.filter_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user may have specified some subset of sections to run in metadata.section_run
+Let’s assume we can’t trust traverser to limit themselves to those sections, so here
+we limit the sequence, if necessary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sequence</strong> (<em>list</em>) – list of nodes to run in given order</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>complete or subset of input sequence</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sequence (list)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Exception if there are dupes in the sequence</strong><strong>, or </strong><strong>if nodes are not in config</strong><strong>, or </strong><strong>we have nodes from other sections.</strong> – </p></li>
+<li><p><strong>The latter can happen if we mix up nodes from sections. That is</strong><strong>, </strong><strong>suppose we have section1</strong><strong> (</strong><strong>1 node</strong><strong>) </strong><strong>and section 2</strong><strong> (</strong><strong>2 nodes</strong><strong>) </strong><strong>and</strong> – </p></li>
+<li><p><strong>we want to run section2 and then section1 and we receive sequence</strong><strong> [</strong><strong>section2_node1</strong><strong>, </strong><strong>section1_node1</strong><strong>, </strong><strong>section2_node2</strong><strong>]</strong><strong>, </strong><strong>it will</strong> – </p></li>
+<li><p><strong>complain about the partition</strong><strong> [</strong><strong>section2_node1</strong><strong>, </strong><strong>section1_node1</strong><strong>] </strong><strong>[</strong><strong>section2_node2</strong><strong>] </strong><strong>as they are mixed from sections.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.initial_check_sequence">
+<code class="sig-name descname">initial_check_sequence</code><span class="sig-paren">(</span><em class="sig-param">sequence</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.initial_check_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some checks on the incoming sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sequence</strong> (<em>list</em>) – list of nodes to run in given order</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Exception if there are dupes in the sequence</strong><strong>, or </strong><strong>if nodes are not in config</strong><strong>, or </strong><strong>we have nodes from other sections.</strong> – </p></li>
+<li><p><strong>The latter can happen if we mix up nodes from sections. That is</strong><strong>, </strong><strong>suppose we have section1</strong><strong> (</strong><strong>1 node</strong><strong>) </strong><strong>and section 2</strong><strong> (</strong><strong>2 nodes</strong><strong>) </strong><strong>and</strong> – </p></li>
+<li><p><strong>we want to run section2 and then section1 and we receive sequence</strong><strong> [</strong><strong>section2_node1</strong><strong>, </strong><strong>section1_node1</strong><strong>, </strong><strong>section2_node2</strong><strong>]</strong><strong>, </strong><strong>it will</strong> – </p></li>
+<li><p><strong>complain about the partition</strong><strong> [</strong><strong>section2_node1</strong><strong>, </strong><strong>section1_node1</strong><strong>] </strong><strong>[</strong><strong>section2_node2</strong><strong>] </strong><strong>as they are mixed from sections.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.dag_runner.DagRunner.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">dry_run=False</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.dag_runner.DagRunner.run" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>run the whole DAG. Optonally, you can call dry_run=True</dt><dd><p>which will log what would be run and in what order
+but not actually run it</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dry_run</strong> – Boolean. Want to do a dry run?</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataObject instance
+node (Node): last node run</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.data_object">
+<span id="primrose-data-object-module"></span><h2>primrose.data_object module<a class="headerlink" href="#module-primrose.data_object" title="Permalink to this headline">¶</a></h2>
+<p>Module to handle book keeping of data</p>
+<dl class="simple">
+<dt>Author(s):</dt><dd><p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.data_object.DataObject">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.data_object.</code><code class="sig-name descname">DataObject</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DataObject: a container for “data” (strings, dicts, arbitrary objects etc)</p>
+<dl class="attribute">
+<dt id="primrose.data_object.DataObject.DATA_KEY">
+<code class="sig-name descname">DATA_KEY</code><em class="property"> = 'data'</em><a class="headerlink" href="#primrose.data_object.DataObject.DATA_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.data_object.DataObject.DEFAULT_RESPONSE_TYPE">
+<code class="sig-name descname">DEFAULT_RESPONSE_TYPE</code><em class="property"> = 'kv'</em><a class="headerlink" href="#primrose.data_object.DataObject.DEFAULT_RESPONSE_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>string representation of the class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">requestor</em>, <em class="sig-param">data</em>, <em class="sig-param">key='data'</em>, <em class="sig-param">overwrite=False</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>for requestor’s instance_name, set key:data in storage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requestor</strong> (<em>Node</em>) – is object (model, pipeline, writer etc) that has instance_name attribute</p></li>
+<li><p><strong>data</strong> (<em>object</em>) – some object</p></li>
+<li><p><strong>key</strong> (<em>string</em>) – if not supplied default data key is used</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em>, <em class="sig-param">pop_data=False</em>, <em class="sig-param">rtype='kv'</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get some data from storage, optionally popping it off.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_name</strong> (<em>str</em>) – name of node in DAG</p></li>
+<li><p><strong>pop_data</strong> (<em>bool</em>) – boolean, whether to pop data from storage</p></li>
+<li><p><strong>rtype</strong> (<a class="reference internal" href="#primrose.data_object.DataObjectResponseType" title="primrose.data_object.DataObjectResponseType"><em>DataObjectResponseType</em></a>) – DataObjectResponseType value, specifying response type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>data of desired DataObjectResponseType, selected with rtype</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>Exception if unrecognixzed rtype</strong><strong> or </strong><strong>keys</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.get_filtered_upstream_data">
+<code class="sig-name descname">get_filtered_upstream_data</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em>, <em class="sig-param">filter_for_key</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.get_filtered_upstream_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upstream data where first level dict keys are first checked for the presence of a filter key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_name</strong> (<em>str</em>) – name of instance to look upstream from</p></li>
+<li><p><strong>filter_for_key</strong> (<em>str</em>) – the key data was saved with (not instance name but the data value key)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary of stored data for that instance if only one matching dict,
+if more than one valid dictionary then return list of dicts,
+None otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.get_upstream_data">
+<code class="sig-name descname">get_upstream_data</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em>, <em class="sig-param">pop_data=False</em>, <em class="sig-param">rtype='kv'</em>, <em class="sig-param">operation_type_filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.get_upstream_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data from upstream source(s), choose to pop or not from the dict</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>returns dictionary, where keys are instance_names and each value is a dictionary.
+However, if
+i) there is only 1 upstream key
+and
+ii) value_only=True
+then return the value only.</p>
+<p>This option is useful if you expect 1 upstream source only and it returns
+a single artifact, such as a single dataframe. In that case just the dataframe
+is returned</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>object (type depends on DEFAULT_RESPONSE_TYPE)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception if no upstream data found</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.read_from_cache">
+<em class="property">static </em><code class="sig-name descname">read_from_cache</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.read_from_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>restore DatObject from dill-cached file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – cache filename</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataObject instance from cache</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>data_object (<a class="reference internal" href="#primrose.data_object.DataObject" title="primrose.data_object.DataObject">DataObject</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.upstream_keys">
+<code class="sig-name descname">upstream_keys</code><span class="sig-paren">(</span><em class="sig-param">instance_name</em>, <em class="sig-param">operation_type_filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.upstream_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>get list of upstream node names for a given input requestor node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance_name</strong> (<em>str</em>) – name of requestor</p></li>
+<li><p><strong>operation_type_filter</strong> (<em>optional</em>) – type of operation type to filter in</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of keys, if any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObject.write_to_cache">
+<code class="sig-name descname">write_to_cache</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObject.write_to_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>write data_object (self) to dill-cache</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>nothing. Side effect is to cache object to file</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="primrose.data_object.DataObjectResponseType">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.data_object.</code><code class="sig-name descname">DataObjectResponseType</code><a class="headerlink" href="#primrose.data_object.DataObjectResponseType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Type of object when getting data from DataObject</p>
+<dl class="simple">
+<dt>INSTANCE_KEY_VALUE = dictionary of instance_name keys and their data dictionaries:</dt><dd><p>{‘instance_name’: {‘key’:value}, ‘instance_name2’: {‘key2’:value2}, … }
+e.g. {‘corpus_reader’: {‘data’: dataframe}}
+this is useful if there is a set of upstream data arriving from mulitple sources</p>
+</dd>
+<dt>KEY_VALUE = dictonary of data for given instance name: {‘key’:value}</dt><dd><p>e.g. {‘data’: dataframe} or {‘data’: dataframe, ‘query’: ‘select * from table’}
+this is useful if there are multiple keys for a given instance_name
+or if you want to explicitly check against expected keys</p>
+</dd>
+<dt>VALUE = value only (for 1st or only instance name and for only key):</dt><dd><p>e.g. dataframe
+this is useful if you know a node in DAG has only a single upsteam source and only a single
+value. Readers are often a good example as they typically read in and provide a single data frame</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="primrose.data_object.DataObjectResponseType.INSTANCE_KEY_VALUE">
+<code class="sig-name descname">INSTANCE_KEY_VALUE</code><em class="property"> = 'ikv'</em><a class="headerlink" href="#primrose.data_object.DataObjectResponseType.INSTANCE_KEY_VALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.data_object.DataObjectResponseType.KEY_VALUE">
+<code class="sig-name descname">KEY_VALUE</code><em class="property"> = 'kv'</em><a class="headerlink" href="#primrose.data_object.DataObjectResponseType.KEY_VALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.data_object.DataObjectResponseType.VALUE">
+<code class="sig-name descname">VALUE</code><em class="property"> = 'v'</em><a class="headerlink" href="#primrose.data_object.DataObjectResponseType.VALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.data_object.DataObjectResponseType.values">
+<em class="property">static </em><code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.data_object.DataObjectResponseType.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all the values in the enum</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.node_factory">
+<span id="primrose-node-factory-module"></span><h2>primrose.node_factory module<a class="headerlink" href="#module-primrose.node_factory" title="Permalink to this headline">¶</a></h2>
+<p>Singleton Factory where one can register objects/classes for instantiation</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.node_factory.NodeFactory">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.node_factory.</code><code class="sig-name descname">NodeFactory</code><a class="headerlink" href="#primrose.node_factory.NodeFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Singleton Factory where one can register objects/classes for instantiation</p>
+<dl class="attribute">
+<dt id="primrose.node_factory.NodeFactory.CLASS_KEY">
+<code class="sig-name descname">CLASS_KEY</code><em class="property"> = 'class'</em><a class="headerlink" href="#primrose.node_factory.NodeFactory.CLASS_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.node_factory.NodeFactory.CLASS_PREFIX">
+<code class="sig-name descname">CLASS_PREFIX</code><em class="property"> = 'class_prefix'</em><a class="headerlink" href="#primrose.node_factory.NodeFactory.CLASS_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.node_factory.NodeFactory._NodeFactory__HiddenFactory">
+<code class="sig-name descname">_NodeFactory__HiddenFactory</code><a class="headerlink" href="#primrose.node_factory.NodeFactory._NodeFactory__HiddenFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NodeFactory.__HiddenFactory</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.node_factory.NodeFactory.__getattr__">
+<code class="sig-name descname">__getattr__</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.node_factory.NodeFactory.__getattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>getattr with instance name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>gettattr</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.node_factory.NodeFactory.instance">
+<code class="sig-name descname">instance</code><em class="property"> = None</em><a class="headerlink" href="#primrose.node_factory.NodeFactory.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.notification_utils">
+<span id="primrose-notification-utils-module"></span><h2>primrose.notification_utils module<a class="headerlink" href="#module-primrose.notification_utils" title="Permalink to this headline">¶</a></h2>
+<p>Module to establish connection to slack app and post to channel
+Author(s): Parul Laul (<a class="reference external" href="mailto:parul&#46;laul&#37;&#52;&#48;ww&#46;com">parul<span>&#46;</span>laul<span>&#64;</span>ww<span>&#46;</span>com</a>)</p>
+<dl class="class">
+<dt id="primrose.notification_utils.SlackClient">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.notification_utils.</code><code class="sig-name descname">SlackClient</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">token</em>, <em class="sig-param">member_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.notification_utils.SlackClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="primrose.notifications.html#primrose.notifications.abstract_notification.AbstractNotification" title="primrose.notifications.abstract_notification.AbstractNotification"><code class="xref py py-class docutils literal notranslate"><span class="pre">primrose.notifications.abstract_notification.AbstractNotification</span></code></a></p>
+<p>Module to establish connection to slack app and post to channel</p>
+<dl class="attribute">
+<dt id="primrose.notification_utils.SlackClient._abc_cache">
+<code class="sig-name descname">_abc_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.notification_utils.SlackClient._abc_negative_cache">
+<code class="sig-name descname">_abc_negative_cache</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_negative_cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.notification_utils.SlackClient._abc_negative_cache_version">
+<code class="sig-name descname">_abc_negative_cache_version</code><em class="property"> = 232</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_negative_cache_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.notification_utils.SlackClient._abc_registry">
+<code class="sig-name descname">_abc_registry</code><em class="property"> = &lt;_weakrefset.WeakSet object&gt;</em><a class="headerlink" href="#primrose.notification_utils.SlackClient._abc_registry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.notification_utils.SlackClient.post_message">
+<code class="sig-name descname">post_message</code><span class="sig-paren">(</span><em class="sig-param">message: str</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.notification_utils.SlackClient.post_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls slack client api to post message in channel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>message</strong> (<cite>str</cite>) – message to be posted</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>slack.web.slack_response.SlackResponse, and message is posted to slack.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="primrose.notification_utils.get_notification_client">
+<code class="sig-prename descclassname">primrose.notification_utils.</code><code class="sig-name descname">get_notification_client</code><span class="sig-paren">(</span><em class="sig-param">params: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.notification_utils.get_notification_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get client given configuration parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<cite>dict</cite>) – parameters for client instantiation</p></li>
+<li><p><strong>{'client'</strong> (<em>(</em><em>example.</em>) – ‘SlackClient’, ‘channel’: ‘my_channel’, ‘token’: ‘some-token’})</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>instantiated client object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose.util">
+<span id="primrose-util-module"></span><h2>primrose.util module<a class="headerlink" href="#module-primrose.util" title="Permalink to this headline">¶</a></h2>
+<p>Enum to speacify type of run mode: train, predict, and eval</p>
+<dl>
+<dt>Author(s):</dt><dd><p>Michael Skarlinski (<a class="reference external" href="mailto:michael&#46;skarlinski&#37;&#52;&#48;weightwatchers&#46;com">michael<span>&#46;</span>skarlinski<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+<p>Carl Anderson (<a class="reference external" href="mailto:carl&#46;anderson&#37;&#52;&#48;weightwatchers&#46;com">carl<span>&#46;</span>anderson<span>&#64;</span>weightwatchers<span>&#46;</span>com</a>)</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="primrose.util.RunModes">
+<em class="property">class </em><code class="sig-prename descclassname">primrose.util.</code><code class="sig-name descname">RunModes</code><a class="headerlink" href="#primrose.util.RunModes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>set of operation type identifiers</p>
+<dl class="attribute">
+<dt id="primrose.util.RunModes.EVAL">
+<code class="sig-name descname">EVAL</code><em class="property"> = 'eval'</em><a class="headerlink" href="#primrose.util.RunModes.EVAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.util.RunModes.PREDICT">
+<code class="sig-name descname">PREDICT</code><em class="property"> = 'predict'</em><a class="headerlink" href="#primrose.util.RunModes.PREDICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="primrose.util.RunModes.TRAIN">
+<code class="sig-name descname">TRAIN</code><em class="property"> = 'train'</em><a class="headerlink" href="#primrose.util.RunModes.TRAIN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="primrose.util.RunModes.names">
+<em class="property">static </em><code class="sig-name descname">names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.util.RunModes.names" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all the names in the enum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of Enum’s names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="primrose.util.RunModes.values">
+<em class="property">static </em><code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#primrose.util.RunModes.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all the values in the enum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of Enum’s values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-primrose">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-primrose" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="primrose.replace_line">
+<code class="sig-prename descclassname">primrose.</code><code class="sig-name descname">replace_line</code><span class="sig-paren">(</span><em class="sig-param">file_name</em>, <em class="sig-param">line_num</em>, <em class="sig-param">text</em><span class="sig-paren">)</span><a class="headerlink" href="#primrose.replace_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace a single line of a file with text</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> (<em>str</em>) – name of file</p></li>
+<li><p><strong>line_num</strong> (<em>int</em>) – line to replace</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – string to replace at line_num</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Nothing, the file is modified and rewritten</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; primrose 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="README_GETTING_STARTED.html" />
+    <link rel="prev" title="Primrose" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> primrose
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#primrose-at-a-glance">Primrose at a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-dependenices">External dependenices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#macosx">MacOSX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debian-ubuntu">Debian/Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">MacOSX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Debian/Ubuntu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#environment-variable-substitution">Environment Variable Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">primrose</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/ww-tech/primrose/actions/workflows/ci.yml"><img alt="CI/CD" src="https://github.com/ww-tech/primrose/actions/workflows/ci.yml/badge.svg" /></a>
+<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="PyPI pyversions" src="https://img.shields.io/pypi/pyversions/primrose.svg" /></a>
+<a class="reference external" href="https://badge.fury.io/py/primrose"><img alt="PyPI version" src="https://badge.fury.io/py/primrose.svg" /></a>
+<a class="reference external" href="https://pypi.python.org/pypi/primrose/"><img alt="PyPI license" src="https://img.shields.io/pypi/l/primrose.svg" /></a>
+<a class="reference external" href="https://ww-tech.github.io/primrose/"><img alt="Docs status" src="https://img.shields.io/website/https/ww-tech.github.io/primrose?down_color=red&amp;down_message=docs&amp;label=docs&amp;up_color=success&amp;up_message=up" /></a></p>
+<p align="center">
+   <img src="img/primrose_logo.png" width="100">
+</p><div class="section" id="primrose-at-a-glance">
+<h2>Primrose at a glance<a class="headerlink" href="#primrose-at-a-glance" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> is a simple <strong>Python</strong> framework for executing <strong>in-memory</strong> workflows defined by directed acyclic graphs (<strong>DAGs</strong>) via configuration files. Data in <code class="docutils literal notranslate"><span class="pre">primrose</span></code> flows from one node to another while <strong>avoiding serialization</strong>, except for when explicitly specified by the user. <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> nodes are designed for <strong>simple batch-based machine learning workflows</strong>, which have datasets small enough to fit into a single machine’s memory.</p>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<p>We suggest reading the documentation in the following order:</p>
+<ul class="simple">
+<li><p>Overview and motivation for <code class="docutils literal notranslate"><span class="pre">primrose</span></code>—this file.</p></li>
+<li><p><a class="reference internal" href="README_GETTING_STARTED.html"><span class="doc">Getting Started</span></a>: run your first <code class="docutils literal notranslate"><span class="pre">primrose</span></code> jobs.</p></li>
+<li><p><a class="reference internal" href="README_DAG_CONFIG.html"><span class="doc">DAG Configurations</span></a>: <code class="docutils literal notranslate"><span class="pre">primrose</span></code> adopts a configuration-as-code paradigm. This section introduces <code class="docutils literal notranslate"><span class="pre">primrose</span></code> configuration files.</p></li>
+<li><p><a class="reference internal" href="README_METADATA.html"><span class="doc">Metadata</span></a>: this covers more advanced options of the configuration files.</p></li>
+<li><p><a class="reference internal" href="README_CLI.html"><span class="doc">Command Line Interface (CLI)</span></a>: run commands using the CLI.</p></li>
+<li><p><a class="reference internal" href="README_DEVELOPER_NOTES.html"><span class="doc">Developer Notes</span></a>: how to create your own new Node classes.</p></li>
+<li><p><a class="reference internal" href="README_DATAOBJECT.html"><span class="doc">DataObject</span></a>: a deep dive into <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>, the core data handling and book-keeping object.</p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> is a Python framework for quick, simple machine learning and recommender deployments developed by the data science team at <a class="reference external" href="https://www.weightwatchers.com/us/">WW</a>. It is essentially a workflow management tool which is specialized for the needs of machine learning tasks with small to medium sized datasets (≤ 100GB). Like many orchestration tools, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> <em>nodes</em> are defined in a <a class="reference external" href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed-acyclic-graph</a> which defines dependencies and control flow.</p>
+<p>Here’s an example DAG showing data cleaning, model training, and model serialization:</p>
+ <p align="center">
+   <img src="img/hello_world_tennis.png" width="500">
+</p><p>It exists within an ecosystem of other great open source workflow management tools (like <a class="reference external" href="https://airflow.apache.org/">Airflow</a>, <a class="reference external" href="https://luigi.readthedocs.io/en/stable/">Luigi</a>, <a class="reference external" href="https://www.kubeflow.org/docs/about/kubeflow/">Kubeflow</a> or <a class="reference external" href="https://docs.prefect.io/guide/">Prefect</a>) while carving it’s own niche based on the following design goals:</p>
+<ol>
+<li><p><strong>Avoid unnecessary serialization:</strong> <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> keeps data in-memory between task steps, and only performs (de)serialization operations when explicitly requested by the user. Data is transported between nodes through use of a <code class="docutils literal notranslate"><span class="pre">DataObject</span></code> abstraction, which contextually delivers the correct data to each <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> node at runtime. As a consequence of this design choice, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> runs on a single machine and can be deployed as a job within a single container, like any other Python script or cron job. In addition to operating on persistent data passed between nodes, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> can also be used to call external services in a manner similar to a <a class="reference external" href="https://luigi.readthedocs.io/en/stable/">Luigi</a> job. In this way, Spark jobs or Hadoop scripts can be called and the framework simply dictates dependencies.</p>
+<ul class="simple">
+<li><p><em>As a comparison…</em> many solutions in this space are focused on long-running jobs which may be distributed across several computing nodes. Furthermore, to facilitate parallelization, save states for redundancy, and process datasets which are too large for memory, orchestrators often require that data is serialized between each workflow task. For smaller datasets, the IO time associated with these steps can be much longer than the time spent in computation.</p></li>
+<li><p><em>Primrose is not…</em> a solution which scales across clusters or a complex dependency management solution with dynamic DAGs (yet).</p></li>
+</ul>
+</li>
+<li><p><strong>Batch processesing for ML:</strong> <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> was built to facilitate frequent batches of model training or predictions that must read and write from/to multiple sources. Rather than requiring users to define their DAG structure in Python code, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> adopts a <code class="docutils literal notranslate"><span class="pre">configuration-as-code</span></code> approach. <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> users create implementations of node objects once, then any DAG structural modifications or parameterization changes are processed through configuration json files. This way, deployment changes to DAG operations (such as modifying a DAG to serve model predictions instead of training) can be handled purely through configuration files. This avoids the need to build new Python scripts for production modifications. Furthermore, <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> nodes are based on common machine learning tasks to make data scientist’s lives easier. This cuts down on development time for building new models and maximizes code re-use among projects and teams. See the modeling examples in the source and documentation for more info!</p>
+<ul class="simple">
+<li><p><em>As a comparison…</em> in <code class="docutils literal notranslate"><span class="pre">Primrose</span></code>, users simply need to specify in their configuration file that they want common ML operations to act on the <code class="docutils literal notranslate"><span class="pre">DataObject</span></code>. These ML operations can certainly be implemented by users in Luigi or Airflow, but we found operations such as test-train splits or classifier cross-validation to be so common that they warranted nodes pre-dedicated to these operations.  <a class="reference external" href="https://docs.prefect.io/guide/">Prefect</a> has made some great strides in this area, and we encourage users to check their solution out.</p></li>
+<li><p><em>Primrose is not…</em> an auto-ml tool or machine-learning toolkit which implements its own algorithms. Any Python machine learning library can be used with <code class="docutils literal notranslate"><span class="pre">Primrose</span></code>, simply by building model or pipeline nodes that implement the user’s choice of library.</p></li>
+</ul>
+</li>
+<li><p><strong>Simplicity:</strong></p>
+<p><strong>Standardization of deployments:</strong> <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> is meant to help make deployment and model building as simple as possible. From a developer operations perspective, it requires no external scheduler or cluster to run deployments. <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> code can simply be containerized with a <code class="docutils literal notranslate"><span class="pre">primrose</span></code> Python entrypoint, and deployed as a job on a k8s or any other container management service.</p>
+<p><strong>Standardization of development:</strong> From a software engineering perspective, another advantage of <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> stems form the standardization of model and recommender code. Modifying feature engineering pipelines or adding recommender features is simplified by writing additions to self-contained <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> nodes and making additions to a configuration file.</p>
+<ul class="simple">
+<li><p><em>As a comparison…</em> <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> can be leveraged as a piece of a larger ETL job (a <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> job could be a job within an Airflow DAG), or run on it’s own as a self-contained, single node ETL job. Some orchestration solutions (Airflow, for example) require running persistent clusters and services for managing jobs.</p></li>
+<li><p><em>Primrose is not…</em> able to manage its own job scheduling or timing. This is left to user using k8s job scheduling or manual cron job assignments on a virtual machine.</p></li>
+</ul>
+</li>
+</ol>
+<p>There are many solutions in this space, and we encourage users to explore other options that may be most appropriate for their workflows. We view <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> as a simple solution for managing production ML jobs.</p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Primrose</span></code> has a couple of optional tools:</p>
+<ul class="simple">
+<li><p>a PostgreSQL database reader</p></li>
+<li><p>a plotting tool</p></li>
+<li><p>an R-dataset reader. E.g., to read in R’s iris dataset see config/example_read_r.json</p></li>
+</ul>
+<p>These require a few external dependencies, prior to its installation. If interested in their functionality, follow the appropriate instructions for your OS below. Otherwise, you can proceed with the basic package installation.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<p>You can install the latest <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> release via pypi</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span>
+</pre></div>
+</div>
+<p>or you can clone the repository and install via <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ww</span><span class="o">-</span><span class="n">tech</span><span class="o">/</span><span class="n">primrose</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">primrose</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>To install the complete <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> package (after dependencies have been installed):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">,</span> <span class="n">plotting</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">Primrose</span></code> with just the PostgreSQL option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">primrose</span></code> with just the plotting option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">plotting</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install <code class="docutils literal notranslate"><span class="pre">primrose</span></code> with just the R dataset reading option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">primrose</span><span class="p">[</span><span class="n">R</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="external-dependenices">
+<h3>External dependenices<a class="headerlink" href="#external-dependenices" title="Permalink to this headline">¶</a></h3>
+<p><strong>PostgreSQL</strong></p>
+<div class="section" id="macosx">
+<h4>MacOSX<a class="headerlink" href="#macosx" title="Permalink to this headline">¶</a></h4>
+<p>We recommend using homebrew to manage OS level external packages. If you do not already have homebrew installed, please visit <a class="reference external" href="https://brew.sh/">their website</a>.</p>
+<p>Instructions:</p>
+<ol>
+<li><p>Use homebrew to install <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">postgresql</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">pip</span> <span class="n">install</span> <span class="n">psycopg2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="debian-ubuntu">
+<h4>Debian/Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permalink to this headline">¶</a></h4>
+<p>Instructions:</p>
+<ol>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">libpq-dev</span></code> library</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libpq</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Plotting</strong></p>
+</div>
+<div class="section" id="id1">
+<h4>MacOSX<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>We recommend using homebrew to manage OS level external packages. If you do not already have homebrew installed, please visit <a class="reference external" href="https://brew.sh/">their website</a>.</p>
+<p>Instructions:</p>
+<ol>
+<li><p>Use homebrew to install <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">graphviz</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you are using a virtual environment such as <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, you may need to specify a backend for <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">matplotlib</span> <span class="o">&amp;&amp;</span> <span class="n">touch</span> <span class="o">~/.</span><span class="n">matplotlib</span><span class="o">/</span><span class="n">matplotlibrc</span>
+<span class="n">echo</span> <span class="n">backend</span><span class="p">:</span> <span class="n">TkAgg</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">matplotlib</span><span class="o">/</span><span class="n">matplotlibrc</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h4>Debian/Ubuntu<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Instructions:</p>
+<ol>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">graphviz</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you are using a virtual environment such as <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> or <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, you may need to specify a backend for <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">matplotlib</span> <span class="o">&amp;&amp;</span> <span class="n">touch</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">matplotlib</span><span class="o">/</span><span class="n">matplotlibrc</span>
+<span class="n">echo</span> <span class="n">backend</span><span class="p">:</span> <span class="n">Agg</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">matplotlib</span><span class="o">/</span><span class="n">matplotlibrc</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="next">
+<h2>Next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h2>
+<p>You are now ready to run your first <code class="docutils literal notranslate"><span class="pre">primrose</span></code> jobs: <a class="reference internal" href="README_GETTING_STARTED.html"><span class="doc">Getting Started</span></a>.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Copyright 2019 WW International, Inc.</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>To contribute, start a feature branch and install
+<a class="reference external" href="https://github.com/psf/black">black</a> in your dev environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">black</span>
+</pre></div>
+</div>
+<p>Black is our python formatter of choice. We have also set up
+<a class="reference external" href="https://pre-commit.com/">pre-commit</a> hooks to enforce this formatting.
+This means you will get a commit error when you try to commit without
+adhering to our black formatting. Check out these packages for further
+instructions on their usage.</p>
+<p>Once you have made your commits, make a PR to master! We have dedicated
+time to review open PRs at least once per week, so we shouldn’t miss any
+new PRs.</p>
+<p>Please adhere to coding best practices and make sure to do everything in
+the PR template checklist.</p>
+<ul class="simple">
+<li><p>Write small, modular, reusable, and testable code where possible.</p></li>
+<li><p>Write tests (<a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> or
+<a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a>) for that
+code and make sure it passes (pytest).</p></li>
+<li><p><a class="reference external" href="https://github.com/wprig/wprig/wiki/How-to-squash-commits">Squash your commits</a> so that commits are <a class="reference external" href="https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/">fewer but more meaningful</a>.</p></li>
+<li><p>Update our <a class="reference external" href="https://ww-tech.github.io/primrose/">documentation</a>.
+That means adhering to our <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">docstring format</a> and adding <a class="reference external" href="https://www.markdownguide.org/">markdown</a> when necessary.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="README_GETTING_STARTED.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Primrose" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, WW International, Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
