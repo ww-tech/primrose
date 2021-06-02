@@ -159,9 +159,10 @@ class SklearnClassifierModel(SklearnModel):
             self.instance_name, filter_for_key="target_encoder"
         )
 
-        if "target_encoder" in data:
-            logging.info("Reversing label encoding")
-            predictions = data["target_encoder"].inverse_transform(predictions)
+        if data:
+            if "target_encoder" in data:
+                logging.info("Reversing label encoding")
+                predictions = data["target_encoder"].inverse_transform(predictions)
 
         # get original data frame and tack on column of predictions
         data_out = X_test
