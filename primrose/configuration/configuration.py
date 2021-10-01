@@ -370,6 +370,7 @@ class Configuration:
 
         # get class_prefixes by traversing node package
         unique_class_keys = self._traverse_node_package(unique_class_keys)
+        unique_nodes = set([x[0] for x in unique_class_keys])
 
         # check that each referenced class is registered in NodeFactory
         for class_key, class_prefix in unique_class_keys:
@@ -382,8 +383,9 @@ class Configuration:
 
             continue
 
-        if not NodeFactory().is_registered(class_key):
-            raise ConfigurationError(f"Cannot register node class {class_key}")
+        for class_key in unique_nodes:
+            if not NodeFactory().is_registered(class_key):
+                raise ConfigurationError(f"Cannot register node class {class_key}")
 
         # check necessary_configs
         for instance_name in self.nodename_to_classname:
