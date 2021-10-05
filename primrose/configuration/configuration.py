@@ -381,8 +381,6 @@ class Configuration:
                 except:
                     logging.error("Cannot register node class {class_key} with prefix {class_prefix}")
 
-            continue
-
         for class_key in unique_nodes:
             if not NodeFactory().is_registered(class_key):
                 raise ConfigurationError(f"Cannot register node class {class_key}")
@@ -504,7 +502,7 @@ class Configuration:
                 src_str = f.read()
                 for class_key, class_key_prefix in unique_class_keys:
                     if (class_key_prefix is None) or (overwrite == True):
-                        pattern = "class\s" + class_key + "\(?.*\)?:\s"
+                        pattern = "class\s" + class_key + "(?:\(|:)"
                         if re.search(pattern, src_str) is not None:
                             class_keys_prefix.append((class_key, filename))
                             continue
