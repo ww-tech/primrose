@@ -373,6 +373,8 @@ class Configuration:
         unique_nodes = set([x[0] for x in unique_class_keys])
 
         # check that each referenced class is registered in NodeFactory
+        # Regex pattern in `_traverse_node_package` should capture the right file (class prefix) to register
+        # node (class_key). Here we attempt to register any class that is not already registered.
         for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
                 try:
@@ -503,6 +505,7 @@ class Configuration:
                 for class_key, class_key_prefix in unique_class_keys:
                     if (class_key_prefix is None) or (overwrite == True):
                         pattern = "class\s" + class_key + "(?:\(|:)"
+                        # pattern to look for strings of the form "class MyNode:" OR "class MyNode("
                         if re.search(pattern, src_str) is not None:
                             class_keys_prefix.append((class_key, filename))
                             continue
