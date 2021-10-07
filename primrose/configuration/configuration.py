@@ -55,9 +55,7 @@ class Configuration:
 
             dict_str = jstyleson.dumps(dict_config)
 
-            config_str = Configuration.perform_any_config_fragment_substitution(
-                dict_str
-            )
+            config_str = Configuration.perform_any_config_fragment_substitution(dict_str)
 
         else:
             logging.info("Loading config file at {}".format(config_location))
@@ -75,17 +73,13 @@ class Configuration:
                 with open(config_location, "r") as f:
                     config_str = f.read()
 
-                config_str = Configuration.perform_any_config_fragment_substitution(
-                    config_str
-                )
+                config_str = Configuration.perform_any_config_fragment_substitution(config_str)
 
             else:
                 raise Exception("config file at: {} not found".format(config_location))
 
         if ext is None or ext == ".json":
-            self.config = jstyleson.loads(
-                config_str, object_pairs_hook=self.dict_raise_on_duplicates
-            )
+            self.config = jstyleson.loads(config_str, object_pairs_hook=self.dict_raise_on_duplicates)
         elif ext in [".yaml", ".yml"]:
             self.config = yaml.load(config_str, Loader=yaml.FullLoader)
 
@@ -106,8 +100,7 @@ class Configuration:
         # implemetation_config section is required
         if not ConfigurationSectionType.IMPLEMENTATION_CONFIG.value in self.config:
             raise ConfigurationError(
-                "Did not find required top-level key %s"
-                % ConfigurationSectionType.IMPLEMENTATION_CONFIG.value
+                "Did not find required top-level key %s" % ConfigurationSectionType.IMPLEMENTATION_CONFIG.value
             )
 
         # keep a copy of the complete configuration
@@ -151,10 +144,12 @@ class Configuration:
             config_str (str): the post-substituted configuration string
 
         """
+
         def env_override(value, key):
             return os.getenv(key, value)
+
         jinja_env = Environment(loader=FileSystemLoader([".", "/"]))
-        jinja_env.filters['env_override'] = env_override
+        jinja_env.filters["env_override"] = env_override
         try:
             config_str_template = jinja_env.from_string(config_str)
             config_str = config_str_template.render()
@@ -197,9 +192,7 @@ class Configuration:
 
         """
         configuration_string = json.dumps(self.complete_config, sort_keys=True)
-        configuration_file_hashname = hashlib.sha256(
-            configuration_string.encode("utf-8")
-        ).hexdigest()
+        configuration_file_hashname = hashlib.sha256(configuration_string.encode("utf-8")).hexdigest()
         return configuration_string, configuration_file_hashname
 
     def check_metadata(self):
@@ -216,17 +209,14 @@ class Configuration:
                 try:
                     TraverserFactory().instantiate(classname, self)
                 except KeyError:
-                    raise Exception(
-                        classname + " is not a valid and/or registered Traverser"
-                    )
+                    raise Exception(classname + " is not a valid and/or registered Traverser")
 
             if "data_object" in self.config_metadata:
 
                 cfg = self.config_metadata["data_object"]
 
                 if "read_from_cache" in cfg and (
-                    cfg["read_from_cache"]
-                    or str(cfg["read_from_cache"]).lower() == "true"
+                    cfg["read_from_cache"] or str(cfg["read_from_cache"]).lower() == "true"
                 ):
 
                     if not "read_filename" in cfg:
@@ -237,14 +227,10 @@ class Configuration:
                     # just check path exists but not that one can read into a DataObject
                     if not os.path.exists(cfg["read_filename"]):
                         raise ConfigurationError(
-                            "Invalid metadata.data_object.read_filename: "
-                            + str(cfg["read_filename"])
+                            "Invalid metadata.data_object.read_filename: " + str(cfg["read_filename"])
                         )
 
-                if "write_to_cache" in cfg and (
-                    cfg["write_to_cache"]
-                    or str(cfg["write_to_cache"]).lower() == "true"
-                ):
+                if "write_to_cache" in cfg and (cfg["write_to_cache"] or str(cfg["write_to_cache"]).lower() == "true"):
 
                     if not "write_filename" in cfg:
                         raise ConfigurationError(
@@ -272,18 +258,12 @@ class Configuration:
 
                 diff = user_set.difference(actual_set)
                 if len(diff) > 0:
-                    msg = (
-                        "Following sections from metadata were not found implementation: "
-                        + str(diff)
-                    )
+                    msg = "Following sections from metadata were not found implementation: " + str(diff)
                     raise ConfigurationError(msg)
 
                 diff = actual_set.difference(user_set)
                 if len(diff) > 0:
-                    msg = (
-                        "Following sections from implementation were not found in metadata: "
-                        + str(diff)
-                    )
+                    msg = "Following sections from implementation were not found in metadata: " + str(diff)
                     raise ConfigurationError(msg)
 
             logging.info("OK: section_registry sections match implementation sections")
@@ -369,15 +349,11 @@ class Configuration:
                 self.instance_to_config[child_key] = child
 
                 if not NodeFactory.CLASS_KEY in child:
-                    raise ConfigurationError(
-                        "No class key found in %s.%s" % (section_key, child_key)
-                    )
+                    raise ConfigurationError("No class key found in %s.%s" % (section_key, child_key))
 
                 self.nodename_to_classname[child_key] = child[NodeFactory.CLASS_KEY]
 
-                unique_class_keys.add(
-                    (child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX))
-                )
+                unique_class_keys.add((child[NodeFactory.CLASS_KEY], child.get(NodeFactory.CLASS_PREFIX)))
 
                 for k in [
                     "destination_pipeline",
@@ -387,23 +363,29 @@ class Configuration:
                 ]:
                     if k in child:
                         raise Exception(
-                            "Do you have a old config file? You have %s. Nodes just have 'destinations':[] now",
-                            k,
+                            "Do you have a old config file? You have %s. Nodes just have 'destinations':[] now", k,
                         )
 
         logging.info("OK: all class keys are present")
 
         # get class_prefixes by traversing node package
         unique_class_keys = self._traverse_node_package(unique_class_keys)
+        unique_nodes = set([x[0] for x in unique_class_keys])
 
         # check that each referenced class is registered in NodeFactory
+        # Regex pattern in `_traverse_node_package` should capture the right file (class prefix) to register
+        # node (class_key). Here we attempt to register any class that is not already registered.
         for class_key, class_prefix in unique_class_keys:
             if not NodeFactory().is_registered(class_key):
                 try:
                     logging.info(f"attempting to register {class_key}")
                     self._register_class(class_key, class_prefix)
                 except:
-                    raise ConfigurationError(f"Cannot register node class {class_key}")
+                    logging.error("Cannot register node class {class_key} with prefix {class_prefix}")
+
+        for class_key in unique_nodes:
+            if not NodeFactory().is_registered(class_key):
+                raise ConfigurationError(f"Cannot register node class {class_key}")
 
         # check necessary_configs
         for instance_name in self.nodename_to_classname:
@@ -498,9 +480,7 @@ class Configuration:
             if not os.path.isdir(pkg_name):
                 pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
         except ModuleNotFoundError:
-            logging.warning(
-                "Could not find module specified for external node configuration"
-            )
+            logging.warning("Could not find module specified for external node configuration")
             return []
 
         candidates = glob.glob(os.path.join(pkg_name, "**", "*.py"), recursive=True)
@@ -524,7 +504,8 @@ class Configuration:
                 src_str = f.read()
                 for class_key, class_key_prefix in unique_class_keys:
                     if (class_key_prefix is None) or (overwrite == True):
-                        pattern = "class\s" + class_key + "\(?.*\)?:\s"
+                        pattern = "class\s" + class_key + "(?:\(|:)"
+                        # pattern to look for strings of the form "class MyNode:" OR "class MyNode("
                         if re.search(pattern, src_str) is not None:
                             class_keys_prefix.append((class_key, filename))
                             continue
@@ -552,8 +533,7 @@ class Configuration:
             for k2 in section_dict.keys():
                 if k2 in all_keys:
                     raise ConfigurationError(
-                        "Operations must all have unique names in the configuration. Duplicate key: '%s'"
-                        % k2
+                        "Operations must all have unique names in the configuration. Duplicate key: '%s'" % k2
                     )
                 else:
                     all_keys.add(k2)
