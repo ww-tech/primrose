@@ -15,8 +15,10 @@ setup(
     version="1.0.14-dev",
     description="Primrose: a framework for simple, quick modeling deployments",
     url="https://github.com/ww-tech/primrose",
-    author="Carl Anderson",
-    author_email="carl.anderson@weightwatchers.com",
+    author="Kevin Zecchini",
+    author_email="kevin.zecchini@ww.com",
+    maintainer="Kevin Zecchini",
+    maintainer_email="kevin.zecchini@ww.com",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="Apache 2.0",
@@ -27,7 +29,6 @@ setup(
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Operating System :: OS Independent",
     ],
     project_urls={
