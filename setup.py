@@ -12,7 +12,7 @@ local_config_files = [os.path.join("config", f) for f in os.listdir("config")]
 
 setup(
     name="primrose",
-    version="1.0.14-dev",
+    version="1.0.14",
     description="Primrose: a framework for simple, quick modeling deployments",
     url="https://github.com/ww-tech/primrose",
     author="WW Data Science",
