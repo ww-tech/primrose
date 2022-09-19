@@ -382,7 +382,6 @@ class Configuration:
                     self._register_class(class_key, class_prefix)
                 except Exception as exc:
                     logging.error(f"Cannot register node class {class_key} with prefix {class_prefix}: \n {exc}")
-                    logging.error(f"Exception message: {exc}")
         for class_key in unique_nodes:
             if not NodeFactory().is_registered(class_key):
                 raise ConfigurationError(f"Cannot register node class {class_key}")
