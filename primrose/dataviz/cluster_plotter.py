@@ -4,10 +4,17 @@ Author(s):
     Carl Anderson (carl.anderson@weightwatchers.com)
 
 """
+import os
+import logging
+
 from primrose.base.node import AbstractNode
 from primrose.data_object import DataObjectResponseType
+import matplotlib as mpl
+
+if os.environ.get("DISPLAY", "") == "":
+    logging.info("no display found. Using non-interactive Agg backend")
+    mpl.use("Agg")
 import matplotlib.pyplot as plt
-import logging
 
 
 class ClusterPlotter(AbstractNode):
@@ -40,9 +47,7 @@ class ClusterPlotter(AbstractNode):
 
         """
         dat = data_object.get_upstream_data(
-            self.instance_name,
-            pop_data=False,
-            rtype=DataObjectResponseType.KEY_VALUE.value,
+            self.instance_name, pop_data=False, rtype=DataObjectResponseType.KEY_VALUE.value,
         )
         X = dat["data"]
         cluster_ids = X[self.node_config["id_col"]]
