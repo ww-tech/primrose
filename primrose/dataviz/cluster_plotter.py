@@ -5,6 +5,8 @@ Author(s):
 
 """
 import os
+import logging
+
 from primrose.base.node import AbstractNode
 from primrose.data_object import DataObjectResponseType
 import matplotlib as mpl
@@ -13,7 +15,6 @@ if os.environ.get("DISPLAY", "") == "":
     logging.info("no display found. Using non-interactive Agg backend")
     mpl.use("Agg")
 import matplotlib.pyplot as plt
-import logging
 
 
 class ClusterPlotter(AbstractNode):
