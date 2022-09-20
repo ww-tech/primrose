@@ -10,7 +10,7 @@ from primrose.data_object import DataObjectResponseType
 import matplotlib as mpl
 
 if os.environ.get("DISPLAY", "") == "":
-    print("no display found. Using non-interactive Agg backend")
+    logging.info("no display found. Using non-interactive Agg backend")
     mpl.use("Agg")
 import matplotlib.pyplot as plt
 import logging
