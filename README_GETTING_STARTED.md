@@ -9,10 +9,9 @@ using the `primrose` command line as follows:
 
 ```
 primrose create-project --name <myprojectname>
-
 ```
 
-This will create a directory with everything you need to get started. Just navigate into this directory to begin.
+This will create a directory with everything you need to get started, including example config files. Just navigate into this directory to begin.
 
 ### A read write job
 Open `config/hello_world_read_write.json`:
@@ -48,12 +47,12 @@ It might not be obvious that it is pandas under the hood but otherwise this conf
 
 ### Running the job
 To run the job, type
- ```
- primrose run --config config/hello_world_read_write.json
- ```
- You should see something similar to:
- ```
- 2019-07-23 21:15:09,075 INFO configuration.py __init__: Loading config file at config/hello_world_read_write.json
+```
+primrose run --config config/hello_world_read_write.json
+```
+You should see something similar to:
+```
+2019-07-23 21:15:09,075 INFO configuration.py __init__: Loading config file at config/hello_world_read_write.json
 2019-07-23 21:15:09,081 INFO configuration.py check_sections: OK: all sections are supported operations
 2019-07-23 21:15:09,081 INFO configuration.py check_config: OK: all class keys are present
 2019-07-23 21:15:09,081 INFO configuration.py check_config: OK: all classes recognized
@@ -78,8 +77,8 @@ That's it. You have run a **primrose** job.
  The `Traverser` is some code that determines the order in which the `primrose` nodes are processed. 
  
  Importantly, there are four output lines that show the actual work being done:
- ```
- 2019-07-23 21:15:09,083 INFO dag_runner.py run: received node read_data of type reader_config and class CsvReader
+```
+2019-07-23 21:15:09,083 INFO dag_runner.py run: received node read_data of type reader_config and class CsvReader
 2019-07-23 21:15:09,083 INFO csv_reader.py run: Reading data/tennis.csv from CSV
 2019-07-23 21:15:09,109 INFO dag_runner.py run: received node write_output of type writer_config and class CsvWriter
 2019-07-23 21:15:09,109 INFO csv_writer.py run: Saving data data to cache/tennis_output.csv
@@ -90,12 +89,12 @@ You should now have a file `cache/tennis_output.csv` that matches the input file
 Now, let's do some machine learning. We'll run a basic K-means clustering and plot the clusters.
 
 ### Plotting the Graph
-Before we examine the configuration, let's plot the graph. type
+Before we examine the configuration file, let's plot a graph of the DAG by typing:
 
 ```
 primrose plot --config config/hello_world_cluster_simple_train.json --outfile graph.png
 ```
-This will write an image to `graph.png`
+This will write an image of the DAG to `graph.png`, without actually running the nodes.
 
 ![](img/hw_cluster.png)
 
@@ -172,12 +171,18 @@ This is `config/hello_world_cluster_simple_train.json
 ```
 Most of it should be relatively intuitive but let's walk through it.
 
-`read_data` uses a `CsvReader` to read in some data. This fees to `normalize_data`.
+ - `read_data` uses a `CsvReader` to read in some data. This fees to `normalize_data`.
 
-`normalize_data` is a pipeline, a preprocessing step. This is going to run `sklearn.preprocessing.StandardScaler` on the columns `x1` and `x2`, scaling to zero mean and unit standard deviation. It is in training mode.
+ - `normalize_data` is a pipeline, a preprocessing step. This is going to run `sklearn.preprocessing.StandardScaler` on the columns `x1` and `x2`, scaling to zero mean and unit standard deviation. It is in training mode.
 
-This feeds into `cluster_model` which uses `sklearn.cluster.KMeans` with k=6 (and seed=42) to cluster the data.
+ - This feeds into `cluster_model` which uses `sklearn.cluster.KMeans` with k=6 (and seed=42) to cluster the data.
 That feeds to a `CSvWriter` and to a `ClusterPlotter`. the plotter creates a scatterplot with title "Results of KMeans(k=6)" and saving to `clusters.png`.
+
+You can now run this primrose job with the following command:
+
+```
+primrose run --config config/hello_world_cluster_simple_train.json
+```
 
 Here is the output:
 
@@ -192,7 +197,7 @@ The dataset we are using is Tom Mitchell's play tennis example to illustrate dec
 
 <img src ="img/play_tennis.png" height=400 />
 
-Here, we run two separate `primrose` jobs: 1) train, and 2) predict (or eval). Each job has its own configuration file.
+Here, we run two separate `primrose` jobs: 1) train and 2) predict. Each job has its own configuration file.
 
 `config/hello_world_classifier_train.json` reads the `tennis` dataset, does a train test split, runs a Sklearn decision tree model in mode `predict`, and writes both the `TransformerSequence` (set of transformation performed on the features) and the `model` to a local cache using `dill`:
 
@@ -226,7 +231,8 @@ Here, we run two separate `primrose` jobs: 1) train, and 2) predict (or eval). E
         "filename": "hello_world_model.dill"
       }
 ```
-A separate configuration file, `config/hello_world_classifier_predict.json` is designed to make predictions using the cached model. (Ideally, we would use a different dataset but we are using the same tennis dataset here for simplicity. ) 
+A separate configuration file, `config/hello_world_classifier_predict.json` is designed to make predictions using the cached model.
+Ideally, we would use a different dataset to make predictions on, but we are using the same tennis dataset here for simplicity. 
 
 In this configuration, we read the data and the two cached objects:
 
@@ -284,18 +290,16 @@ and, finally, write out the predictions
 
 Try running it yourself. First, run
 ```
-   primrose run --config config/hello_world_classifier_train.json
+primrose run --config config/hello_world_classifier_train.json
 ```
-and inspect the files in the `cache` folder.
+and inspect the encoder and model files in the `cache` folder.
 
 Now run the predict job:
 
 ```
-   primrose run --config config/hello_world_classifier_predict.json
+primrose run --config config/hello_world_classifier_predict.json
 ```
 and find the predictions in the `cache` folder.
-
-You can also inspect and run the `config/hello_world_classifier_eval.json` configuration file which produces a number of evaluation metrics to the log file.
 
 You are now set up to design realistic `primrose` runs in a production setting.
 
