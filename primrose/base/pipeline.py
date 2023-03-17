@@ -209,8 +209,8 @@ class AbstractPipeline(AbstractNode):
             raise Exception(
                 "run() must be called to extract/create a TransformerSequence"
             )
-
-        if mode not in PipelineModeType.names() and mode not in PipelineModeType:
+        
+        if not isinstance(mode, PipelineModeType):
             raise Exception("mode must be of type PipelineModeType Enum object.")
 
         for transformer in self.transformer_sequence.transformers():
