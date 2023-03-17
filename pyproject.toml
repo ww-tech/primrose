@@ -35,6 +35,7 @@ dependencies = [
     "testfixtures>=7.1.0",
     "moto>=4.1.4",
     "nltk>=3.8.1",
+    "pydot>=1.4.2",
 ]
 requires-python = ">=3.8"
 readme = "README_DEVELOPER_NOTES.md"
