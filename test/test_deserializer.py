@@ -11,12 +11,20 @@ from primrose.readers.deserializer import Deserializer, GcsDeserializer
 
 
 def test_init_ok_dill():
+    try:
+        import sklearn.tree.tree
+        model_filename = "test/tinymodel.dill"
+    except ModuleNotFoundError:
+        # deprecation from sklearn>0.24 
+        # https://stackoverflow.com/questions/60598050/the-sklearn-tree-tree-module-is-deprecated-in-version-0-22-and-will-be-removed-i
+        model_filename = "test/tinymodel_skl_0_24.dill"
+
     config = {
         "implementation_config": {
             "reader_config": {
                 "dill_reader": {
                     "class": "Deserializer",
-                    "filename": "test/tinymodel.dill",
+                    "filename": model_filename,
                     "deserializer": "dill",
                     "destinations": [],
                 }
@@ -38,7 +46,7 @@ def test_init_ok_dill():
 
     node_config = {
         "class": "Deserializer",
-        "filename": "test/tinymodel.dill",
+        "filename": model_filename,
         "deserializer": "dill",
         "destinations": [],
     }
@@ -51,12 +59,18 @@ def test_init_ok_dill():
 
 
 def test_init_ok_pickle():
+    try:
+        import sklearn.tree.tree
+        model_filename = "test/tinymodel.pickle"
+    except ModuleNotFoundError:
+        model_filename = "test/tinymodel_skl_0_24.pickle"
+
     config = {
         "implementation_config": {
             "reader_config": {
                 "pickle_reader": {
                     "class": "Deserializer",
-                    "filename": "test/tinymodel.pickle",
+                    "filename": model_filename,
                     "deserializer": "pickle",
                     "destinations": [],
                 }
@@ -81,12 +95,18 @@ def test_init_ok_pickle():
 
 
 def test_init_ok_unsupported():
+    try:
+        import sklearn.tree.tree
+        model_filename = "test/tinymodel.pickle"
+    except ModuleNotFoundError:
+        model_filename = "test/tinymodel_skl_0_24.pickle"
+
     config = {
         "implementation_config": {
             "reader_config": {
                 "other_reader": {
                     "class": "Deserializer",
-                    "filename": "test/tinymodel.pickle",
+                    "filename": model_filename,
                     "deserializer": "other",
                     "destinations": [],
                 }
