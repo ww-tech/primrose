@@ -11,12 +11,27 @@ test = [
     "pytest>=7.2.2",
 ]
 
+[tool.pdm.build]
+includes = [
+    "primrose/",
+    "data/",
+    "config/"
+]
+source-includes = ["tests/"]
+
 [project]
 name = "primrose"
-version = "0.1.0"
-description = ""
+version = "1.0.14py38"
+description = "Primrose: a framework for simple, quick modeling deployments"
 authors = [
-    {name = "calvin d. woo", email = "calvin.woo@ww.com"},
+    {name = "WW Data Science", email = "datascience@ww.com"},
+]
+maintainers = [
+    {name = "Brian Graham", email = "brian.graham@ww.com"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Operating System :: OS Independent",
 ]
 dependencies = [
     "pandas>=1.5.3",
@@ -38,8 +53,15 @@ dependencies = [
     "pydot>=1.4.2",
 ]
 requires-python = ">=3.8"
-readme = "README_DEVELOPER_NOTES.md"
-license = {text = "MIT"}
+readme = "README.md"
+license = {file = "./LICENSE"}
+
+[project.urls]
+"Homepage" = "https://github.com/ww-tech/primrose"
+"Documentation" = "https://ww-tech.github.io/primrose/"
+
+[project.scripts]
+primrose = "primrose.__init__:cli"
 
 [project.optional-dependencies]
 postgres = [
