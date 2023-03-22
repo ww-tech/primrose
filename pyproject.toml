@@ -6,11 +6,6 @@ build-backend = "pdm.pep517.api"
 line-length = 120
 
 [tool.pdm]
-[tool.pdm.dev-dependencies]
-test = [
-    "pytest>=7.2.2",
-]
-
 [tool.pdm.build]
 includes = [
     "primrose/",
@@ -64,6 +59,9 @@ license = {file = "./LICENSE"}
 primrose = "primrose.__init__:cli"
 
 [project.optional-dependencies]
+test = [
+    "pytest>=7.2.2",
+]
 postgres = [
     "psycopg2>=2.9.5",
     "psycopg2-binary>=2.9.5",

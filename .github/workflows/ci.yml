@@ -64,8 +64,7 @@ jobs:
           enable-pep582: true
       - name: python install
         run: |
-          pdm config python.use_venv false
-          pdm install
+          pip install -e .[test]
 
           if [ $PYPI_BUILD = 'complete' ]; then
             echo "Installing postgres and plotting requirements"
