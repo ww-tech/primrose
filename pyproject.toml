@@ -16,7 +16,7 @@ source-includes = ["tests/"]
 
 [project]
 name = "primrose"
-version = "1.0.14py38"
+version = "1.0.14+py38"
 description = "Primrose: a framework for simple, quick modeling deployments"
 authors = [
     {name = "WW Data Science", email = "datascience@ww.com"},
