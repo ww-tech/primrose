@@ -75,7 +75,8 @@ jobs:
             unset LDFLAGS
             unset CPPFLAGS
 
-            pip install .[postgres, R]
+            pip install .[postgres]
+            pip install .[R]
           elif [ $PYPI_BUILD = 'only_postgres' ]; then
             echo "Installing postgres requirements"
             pip install .[postgres]
