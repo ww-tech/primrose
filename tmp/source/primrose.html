@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>primrose package &mdash; primrose 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            primrose
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_GETTING_STARTED.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#environment-variable-substitution">Environment Variable Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">primrose</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">primrose package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tmp/source/primrose.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="primrose-package">
+<h1>primrose package<a class="headerlink" href="#primrose-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="primrose.base.html">primrose.base package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-conditional-path-node-module">primrose.base.conditional_path_node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-do-nothing-node-module">primrose.base.do_nothing_node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-model-module">primrose.base.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-node-module">primrose.base.node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-pipeline-module">primrose.base.pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-postprocess-module">primrose.base.postprocess module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-reader-module">primrose.base.reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-search-engine-module">primrose.base.search_engine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-sql-reader-module">primrose.base.sql_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-success-module">primrose.base.success module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-transformer-module">primrose.base.transformer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-transformer-sequence-module">primrose.base.transformer_sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#primrose-base-writer-module">primrose.base.writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.base.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.cleanup.html">primrose.cleanup package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#primrose-cleanup-logging-success-module">primrose.cleanup.logging_success module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.cleanup.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.conditionalpath.html">primrose.conditionalpath package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#primrose-conditionalpath-simple-switch-module">primrose.conditionalpath.simple_switch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.conditionalpath.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.configuration.html">primrose.configuration package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#primrose-configuration-configuration-module">primrose.configuration.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#primrose-configuration-configuration-dag-module">primrose.configuration.configuration_dag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#primrose-configuration-util-module">primrose.configuration.util module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.configuration.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.dag.html">primrose.dag package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#primrose-dag-config-layer-traverser-module">primrose.dag.config_layer_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#primrose-dag-dag-traverser-module">primrose.dag.dag_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#primrose-dag-depth-first-traverser-module">primrose.dag.depth_first_traverser module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#primrose-dag-traverser-factory-module">primrose.dag.traverser_factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dag.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.dataviz.html">primrose.dataviz package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#primrose-dataviz-cluster-plotter-module">primrose.dataviz.cluster_plotter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.dataviz.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.models.html">primrose.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#primrose-models-minimal-search-engine-module">primrose.models.minimal_search_engine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#primrose-models-sklearn-classifier-model-module">primrose.models.sklearn_classifier_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#primrose-models-sklearn-cluster-model-module">primrose.models.sklearn_cluster_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#primrose-models-sklearn-model-module">primrose.models.sklearn_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#primrose-models-sklearn-regression-model-module">primrose.models.sklearn_regression_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.models.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.notifications.html">primrose.notifications package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#primrose-notifications-abstract-notification-module">primrose.notifications.abstract_notification module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#primrose-notifications-success-notification-module">primrose.notifications.success_notification module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.notifications.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.pipelines.html">primrose.pipelines package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#primrose-pipelines-dataframe-joiner-module">primrose.pipelines.dataframe_joiner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#primrose-pipelines-encode-train-test-split-module">primrose.pipelines.encode_train_test_split module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#primrose-pipelines-sklearn-preprocessing-pipeline-module">primrose.pipelines.sklearn_preprocessing_pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#primrose-pipelines-train-test-split-module">primrose.pipelines.train_test_split module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#primrose-pipelines-transformer-pipeline-module">primrose.pipelines.transformer_pipeline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.pipelines.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.readers.html">primrose.readers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-csv-reader-module">primrose.readers.csv_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-database-helper-module">primrose.readers.database_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-deserializer-module">primrose.readers.deserializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-dill-reader-module">primrose.readers.dill_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-gcs-dill-reader-module">primrose.readers.gcs_dill_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-mysql-helper-module">primrose.readers.mysql_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-mysql-reader-module">primrose.readers.mysql_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-oracle-reader-module">primrose.readers.oracle_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-postgres-helper-module">primrose.readers.postgres_helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-postgres-reader-module">primrose.readers.postgres_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-r-reader-module">primrose.readers.r_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-redshift-reader-module">primrose.readers.redshift_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-sklearn-dataset-reader-module">primrose.readers.sklearn_dataset_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#primrose-readers-sqlite-reader-module">primrose.readers.sqlite_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.readers.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.templates.html">primrose.templates package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-awesome-model-module">primrose.templates.awesome_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-awesome-reader-module">primrose.templates.awesome_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-run-plot-dag-module">primrose.templates.run_plot_dag module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-run-primrose-module">primrose.templates.run_primrose module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#primrose-templates-user-registration-template-module">primrose.templates.user_registration_template module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.templates.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.transformers.html">primrose.transformers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-categoricals-module">primrose.transformers.categoricals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-combine-module">primrose.transformers.combine module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-filter-module">primrose.transformers.filter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-impute-module">primrose.transformers.impute module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-sklearn-preprocessing-transformer-module">primrose.transformers.sklearn_preprocessing_transformer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#primrose-transformers-strings-module">primrose.transformers.strings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.transformers.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primrose.writers.html">primrose.writers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-abstract-file-writer-module">primrose.writers.abstract_file_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-csv-writer-module">primrose.writers.csv_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-dill-writer-module">primrose.writers.dill_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-file-writer-module">primrose.writers.file_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-s3-writer-module">primrose.writers.s3_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#primrose-writers-serializer-module">primrose.writers.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primrose.writers.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="primrose-dag-runner-module">
+<h2>primrose.dag_runner module<a class="headerlink" href="#primrose-dag-runner-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="primrose-data-object-module">
+<h2>primrose.data_object module<a class="headerlink" href="#primrose-data-object-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="primrose-node-factory-module">
+<h2>primrose.node_factory module<a class="headerlink" href="#primrose-node-factory-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="primrose-notification-utils-module">
+<h2>primrose.notification_utils module<a class="headerlink" href="#primrose-notification-utils-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="primrose-util-module">
+<h2>primrose.util module<a class="headerlink" href="#primrose-util-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, WW International, Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

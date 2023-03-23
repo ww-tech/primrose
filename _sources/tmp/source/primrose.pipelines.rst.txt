@@ -1,0 +1,59 @@
+primrose.pipelines package
+==========================
+
+Submodules
+----------
+
+primrose.pipelines.dataframe\_joiner module
+-------------------------------------------
+
+.. automodule:: primrose.pipelines.dataframe_joiner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.pipelines.encode\_train\_test\_split module
+----------------------------------------------------
+
+.. automodule:: primrose.pipelines.encode_train_test_split
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.pipelines.sklearn\_preprocessing\_pipeline module
+----------------------------------------------------------
+
+.. automodule:: primrose.pipelines.sklearn_preprocessing_pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.pipelines.train\_test\_split module
+--------------------------------------------
+
+.. automodule:: primrose.pipelines.train_test_split
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+primrose.pipelines.transformer\_pipeline module
+-----------------------------------------------
+
+.. automodule:: primrose.pipelines.transformer_pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Module contents
+---------------
+
+.. automodule:: primrose.pipelines
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

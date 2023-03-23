@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; primrose 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DAG Configurations" href="README_DAG_CONFIG.html" />
+    <link rel="prev" title="Overview" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            primrose
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#your-first-primrose-job">Your first primrose job</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-read-write-job">A read write job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-job">Running the job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examining-the-output">Examining the output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#a-machine-learning-job-clustering">A Machine Learning Job: Clustering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-the-graph">Plotting the Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examining-the-configuration">Examining the configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#a-machine-learning-job-with-model-caching-classification">A Machine Learning Job with Model Caching: Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next">Next</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html">DAG Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-files">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#comments">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-fragment-substitution">Configuration File Fragment Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#environment-variable-substitution">Environment Variable Substitution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DAG_CONFIG.html#configuration-file-validation">Configuration File Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html">Configuration Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#traverser-key">traverser key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-registry-key">section_registry key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#section-run-key">section_run key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_METADATA.html#data-object-key">data_object key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_CLI.html">Primrose Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DEVELOPER_NOTES.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html">DataObject</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#saving-data">Saving Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#getting-data">Getting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_DATAOBJECT.html#other-methods">Other methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README_NOTIFICATIONS.html">Notifications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">primrose</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README_GETTING_STARTED.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<p>In this section, we’ll run some “Hello world” <code class="docutils literal notranslate"><span class="pre">primrose</span></code> jobs. However, rather than print a string, we’ll do some more useful tasks:</p>
+<ul class="simple">
+<li><p>run a read-write job (i.e., read data from a source and write it to some sink; that is, an <code class="docutils literal notranslate"><span class="pre">Extract-Transfer-Load</span></code> job)</p></li>
+<li><p>run machine learning models, including clustering and classification</p></li>
+</ul>
+<section id="your-first-primrose-job">
+<h2>Your first primrose job<a class="headerlink" href="#your-first-primrose-job" title="Permalink to this heading"></a></h2>
+<p>Once you have <code class="docutils literal notranslate"><span class="pre">primrose</span></code> installed, you can now run a job. First you’ll need to create your own project directory, by
+using the <code class="docutils literal notranslate"><span class="pre">primrose</span></code> command line as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">create</span><span class="o">-</span><span class="n">project</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">myprojectname</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This will create a directory with everything you need to get started, including example config files. Just navigate into this directory to begin.</p>
+<section id="a-read-write-job">
+<h3>A read write job<a class="headerlink" href="#a-read-write-job" title="Permalink to this heading"></a></h3>
+<p>Open <code class="docutils literal notranslate"><span class="pre">config/hello_world_read_write.json</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;implementation_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;reader_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;read_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;data/tennis.csv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;write_output&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;writer_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;write_output&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvWriter&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;dir&quot;</span><span class="p">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;tennis_output.csv&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There are two tasks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_data</span></code>: this run an instance of <code class="docutils literal notranslate"><span class="pre">CsvReader</span></code> which loads data from <code class="docutils literal notranslate"><span class="pre">data/tennis.csv</span></code> into a pandas dataframe and sends the data to the next task: <code class="docutils literal notranslate"><span class="pre">write_output</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write_output</span></code>: this receives the data (associated with a key <code class="docutils literal notranslate"><span class="pre">data</span></code>) and uses an instance of <code class="docutils literal notranslate"><span class="pre">CsvWriter</span></code> to write the data out to <code class="docutils literal notranslate"><span class="pre">cache/tennis_output.csv</span></code>.</p></li>
+</ul>
+<p>It might not be obvious that it is pandas under the hood but otherwise this configuration file should be relatively intuitive.</p>
+</section>
+<section id="running-the-job">
+<h3>Running the job<a class="headerlink" href="#running-the-job" title="Permalink to this heading"></a></h3>
+<p>To run the job, type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">run</span> <span class="o">--</span><span class="n">config</span> <span class="n">config</span><span class="o">/</span><span class="n">hello_world_read_write</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>You should see something similar to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2019-07-23 21:15:09,075 INFO configuration.py __init__: Loading config file at config/hello_world_read_write.json
+2019-07-23 21:15:09,081 INFO configuration.py check_sections: OK: all sections are supported operations
+2019-07-23 21:15:09,081 INFO configuration.py check_config: OK: all class keys are present
+2019-07-23 21:15:09,081 INFO configuration.py check_config: OK: all classes recognized
+2019-07-23 21:15:09,081 INFO configuration.py check_config: OK: good necessary_configs
+2019-07-23 21:15:09,082 INFO configuration_dag.py create_dag: Checking configuration DAG
+2019-07-23 21:15:09,082 INFO configuration_dag.py create_dag: OK: good referential integrity
+2019-07-23 21:15:09,082 INFO configuration_dag.py check_connected_components: OK: 1 connected component
+2019-07-23 21:15:09,082 INFO configuration_dag.py check_for_cycles: OK: no cycles found
+2019-07-23 21:15:09,082 INFO dag_runner.py __init__: Traverser is of class &lt;class &#39;primrose.dag.config_layer_traverser.ConfigLayerTraverser&#39;&gt;
+2019-07-23 21:15:09,083 INFO dag_runner.py filter_sequence: Taking nodes to run from default
+2019-07-23 21:15:09,083 INFO dag_runner.py run: received node read_data of type reader_config and class CsvReader
+2019-07-23 21:15:09,083 INFO csv_reader.py run: Reading data/tennis.csv from CSV
+2019-07-23 21:15:09,109 INFO dag_runner.py run: received node write_output of type writer_config and class CsvWriter
+2019-07-23 21:15:09,109 INFO csv_writer.py run: Saving data data to cache/tennis_output.csv
+2019-07-23 21:15:09,115 INFO dag_runner.py run: All done. Bye bye!
+</pre></div>
+</div>
+<p>That’s it. You have run a <strong>primrose</strong> job.</p>
+</section>
+<section id="examining-the-output">
+<h3>Examining the output<a class="headerlink" href="#examining-the-output" title="Permalink to this heading"></a></h3>
+<p>The first half of this output is a set of validation checks  against the configuration. You can read more about these checks in <a class="reference internal" href="README_DAG_CONFIG.html"><span class="std std-doc">DAG Configurations</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Traverser</span></code> is some code that determines the order in which the <code class="docutils literal notranslate"><span class="pre">primrose</span></code> nodes are processed.</p>
+<p>Importantly, there are four output lines that show the actual work being done:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">23</span> <span class="mi">21</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">083</span> <span class="n">INFO</span> <span class="n">dag_runner</span><span class="o">.</span><span class="n">py</span> <span class="n">run</span><span class="p">:</span> <span class="n">received</span> <span class="n">node</span> <span class="n">read_data</span> <span class="n">of</span> <span class="nb">type</span> <span class="n">reader_config</span> <span class="ow">and</span> <span class="k">class</span> <span class="nc">CsvReader</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">23</span> <span class="mi">21</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">083</span> <span class="n">INFO</span> <span class="n">csv_reader</span><span class="o">.</span><span class="n">py</span> <span class="n">run</span><span class="p">:</span> <span class="n">Reading</span> <span class="n">data</span><span class="o">/</span><span class="n">tennis</span><span class="o">.</span><span class="n">csv</span> <span class="kn">from</span> <span class="nn">CSV</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">23</span> <span class="mi">21</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">109</span> <span class="n">INFO</span> <span class="n">dag_runner</span><span class="o">.</span><span class="n">py</span> <span class="n">run</span><span class="p">:</span> <span class="n">received</span> <span class="n">node</span> <span class="n">write_output</span> <span class="n">of</span> <span class="nb">type</span> <span class="n">writer_config</span> <span class="ow">and</span> <span class="k">class</span> <span class="nc">CsvWriter</span>
+<span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">23</span> <span class="mi">21</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">09</span><span class="p">,</span><span class="mi">109</span> <span class="n">INFO</span> <span class="n">csv_writer</span><span class="o">.</span><span class="n">py</span> <span class="n">run</span><span class="p">:</span> <span class="n">Saving</span> <span class="n">data</span> <span class="n">data</span> <span class="n">to</span> <span class="n">cache</span><span class="o">/</span><span class="n">tennis_output</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>You should now have a file <code class="docutils literal notranslate"><span class="pre">cache/tennis_output.csv</span></code> that matches the input file <code class="docutils literal notranslate"><span class="pre">data/tennis.csv</span></code>.</p>
+</section>
+</section>
+<section id="a-machine-learning-job-clustering">
+<h2>A Machine Learning Job: Clustering<a class="headerlink" href="#a-machine-learning-job-clustering" title="Permalink to this heading"></a></h2>
+<p>Now, let’s do some machine learning. We’ll run a basic K-means clustering and plot the clusters.</p>
+<section id="plotting-the-graph">
+<h3>Plotting the Graph<a class="headerlink" href="#plotting-the-graph" title="Permalink to this heading"></a></h3>
+<p>Before we examine the configuration file, let’s plot a graph of the DAG by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">plot</span> <span class="o">--</span><span class="n">config</span> <span class="n">config</span><span class="o">/</span><span class="n">hello_world_cluster_simple_train</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">graph</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>This will write an image of the DAG to <code class="docutils literal notranslate"><span class="pre">graph.png</span></code>, without actually running the nodes.</p>
+<p><img alt="" src="_images/hw_cluster.png" /></p>
+<p>Here we see a <code class="docutils literal notranslate"><span class="pre">read_data</span></code> node feeding into a <code class="docutils literal notranslate"><span class="pre">normalize_data</span></code> node feeding into a <code class="docutils literal notranslate"><span class="pre">cluster_model</span></code> node. The output feeds to <code class="docutils literal notranslate"><span class="pre">write_data</span></code> and also to <code class="docutils literal notranslate"><span class="pre">cluster_plotter</span></code>.</p>
+</section>
+<section id="examining-the-configuration">
+<h3>Examining the configuration<a class="headerlink" href="#examining-the-configuration" title="Permalink to this heading"></a></h3>
+<p>With that background, let’s examine the configuration file.
+This is `config/hello_world_cluster_simple_train.json</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+        <span class="s2">&quot;explanation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;this is a minimal Sklearn clustering example in training mode:&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * read in some data from CSV&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * sklearn.preprocessing.StandardScaler transform the data but no train test split!&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * cluster with sklearn.cluster.KMeans&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * predict on same training data, appending predictions column to data&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * save enriched data to CSV&quot;</span><span class="p">,</span>
+            <span class="s2">&quot; * plot clusters and save image to disk&quot;</span><span class="p">]</span>
+
+    <span class="p">},</span>
+    <span class="s2">&quot;implementation_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;reader_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;read_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;data/unclustered.csv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;normalize_data&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;pipeline_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;normalize_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;SklearnPreprocessingPipeline&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;operations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="s2">&quot;preprocessing.StandardScaler&quot;</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">],</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;with_mean&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="s2">&quot;with_std&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">}}</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;is_training&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;cluster_model&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;model_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;cluster_model&quot;</span><span class="p">:{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;SklearnClusterModel&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span><span class="s2">&quot;x2&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster.KMeans&quot;</span><span class="p">,</span> <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;n_clusters&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}},</span>
+                <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&quot;write_data&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;cluster_plotter&quot;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;writer_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;write_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvWriter&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;dir&quot;</span><span class="p">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;clustered_output.csv&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;dataviz_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;cluster_plotter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ClusterPlotter&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id_col&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster_id&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;clusters.png&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Results of KMeans(k=6)&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Most of it should be relatively intuitive but let’s walk through it.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_data</span></code> uses a <code class="docutils literal notranslate"><span class="pre">CsvReader</span></code> to read in some data. This fees to <code class="docutils literal notranslate"><span class="pre">normalize_data</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normalize_data</span></code> is a pipeline, a preprocessing step. This is going to run <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> on the columns <code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>, scaling to zero mean and unit standard deviation. It is in training mode.</p></li>
+<li><p>This feeds into <code class="docutils literal notranslate"><span class="pre">cluster_model</span></code> which uses <code class="docutils literal notranslate"><span class="pre">sklearn.cluster.KMeans</span></code> with k=6 (and seed=42) to cluster the data.
+That feeds to a <code class="docutils literal notranslate"><span class="pre">CSvWriter</span></code> and to a <code class="docutils literal notranslate"><span class="pre">ClusterPlotter</span></code>. the plotter creates a scatterplot with title “Results of KMeans(k=6)” and saving to <code class="docutils literal notranslate"><span class="pre">clusters.png</span></code>.</p></li>
+</ul>
+<p>You can now run this primrose job with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">run</span> <span class="o">--</span><span class="n">config</span> <span class="n">config</span><span class="o">/</span><span class="n">hello_world_cluster_simple_train</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>Here is the output:</p>
+<p><img alt="" src="_images/clusters.png" /></p>
+<p>Congratulations. You have now machined-learned in <code class="docutils literal notranslate"><span class="pre">primrose</span></code>!</p>
+</section>
+</section>
+<section id="a-machine-learning-job-with-model-caching-classification">
+<h2>A Machine Learning Job with Model Caching: Classification<a class="headerlink" href="#a-machine-learning-job-with-model-caching-classification" title="Permalink to this heading"></a></h2>
+<p>In this last example, we will train another Sklearn classifier model. However, here, we cache the trained model so that it can be used against a new dataset at a later stage—i.e., in separate <code class="docutils literal notranslate"><span class="pre">primrose</span></code> job—in either <code class="docutils literal notranslate"><span class="pre">predict</span></code> or <code class="docutils literal notranslate"><span class="pre">eval</span></code> mode.</p>
+<p>The dataset we are using is Tom Mitchell’s play tennis example to illustrate decision trees:</p>
+<img src ="img/play_tennis.png" height=400 />
+<p>Here, we run two separate <code class="docutils literal notranslate"><span class="pre">primrose</span></code> jobs: 1) train and 2) predict. Each job has its own configuration file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">config/hello_world_classifier_train.json</span></code> reads the <code class="docutils literal notranslate"><span class="pre">tennis</span></code> dataset, does a train test split, runs a Sklearn decision tree model in mode <code class="docutils literal notranslate"><span class="pre">predict</span></code>, and writes both the <code class="docutils literal notranslate"><span class="pre">TransformerSequence</span></code> (set of transformation performed on the features) and the <code class="docutils literal notranslate"><span class="pre">model</span></code> to a local cache using <code class="docutils literal notranslate"><span class="pre">dill</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="o">...</span>
+
+      <span class="s2">&quot;encode_and_split&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;EncodeTrainTestSplit&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_training&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;target_variable&quot;</span><span class="p">:</span> <span class="s2">&quot;play&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;training_fraction&quot;</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;decision_tree_model&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;write_encoder&quot;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+
+      <span class="o">...</span>
+
+      <span class="s2">&quot;write_encoder&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;DillWriter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;transformer_sequence&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dir&quot;</span><span class="p">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;hello_world_encoder.dill&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;write_model&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;DillWriter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dir&quot;</span><span class="p">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;hello_world_model.dill&quot;</span>
+      <span class="p">}</span>
+</pre></div>
+</div>
+<p>A separate configuration file, <code class="docutils literal notranslate"><span class="pre">config/hello_world_classifier_predict.json</span></code> is designed to make predictions using the cached model.
+Ideally, we would use a different dataset to make predictions on, but we are using the same tennis dataset here for simplicity.</p>
+<p>In this configuration, we read the data and the two cached objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;reader_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;read_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;data/tennis.csv&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;encode_and_split&quot;</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;read_model&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;DillReader&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;cache/hello_world_model.dill&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;decision_tree_model&quot;</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;read_encoder&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;DillReader&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;cache/hello_world_encoder.dill&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;encode_and_split&quot;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+</pre></div>
+</div>
+<p>run through the model with <code class="docutils literal notranslate"><span class="pre">mode:</span> <span class="pre">predict</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="s2">&quot;decision_tree_model&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;SklearnClassifierModel&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sklearn_classifier_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tree.DecisionTreeClassifier&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;predict&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;grid_search_scoring&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;cv_folds&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;destinations&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;write_output&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;model_parameters&quot;</span><span class="p">:</span> <span class="p">{}</span>
+      <span class="p">}</span>
+</pre></div>
+</div>
+<p>and, finally, write out the predictions</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;writer_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;write_output&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CsvWriter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;predictions&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dir&quot;</span><span class="p">:</span> <span class="s2">&quot;cache&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;hello_world_predictions.csv&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Try running it yourself. First, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">run</span> <span class="o">--</span><span class="n">config</span> <span class="n">config</span><span class="o">/</span><span class="n">hello_world_classifier_train</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>and inspect the encoder and model files in the <code class="docutils literal notranslate"><span class="pre">cache</span></code> folder.</p>
+<p>Now run the predict job:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primrose</span> <span class="n">run</span> <span class="o">--</span><span class="n">config</span> <span class="n">config</span><span class="o">/</span><span class="n">hello_world_classifier_predict</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>and find the predictions in the <code class="docutils literal notranslate"><span class="pre">cache</span></code> folder.</p>
+<p>You are now set up to design realistic <code class="docutils literal notranslate"><span class="pre">primrose</span></code> runs in a production setting.</p>
+</section>
+<section id="next">
+<h2>Next<a class="headerlink" href="#next" title="Permalink to this heading"></a></h2>
+<p>Learn more about <code class="docutils literal notranslate"><span class="pre">primrose</span></code> configurations: <a class="reference internal" href="README_DAG_CONFIG.html"><span class="std std-doc">DAG Configurations</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="README_DAG_CONFIG.html" class="btn btn-neutral float-right" title="DAG Configurations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, WW International, Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

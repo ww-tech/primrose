@@ -1,0 +1,23 @@
+primrose.dataviz package
+========================
+
+Submodules
+----------
+
+primrose.dataviz.cluster\_plotter module
+----------------------------------------
+
+.. automodule:: primrose.dataviz.cluster_plotter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Module contents
+---------------
+
+.. automodule:: primrose.dataviz
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

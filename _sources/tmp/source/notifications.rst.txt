@@ -1,0 +1,32 @@
+notifications package
+=====================
+
+Submodules
+----------
+
+notifications.abstract\_notification module
+-------------------------------------------
+
+.. automodule:: notifications.abstract_notification
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+notifications.success\_notification module
+------------------------------------------
+
+.. automodule:: notifications.success_notification
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Module contents
+---------------
+
+.. automodule:: notifications
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
