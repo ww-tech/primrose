@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 echo "Installing linux packages"
-sudo apt-get update
+sudo apt-get clean
+sudo apt-get update -y
 sudo apt-get install libgraphviz-dev pkg-config graphviz
 dpkg -L libgraphviz-dev
 echo "Updating matplotlib configuration"
