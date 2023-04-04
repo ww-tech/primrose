@@ -1,16 +1,9 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
-
-[tool.setuptools.packages.find]
-include = [
-    "primrose*",
-    "data*",
-    "config*"
-]
 
 [project]
 name = "primrose"
@@ -22,35 +15,27 @@ authors = [
 maintainers = [
     {name = "Brian Graham", email = "brian.graham@ww.com"},
     {name = "Calvin Woo", email = "calvin.woo@ww.com"},
-    {name = "Pierre Winter", email = "pierre.winter@ww.com"},
-    {name = "Rakesh Ramesh", email = "rakesh.ramesh@ww.com"}
+    {name = "Pierre Winter", email = "pierre.winter@ww.com"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3.8",
     "Operating System :: OS Independent"
 ]
 dependencies = [
-    "pandas>=1.5.3",
     "click>=8.1.3",
-    "scikit-learn>=1.2.2",
     "jstyleson>=0.0.2",
     "networkx>=3.0",
-    "dill>=0.3.6",
     "pyyaml>=6.0",
     "google-cloud-storage>=2.7.0",
-    "matplotlib>=3.7.1",
     "jinja2>=3.1.2",
     "boto3>=1.26.93",
     "mysql-connector-python>=8.0.32",
     "slackclient>=2.9.4",
-    "testfixtures>=7.1.0",
-    "moto>=4.1.4",
-    "nltk>=3.8.1",
-    "pydot>=1.4.2",
+    "pydot>=1.4.2"
 ]
 requires-python = ">=3.8"
 readme = "README.md"
-license = {file = "./LICENSE"}
+license = {file = "LICENSE"}
 
 [project.urls]
 "Homepage" = "https://github.com/ww-tech/primrose"
@@ -60,15 +45,17 @@ license = {file = "./LICENSE"}
 primrose = "primrose.__init__:cli"
 
 [project.optional-dependencies]
-test = [
+dev = [
+    "dill>=0.3.6",
+    "matplotlib>=3.7.1",
+    "moto>=4.1.4",
+    "nltk>=3.8.1",
+    "pandas>=1.5.3",
     "pytest>=7.2.2",
-]
-postgres = [
+    "scikit-learn>=1.2.2",
+    "testfixtures>=7.1.0",
+    "psycopg2>=2.9.5",
     "psycopg2-binary>=2.9.5",
-]
-plotting = [
     "pygraphviz>=1.10",
-]
-R = [
-    "rpy2>=3.5.10",
+    "rpy2>=3.5.10"
 ]
