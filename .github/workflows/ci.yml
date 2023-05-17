@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - prim-test
+      - primrose-2
   pull_request:
     branches:
       - master
