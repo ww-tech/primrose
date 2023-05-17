@@ -20,7 +20,8 @@ authors = [
 maintainers = [
     {name = "Brian Graham", email = "brian.graham@ww.com"},
     {name = "Calvin Woo", email = "calvin.woo@ww.com"},
-    {name = "Pierre Winter", email = "pierre.winter@ww.com"}
+    {name = "Pierre Winter", email = "pierre.winter@ww.com"},
+    {name = "Rakesh Ramesh", email = "rakesh.ramesh@ww.com"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3.8",
