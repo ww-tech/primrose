@@ -12,6 +12,7 @@ from primrose.base.node import AbstractNode
 
 
 @mock_s3
+@pytest.mark.dev
 def test_init_ok():
     config = {
         "implementation_config": {

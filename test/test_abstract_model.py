@@ -8,7 +8,7 @@ from primrose.configuration.configuration import Configuration
 from primrose.readers.csv_reader import CsvReader
 import pandas as pd
 
-
+@pytest.mark.dev
 def test_run():
     class TestModel(AbstractModel):
         @staticmethod

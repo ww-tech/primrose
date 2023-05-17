@@ -15,7 +15,7 @@ def test_init_ok_dill():
         import sklearn.tree.tree
         model_filename = "test/tinymodel.dill"
     except ModuleNotFoundError:
-        # deprecation from sklearn>0.24 
+        # deprecation from sklearn>0.24
         # https://stackoverflow.com/questions/60598050/the-sklearn-tree-tree-module-is-deprecated-in-version-0-22-and-will-be-removed-i
         model_filename = "test/tinymodel_skl_0_24.dill"
 
@@ -126,7 +126,7 @@ def test_init_ok_unsupported():
 def test_gcsdeserializer_necessary_config():
     assert len(GcsDeserializer.necessary_config({})) == 3
 
-
+@pytest.mark.dev
 def test_run_dill(monkeypatch):
     # returns 2 objects from dill reader
     config = {

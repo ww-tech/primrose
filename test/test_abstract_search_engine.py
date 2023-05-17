@@ -11,7 +11,7 @@ from primrose.data_object import DataObject, DataObjectResponseType
 
 """we can't instatiate AbstractSearchEngine but this will test some of the methods"""
 
-
+@pytest.mark.dev
 def test_cosine_similarity_matrix():
     class Testpipeline(AbstractNode):
         def __init__(self, configuration, instance_name):
