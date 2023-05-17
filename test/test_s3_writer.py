@@ -10,9 +10,8 @@ from primrose.node_factory import NodeFactory
 from primrose.data_object import DataObject
 from primrose.base.node import AbstractNode
 
-
-@mock_s3
 @pytest.mark.dev
+@mock_s3
 def test_init_ok():
     config = {
         "implementation_config": {
