@@ -70,12 +70,11 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            pip install .[plotting]
+            pip install .[dev]
             unset LDFLAGS
             unset CPPFLAGS
 
-            pip install .[postgres]
-            pip install .[R]
+
           elif [ $PYPI_BUILD = 'only_postgres' ]; then
             echo "Installing postgres requirements"
             pip install .[postgres]
@@ -100,7 +99,7 @@ jobs:
       - name: tests
         run: |
           if [ $PYPI_BUILD = 'complete' ]; then
-              python -m pytest
+              python -m pytest -m "dev"
           elif [ $PYPI_BUILD = 'only_plotting' ]; then
               python -m pytest -m "not postgres"
           elif [ $PYPI_BUILD = 'only_postgres' ]; then
