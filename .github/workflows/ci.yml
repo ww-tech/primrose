@@ -22,7 +22,7 @@ jobs:
         python:
           - 3.8
         pypi_build:
-          - complete
+          - basic
           - dev
           - only_r
     runs-on: ${{ matrix.os }}
@@ -57,8 +57,8 @@ jobs:
         run: |
           pip install .[test]
           mkdir cache
-          if [ $PYPI_BUILD = 'complete' ]; then
-            echo "Installing complete requirements"
+          if [ $PYPI_BUILD = 'basic' ]; then
+            echo "Installing basic requirements"
 
             if [ $BUILD_OS = 'macos-latest' ]; then
               export LDFLAGS="-L/usr/local/opt/graphviz/lib"
@@ -68,14 +68,14 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            pip install .[dev]
+            pip install .
             unset LDFLAGS
             unset CPPFLAGS
 
 
           elif [ $PYPI_BUILD = 'dev' ]; then
             echo "Installing basic requirements"
-            pip install .
+            pip install .[dev]
           elif [ $PYPI_BUILD = 'only_r' ]; then
             echo "Installing R requirements"
             pip install .[R]
@@ -83,9 +83,9 @@ jobs:
       - name: tests
         run: |
           if [ $PYPI_BUILD = 'complete' ]; then
-              python -m pytest -m "dev and basic"
+              python -m pytest -m "basic"
           elif [ $PYPI_BUILD = 'dev' ]; then
-              python -m pytest -m "dev"
+              python -m pytest -m "dev and basic"
           elif [ $PYPI_BUILD = 'only_r' ]; then
               python -m pytest -m "r"
           else
