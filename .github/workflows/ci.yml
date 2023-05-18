@@ -24,6 +24,7 @@ jobs:
         pypi_build:
           - complete
           - dev
+          - only_r
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -75,7 +76,9 @@ jobs:
           elif [ $PYPI_BUILD = 'basic' ]; then
             echo "Installing basic requirements"
             pip install .
-
+          elif [ $PYPI_BUILD = 'only_r' ]; then
+            echo "Installing R requirements"
+            pip install .[R]
           fi
       - name: tests
         run: |
@@ -83,4 +86,10 @@ jobs:
               python -m pytest -m "dev"
           elif [ $PYPI_BUILD = 'basic' ]; then
               python -m pytest -m "basic"
+          elif [ $PYPI_BUILD = 'only_r' ]; then
+              python -m pytest -m "not dev and not basic"
+          else
+              python -m pytest
+
+
           fi
