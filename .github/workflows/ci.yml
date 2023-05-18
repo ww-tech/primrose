@@ -24,6 +24,7 @@ jobs:
         pypi_build:
           - complete
           - dev
+          - only_r
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -72,15 +73,23 @@ jobs:
             unset CPPFLAGS
 
 
-          elif [ $PYPI_BUILD = 'basic' ]; then
+          elif [ $PYPI_BUILD = 'dev' ]; then
             echo "Installing basic requirements"
             pip install .
-
+          elif [ $PYPI_BUILD = 'only_r' ]; then
+            echo "Installing R requirements"
+            pip install .[R]
           fi
       - name: tests
         run: |
           if [ $PYPI_BUILD = 'complete' ]; then
               python -m pytest -m "dev"
-          elif [ $PYPI_BUILD = 'basic' ]; then
+          elif [ $PYPI_BUILD = 'dev' ]; then
               python -m pytest -m "basic"
+          elif [ $PYPI_BUILD = 'only_r' ]; then
+              python -m pytest -m "r"
+          else
+              python -m pytest
+
+
           fi
