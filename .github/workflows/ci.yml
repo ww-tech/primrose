@@ -83,9 +83,9 @@ jobs:
       - name: tests
         run: |
           if [ $PYPI_BUILD = 'complete' ]; then
-              python -m pytest -m "dev"
+              python -m pytest -m "dev and basic"
           elif [ $PYPI_BUILD = 'dev' ]; then
-              python -m pytest -m "basic"
+              python -m pytest -m "dev"
           elif [ $PYPI_BUILD = 'only_r' ]; then
               python -m pytest -m "r"
           else
