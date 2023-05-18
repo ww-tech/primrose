@@ -83,7 +83,4 @@ jobs:
               python -m pytest -m "dev"
           elif [ $PYPI_BUILD = 'basic' ]; then
               python -m pytest -m "basic"
-          else
-              python -m pytest
           fi
-
