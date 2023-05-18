@@ -19,7 +19,7 @@ def check_rpy2():
         return True
 
 
-@pytest.mark.r
+@pytest.mark.skipif(check_rpy2(), reason="primrose[R] is optional")
 def test_run():
     config = {
         "implementation_config": {
@@ -49,7 +49,7 @@ def test_run():
     ]
 
 
-@pytest.mark.r
+@pytest.mark.skipif(check_rpy2(), reason="primrose[R] is optional")
 def test_run2():
     config = {
         "implementation_config": {

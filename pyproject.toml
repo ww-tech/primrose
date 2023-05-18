@@ -63,6 +63,6 @@ dev = [
     "psycopg2-binary>=2.9.5",
     "pygraphviz>=1.10"
 ]
-R= [
+r= [
     "rpy2>=3.4.5"
 ]

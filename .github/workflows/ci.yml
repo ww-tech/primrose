@@ -78,7 +78,7 @@ jobs:
             pip install .
           elif [ $PYPI_BUILD = 'only_r' ]; then
             echo "Installing only R requirements"
-            pip install .[R]
+            pip install .[r]
 
           fi
       - name: tests
@@ -88,5 +88,5 @@ jobs:
           elif [ $PYPI_BUILD = 'basic' ]; then
               python -m pytest -m "basic"
           elif [ $PYPI_BUILD = 'only_r' ]; then
-              python -m pytest -m "r"
+              python -m pytest -m "not dev and not basic"
           fi
