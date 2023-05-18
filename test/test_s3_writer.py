@@ -11,6 +11,7 @@ from primrose.data_object import DataObject
 from primrose.base.node import AbstractNode
 
 @pytest.mark.dev
+@pytest.mark.basic
 @mock_s3
 def test_init_ok():
     config = {

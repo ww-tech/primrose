@@ -9,7 +9,7 @@ from primrose.data_object import DataObject, DataObjectResponseType
 from primrose.readers.csv_reader import CsvReader
 from primrose.readers.deserializer import Deserializer, GcsDeserializer
 
-
+@pytest.mark.dev
 def test_init_ok_dill():
     try:
         import sklearn.tree.tree
@@ -57,7 +57,7 @@ def test_init_ok_dill():
     assert data["test"] == [1, 2, 3]
     assert isinstance(data["model"], DecisionTreeClassifier)
 
-
+@pytest.mark.dev
 def test_init_ok_pickle():
     try:
         import sklearn.tree.tree
@@ -93,7 +93,7 @@ def test_init_ok_pickle():
     assert data["test"] == [1, 2, 3]
     assert isinstance(data["model"], DecisionTreeClassifier)
 
-
+@pytest.mark.dev
 def test_init_ok_unsupported():
     try:
         import sklearn.tree.tree
@@ -122,7 +122,7 @@ def test_init_ok_unsupported():
     with pytest.raises(Exception, match=r"Unsupported"):
         reader.run(data_object)
 
-
+@pytest.mark.dev
 def test_gcsdeserializer_necessary_config():
     assert len(GcsDeserializer.necessary_config({})) == 3
 
@@ -182,7 +182,7 @@ def test_run_dill(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
-
+@pytest.mark.dev
 def test_run_dill_2(monkeypatch):
     # returns 1 objects from dill reader
     config = {
@@ -232,7 +232,7 @@ def test_run_dill_2(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
-
+@pytest.mark.dev
 def test_run_pickle(monkeypatch):
     # returns 2 objects from pickle reader
     config = {
@@ -288,7 +288,7 @@ def test_run_pickle(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
-
+@pytest.mark.dev
 def test_run_pickle_2(monkeypatch):
     # returns 1 objects from pickle reader
     config = {
@@ -338,7 +338,7 @@ def test_run_pickle_2(monkeypatch):
         if os.path.exists(f):
             os.remove(f)
 
-
+@pytest.mark.dev
 def test_run_other(monkeypatch):
     config = {
         "implementation_config": {

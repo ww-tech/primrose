@@ -8,7 +8,7 @@ import logging
 
 from primrose.notification_utils import SlackClient, get_notification_client
 
-
+@pytest.mark.basic
 def test_post():
     client_mock = mock.Mock(return_value=mock.Mock())
 
@@ -25,7 +25,7 @@ def test_post():
         channel="some_channel", text="test message\n <@USomeUserID>"
     )
 
-
+@pytest.mark.basic
 def test_get_notification_client():
     importlib_mock = mock.Mock()
     getattr_mock = mock.Mock()
@@ -40,7 +40,7 @@ def test_get_notification_client():
     assert importlib_mock.import_module.call_count == 1
     assert getattr_mock.call_count == 1
 
-
+@pytest.mark.basic
 def test_get_notification_client_exc(caplog):
     client_params = {"client": "DoesNotExist"}
     with caplog.at_level(logging.ERROR):

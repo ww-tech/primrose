@@ -82,8 +82,6 @@ jobs:
           if [ $PYPI_BUILD = 'complete' ]; then
               python -m pytest -m "dev"
           elif [ $PYPI_BUILD = 'basic' ]; then
-              python -m pytest -m "not postgres and not plotting"
-          else
-              python -m pytest -m "not optional"
+              python -m pytest -m "basic"
           fi
 

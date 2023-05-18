@@ -9,13 +9,15 @@ from primrose.node_factory import NodeFactory
 from primrose.base.node import AbstractNode
 from primrose.dag.config_layer_traverser import ConfigLayerTraverser
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_check_node_exists():
     with pytest.raises(Exception) as e:
         ConfigurationDag.check_node_exists(["a", "b", "c"], "d")
     assert "Destination d does not exist" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_check_cycles_OK():
     config = {
         "implementation_config": {
@@ -41,7 +43,8 @@ def test_check_cycles_OK():
     dag.create_dag()
     assert dag.check_for_cycles() is None
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_check_cycles_bad():
     config = {
         "implementation_config": {
@@ -72,7 +75,8 @@ def test_check_cycles_bad():
     # it turns out cycle finding code is stochastic so the order of the nodes in the found cycle is not stable. Thus, we look for initial phrase only
     # assert "Cycle(s) found: [('corpus_pipeline', 'recipe_name_model'), ('recipe_name_model', 'corpus_pipeline')]" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_check_cycles_bad2():
     config = {
         "implementation_config": {
@@ -101,7 +105,8 @@ def test_check_cycles_bad2():
         dag.check_connected_components()
     assert "Found multiple connected components:" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_type_bad():
     config = {
         "implementation_config": {
@@ -129,7 +134,8 @@ def test_type_bad():
         dag.create_dag()
     assert "Unrecognized destination type: 1234" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_type_bad2():
     config = {
         "implementation_config": {
@@ -159,7 +165,7 @@ def test_type_bad2():
 
 
 @pytest.mark.optional
-@pytest.mark.plotting
+@pytest.mark.basic
 def test_plot_dag():
     class TestPostprocess(AbstractNode):
         @staticmethod
@@ -265,7 +271,8 @@ def test_plot_dag():
     if os.path.exists(filename):
         os.remove(filename)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_upstream_keys1():
     config = {
         "implementation_config": {
@@ -295,7 +302,8 @@ def test_upstream_keys1():
         dag.upstream_keys("doesnotexist")
     assert "Node not found in the DAG:" in str(e)
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_upstream_typed_keys():
     config = {
         "implementation_config": {
@@ -326,7 +334,8 @@ def test_upstream_typed_keys():
     ukeys = dag.upstream_typed_keys("csv_writer")
     assert ukeys == {"csv_reader1": "reader_config", "csv_reader2": "reader_config"}
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_starting_nodes():
     # here, we also test descendents()
 
@@ -376,7 +385,8 @@ def test_starting_nodes():
     downstream_nodes = configuration.dag.descendents("read_data2")
     assert downstream_nodes == set(["decision_tree_model", "write_output"])
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_nodes_of_type():
     config = {
         "metadata": {},
@@ -434,7 +444,8 @@ def test_nodes_of_type():
     )
     assert nodes == set([])
 
-
+@pytest.mark.optional
+@pytest.mark.basic
 def test_paths():
     config = {
         "metadata": {},
