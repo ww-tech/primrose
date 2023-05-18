@@ -82,7 +82,7 @@ jobs:
           fi
       - name: tests
         run: |
-          if [ $PYPI_BUILD = 'complete' ]; then
+          if [ $PYPI_BUILD = 'basic' ]; then
               python -m pytest -m "basic"
           elif [ $PYPI_BUILD = 'dev' ]; then
               python -m pytest -m "dev and basic"
