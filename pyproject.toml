@@ -59,10 +59,17 @@ dev = [
     "pytest>=7.2.2",
     "scikit-learn>=1.2.2",
     "testfixtures>=7.1.0",
-    "psycopg2-binary>=2.9.5",
-    "pygraphviz>=1.10",
-    "rpy2>=3.4.5",
     "boto3>=1.26.93",
     "mysql-connector-python>=8.0.32",
     "google-cloud-storage>=2.7.0"
+]
+postgres = [
+    "psycopg2>=2.9.5",
+    "psycopg2-binary>=2.9.5",
+]
+plotting = [
+    "pygraphviz>=1.10",
+]
+r = [
+    "rpy2>=3.5.10",
 ]

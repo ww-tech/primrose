@@ -7,11 +7,11 @@ from primrose.configuration.configuration import Configuration
 from primrose.data_object import DataObject, DataObjectResponseType
 from unittest.mock import patch
 
-@pytest.mark.dev
+@pytest.mark.postgres
 def test_necessary_config():
     assert len(PostgresReader.necessary_config({})) == 1
 
-@pytest.mark.dev
+@pytest.mark.postgres
 def test_run(monkeypatch):
     config = {
         "implementation_config": {
