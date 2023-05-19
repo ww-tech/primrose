@@ -1,32 +1,33 @@
 [build-system]
-requires = ["pdm-pep517>=1.0"]
-build-backend = "pdm.pep517.api"
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
 
-[tool.pdm]
-[tool.pdm.build]
-includes = [
-    "primrose/",
-    "data/",
-    "config/"
+[tool.setuptools.packages.find]
+include = [
+    "primrose*",
+    "data*",
+    "config*"
 ]
-source-includes = ["tests/"]
 
 [project]
 name = "primrose"
-version = "1.0.14.dev38"
+version = "2.0.0"
 description = "Primrose: a framework for simple, quick modeling deployments"
 authors = [
-    {name = "WW Data Science", email = "datascience@ww.com"},
+    {name = "WW Data Science", email = "datascience@ww.com"}
 ]
 maintainers = [
     {name = "Brian Graham", email = "brian.graham@ww.com"},
+    {name = "Calvin Woo", email = "calvin.woo@ww.com"},
+    {name = "Pierre Winter", email = "pierre.winter@ww.com"},
+    {name = "Rakesh Ramesh", email = "rakesh.ramesh@ww.com"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3.8",
-    "Operating System :: OS Independent",
+    "Operating System :: OS Independent"
 ]
 dependencies = [
     "pandas>=1.5.3",
@@ -63,7 +64,6 @@ test = [
     "pytest>=7.2.2",
 ]
 postgres = [
-    "psycopg2>=2.9.5",
     "psycopg2-binary>=2.9.5",
 ]
 plotting = [
