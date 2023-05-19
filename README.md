@@ -64,10 +64,10 @@ There are many solutions in this space, and we encourage users to explore other 
 
 ## Getting Started
 
-`Primrose` has a couple of optional tools:
-* a PostgreSQL database reader
-* a plotting tool
-* an R-dataset reader. E.g., to read in R's iris dataset see config/example_read_r.json
+`Primrose` has two options:
+* a basic version.
+* a developer version that includes additional functionality like SQL readers, plotting tools.
+
 
 These require a few external dependencies, prior to its installation. If interested in their functionality, follow the appropriate instructions for your OS below. Otherwise, you can proceed with the basic package installation.
 
@@ -81,31 +81,15 @@ or you can clone the repository and install via `setup.py`.
 ```
 git clone https://github.com/ww-tech/primrose.git
 cd primrose
-python setup.py install
+python -m pip install .
 ```
 
 To install the complete `Primrose` package (after dependencies have been installed):
 ```
-    pip install primrose[postgres, plotting]
+python -m pip install ".[dev]"
 ```
 
-To install `Primrose` with just the PostgreSQL option:
 
-```
-pip install primrose[postgres]
-```
-
-To install `primrose` with just the plotting option:
-
-```
-pip install primrose[plotting]
-```
-
-To install `primrose` with just the R dataset reading option:
-
-```
-pip install primrose[R]
-```
 ### External dependenices
 
 **PostgreSQL**
