@@ -37,12 +37,19 @@ class SklearnDatasetReader(AbstractReader):
 
         function_map = {
             "iris": load_iris,
-            "boston": load_boston,
             "diabetes": load_diabetes,
             "breast_cancer": load_breast_cancer,
             "linnerud": load_linnerud,
             "wine": load_wine,
         }
+
+        try:
+            _boston = load_boston
+            function_map["boston"] = _boston
+        except NameError:
+            # the boston housing dataset is deprecated in sklearn>1.0
+            # https://scikit-learn.org/stable/whats_new/v1.0.html#id10
+            ...
 
         if not dataset in function_map.keys():
             raise Exception("Dataset not supported " + dataset)
