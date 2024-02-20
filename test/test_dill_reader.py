@@ -6,12 +6,18 @@ from primrose.data_object import DataObject, DataObjectResponseType
 
 
 def test_init_ok():
+    try:
+        import sklearn.tree.tree
+        model_filename = "test/tinymodel.dill"
+    except ModuleNotFoundError:
+        model_filename = "test/tinymodel_skl_0_24.dill"
+
     config = {
         "implementation_config": {
             "reader_config": {
                 "dill_reader": {
                     "class": "DillReader",
-                    "filename": "test/tinymodel.dill",
+                    "filename": model_filename,
                     "destinations": [],
                 }
             }
@@ -32,7 +38,7 @@ def test_init_ok():
 
     node_config = {
         "class": "DillReader",
-        "filename": "test/tinymodel.dill",
+        "filename": model_filename,
         "destinations": [],
     }
 
