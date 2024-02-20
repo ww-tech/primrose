@@ -464,27 +464,33 @@ class Configuration:
         """
         # for now assume packages/top level only
         if CLASS_ENV_PACKAGE_KEY in os.environ:
+            logging.info("Using package from environment variable")
             pkg_name = os.environ[CLASS_ENV_PACKAGE_KEY]
-        elif self.config_metadata:
-            if "class_package" in self.config_metadata:
-                pkg_name = self.config_metadata["class_package"]
-            else:
-                return []
+        if self.config_metadata and "class_package" in self.config_metadata:
+            # overwrites package set in environment variable CLASS_ENV_PACKAGE_KEY
+            logging.info("Using package from configuration metadata")
+            pkg_name = self.config_metadata["class_package"]
         else:
             return []
+
         # look for path to module to find potential file candidates
         try:
             # if we are passed something like __init__.py, grab the package
-            if os.path.isfile(pkg_name):
+            if isinstance(pkg_name, str) and os.path.isfile(pkg_name):
                 pkg_name = os.path.dirname(pkg_name)
             # if we have an actual package from pip install
-            if not os.path.isdir(pkg_name):
+            if isinstance(pkg_name, str) and not os.path.isdir(pkg_name):
                 pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
         except ModuleNotFoundError:
             logging.warning("Could not find module specified for external node configuration")
             return []
 
-        candidates = glob.glob(os.path.join(pkg_name, "**", "*.py"), recursive=True)
+        if isinstance(pkg_name, str):
+            pkg_name = [pkg_name]
+
+        candidates = []
+        for pkg in pkg_name:
+            candidates += glob.glob(os.path.join(pkg, "**", "*.py"), recursive=True)
 
         return candidates
 
