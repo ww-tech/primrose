@@ -455,8 +455,9 @@ class Configuration:
     def _get_file_candidates(self):
         """Get file candidates to search through when specifying a class package.
 
-        Priority will first consider environment variable PRIMROSE_EXT_NODE_PACKAGE. If unset, will
-        search the configuration metadata for key `class_package`. If nothing is specified, in either
+        First consider value in PRIMROSE_EXT_NODE_PACKAGE but give priority to `class_package` 
+        in configuration metadata. That is, if `class_package` is set in the configuration metadata, 
+        it will override the PRIMROSE_EXT_NODE_PACKAGE variable. If nothing is specified, in either
         location, an empty list is returned.
 
         Returns:
