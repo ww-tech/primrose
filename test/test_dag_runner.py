@@ -18,6 +18,7 @@ from primrose.dag.traverser_factory import TraverserFactory
 from abc import abstractmethod
 from primrose.base.writer import AbstractWriter
 
+TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def test_run():
     config = {
@@ -766,3 +767,11 @@ def test_run_pruned():
         ("root", "INFO", "left node!"),
         ("root", "INFO", "All done. Bye bye!"),
     )
+
+
+def test_class_packages_run():
+    config_loc = os.path.join(TEST_DIR, "hello_world_read_process_write.json")
+    configuration = Configuration(config_location=config_loc)
+
+    runner = DagRunner(configuration)
+    runner.run()
