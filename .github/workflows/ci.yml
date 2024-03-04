@@ -70,13 +70,14 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
-            pip install pygraphviz \
-                --global-option=build_ext \
-                --global-option="-I$GRAPHVIZ_DIR/include" \
-                --global-option="-L$GRAPHVIZ_DIR/lib"
-                        unset LDFLAGS
-                        unset CPPFLAGS
+            python -m pip install \
+              --global-option=build_ext \
+              --global-option="-I$(brew --prefix graphviz)/include/" \
+              --global-option="-L$(brew --prefix graphviz)/lib/" \
+              pygraphviz>=1.10
+ 
+            unset LDFLAGS
+            unset CPPFLAGS
 
             pip install .[postgres]
             pip install .[R]
@@ -94,13 +95,12 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
-            pip install pygraphviz \
-                --global-option=build_ext \
-                --global-option="-I$GRAPHVIZ_DIR/include" \
-                --global-option="-L$GRAPHVIZ_DIR/lib"
-                        unset LDFLAGS
-                        unset CPPFLAGS
+            python -m pip install \
+              --global-option=build_ext \
+              --global-option="-I$(brew --prefix graphviz)/include/" \
+              --global-option="-L$(brew --prefix graphviz)/lib/" \
+                pygraphviz>=1.10
+
             unset LDFLAGS
             unset CPPFLAGS
           elif [ $PYPI_BUILD = 'only_r' ]; then
