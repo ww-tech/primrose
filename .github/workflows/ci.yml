@@ -71,8 +71,13 @@ jobs:
             fi
 
             pip install .[plotting]
-            unset LDFLAGS
-            unset CPPFLAGS
+            export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
+            pip install pygraphviz \
+                --global-option=build_ext \
+                --global-option="-I$GRAPHVIZ_DIR/include" \
+                --global-option="-L$GRAPHVIZ_DIR/lib"
+                        unset LDFLAGS
+                        unset CPPFLAGS
 
             pip install .[postgres]
             pip install .[R]
@@ -91,6 +96,13 @@ jobs:
             fi
 
             pip install .[plotting]
+            export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
+            pip install pygraphviz \
+                --global-option=build_ext \
+                --global-option="-I$GRAPHVIZ_DIR/include" \
+                --global-option="-L$GRAPHVIZ_DIR/lib"
+                        unset LDFLAGS
+                        unset CPPFLAGS
             unset LDFLAGS
             unset CPPFLAGS
           elif [ $PYPI_BUILD = 'only_r' ]; then
