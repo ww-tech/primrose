@@ -93,7 +93,6 @@ jobs:
             pip install .[plotting]
             unset LDFLAGS
             unset CPPFLAGS
-
           elif [ $PYPI_BUILD = 'only_r' ]; then
             echo "Installing R requirements"
             pip install .[R]
