@@ -45,7 +45,6 @@ jobs:
       - name: install_mac
         if : matrix.os == 'macos-latest'
         run: |
-          export MACOSX_DEPLOYMENT_TARGET=10.9
           bash scripts/mac_install.sh
       - name: install R
         if: matrix.pypi_build == 'complete' || matrix.pypi_build == 'only_r'
@@ -91,14 +90,10 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            python -m pip install \
-              --global-option=build_ext \
-              --global-option="-I$(brew --prefix graphviz)/include/" \
-              --global-option="-L$(brew --prefix graphviz)/lib/" \
-                pygraphviz>=1.10
-
+            pip install .[plotting]
             unset LDFLAGS
             unset CPPFLAGS
+
           elif [ $PYPI_BUILD = 'only_r' ]; then
             echo "Installing R requirements"
             pip install .[R]
