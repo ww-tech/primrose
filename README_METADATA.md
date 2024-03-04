@@ -7,6 +7,7 @@ Users are free to add whatever keys and configuration they wish in this section.
 In this document, we will cover the following metadata keys:
 
  - traverser
+ - class_package
  - data_object
  - section_registry
  - section_run
@@ -18,6 +19,8 @@ For instance, you might have a configuration
     "metadata": {
 
         "traverser": "DepthFirstTraverser",
+
+        "class_package": ["./src", "./sample_project"],
 
         "data_object": {
             "read_from_cache": false,
@@ -70,6 +73,77 @@ The way users defined what to use is with the `traverser` key in `metadata`. If 
 }
 ```
 
+# class_package
+When creating additional nodes for your projects, you can specify where to look for potential nodes to register, via 
+
+(1) setting the `PRIMROSE_EXT_NODE_PACKAGE` environment variable, or  
+(2) specifying the folders in the `metadata` portion of your primrose config via the `class_package` key. 
+
+
+For example, if all custom nodes are in the `src` folder,
+```
+├── config
+│   ├── my_primrose_config.yml
+├── src
+│   ├── readers
+│   │   ├── reader_node.py
+│   ├── pipelines
+│   │   ├── pipeline_node.py
+```
+we can set `PRIMROSE_EXT_NODE_PACKAGE=./src`, or define the primrose config as
+```
+metadata:
+  section_registry:
+    - reader_config
+    - writer_config
+  class_package:
+    - './src'
+
+implementation_config:
+  reader_config:
+    ...
+  writer_config:
+    ...
+```
+
+The latter is particularly useful when mulitple projects are being built off the same primrose package. For example, given the following folder structure
+```
+├── config
+│   ├── primrose_config1.yml
+│   ├── primrose_config2.yml
+├── src
+│   ├── readers
+│   │   ├── reader_node.py
+│   ├── pipelines
+│   │   ├── pipeline_node.py
+├── projects
+│   ├── sample_project1
+│   │   ├── sample_project1_node.py
+│   ├── sample_project2
+│   │   ├── sample_project2_node.py
+```
+we can define the primrose config for `sample_project1` as
+```
+metadata:
+  class_package:
+    - './src'
+    - './projects/sample_project1'
+
+implementation_config:
+    ...
+```
+and the primrose config for `sample_project2` as
+```
+metadata:
+  class_package:
+    - './src'
+    - './projects/sample_project2'
+
+implementation_config:
+    ...
+```
+This ensures all classes within the `src` and `projects/sample_project{i}` folders are considered when registering nodes specified in the primrose configs.
+ 
 # section_registry key
 The default assumption of 
 ```

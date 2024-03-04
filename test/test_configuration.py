@@ -603,19 +603,19 @@ def test_class_package(mock_env):
         NodeFactory().unregister("TestExtNode")
 
 
-def test_env_override_class_package(mock_env):
+def test_class_package_override_env(mock_env):
     config = {
         "metadata": {"class_package": "junk"},
         "implementation_config": {
             "reader_config": {"read_data": {"class": "TestExtNode", "destinations": []}}
         },
     }
-    config = Configuration(
-        config_location=None, is_dict_config=True, dict_config=config
+    with pytest.raises(Exception) as e:
+        Configuration(config_location=None, is_dict_config=True, dict_config=config)
+    assert (
+        "Cannot register node class TestExtNode"
+        in str(e)
     )
-    assert config.config_string
-    assert config.config_hash
-    NodeFactory().unregister("TestExtNode")
 
 
 def test_incorrect_class_package():

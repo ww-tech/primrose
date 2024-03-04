@@ -44,7 +44,7 @@ dependencies = [
     "mysql-connector-python>=8.0.32",
     "slackclient>=2.9.4",
     "testfixtures>=7.1.0",
-    "moto>=4.1.4",
+    "moto==4.1.4",
     "nltk>=3.8.1",
     "pydot>=1.4.2",
 ]
