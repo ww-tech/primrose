@@ -472,7 +472,6 @@ class Configuration:
             pkg_name = self.config_metadata["class_package"]
         else:
             return []
-
         # look for path to module to find potential file candidates
         try:
             # if we are passed something like __init__.py, grab the package
