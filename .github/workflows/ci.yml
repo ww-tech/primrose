@@ -70,7 +70,6 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            pip install .[plotting]
             export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
             pip install pygraphviz \
                 --global-option=build_ext \
@@ -95,7 +94,6 @@ jobs:
               export CPPFLAGS="-I/usr/include"
             fi
 
-            pip install .[plotting]
             export GRAPHVIZ_DIR="$(brew --prefix graphviz)"
             pip install pygraphviz \
                 --global-option=build_ext \
