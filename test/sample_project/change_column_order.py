@@ -9,7 +9,7 @@ from primrose.base.pipeline import AbstractPipeline
 
 
 class ColumnReorder(AbstractPipeline):
-    """Join upstream dataframes"""
+    """Reorder columns in a dataframe"""
 
     @staticmethod
     def necessary_config(node_config):
