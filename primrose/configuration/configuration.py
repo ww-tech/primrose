@@ -455,9 +455,8 @@ class Configuration:
     def _get_file_candidates(self):
         """Get file candidates to search through when specifying a class package.
 
-        First consider value in PRIMROSE_EXT_NODE_PACKAGE but give priority to `class_package` 
-        in configuration metadata. That is, if `class_package` is set in the configuration metadata, 
-        it will override the PRIMROSE_EXT_NODE_PACKAGE variable. If nothing is specified, in either
+        Priority will first consider environment variable PRIMROSE_EXT_NODE_PACKAGE. If unset, will
+        search the configuration metadata for key `class_package`. If nothing is specified, in either
         location, an empty list is returned.
 
         Returns:
@@ -465,32 +464,27 @@ class Configuration:
         """
         # for now assume packages/top level only
         if CLASS_ENV_PACKAGE_KEY in os.environ:
-            logging.info("Using package from environment variable")
             pkg_name = os.environ[CLASS_ENV_PACKAGE_KEY]
-        if self.config_metadata and "class_package" in self.config_metadata:
-            # overwrites package set in environment variable CLASS_ENV_PACKAGE_KEY
-            logging.info("Using package from configuration metadata")
-            pkg_name = self.config_metadata["class_package"]
+        elif self.config_metadata:
+            if "class_package" in self.config_metadata:
+                pkg_name = self.config_metadata["class_package"]
+            else:
+                return []
         else:
             return []
         # look for path to module to find potential file candidates
         try:
             # if we are passed something like __init__.py, grab the package
-            if isinstance(pkg_name, str) and os.path.isfile(pkg_name):
+            if os.path.isfile(pkg_name):
                 pkg_name = os.path.dirname(pkg_name)
             # if we have an actual package from pip install
-            if isinstance(pkg_name, str) and not os.path.isdir(pkg_name):
+            if not os.path.isdir(pkg_name):
                 pkg_name = os.path.dirname(importlib.import_module(pkg_name).__file__)
         except ModuleNotFoundError:
             logging.warning("Could not find module specified for external node configuration")
             return []
 
-        if isinstance(pkg_name, str):
-            pkg_name = [pkg_name]
-
-        candidates = []
-        for pkg in pkg_name:
-            candidates += glob.glob(os.path.join(pkg, "**", "*.py"), recursive=True)
+        candidates = glob.glob(os.path.join(pkg_name, "**", "*.py"), recursive=True)
 
         return candidates
 
